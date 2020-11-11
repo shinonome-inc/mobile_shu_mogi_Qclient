@@ -13,7 +13,7 @@
 		02A9905B2557DAB900082955 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02A990592557DAB900082955 /* Main.storyboard */; };
 		02A9905D2557DABB00082955 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02A9905C2557DABB00082955 /* Assets.xcassets */; };
 		02A990602557DABB00082955 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02A9905E2557DABB00082955 /* LaunchScreen.storyboard */; };
-		02A9906F255907FE00082955 /* LoginOAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A9906E255907FE00082955 /* LoginOAuthViewController.swift */; };
+		02A9906F255907FE00082955 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A9906E255907FE00082955 /* LoginViewController.swift */; };
 		675A99C01E5B2032D3662E6E /* Pods_Qcli.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 105D3B6E37BA817A4F352A2E /* Pods_Qcli.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,7 +27,7 @@
 		02A9905C2557DABB00082955 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02A9905F2557DABB00082955 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		02A990612557DABB00082955 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		02A9906E255907FE00082955 /* LoginOAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginOAuthViewController.swift; sourceTree = "<group>"; };
+		02A9906E255907FE00082955 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		105D3B6E37BA817A4F352A2E /* Pods_Qcli.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Qcli.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F6543D98951B36C857F91C4 /* Pods-Qcli.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qcli.release.xcconfig"; path = "Target Support Files/Pods-Qcli/Pods-Qcli.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,7 +72,7 @@
 				02A9905C2557DABB00082955 /* Assets.xcassets */,
 				02A9905E2557DABB00082955 /* LaunchScreen.storyboard */,
 				02A990612557DABB00082955 /* Info.plist */,
-				02A9906E255907FE00082955 /* LoginOAuthViewController.swift */,
+				02A9906E255907FE00082955 /* LoginViewController.swift */,
 			);
 			path = Qcli;
 			sourceTree = "<group>";
@@ -210,7 +210,7 @@
 			files = (
 				02A990582557DAB900082955 /* ViewController.swift in Sources */,
 				02A990542557DAB900082955 /* AppDelegate.swift in Sources */,
-				02A9906F255907FE00082955 /* LoginOAuthViewController.swift in Sources */,
+				02A9906F255907FE00082955 /* LoginViewController.swift in Sources */,
 				02A990562557DAB900082955 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
