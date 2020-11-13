@@ -7,17 +7,14 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
-struct qiitaUserInfo {
-    var userID: String
-    var password: String
+struct qiitaUserInfo: Codable {
     var token: String
 }
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var userIDTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var tokenTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var notLoginButton: UIButton!
@@ -38,57 +35,91 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         //2回目のログインだとログインをスキップさせる
-        if let _ = UserDefaults.standard.object(forKey: "userName") {
-            performSegue(withIdentifier: "goTimeLine", sender: nil)
-        }
+//        if let _ = UserDefaults.standard.object(forKey: "isLogined") {
+//            performSegue(withIdentifier: "toTabBarController", sender: nil)
+//        }
+        
     }
     
     @IBAction func login(_ sender: Any) {
         print("login button tapped")
-        qiitaAuthentication(info: self.setUserInfo())
+        let userInfo = self.setUserInfo()
+        qiitaAuthentication(info: userInfo)
     }
     
     func setLayout() {
-        userIDTextField.layer.cornerRadius = cornerRadiusValue
-        passwordTextField.layer.cornerRadius = cornerRadiusValue
         tokenTextField.layer.cornerRadius = cornerRadiusValue
         loginButton.layer.cornerRadius = cornerRadiusValue
         notLoginButton.layer.cornerRadius = cornerRadiusValue
     }
     
-    //ユーザー情報を入力して正し以下どうか判定
+    //ユーザー情報を入力して正しいかどうか判定し、正しければ画面遷移
     func qiitaAuthentication(info: qiitaUserInfo) {
         print("qiitaAuthentication呼ばれました")
         let url: String = "https://qiita.com/api/v2/authenticated_user"
         let headers: HTTPHeaders = [
-            "Authorization": "token " + info.token
+            "Authorization": "Bearer " + info.token
         ]
+        print(headers)
         AF.request(url, method: .get, headers: headers).responseJSON{ response in
             switch response.result {
-            case .success:
-                print("成功")
+            case .success(let value):
+                let json = JSON(value)
+                //jsonファイルの中にidの項目があれば認証成功とする
+                if json["id"].string != nil {
+                    print("リクエスト成功")
+                    self.registerIsLogined(isLogined: true)
+                    //userInfoに値をUserDefaultに受け渡す
+                    self.saveUserDefault(userInfo: info)
+                    //認証成功した場合は次の画面に遷移する
+                    self.performSegue(withIdentifier: "toTabBarController", sender: nil)
+                    
+                } else {
+                    //jsonファイルの中にidの項目がなければ認証失敗とする
+                    self.registerIsLogined(isLogined: false)
+                    //self.displayMyAlertMessage(userMessage: "リクエストは送信できましたが、無効なトークンです。")
+                    print("リクエストは送信できましたが、無効なトークンです。")
+                }
             case .failure:
-                print("失敗")
+                self.registerIsLogined(isLogined: false)
+                self.displayMyAlertMessage(userMessage: "リクエスト送信できませんでした。")
+                print(response.result)
+                
             }
         }
+       
     }
     
     func testInput() {
-        userIDTextField.text = "hoge"
-        passwordTextField.text = "hogehoge"
-        tokenTextField.text = "eb13de6e9b5613e77966597adcad99341399317b"
+        tokenTextField.text = "019d7212b6a078db151f8eae4c6948dfe9f71232"
     }
     
     func setUserInfo() -> qiitaUserInfo {
-        var info = qiitaUserInfo(userID: "", password: "", token: "")
-        if let userID = self.userIDTextField.text,
-           let password = self.passwordTextField.text,
-           let token = self.tokenTextField.text {
-            info.userID = userID
-            info.password = password
+        var info = qiitaUserInfo(token: "")
+        if let token = self.tokenTextField.text {
             info.token = token
             return info
         }
         return info
     }
+    
+    func displayMyAlertMessage(userMessage: String) {
+        let myAlert = UIAlertController(title:"Alert", message: userMessage, preferredStyle:  UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title:"OK", style: UIAlertAction.Style.default, handler:nil)
+        myAlert.addAction(okAction);
+        self.present(myAlert,animated:true, completion:nil)
+        
+    }
+    
+    func registerIsLogined(isLogined: Bool) {
+        let userDefault = UserDefaults.standard
+        userDefault.set(isLogined, forKey: "isLogined")
+    }
+    
+    func saveUserDefault(userInfo: qiitaUserInfo) {
+        //userDefaultにユーザー情報を入れる
+        let userDefault = UserDefaults.standard
+        userDefault.set(try? PropertyListEncoder().encode([userInfo]), forKey: "userInfo")
+    }
+    
 }
