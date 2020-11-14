@@ -17,17 +17,21 @@ struct ArticleData {
     var articleURL: String
 }
 
-class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
-    @IBOutlet weak var searchTxextField: UITextField!
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var articleTableView: UITableView!
     let cornerRadiusValue: CGFloat = 8
-    var dataList: [ArticleData] = []
+    //cellの高さ設定
     let tableViewCellHeight: CGFloat = 50
+    //最初に取得する記事欄のデータ
+    var initializedItems = [ArticleData]()
+    //検索後記事欄のデータ
+    var searchItems = [ArticleData]()
+    var searching = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setLayout()
         //ログインした状態ならユーザー情報呼び出し
         if self.isLogined() {
             let token = callUserInfo()
@@ -35,29 +39,37 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         articleTableView.dataSource = self
         articleTableView.delegate = self
+        searchBar.delegate = self
+        //テーブルビューをスクロールさせたらキーボードを閉じる
+        articleTableView.keyboardDismissMode = .onDrag
         getData()
     }
     
+    //検索のアルゴリズムを変えたいならここをいじる
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchItems = initializedItems.filter({$0.titleText.lowercased().prefix(searchText.count) == searchText.lowercased()})
+        searching = true
+        articleTableView.reloadData()
+    }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataList.count
+        if searching {
+            return searchItems.count
+        } else {
+            return initializedItems.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = articleTableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as! ArticleTableViewCell
-        cell.titleLabel?.text = dataList[indexPath.row].titleText
-        cell.discriptionLabel?.text = dataList[indexPath.row].discriptionText
-        cell.likeLabel?.text = "\(dataList[indexPath.row].likeNumber)like"
-        let url = URL(string: dataList[indexPath.row].imgURL)
-        do {
-            let imageData = try Data(contentsOf: url!)
-            cell.articleIconImage?.image = UIImage(data: imageData)
-        } catch {
-            cell.articleIconImage?.image = UIImage(named: "no-coupon-image.png")
+        if searching {
+            return setCell(items: searchItems, indexPath: indexPath)
+        } else {
+            return setCell(items: initializedItems, indexPath: indexPath)
         }
-        cell.cellSetLayout()
-        return cell
     }
     
+    //tableviewcellの高さ設定
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return tableViewCellHeight
     }
@@ -81,10 +93,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return value
     }
     
-    func setLayout() {
-        searchTxextField.layer.cornerRadius = cornerRadiusValue
-    }
-    
+    //apiを叩きデータを保存する
     func getData() {
         let url = "https://qiita.com/api/v2/items?page=1&per_page=20"
         AF.request(url, method: .get).validate().responseJSON { response in
@@ -98,15 +107,33 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                        let imageURL = json["user"]["profile_image_url"].string,
                        let articleURL = json["url"].string {
                         let oneData = ArticleData(imgURL: imageURL, titleText: titleData, discriptionText: discriptionData, likeNumber: likeData, articleURL: articleURL)
-                        self.dataList.append(oneData)
+                        self.initializedItems.append(oneData)
                     }
                     
                 }
+                self.searchItems = self.initializedItems
                 self.articleTableView.reloadData()
                 print("tableリロード")
             case .failure(let error):
                 print(error)
             }
         }
+    }
+    
+    //tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)で呼ばれる関数
+    func setCell(items: [ArticleData], indexPath: IndexPath) -> ArticleTableViewCell {
+        let cell = articleTableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as! ArticleTableViewCell
+        cell.titleLabel?.text = items[indexPath.row].titleText
+        cell.discriptionLabel?.text = items[indexPath.row].discriptionText
+        cell.likeLabel?.text = "\(items[indexPath.row].likeNumber)like"
+        let url = URL(string: items[indexPath.row].imgURL)
+        do {
+            let imageData = try Data(contentsOf: url!)
+            cell.articleIconImage?.image = UIImage(data: imageData)
+        } catch {
+            cell.articleIconImage?.image = UIImage(named: "no-coupon-image.png")
+        }
+        cell.cellSetLayout()
+        return cell
     }
 }
