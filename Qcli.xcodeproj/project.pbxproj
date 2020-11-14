@@ -14,6 +14,7 @@
 		02A990602557DABB00082955 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02A9905E2557DABB00082955 /* LaunchScreen.storyboard */; };
 		02A9906F255907FE00082955 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A9906E255907FE00082955 /* LoginViewController.swift */; };
 		02A990EB255E298700082955 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A990EA255E298600082955 /* FeedViewController.swift */; };
+		02A990EF255F5C5700082955 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A990EE255F5C5700082955 /* ArticleTableViewCell.swift */; };
 		675A99C01E5B2032D3662E6E /* Pods_Qcli.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 105D3B6E37BA817A4F352A2E /* Pods_Qcli.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 		02A990612557DABB00082955 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02A9906E255907FE00082955 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		02A990EA255E298600082955 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		02A990EE255F5C5700082955 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		105D3B6E37BA817A4F352A2E /* Pods_Qcli.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Qcli.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F6543D98951B36C857F91C4 /* Pods-Qcli.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qcli.release.xcconfig"; path = "Target Support Files/Pods-Qcli/Pods-Qcli.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,6 +75,7 @@
 				02A9905C2557DABB00082955 /* Assets.xcassets */,
 				02A9905E2557DABB00082955 /* LaunchScreen.storyboard */,
 				02A990612557DABB00082955 /* Info.plist */,
+				02A990EE255F5C5700082955 /* ArticleTableViewCell.swift */,
 			);
 			path = Qcli;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02A990EF255F5C5700082955 /* ArticleTableViewCell.swift in Sources */,
 				02A990542557DAB900082955 /* AppDelegate.swift in Sources */,
 				02A9906F255907FE00082955 /* LoginViewController.swift in Sources */,
 				02A990EB255E298700082955 /* FeedViewController.swift in Sources */,
