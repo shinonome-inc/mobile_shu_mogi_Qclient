@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="niY-SG-oki">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="niY-SG-oki">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -153,7 +153,7 @@
                                 <rect key="frame" x="0.0" y="160" width="414" height="653"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="50" id="nCP-C9-IvT" customClass="ArticleTableViewCell" customModule="Qcli" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArticleCell" rowHeight="50" id="nCP-C9-IvT" customClass="ArticleTableViewCell" customModule="Qcli" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nCP-C9-IvT" id="dJM-eu-ZRF">
@@ -177,7 +177,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="shY-sY-LzZ">
-                                                    <rect key="frame" x="63" y="28" width="37.333333333333343" height="22"/>
+                                                    <rect key="frame" x="63" y="28" width="43.666666666666657" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="22" id="fhr-UZ-DiO"/>
                                                     </constraints>
@@ -185,10 +185,11 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPn-y1-jO9">
-                                                    <rect key="frame" x="373.66666666666669" y="14" width="35.333333333333314" height="22"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPn-y1-jO9">
+                                                    <rect key="frame" x="106.66666666666666" y="14" width="302.33333333333337" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="22" id="Llo-Pr-pnw"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="36" id="uOb-IO-WhI"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
@@ -196,13 +197,13 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="KPn-y1-jO9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wbw-V8-ueC" secondAttribute="trailing" constant="8" symbolic="YES" id="2vQ-WY-dfY"/>
                                                 <constraint firstItem="wbw-V8-ueC" firstAttribute="top" secondItem="dJM-eu-ZRF" secondAttribute="top" id="3oF-kn-vtz"/>
                                                 <constraint firstItem="rbt-qw-DVp" firstAttribute="top" secondItem="dJM-eu-ZRF" secondAttribute="top" constant="5" id="8Tt-TJ-63A"/>
+                                                <constraint firstItem="KPn-y1-jO9" firstAttribute="leading" secondItem="shY-sY-LzZ" secondAttribute="trailing" id="DXj-pm-2s8"/>
+                                                <constraint firstItem="KPn-y1-jO9" firstAttribute="leading" secondItem="wbw-V8-ueC" secondAttribute="trailing" id="J30-1S-kfq"/>
                                                 <constraint firstItem="wbw-V8-ueC" firstAttribute="leading" secondItem="rbt-qw-DVp" secondAttribute="trailing" constant="18" id="Jlg-DU-0NJ"/>
                                                 <constraint firstItem="shY-sY-LzZ" firstAttribute="leading" secondItem="rbt-qw-DVp" secondAttribute="trailing" constant="18" id="LdG-nV-tbB"/>
-                                                <constraint firstItem="KPn-y1-jO9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="shY-sY-LzZ" secondAttribute="trailing" constant="8" symbolic="YES" id="NAT-AD-RFu"/>
-                                                <constraint firstAttribute="trailing" secondItem="KPn-y1-jO9" secondAttribute="trailing" constant="5" id="aEz-ef-EQD"/>
+                                                <constraint firstAttribute="trailing" secondItem="KPn-y1-jO9" secondAttribute="trailing" constant="5" id="jxl-AT-eUo"/>
                                                 <constraint firstItem="shY-sY-LzZ" firstAttribute="top" secondItem="wbw-V8-ueC" secondAttribute="bottom" id="pQ4-dO-wt7"/>
                                                 <constraint firstItem="KPn-y1-jO9" firstAttribute="top" secondItem="dJM-eu-ZRF" secondAttribute="top" constant="14" id="uSH-L5-RIf"/>
                                                 <constraint firstItem="rbt-qw-DVp" firstAttribute="leading" secondItem="dJM-eu-ZRF" secondAttribute="leading" constant="5" id="xfq-E6-maq"/>
@@ -232,6 +233,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Feed" id="YWG-oh-r1j"/>
                     <connections>
+                        <outlet property="articleTableView" destination="Bcz-Kh-UcR" id="SzX-14-qiL"/>
                         <outlet property="searchTxextField" destination="AE3-pp-sex" id="91n-tY-Tmr"/>
                     </connections>
                 </viewController>
@@ -316,7 +318,7 @@
         <scene sceneID="LFy-gp-qV9">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SdZ-Sh-DkO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Feed" id="RbB-ye-Zxr"/>
+                    <tabBarItem key="tabBarItem" title="Feed" image="rss_feed" id="RbB-ye-Zxr"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6Kf-1E-Ypd">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -333,6 +335,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="rss_feed" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
