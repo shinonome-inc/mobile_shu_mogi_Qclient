@@ -29,6 +29,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //検索後記事欄のデータ
     var searchItems = [ArticleData]()
     var searching = false
+    //画面遷移時のデータ受け渡し用
+    var sendData = ArticleData(imgURL: "", titleText: "", discriptionText: "", likeNumber: 0, articleURL: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +74,25 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //tableviewcellの高さ設定
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return tableViewCellHeight
+    }
+    
+    //tableviewcell選択時の処理
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if searching {
+            sendData = searchItems[indexPath.row]
+        } else {
+            sendData = initializedItems[indexPath.row]
+        }
+        //tableviewcell選択解除
+        tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "GoToArticlePage", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "GoToArticlePage") {
+            let articlePageVC = segue.destination as! ArticlePageViewController
+            articlePageVC.articleData = sendData
+        }
     }
     
     //userInfo呼び出し

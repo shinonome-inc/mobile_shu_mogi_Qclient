@@ -60,7 +60,6 @@ class LoginViewController: UIViewController {
         let headers: HTTPHeaders = [
             "Authorization": "Bearer " + info.token
         ]
-        print(headers)
         AF.request(url, method: .get, headers: headers).responseJSON{ response in
             switch response.result {
             case .success(let value):
@@ -73,7 +72,6 @@ class LoginViewController: UIViewController {
                     self.saveUserDefault(userInfo: info)
                     //認証成功した場合は次の画面に遷移する
                     self.performSegue(withIdentifier: "toTabBarController", sender: nil)
-                    
                 } else {
                     //jsonファイルの中にidの項目がなければ認証失敗とする
                     self.registerIsLogined(isLogined: false)
@@ -91,7 +89,7 @@ class LoginViewController: UIViewController {
     }
     
     func testInput() {
-        tokenTextField.text = "019d7212b6a078db151f8eae4c6948dfe9f71232"
+        tokenTextField.text = "5826b1255becde9c13ed80bee2e510a979268d8f"
     }
     
     func setUserInfo() -> qiitaUserInfo {

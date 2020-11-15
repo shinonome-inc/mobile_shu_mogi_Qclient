@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		024AA82225614B5400E502F5 /* ArticlePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024AA82125614B5400E502F5 /* ArticlePageViewController.swift */; };
 		02A990542557DAB900082955 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A990532557DAB900082955 /* AppDelegate.swift */; };
 		02A990562557DAB900082955 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A990552557DAB900082955 /* SceneDelegate.swift */; };
 		02A9905B2557DAB900082955 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02A990592557DAB900082955 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		0022A2C1EDEB925B5A20B260 /* Pods-Qcli.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qcli.debug.xcconfig"; path = "Target Support Files/Pods-Qcli/Pods-Qcli.debug.xcconfig"; sourceTree = "<group>"; };
+		024AA82125614B5400E502F5 /* ArticlePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlePageViewController.swift; sourceTree = "<group>"; };
 		02A990502557DAB900082955 /* Qcli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Qcli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02A990532557DAB900082955 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02A990552557DAB900082955 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				02A9905E2557DABB00082955 /* LaunchScreen.storyboard */,
 				02A990612557DABB00082955 /* Info.plist */,
 				02A990EE255F5C5700082955 /* ArticleTableViewCell.swift */,
+				024AA82125614B5400E502F5 /* ArticlePageViewController.swift */,
 			);
 			path = Qcli;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				024AA82225614B5400E502F5 /* ArticlePageViewController.swift in Sources */,
 				02A990EF255F5C5700082955 /* ArticleTableViewCell.swift in Sources */,
 				02A990542557DAB900082955 /* AppDelegate.swift in Sources */,
 				02A9906F255907FE00082955 /* LoginViewController.swift in Sources */,
