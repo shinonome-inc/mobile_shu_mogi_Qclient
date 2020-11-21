@@ -6,7 +6,6 @@ target 'Qcli' do
   use_frameworks!
 
   # Pods for Qcli
-  pod 'SwiftyJSON', '~> 4.0'
   pod 'Alamofire', '~> 5.2'
 
 end
