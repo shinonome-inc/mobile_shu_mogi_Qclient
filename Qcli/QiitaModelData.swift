@@ -19,7 +19,7 @@ struct AirticleModel: Codable {
         var name: String?
         var isPrivate: Bool?
         var reactionsCount: Int?
-        var tags: [TagModel]
+        var tags: [TagInItem]
         var title: String?
         var updateAt: String?
         var url: String?
@@ -82,10 +82,22 @@ struct UserModel: Codable {
     }
 }
 
-struct TagModel: Codable {
+struct TagInItem: Codable {
     var name: String?
     enum CodingKeys: String, CodingKey {
         case name = "name"
     }
 }
 
+struct TagModel: Codable {
+    var followersCount: Int?
+    var iconUrl: String?
+    var id: String?
+    var itemsCount: Int?
+    enum CodingKeys: String, CodingKey {
+        case followersCount = "followers_count"
+        case iconUrl = "icon_url"
+        case id = "id"
+        case itemsCount = "items_count"
+    }
+}
