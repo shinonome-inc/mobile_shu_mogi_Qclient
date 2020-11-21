@@ -8,16 +8,48 @@
 import Foundation
 import Alamofire
 
+enum DataType: String {
+    case article = "items"
+    case user = "user"
+    case tag = "tags"
+}
+
 class RequestData {
-    var item: AirticleModel!
-    var user: UserModel!
-    var tag: TagModel!
-    func fetchArticle() {
+    var result: [Any]!
+    var token: String!
+    //var headers: HTTPHeaders!
+    var dataType: DataType!
+    var urlComponents: URLComponents!
+    
+    init(dataType: DataType) {
+        self.dataType = dataType
+        self.token = nil
+    }
+    
+    init(dataType: DataType, token: String) {
+        self.dataType = dataType
+        self.token = token
+    }
+    
+    func fetch() {
         
-        let baseUrl = "https://qiita.com/api/v2/items"
+        guard let dataType = dataType else {
+            print("ERROR : No data type has been specified yet.")
+            return
+        }
+        
+        switch dataType {
+        case .article:
+            print("🗞 Article data type has been selected.")
+        case .user:
+            print("👥 User data type has been selected.")
+        case .tag:
+            print("🏷 Tag data type has been selected.")
+        }
+        
+        let baseUrl = "https://qiita.com/api/v2/\(dataType.rawValue)"
         
         guard var urlComponents = URLComponents(string: baseUrl) else {
-            print("urlComponents = URLComponents(string: url)ではないそうです")
             return
         }
         
@@ -27,20 +59,37 @@ class RequestData {
         ]
         
         guard let url = urlComponents.url else {
-            print("url component error")
+            print("An error occurred when adding the query.")
             return
         }
         
+        print("Request with \(url)")
+        
         AF.request(url).response { respose in
             guard let data = respose.data else {
-                print("error: ")
                 return
             }
-            guard let result = try? JSONDecoder().decode([AirticleModel].self, from: data) else {
-                print("ERROR -> JSONDecoder.decode")
-                return
+             
+            switch dataType {
+            case .article:
+                guard let result = try? JSONDecoder().decode([AirticleModel].self, from: data) else {
+                    print("An error occurred during decoding.")
+                    return
+                }
+                self.result = result
+            case .user:
+                guard let result = try? JSONDecoder().decode([UserModel].self, from: data) else {
+                    print("An error occurred during decoding.")
+                    return
+                }
+                self.result = result
+            case .tag:
+                guard let result = try? JSONDecoder().decode([TagModel].self, from: data) else {
+                    print("An error occurred during decoding.")
+                    return
+                }
+                self.result = result
             }
-            print(result.first!)
             
         }
     }
