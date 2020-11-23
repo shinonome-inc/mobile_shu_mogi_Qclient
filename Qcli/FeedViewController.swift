@@ -35,8 +35,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         //ログインした状態ならユーザー情報呼び出し
         if self.isLogined() {
-            let token = callUserInfo()
-            print("トークン読み込みました\(token)")
+            let token = callUserInfo().token
+            print("Your Token: \(token)")
         }
         articleTableView.dataSource = self
         articleTableView.delegate = self
