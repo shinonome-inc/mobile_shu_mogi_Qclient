@@ -16,6 +16,7 @@ struct AirticleModel: Codable {
     var commentsCount: Int?
     var createdAt: String?
     var id: String?
+    var likesCount: Int?
     var name: String?
     var isPrivate: Bool?
     var reactionsCount: Int?
@@ -32,6 +33,7 @@ struct AirticleModel: Codable {
         case commentsCount = "comments_count"
         case createdAt = "created_at"
         case id = "id"
+        case likesCount = "likes_count"
         case name = "name"
         case isPrivate = "private"
         case reactionsCount = "reaction_count"

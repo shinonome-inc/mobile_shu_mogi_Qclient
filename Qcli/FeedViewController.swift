@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Alamofire
 
 struct ArticleData {
     var imgURL: String
@@ -43,7 +42,12 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         searchBar.delegate = self
         //テーブルビューをスクロールさせたらキーボードを閉じる
         articleTableView.keyboardDismissMode = .onDrag
-        getData()
+        
+        let initialQueryItems = [
+            URLQueryItem(name: "page", value: "1"),
+            URLQueryItem(name: "per_page", value: "20")
+        ]
+        getData(queryItems: initialQueryItems)
     }
     
     //検索のアルゴリズムを変えたいならここをいじる
@@ -114,30 +118,32 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     //apiを叩きデータを保存する
-    func getData() {
-//        let url = "https://qiita.com/api/v2/items?page=1&per_page=20"
-//        AF.request(url, method: .get).validate().responseJSON { response in
-//            switch response.result {
-//            case .success(let value):
-//                let json = JSON(value)
-//                json.forEach {(_, json) in
-//                    if let titleData = json["title"].string,
-//                       let discriptionData = json["body"].string,
-//                       let likeData = json["likes_count"].int,
-//                       let imageURL = json["user"]["profile_image_url"].string,
-//                       let articleURL = json["url"].string {
-//                        let oneData = ArticleData(imgURL: imageURL, titleText: titleData, discriptionText: discriptionData, likeNumber: likeData, articleURL: articleURL)
-//                        self.initializedItems.append(oneData)
-//                    }
-//                    
-//                }
-//                self.searchItems = self.initializedItems
-//                self.articleTableView.reloadData()
-//                print("tableリロード")
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
+    func getData(queryItems: [URLQueryItem]) {
+        
+        let requestAirticleData = RequestData(dataType: .article, queryItems: queryItems)
+        requestAirticleData.fetchAirtcleData(success: { (dataArray) in
+            dataArray?.forEach { (oneAirticleData) in
+                if let title = oneAirticleData.title,
+                   let description = oneAirticleData.body,
+                   let like = oneAirticleData.likesCount,
+                   let imageURL = oneAirticleData.user.profileImageUrl,
+                   let articleURL = oneAirticleData.url {
+                    let oneData = ArticleData(imgURL: imageURL, titleText: title, discriptionText: description, likeNumber: like, articleURL: articleURL)
+                    self.initializedItems.append(oneData)
+                } else {
+                    print("ERROR: This data ↓ allocation failed.")
+                    print(oneAirticleData)
+                }
+            }
+            self.searchItems = self.initializedItems
+            self.articleTableView.reloadData()
+            print("All the data is displayed in the table view.")
+        }, failure: { error in
+            print("Failed to get the article list data.")
+            if let error = error {
+                print(error)
+            }
+        })
     }
     
     //tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)で呼ばれる関数
