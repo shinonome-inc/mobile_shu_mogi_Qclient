@@ -7,7 +7,6 @@
 
 import UIKit
 import Alamofire
-import SwiftyJSON
 
 struct qiitaUserInfo: Codable {
     var token: String
@@ -20,12 +19,27 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var notLoginButton: UIButton!
     let cornerRadiusValue: CGFloat = 8
     var qiitaInfo: qiitaUserInfo!
+    var result: [Any]!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        setLayout()
-        testInput()
-        print("立ち上げ成功")
+        //        setLayout()
+        //        testInput()
+        //        print("立ち上げ成功")
+        //↓テスト用
+        let userData = RequestArticleData()
+        userData.fetch(
+            success: { (result) in
+                if let result = result {
+                    print(result)
+                }
+            }, failure: { error in
+                if let error = error {
+                    print(error.userInfo)
+                }
+            }
+        )
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,9 +49,9 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         //2回目のログインだとログインをスキップさせる
-        if let _ = UserDefaults.standard.object(forKey: "isLogined") {
-            performSegue(withIdentifier: "toTabBarController", sender: nil)
-        }
+        //        if let _ = UserDefaults.standard.object(forKey: "isLogined") {
+        //            performSegue(withIdentifier: "toTabBarController", sender: nil)
+        //        }
         
     }
     
@@ -55,37 +69,37 @@ class LoginViewController: UIViewController {
     
     //ユーザー情報を入力して正しいかどうか判定し、正しければ画面遷移
     func qiitaAuthentication(info: qiitaUserInfo) {
-        print("qiitaAuthentication呼ばれました")
-        let url: String = "https://qiita.com/api/v2/authenticated_user"
-        let headers: HTTPHeaders = [
-            "Authorization": "Bearer " + info.token
-        ]
-        AF.request(url, method: .get, headers: headers).responseJSON{ response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                //jsonファイルの中にidの項目があれば認証成功とする
-                if json["id"].string != nil {
-                    print("リクエスト成功")
-                    self.registerIsLogined(isLogined: true)
-                    //userInfoに値をUserDefaultに受け渡す
-                    self.saveUserDefault(userInfo: info)
-                    //認証成功した場合は次の画面に遷移する
-                    self.performSegue(withIdentifier: "toTabBarController", sender: nil)
-                } else {
-                    //jsonファイルの中にidの項目がなければ認証失敗とする
-                    self.registerIsLogined(isLogined: false)
-                    //self.displayMyAlertMessage(userMessage: "リクエストは送信できましたが、無効なトークンです。")
-                    print("リクエストは送信できましたが、無効なトークンです。")
-                }
-            case .failure:
-                self.registerIsLogined(isLogined: false)
-                self.displayMyAlertMessage(userMessage: "リクエスト送信できませんでした。")
-                print(response.result)
-                
-            }
-        }
-       
+        //        print("qiitaAuthentication呼ばれました")
+        //        let url: String = "https://qiita.com/api/v2/authenticated_user"
+        //        let headers: HTTPHeaders = [
+        //            "Authorization": "Bearer " + info.token
+        //        ]
+        //        AF.request(url, method: .get, headers: headers).responseJSON{ response in
+        //            switch response.result {
+        //            case .success(let value):
+        //                let json = JSON(value)
+        //                //jsonファイルの中にidの項目があれば認証成功とする
+        //                if json["id"].string != nil {
+        //                    print("リクエスト成功")
+        //                    self.registerIsLogined(isLogined: true)
+        //                    //userInfoに値をUserDefaultに受け渡す
+        //                    self.saveUserDefault(userInfo: info)
+        //                    //認証成功した場合は次の画面に遷移する
+        //                    self.performSegue(withIdentifier: "toTabBarController", sender: nil)
+        //                } else {
+        //                    //jsonファイルの中にidの項目がなければ認証失敗とする
+        //                    self.registerIsLogined(isLogined: false)
+        //                    //self.displayMyAlertMessage(userMessage: "リクエストは送信できましたが、無効なトークンです。")
+        //                    print("リクエストは送信できましたが、無効なトークンです。")
+        //                }
+        //            case .failure:
+        //                self.registerIsLogined(isLogined: false)
+        //                self.displayMyAlertMessage(userMessage: "リクエスト送信できませんでした。")
+        //                print(response.result)
+        //
+        //            }
+        //        }
+        
     }
     
     func testInput() {

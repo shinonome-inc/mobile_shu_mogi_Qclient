@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SwiftyJSON
 import Alamofire
 
 struct ArticleData {
@@ -116,29 +115,29 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     //apiを叩きデータを保存する
     func getData() {
-        let url = "https://qiita.com/api/v2/items?page=1&per_page=20"
-        AF.request(url, method: .get).validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                json.forEach {(_, json) in
-                    if let titleData = json["title"].string,
-                       let discriptionData = json["body"].string,
-                       let likeData = json["likes_count"].int,
-                       let imageURL = json["user"]["profile_image_url"].string,
-                       let articleURL = json["url"].string {
-                        let oneData = ArticleData(imgURL: imageURL, titleText: titleData, discriptionText: discriptionData, likeNumber: likeData, articleURL: articleURL)
-                        self.initializedItems.append(oneData)
-                    }
-                    
-                }
-                self.searchItems = self.initializedItems
-                self.articleTableView.reloadData()
-                print("tableリロード")
-            case .failure(let error):
-                print(error)
-            }
-        }
+//        let url = "https://qiita.com/api/v2/items?page=1&per_page=20"
+//        AF.request(url, method: .get).validate().responseJSON { response in
+//            switch response.result {
+//            case .success(let value):
+//                let json = JSON(value)
+//                json.forEach {(_, json) in
+//                    if let titleData = json["title"].string,
+//                       let discriptionData = json["body"].string,
+//                       let likeData = json["likes_count"].int,
+//                       let imageURL = json["user"]["profile_image_url"].string,
+//                       let articleURL = json["url"].string {
+//                        let oneData = ArticleData(imgURL: imageURL, titleText: titleData, discriptionText: discriptionData, likeNumber: likeData, articleURL: articleURL)
+//                        self.initializedItems.append(oneData)
+//                    }
+//                    
+//                }
+//                self.searchItems = self.initializedItems
+//                self.articleTableView.reloadData()
+//                print("tableリロード")
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
     }
     
     //tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)で呼ばれる関数

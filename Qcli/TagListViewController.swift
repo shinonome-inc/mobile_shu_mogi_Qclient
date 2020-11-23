@@ -7,7 +7,6 @@
 
 import UIKit
 import Alamofire
-import SwiftyJSON
 
 struct tagData {
     var tagTitle: String
@@ -82,27 +81,27 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     //apiを叩きデータを保存する
     func getTagListData() {
-        let url = "https://qiita.com/api/v2/tags?page=1&per_page=20&sort=count"
-        AF.request(url, method: .get).validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                json.forEach {(_, json) in
-                    if let titleData = json["id"].string,
-                       let itemsCount = json["items_count"].int,
-                       let imageURL = json["icon_url"].string {
-                        let oneData = tagData(tagTitle: titleData, imageURL: imageURL, itemCount: itemsCount)
-                        self.initializedItems.append(oneData)
-                        print(oneData.tagTitle)
-                    }
-                    
-                }
-                self.tagListTableView.reloadData()
-                self.searchItems = self.initializedItems
-            case .failure(let error):
-                print(error)
-            }
-        }
+//        let url = "https://qiita.com/api/v2/tags?page=1&per_page=20&sort=count"
+//        AF.request(url, method: .get).validate().responseJSON { response in
+//            switch response.result {
+//            case .success(let value):
+//                let json = JSON(value)
+//                json.forEach {(_, json) in
+//                    if let titleData = json["id"].string,
+//                       let itemsCount = json["items_count"].int,
+//                       let imageURL = json["icon_url"].string {
+//                        let oneData = tagData(tagTitle: titleData, imageURL: imageURL, itemCount: itemsCount)
+//                        self.initializedItems.append(oneData)
+//                        print(oneData.tagTitle)
+//                    }
+//                    
+//                }
+//                self.tagListTableView.reloadData()
+//                self.searchItems = self.initializedItems
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
     }
     
     //tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)で呼ばれる関数
