@@ -20,7 +20,7 @@
 		02A9906F255907FE00082955 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A9906E255907FE00082955 /* LoginViewController.swift */; };
 		02A990EB255E298700082955 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A990EA255E298600082955 /* FeedViewController.swift */; };
 		02A990EF255F5C5700082955 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A990EE255F5C5700082955 /* ArticleTableViewCell.swift */; };
-		02DB99BC256804120048B9D9 /* RequestArticleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB99BB256804120048B9D9 /* RequestArticleData.swift */; };
+		02DB99BC256804120048B9D9 /* RequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB99BB256804120048B9D9 /* RequestData.swift */; };
 		675A99C01E5B2032D3662E6E /* Pods_Qcli.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 105D3B6E37BA817A4F352A2E /* Pods_Qcli.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,7 +52,7 @@
 		02A9906E255907FE00082955 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		02A990EA255E298600082955 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		02A990EE255F5C5700082955 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
-		02DB99BB256804120048B9D9 /* RequestArticleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestArticleData.swift; sourceTree = "<group>"; };
+		02DB99BB256804120048B9D9 /* RequestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestData.swift; sourceTree = "<group>"; };
 		105D3B6E37BA817A4F352A2E /* Pods_Qcli.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Qcli.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F6543D98951B36C857F91C4 /* Pods-Qcli.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qcli.release.xcconfig"; path = "Target Support Files/Pods-Qcli/Pods-Qcli.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -111,7 +111,7 @@
 				024AA8452562546300E502F5 /* TagListViewController.swift */,
 				024AA8482562AA2800E502F5 /* TagListTableViewCell.swift */,
 				020B886C2567C63500C2CFE2 /* QiitaModelData.swift */,
-				02DB99BB256804120048B9D9 /* RequestArticleData.swift */,
+				02DB99BB256804120048B9D9 /* RequestData.swift */,
 				0271263C256B585D00DE392A /* RequestUserData.swift */,
 			);
 			path = Qcli;
@@ -286,7 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				020B886D2567C63500C2CFE2 /* QiitaModelData.swift in Sources */,
-				02DB99BC256804120048B9D9 /* RequestArticleData.swift in Sources */,
+				02DB99BC256804120048B9D9 /* RequestData.swift in Sources */,
 				024AA8492562AA2800E502F5 /* TagListTableViewCell.swift in Sources */,
 				024AA82225614B5400E502F5 /* ArticlePageViewController.swift in Sources */,
 				0271263D256B585D00DE392A /* RequestUserData.swift in Sources */,

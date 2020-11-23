@@ -27,8 +27,12 @@ class LoginViewController: UIViewController {
         //        testInput()
         //        print("立ち上げ成功")
         //↓テスト用
-        let userData = RequestArticleData()
-        userData.fetch(
+        let queryItems = [
+            URLQueryItem(name: "page", value: "1"),
+            URLQueryItem(name: "per_page", value: "5")
+        ]
+        let userData = RequestData(dataType: .user, queryItems: queryItems)
+        userData.fetchUserData(
             success: { (result) in
                 if let result = result {
                     print(result)
