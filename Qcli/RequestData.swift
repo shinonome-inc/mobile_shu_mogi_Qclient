@@ -87,7 +87,7 @@ class RequestData {
         }
         //↑ 検索クエリ追加
         
-        print("Request with \(url)")
+        print("Request 👉 \(url)")
         
         //alamofireでデータをリクエスト
         AF.request(url).response { respose in
@@ -128,7 +128,7 @@ class RequestData {
         }
         //↑ 検索クエリ追加
         
-        print("Request with \(url)")
+        print("Request 👉 \(url)")
         
         //alamofireでデータをリクエスト
         AF.request(url).response { respose in
@@ -170,7 +170,7 @@ class RequestData {
         }
         //↑ 検索クエリ追加
         
-        print("Request with \(url)")
+        print("Request 👉 \(url)")
         
         //alamofireでデータをリクエスト
         AF.request(url).response { respose in
@@ -228,9 +228,9 @@ class RequestData {
                 }
                 if exportData.id != nil {
                     self.saveUserDefault(userInfo: userInfo)
-                    print("Saved user information in UserDefaults.")
+                    print("💾 Saved user information in UserDefaults.")
                     self.registerIsLogined(isLogined: true)
-                    print("Login will be skipped from the second time onwards.")
+                    print("💫Login will be skipped from the second time onwards.")
                 } else {
                     print("ERROR: Since the user id was nil, please check again if it is the correct token.")
                 }

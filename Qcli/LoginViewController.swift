@@ -24,7 +24,6 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         setLayout()
         testInput()
-        print("立ち上げ成功")
     }
     
     override func viewWillAppear(_ animated: Bool) {

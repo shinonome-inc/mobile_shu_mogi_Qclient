@@ -36,7 +36,13 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
         searchBar.delegate = self
         //テーブルビューをスクロールさせたらキーボードを閉じる
         tagListTableView.keyboardDismissMode = .onDrag
-        getTagListData()
+        //初期設定（人気のタグ上位20）
+        let initialQueryItems = [
+            URLQueryItem(name: "page", value: "1"),
+            URLQueryItem(name: "per_page", value: "20"),
+            URLQueryItem(name: "sort", value: "count")
+        ]
+        getTagListData(queryItems: initialQueryItems)
         // Do any additional setup after loading the view.
     }
     
@@ -80,7 +86,30 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     //apiを叩きデータを保存する
-    func getTagListData() {
+    func getTagListData(queryItems: [URLQueryItem]) {
+        let requestTagListData = RequestData(dataType: .tag, queryItems: queryItems)
+        requestTagListData.fetchTagData(success: { (tagListData) in
+            tagListData?.forEach{ (oneTagData) in
+                if let title = oneTagData.id,
+                   let imageUrl = oneTagData.iconUrl,
+                   let itemCount = oneTagData.itemsCount {
+                    let oneData = tagData(tagTitle: title, imageURL: imageUrl, itemCount: itemCount)
+                    self.initializedItems.append(oneData)
+                    self.searchItems = self.initializedItems
+                } else {
+                    print("ERROR: This data ↓ allocation failed.")
+                    print(oneTagData)
+                }
+            }
+            self.tagListTableView.reloadData()
+            self.searchItems = self.initializedItems
+            print("👍 All the \(requestTagListData.dataType.rawValue) data is displayed in the table view.")
+        }, failure: { error in
+            print("Failed to get the article list data.")
+            if let error = error {
+                print(error)
+            }
+        })
 //        let url = "https://qiita.com/api/v2/tags?page=1&per_page=20&sort=count"
 //        AF.request(url, method: .get).validate().responseJSON { response in
 //            switch response.result {

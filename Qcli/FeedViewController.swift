@@ -35,7 +35,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //ログインした状態ならユーザー情報呼び出し
         if self.isLogined() {
             let token = callUserInfo().token
-            print("Your Token: \(token)")
+            print("Your Token 🔑: \(token)")
         }
         articleTableView.dataSource = self
         articleTableView.delegate = self
@@ -137,7 +137,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             self.searchItems = self.initializedItems
             self.articleTableView.reloadData()
-            print("All the data is displayed in the table view.")
+            print("👍 All the \(requestAirticleData.dataType.rawValue) data is displayed in the table view.")
         }, failure: { error in
             print("Failed to get the article list data.")
             if let error = error {

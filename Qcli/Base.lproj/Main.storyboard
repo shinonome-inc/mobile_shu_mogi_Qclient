@@ -172,7 +172,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="image" destination="fVH-8J-x2v" id="STR-iS-QJj"/>
+                                            <outlet property="tagCount" destination="Gwv-0V-RuJ" id="ubt-eP-r6c"/>
+                                            <outlet property="tagIconImage" destination="fVH-8J-x2v" id="cRP-Cl-SCG"/>
+                                            <outlet property="tagTitle" destination="hts-ES-F97" id="wke-Pe-CSN"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -454,7 +456,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="pXV-9v-0ad"/>
+        <segue reference="pLp-QI-5sv"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="rss_feed" width="24" height="24"/>
