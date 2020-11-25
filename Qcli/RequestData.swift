@@ -15,41 +15,39 @@ enum DataType: String {
     case auth = "authenticated_user"
 }
 
+enum SearchOption: String {
+    case tag = "tag"
+}
+
 class RequestData {
     var userInfo: qiitaUserInfo!
     //var headers: HTTPHeaders!
     var urlComponents: URLComponents!
     let dataType: DataType!
-    var headers: HTTPHeaders!
     var queryItems: [URLQueryItem]!
-    
-    init(dataType: DataType, queryItems: [URLQueryItem]) {
-        self.userInfo = nil
-        self.dataType = dataType
-        self.headers = nil
-        self.queryItems = queryItems
-    }
-    
-    init(dataType: DataType, headers: HTTPHeaders, queryItems: [URLQueryItem]) {
-        self.userInfo = nil
-        self.dataType = dataType
-        self.headers = headers
-        self.queryItems = queryItems
-    }
-    
-    init(dataType: DataType ,userInfo: qiitaUserInfo, headers: HTTPHeaders, queryItems: [URLQueryItem]) {
-        self.userInfo = userInfo
-        self.dataType = dataType
-        self.headers = headers
-        self.queryItems = queryItems
-    }
-    
-    //認証用
+    //qiitaのURL…&query=(searchOption):(String)
+    var searchDict: [SearchOption:String]!
+        
+    //認証用 -> userInfo:必要, dataType:必要, queryItems:不要, searchDict:不要
     init(dataType: DataType ,userInfo: qiitaUserInfo) {
         self.userInfo = userInfo
         self.dataType = dataType
-        self.headers = nil
         self.queryItems = nil
+        self.searchDict = nil
+    }
+    //検索なし -> userInfo:不要, dataType:必要, queryItems:必要, searchDict:不要
+    init(dataType: DataType, queryItems: [URLQueryItem]) {
+        self.userInfo = nil
+        self.dataType = dataType
+        self.queryItems = queryItems
+        self.searchDict = nil
+    }
+    //検索あり -> userInfo:不要, dataType:必要, queryItems:必要, searchDict:必要
+    init(dataType: DataType, queryItems: [URLQueryItem], searchDict: [SearchOption:String]) {
+        self.userInfo = nil
+        self.dataType = dataType
+        self.queryItems = queryItems
+        self.searchDict = searchDict
     }
     
     func registerIsLogined(isLogined: Bool) {
@@ -61,6 +59,25 @@ class RequestData {
         //userDefaultにユーザー情報を入れる
         let userDefault = UserDefaults.standard
         userDefault.set(try? PropertyListEncoder().encode([userInfo]), forKey: "userInfo")
+    }
+    
+    //searchDict->String（エンコード済み）に変換
+    //ex)[tag:Swift] -> tag%3ASwift
+    func dictToStr(searcDict: [SearchOption:String]) -> String {
+        var export = ""
+        var count = 1
+        let maxCount = searchDict.count
+        for (key, value) in searchDict {
+            print("\(count)/\(maxCount)")
+            let searchQuery = key.rawValue + ":" + value
+            export += searchQuery
+            if count < maxCount {
+                export += "+"
+                count += 1
+            }
+        }
+        print("🔍　Search Query　👉 \(export)")
+        return export
     }
     
     func fetchAirtcleData(success: @escaping ((_ result: [AirticleModel]?) -> Void), failure: @escaping ((_ error: NSError?) -> Void)) {
@@ -79,13 +96,26 @@ class RequestData {
         
         if let queryItems = self.queryItems {
             urlComponents.queryItems = queryItems
-        }
-        
-        guard let url = urlComponents.url else {
-            print("There was an error converting the URL Component to a URL.")
-            return
+            
         }
         //↑ 検索クエリ追加
+        
+        //↓searchbar検索用
+        if let searchDict = self.searchDict {
+            let toStr = dictToStr(searcDict: searchDict)
+            let searchOptionQuery = URLQueryItem(name: QueryOption.query.rawValue, value: toStr)
+            print(searchOptionQuery)
+            urlComponents.queryItems?.append(searchOptionQuery)
+            print(urlComponents)
+        } else {
+            print("⚠️ It does not use queries other than page specification.")
+        }
+        //↑searchbar検索用
+        
+        guard let url = urlComponents.url else {
+            print("There was an error converting the URL Component to a String.")
+            return
+        }
         
         print("Request 👉 \(url)")
         

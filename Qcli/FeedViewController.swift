@@ -29,6 +29,11 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var searching = false
     //画面遷移時のデータ受け渡し用
     var sendData = ArticleData(imgURL: "", titleText: "", discriptionText: "", likeNumber: 0, articleURL: "")
+    //初期のクエリアイテム
+    let initQueryItems = [
+        URLQueryItem(name: "page", value: "1"),
+        URLQueryItem(name: "per_page", value: "20")
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,12 +47,9 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         searchBar.delegate = self
         //テーブルビューをスクロールさせたらキーボードを閉じる
         articleTableView.keyboardDismissMode = .onDrag
-        
-        let initialQueryItems = [
-            URLQueryItem(name: "page", value: "1"),
-            URLQueryItem(name: "per_page", value: "20")
-        ]
-        getData(queryItems: initialQueryItems)
+        //記事データ取得
+        let articleListDataRequest = RequestData(dataType: .article, queryItems: initQueryItems, searchDict: [.tag:"Python"])
+        getData(requestAirticleData: articleListDataRequest)
     }
     
     //検索のアルゴリズムを変えたいならここをいじる
@@ -118,9 +120,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     //apiを叩きデータを保存する
-    func getData(queryItems: [URLQueryItem]) {
-        
-        let requestAirticleData = RequestData(dataType: .article, queryItems: queryItems)
+    func getData(requestAirticleData: RequestData) {
         requestAirticleData.fetchAirtcleData(success: { (dataArray) in
             dataArray?.forEach { (oneAirticleData) in
                 if let title = oneAirticleData.title,
