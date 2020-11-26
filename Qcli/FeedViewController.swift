@@ -48,7 +48,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //テーブルビューをスクロールさせたらキーボードを閉じる
         articleTableView.keyboardDismissMode = .onDrag
         //記事データ取得
-        let articleListDataRequest = RequestData(dataType: .article, queryItems: initQueryItems, searchDict: [.tag:"Python"])
+        let articleListDataRequest = RequestData(dataType: .article, queryItems: initQueryItems, searchDict: [.tag:"初心者"])
         getData(requestAirticleData: articleListDataRequest)
     }
     

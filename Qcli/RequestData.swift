@@ -194,11 +194,24 @@ class RequestData {
             urlComponents.queryItems = queryItems
         }
         
+        //↑ 検索クエリ追加
+        
+        //↓searchbar検索用
+        if let searchDict = self.searchDict {
+            let toStr = dictToStr(searcDict: searchDict)
+            let searchOptionQuery = URLQueryItem(name: QueryOption.query.rawValue, value: toStr)
+            print(searchOptionQuery)
+            urlComponents.queryItems?.append(searchOptionQuery)
+            print(urlComponents)
+        } else {
+            print("⚠️ It does not use queries other than page specification.")
+        }
+        //↑searchbar検索用
+        
         guard let url = urlComponents.url else {
             print("There was an error converting the URL Component to a URL.")
             return
         }
-        //↑ 検索クエリ追加
         
         print("Request 👉 \(url)")
         
