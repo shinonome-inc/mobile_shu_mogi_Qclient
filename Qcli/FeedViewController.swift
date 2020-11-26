@@ -29,13 +29,12 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var sendData = ArticleData(imgURL: "", titleText: "", discriptionText: "", likeNumber: 0, articleURL: "")
     //segmented controllの選択肢
     let segmentedItems = SearchOption.allCases
-    //初期のクエリアイテム
-    let initQueryItems = [
-        URLQueryItem(name: "page", value: "1"),
-        URLQueryItem(name: "per_page", value: "20")
-    ]
+    //データリクエストの宣言
+    var articleListDataRequest: RequestData!
     //segmented controlの選択インデックス
     var segmentedSelectedIndex = 0
+    //スクロールデータ更新用のページカウント
+    var pageCount = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,26 +49,28 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //テーブルビューをスクロールさせたらキーボードを閉じる
         articleTableView.keyboardDismissMode = .onDrag
         //記事データ取得
-        let articleListDataRequest = RequestData(dataType: .article, queryItems: initQueryItems)
-        getData(requestAirticleData: articleListDataRequest)
+        self.articleListDataRequest = RequestData(dataType: .article, pageNumber: pageCount, perPageNumber: 20)
+        getData(requestAirticleData: self.articleListDataRequest)
         //segmented control 設定
         setSegmentedControl()
     }
     
     //検索のアルゴリズムを変えたいならここをいじる
     //↓テキストが変わるごとにリクエストを送ると処理落ちする
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        self.dataItems.removeAll()
-//        let articleListDataRequest = RequestData(dataType: .article, queryItems: initQueryItems, searchDict: [.tag:searchText])
-//        getData(requestAirticleData: articleListDataRequest)
-//    }
+    //    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    //        self.dataItems.removeAll()
+    //        let articleListDataRequest = RequestData(dataType: .article, queryItems: initQueryItems, searchDict: [.tag:searchText])
+    //        getData(requestAirticleData: articleListDataRequest)
+    //    }
     
     //テキストを入力してから、リクエストを送る方法
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let searchText = self.searchBar.text {
             self.dataItems.removeAll()
-            let articleListDataRequest = RequestData(dataType: .article, queryItems: initQueryItems, searchDict: [self.segmentedItems[self.segmentedSelectedIndex]:searchText])
-            getData(requestAirticleData: articleListDataRequest)
+            //ページカウント初期化
+            self.pageCount = 1
+            self.articleListDataRequest = RequestData(dataType: .article, pageNumber: self.pageCount, perPageNumber: 20, searchDict: [self.segmentedItems[self.segmentedSelectedIndex]:searchText])
+            getData(requestAirticleData: self.articleListDataRequest)
         }
     }
     
@@ -97,8 +98,19 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "GoToArticlePage", sender: nil)
     }
-    
-    
+    //tableviewをスクロールしたら最下のcellにたどり着く前にデータ更新を行う
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let currentOffsetY = scrollView.contentOffset.y
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
+        let distanceToBottom = maximumOffset - currentOffsetY
+        
+        if distanceToBottom < 500 {
+            self.pageCount += 1
+            self.articleListDataRequest.pageNumber = self.pageCount
+            self.getData(requestAirticleData: self.articleListDataRequest)
+            
+        }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "GoToArticlePage") {
@@ -143,7 +155,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
             }
             self.articleTableView.reloadData()
-            print("👍 All the \(requestAirticleData.dataType.rawValue) data is displayed in the table view.")
+            print("👍 Reload the \(requestAirticleData.dataType.rawValue) data")
+            
         }, failure: { error in
             print("Failed to get the article list data.")
             if let error = error {

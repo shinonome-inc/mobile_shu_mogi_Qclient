@@ -30,27 +30,50 @@ class RequestData {
     var queryItems: [URLQueryItem]!
     //qiitaのURL…&query=(searchOption):(String)
     var searchDict: [SearchOption:String]!
+    var pageNumber: Int!
+    var perPageNumber: Int!
+    //tagデータ並び替えのための値
+    var sortKey: QueryOption!
+    var sortValue: SortOption!
+    let testData = TestData()
         
-    //認証用 -> userInfo:必要, dataType:必要, queryItems:不要, searchDict:不要
+    //認証用 -> userInfo:必要, dataType:必要, pageNumber&perPageNumber:不要 searchDict:不要
     init(dataType: DataType ,userInfo: qiitaUserInfo) {
         self.userInfo = userInfo
         self.dataType = dataType
         self.queryItems = nil
         self.searchDict = nil
     }
-    //検索なし -> userInfo:不要, dataType:必要, queryItems:必要, searchDict:不要
-    init(dataType: DataType, queryItems: [URLQueryItem]) {
+    //検索なし -> userInfo:不要, dataType:必要, pageNumber&perPageNumber:必要 searchDict:不要
+    init(dataType: DataType, pageNumber: Int, perPageNumber: Int) {
         self.userInfo = nil
         self.dataType = dataType
-        self.queryItems = queryItems
+        self.pageNumber = pageNumber
+        self.perPageNumber = perPageNumber
         self.searchDict = nil
     }
-    //検索あり -> userInfo:不要, dataType:必要, queryItems:必要, searchDict:必要
-    init(dataType: DataType, queryItems: [URLQueryItem], searchDict: [SearchOption:String]) {
+    //検索あり -> userInfo:不要, dataType:必要, pageNumber&perPageNumber:必要 searchDict:必要
+    init(dataType: DataType, pageNumber: Int, perPageNumber: Int, searchDict: [SearchOption:String]) {
         self.userInfo = nil
         self.dataType = dataType
-        self.queryItems = queryItems
+        self.pageNumber = pageNumber
+        self.perPageNumber = perPageNumber
         self.searchDict = searchDict
+    }
+    
+    //sortあり -> userInfo:不要, dataType:必要, pageNumber&perPageNumber:必要 searchDict:不要
+    init(dataType: DataType, pageNumber: Int, perPageNumber: Int, sortdict: [QueryOption:SortOption]) {
+        self.userInfo = nil
+        self.dataType = dataType
+        self.pageNumber = pageNumber
+        self.perPageNumber = perPageNumber
+        self.searchDict = nil
+        if sortdict.count == 1 {
+            self.sortKey = sortdict.keys.first
+            self.sortValue = sortdict.values.first
+        } else {
+            print("⚠️ Caution: There is no or more SortDict.")
+        }
     }
     
     func registerIsLogined(isLogined: Bool) {
@@ -62,6 +85,24 @@ class RequestData {
         //userDefaultにユーザー情報を入れる
         let userDefault = UserDefaults.standard
         userDefault.set(try? PropertyListEncoder().encode([userInfo]), forKey: "userInfo")
+    }
+    
+    func setURLQuerItems() {
+        if let page = self.pageNumber,
+           let perPage = self.perPageNumber {
+            self.queryItems = [
+                URLQueryItem(name: QueryOption.page.rawValue, value: String(page)),
+                URLQueryItem(name: QueryOption.perPage.rawValue, value: String(perPage))
+            ]
+            if let sortKey = self.sortKey,
+               let sortValue = self.sortValue {
+                print("Added Sort Option　👉 \(sortKey.rawValue)=\(sortValue.rawValue)")
+                let addURLQueryItem = URLQueryItem(name: sortKey.rawValue, value: sortValue.rawValue)
+                self.queryItems.append(addURLQueryItem)
+            }
+        } else {
+            print("⚠️　Request data withput queryItems.")
+        }
     }
     
     //searchDict->String（エンコード済み）に変換
@@ -96,6 +137,8 @@ class RequestData {
             return
         }
         
+        self.setURLQuerItems()
+        
         if let queryItems = self.queryItems {
             urlComponents.queryItems = queryItems
             
@@ -124,6 +167,7 @@ class RequestData {
             guard let data = respose.data else {
                 return
             }
+            
             //取得したデータを格納
             guard let exportData = try? JSONDecoder().decode([AirticleModel].self, from: data) else {
                 print("An error occurred during decoding.")
@@ -189,6 +233,8 @@ class RequestData {
         guard var urlComponents = URLComponents(string: baseUrl) else {
             return
         }
+        
+        self.setURLQuerItems()
         
         if let queryItems = self.queryItems {
             urlComponents.queryItems = queryItems

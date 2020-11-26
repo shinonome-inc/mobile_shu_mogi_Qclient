@@ -22,12 +22,13 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
     //cellの高さ設定
     let tableViewCellHeight: CGFloat = 50
     //最初に取得する記事欄のデータ
-    var initializedItems = [tagData]()
-    //検索後記事欄のデータ
-    var searchItems = [tagData]()
-    var searching = false
+    var dataItems = [tagData]()
     //画面遷移時のデータ受け渡し用
     var sendData = tagData(tagTitle: "", imageURL: "", itemCount: 0)
+    //データリクエストの宣言
+    var tagListDataRequest: RequestData!
+    //スクロールデータ更新用のページカウント
+    var pageCount = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,74 +37,66 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
         searchBar.delegate = self
         //テーブルビューをスクロールさせたらキーボードを閉じる
         tagListTableView.keyboardDismissMode = .onDrag
-        //初期設定（人気のタグ上位20）
-        let initialQueryItems = [
-            URLQueryItem(name: "page", value: "1"),
-            URLQueryItem(name: "per_page", value: "20"),
-            URLQueryItem(name: "sort", value: "count")
-        ]
-        getTagListData(queryItems: initialQueryItems)
+        //タグデータ取得
+        self.tagListDataRequest = RequestData(dataType: .tag, pageNumber: self.pageCount, perPageNumber: 20, sortdict: [QueryOption.sort:SortOption.count])
+        getTagListData(requestTagListData: self.tagListDataRequest)
         // Do any additional setup after loading the view.
     }
     
     //検索のアルゴリズムを変えたいならここをいじる
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchItems = initializedItems.filter({$0.tagTitle.lowercased().prefix(searchText.count) == searchText.lowercased()})
-        searching = true
-        tagListTableView.reloadData()
-    }
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        searchItems = dataItems.filter({$0.tagTitle.lowercased().prefix(searchText.count) == searchText.lowercased()})
+//        searching = true
+//        tagListTableView.reloadData()
+//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searching {
-            return searchItems.count
-        } else {
-            return initializedItems.count
-        }
+       return dataItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if searching {
-            return setCell(items: searchItems, indexPath: indexPath)
-        } else {
-            return setCell(items: initializedItems, indexPath: indexPath)
-        }
+        return setCell(items: dataItems, indexPath: indexPath)
     }
     
     //tableviewcellの高さ設定
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return tableViewCellHeight
     }
-    
+    //tableviewcell選択時の処理
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if searching {
-            sendData = searchItems[indexPath.row]
-        } else {
-            sendData = initializedItems[indexPath.row]
-        }
+        
         //tableviewcell選択解除
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "GoToArticlePage", sender: nil)
+        
     }
-    
+    //tableviewをスクロールしたら最下のcellにたどり着く前にデータ更新を行う
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let currentOffsetY = scrollView.contentOffset.y
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
+        let distanceToBottom = maximumOffset - currentOffsetY
+        
+        if distanceToBottom < 500 {
+            self.pageCount += 1
+            self.tagListDataRequest.pageNumber = self.pageCount
+            getTagListData(requestTagListData: self.tagListDataRequest)
+        }
+    }
     //apiを叩きデータを保存する
-    func getTagListData(queryItems: [URLQueryItem]) {
-        let requestTagListData = RequestData(dataType: .tag, queryItems: queryItems)
+    func getTagListData(requestTagListData: RequestData) {
         requestTagListData.fetchTagData(success: { (tagListData) in
             tagListData?.forEach{ (oneTagData) in
                 if let title = oneTagData.id,
                    let imageUrl = oneTagData.iconUrl,
                    let itemCount = oneTagData.itemsCount {
                     let oneData = tagData(tagTitle: title, imageURL: imageUrl, itemCount: itemCount)
-                    self.initializedItems.append(oneData)
-                    self.searchItems = self.initializedItems
+                    self.dataItems.append(oneData)
                 } else {
                     print("ERROR: This data ↓ allocation failed.")
                     print(oneTagData)
                 }
             }
             self.tagListTableView.reloadData()
-            self.searchItems = self.initializedItems
-            print("👍 All the \(requestTagListData.dataType.rawValue) data is displayed in the table view.")
+            print("👍 Reload the \(requestTagListData.dataType.rawValue) data")
         }, failure: { error in
             print("Failed to get the article list data.")
             if let error = error {
@@ -120,13 +113,13 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
 //                       let itemsCount = json["items_count"].int,
 //                       let imageURL = json["icon_url"].string {
 //                        let oneData = tagData(tagTitle: titleData, imageURL: imageURL, itemCount: itemsCount)
-//                        self.initializedItems.append(oneData)
+//                        self.dataItems.append(oneData)
 //                        print(oneData.tagTitle)
 //                    }
 //                    
 //                }
 //                self.tagListTableView.reloadData()
-//                self.searchItems = self.initializedItems
+//                self.searchItems = self.dataItems
 //            case .failure(let error):
 //                print(error)
 //            }
