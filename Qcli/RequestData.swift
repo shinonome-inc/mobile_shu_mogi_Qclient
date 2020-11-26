@@ -68,7 +68,6 @@ class RequestData {
         var count = 1
         let maxCount = searchDict.count
         for (key, value) in searchDict {
-            print("\(count)/\(maxCount)")
             let searchQuery = key.rawValue + ":" + value
             export += searchQuery
             if count < maxCount {
@@ -104,9 +103,7 @@ class RequestData {
         if let searchDict = self.searchDict {
             let toStr = dictToStr(searcDict: searchDict)
             let searchOptionQuery = URLQueryItem(name: QueryOption.query.rawValue, value: toStr)
-            print(searchOptionQuery)
             urlComponents.queryItems?.append(searchOptionQuery)
-            print(urlComponents)
         } else {
             print("⚠️ It does not use queries other than page specification.")
         }
@@ -200,9 +197,7 @@ class RequestData {
         if let searchDict = self.searchDict {
             let toStr = dictToStr(searcDict: searchDict)
             let searchOptionQuery = URLQueryItem(name: QueryOption.query.rawValue, value: toStr)
-            print(searchOptionQuery)
             urlComponents.queryItems?.append(searchOptionQuery)
-            print(urlComponents)
         } else {
             print("⚠️ It does not use queries other than page specification.")
         }

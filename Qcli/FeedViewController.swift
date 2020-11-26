@@ -23,10 +23,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //cellの高さ設定
     let tableViewCellHeight: CGFloat = 50
     //最初に取得する記事欄のデータ
-    var initializedItems = [ArticleData]()
-    //検索後記事欄のデータ
-    var searchItems = [ArticleData]()
-    var searching = false
+    var dataItems = [ArticleData]()
     //画面遷移時のデータ受け渡し用
     var sendData = ArticleData(imgURL: "", titleText: "", discriptionText: "", likeNumber: 0, articleURL: "")
     //初期のクエリアイテム
@@ -48,32 +45,34 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //テーブルビューをスクロールさせたらキーボードを閉じる
         articleTableView.keyboardDismissMode = .onDrag
         //記事データ取得
-        let articleListDataRequest = RequestData(dataType: .article, queryItems: initQueryItems, searchDict: [.tag:"初心者"])
+        let articleListDataRequest = RequestData(dataType: .article, queryItems: initQueryItems)
         getData(requestAirticleData: articleListDataRequest)
     }
     
     //検索のアルゴリズムを変えたいならここをいじる
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchItems = initializedItems.filter({$0.titleText.lowercased().prefix(searchText.count) == searchText.lowercased()})
-        searching = true
-        articleTableView.reloadData()
+    //↓テキストが変わるごとにリクエストを送ると処理落ちする
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        self.dataItems.removeAll()
+//        let articleListDataRequest = RequestData(dataType: .article, queryItems: initQueryItems, searchDict: [.tag:searchText])
+//        getData(requestAirticleData: articleListDataRequest)
+//    }
+    
+    //テキストを入力してから、リクエストを送る方法
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let searchText = self.searchBar.text {
+            self.dataItems.removeAll()
+            let articleListDataRequest = RequestData(dataType: .article, queryItems: initQueryItems, searchDict: [.tag:searchText])
+            getData(requestAirticleData: articleListDataRequest)
+        }
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searching {
-            return searchItems.count
-        } else {
-            return initializedItems.count
-        }
+        return dataItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if searching {
-            return setCell(items: searchItems, indexPath: indexPath)
-        } else {
-            return setCell(items: initializedItems, indexPath: indexPath)
-        }
+        return setCell(items: dataItems, indexPath: indexPath)
     }
     
     //tableviewcellの高さ設定
@@ -83,11 +82,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     //tableviewcell選択時の処理
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if searching {
-            sendData = searchItems[indexPath.row]
-        } else {
-            sendData = initializedItems[indexPath.row]
-        }
+        sendData = dataItems[indexPath.row]
         //tableviewcell選択解除
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "GoToArticlePage", sender: nil)
@@ -129,13 +124,12 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                    let imageURL = oneAirticleData.user.profileImageUrl,
                    let articleURL = oneAirticleData.url {
                     let oneData = ArticleData(imgURL: imageURL, titleText: title, discriptionText: description, likeNumber: like, articleURL: articleURL)
-                    self.initializedItems.append(oneData)
+                    self.dataItems.append(oneData)
                 } else {
                     print("ERROR: This data ↓ allocation failed.")
                     print(oneAirticleData)
                 }
             }
-            self.searchItems = self.initializedItems
             self.articleTableView.reloadData()
             print("👍 All the \(requestAirticleData.dataType.rawValue) data is displayed in the table view.")
         }, failure: { error in
