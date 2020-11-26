@@ -38,18 +38,21 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //ログインした状態ならユーザー情報呼び出し
-        if self.isLogined() {
-            let token = callUserInfo().token
-            print("Your Token 🔑: \(token)")
-        }
+        
         articleTableView.dataSource = self
         articleTableView.delegate = self
         searchBar.delegate = self
         //テーブルビューをスクロールさせたらキーボードを閉じる
         articleTableView.keyboardDismissMode = .onDrag
         //記事データ取得
-        self.articleListDataRequest = RequestData(dataType: .article, pageNumber: pageCount, perPageNumber: 20)
+        //userInfoがあるならuserInfoも追加する
+        if self.isLogined() {
+            let userInfo = callUserInfo()
+            print("Your Token 🔑: \(userInfo.token)")
+            self.articleListDataRequest = RequestData(dataType: .article, pageNumber: pageCount, perPageNumber: 20, userInfo: userInfo)
+        } else {
+            self.articleListDataRequest = RequestData(dataType: .article, pageNumber: pageCount, perPageNumber: 20)
+        }
         getData(requestAirticleData: self.articleListDataRequest)
         //segmented control 設定
         setSegmentedControl()
@@ -69,7 +72,13 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.dataItems.removeAll()
             //ページカウント初期化
             self.pageCount = 1
-            self.articleListDataRequest = RequestData(dataType: .article, pageNumber: self.pageCount, perPageNumber: 20, searchDict: [self.segmentedItems[self.segmentedSelectedIndex]:searchText])
+            
+            if self.isLogined() {
+                let userInfo = callUserInfo()
+                self.articleListDataRequest = RequestData(dataType: .article, pageNumber: pageCount, perPageNumber: 20, searchDict: [self.segmentedItems[self.segmentedSelectedIndex]:searchText], userInfo: userInfo)
+            } else {
+                self.articleListDataRequest = RequestData(dataType: .article, pageNumber: self.pageCount, perPageNumber: 20, searchDict: [self.segmentedItems[self.segmentedSelectedIndex]:searchText])
+            }
             getData(requestAirticleData: self.articleListDataRequest)
         }
     }

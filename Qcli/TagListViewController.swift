@@ -38,7 +38,14 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
         //テーブルビューをスクロールさせたらキーボードを閉じる
         tagListTableView.keyboardDismissMode = .onDrag
         //タグデータ取得
-        self.tagListDataRequest = RequestData(dataType: .tag, pageNumber: self.pageCount, perPageNumber: 20, sortdict: [QueryOption.sort:SortOption.count])
+        //userInfoがあるならuserInfoも追加する
+        if self.isLogined() {
+            let userInfo = callUserInfo()
+            print("Your Token 🔑: \(userInfo.token)")
+            self.tagListDataRequest = RequestData(userInfo: userInfo, dataType: .tag, pageNumber: pageCount, perPageNumber: 20, sortdict: [QueryOption.sort:SortOption.count])
+        } else {
+            self.tagListDataRequest = RequestData(dataType: .tag, pageNumber: pageCount, perPageNumber: 20, sortdict: [QueryOption.sort:SortOption.count])
+        }
         getTagListData(requestTagListData: self.tagListDataRequest)
         // Do any additional setup after loading the view.
     }
@@ -140,5 +147,22 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         cell.cellSetLayout()
         return cell
+    }
+    //ログイン判定
+    func isLogined() -> Bool {
+        var value = false
+        value = UserDefaults.standard.bool(forKey: "isLogined")
+        return value
+    }
+    //userInfo呼び出し
+    func callUserInfo() -> qiitaUserInfo {
+        var value = qiitaUserInfo(token: "")
+        if let data = UserDefaults.standard.value(forKey:"userInfo") as? Data {
+            let userInfo = try? PropertyListDecoder().decode(Array<qiitaUserInfo>.self, from: data)
+            if let userInfo = userInfo {
+                value = userInfo[0]
+            }
+        }
+        return value
     }
 }

@@ -22,6 +22,7 @@
 		02A990EF255F5C5700082955 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A990EE255F5C5700082955 /* ArticleTableViewCell.swift */; };
 		02DB99BC256804120048B9D9 /* RequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB99BB256804120048B9D9 /* RequestData.swift */; };
 		02E1368F256FDE7E0050E4E7 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E1368E256FDE7E0050E4E7 /* TestData.swift */; };
+		02E13693256FE7750050E4E7 /* ErrorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E13692256FE7750050E4E7 /* ErrorData.swift */; };
 		675A99C01E5B2032D3662E6E /* Pods_Qcli.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 105D3B6E37BA817A4F352A2E /* Pods_Qcli.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		02A990EE255F5C5700082955 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		02DB99BB256804120048B9D9 /* RequestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestData.swift; sourceTree = "<group>"; };
 		02E1368E256FDE7E0050E4E7 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
+		02E13692256FE7750050E4E7 /* ErrorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorData.swift; sourceTree = "<group>"; };
 		105D3B6E37BA817A4F352A2E /* Pods_Qcli.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Qcli.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F6543D98951B36C857F91C4 /* Pods-Qcli.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qcli.release.xcconfig"; path = "Target Support Files/Pods-Qcli/Pods-Qcli.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -116,6 +118,7 @@
 				02DB99BB256804120048B9D9 /* RequestData.swift */,
 				02525A25256E00ED00BF440C /* QueryItem.swift */,
 				02E1368E256FDE7E0050E4E7 /* TestData.swift */,
+				02E13692256FE7750050E4E7 /* ErrorData.swift */,
 			);
 			path = Qcli;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				02A990EF255F5C5700082955 /* ArticleTableViewCell.swift in Sources */,
 				02A990542557DAB900082955 /* AppDelegate.swift in Sources */,
 				02A9906F255907FE00082955 /* LoginViewController.swift in Sources */,
+				02E13693256FE7750050E4E7 /* ErrorData.swift in Sources */,
 				02A990EB255E298700082955 /* FeedViewController.swift in Sources */,
 				024AA8462562546300E502F5 /* TagListViewController.swift in Sources */,
 				02A990562557DAB900082955 /* SceneDelegate.swift in Sources */,

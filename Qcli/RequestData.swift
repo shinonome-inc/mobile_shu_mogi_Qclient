@@ -36,6 +36,9 @@ class RequestData {
     var sortKey: QueryOption!
     var sortValue: SortOption!
     let testData = TestData()
+    //AFデータリクエスト
+    var AFrequest: DataRequest!
+    
         
     //認証用 -> userInfo:必要, dataType:必要, pageNumber&perPageNumber:不要 searchDict:不要
     init(dataType: DataType ,userInfo: qiitaUserInfo) {
@@ -52,6 +55,14 @@ class RequestData {
         self.perPageNumber = perPageNumber
         self.searchDict = nil
     }
+    //検索なし -> userInfo:不要, dataType:必要, pageNumber&perPageNumber:必要 searchDict:不要
+    init(dataType: DataType, pageNumber: Int, perPageNumber: Int, userInfo: qiitaUserInfo) {
+        self.userInfo = userInfo
+        self.dataType = dataType
+        self.pageNumber = pageNumber
+        self.perPageNumber = perPageNumber
+        self.searchDict = nil
+    }
     //検索あり -> userInfo:不要, dataType:必要, pageNumber&perPageNumber:必要 searchDict:必要
     init(dataType: DataType, pageNumber: Int, perPageNumber: Int, searchDict: [SearchOption:String]) {
         self.userInfo = nil
@@ -61,9 +72,34 @@ class RequestData {
         self.searchDict = searchDict
     }
     
+    //検索あり, ログインしている -> userInfo:必要, dataType:必要, pageNumber&perPageNumber:必要 searchDict:必要
+    init(dataType: DataType, pageNumber: Int, perPageNumber: Int, searchDict: [SearchOption:String], userInfo: qiitaUserInfo) {
+        self.userInfo = userInfo
+        self.dataType = dataType
+        self.pageNumber = pageNumber
+        self.perPageNumber = perPageNumber
+        self.searchDict = searchDict
+    }
+    
+    
     //sortあり -> userInfo:不要, dataType:必要, pageNumber&perPageNumber:必要 searchDict:不要
     init(dataType: DataType, pageNumber: Int, perPageNumber: Int, sortdict: [QueryOption:SortOption]) {
         self.userInfo = nil
+        self.dataType = dataType
+        self.pageNumber = pageNumber
+        self.perPageNumber = perPageNumber
+        self.searchDict = nil
+        if sortdict.count == 1 {
+            self.sortKey = sortdict.keys.first
+            self.sortValue = sortdict.values.first
+        } else {
+            print("⚠️ Caution: There is no or more SortDict.")
+        }
+    }
+    
+    //sortあり -> userInfo:不要, dataType:必要, pageNumber&perPageNumber:必要 searchDict:不要
+    init(userInfo: qiitaUserInfo, dataType: DataType, pageNumber: Int, perPageNumber: Int, sortdict: [QueryOption:SortOption]) {
+        self.userInfo = userInfo
         self.dataType = dataType
         self.pageNumber = pageNumber
         self.perPageNumber = perPageNumber
@@ -130,6 +166,7 @@ class RequestData {
             return
         }
         
+        
         let baseUrl = "https://qiita.com/api/v2/\(self.dataType.rawValue)"
         
         //↓ 検索クエリ追加
@@ -162,8 +199,20 @@ class RequestData {
         
         print("Request 👉 \(url)")
         
+        //インスタンス化した時にuserInfo(トークン情報)があればヘッダーをつける
+        if let userInfo = self.userInfo {
+            //headersに認証トークン格納
+            let headers: HTTPHeaders = [
+                "Authorization": "Bearer " + userInfo.token
+            ]
+            print("Headers 👉 \(headers)")
+            self.AFrequest = AF.request(url,headers: headers)
+        } else {
+            self.AFrequest = AF.request(url)
+        }
+        
         //alamofireでデータをリクエスト
-        AF.request(url).response { respose in
+        self.AFrequest.response { respose in
             guard let data = respose.data else {
                 return
             }
@@ -171,6 +220,15 @@ class RequestData {
             //取得したデータを格納
             guard let exportData = try? JSONDecoder().decode([AirticleModel].self, from: data) else {
                 print("An error occurred during decoding.")
+                if let exceptionData = try? JSONDecoder().decode(ErrorModel.self, from: data) {
+                    if let message = exceptionData.message,
+                       let type = exceptionData.type {
+                        print("message: \(message), type: \(type)")
+                    }
+                } else {
+                    print("Failed to get error message.")
+                }
+                
                 failure(respose.error as NSError?)
                 return
             }
@@ -259,8 +317,20 @@ class RequestData {
         
         print("Request 👉 \(url)")
         
+        //インスタンス化した時にuserInfo(トークン情報)があればヘッダーをつける
+        if let userInfo = self.userInfo {
+            //headersに認証トークン格納
+            let headers: HTTPHeaders = [
+                "Authorization": "Bearer " + userInfo.token
+            ]
+            print("Headers 👉 \(headers)")
+            self.AFrequest = AF.request(url,headers: headers)
+        } else {
+            self.AFrequest = AF.request(url)
+        }
+        
         //alamofireでデータをリクエスト
-        AF.request(url).response { respose in
+        self.AFrequest.response { respose in
             guard let data = respose.data else {
                 return
             }
