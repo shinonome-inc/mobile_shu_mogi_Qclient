@@ -212,7 +212,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Bcz-Kh-UcR">
-                                <rect key="frame" x="0.0" y="144" width="414" height="669"/>
+                                <rect key="frame" x="0.0" y="175" width="414" height="638"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArticleCell" rowHeight="50" id="nCP-C9-IvT" customClass="ArticleTableViewCell" customModule="Qcli" customModuleProvider="target">
@@ -284,23 +284,37 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1Yq-Bd-m3s">
+                                <rect key="frame" x="0.0" y="144" width="414" height="32"/>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                                <connections>
+                                    <action selector="actionSegmentedControl:" destination="pp6-ne-L28" eventType="valueChanged" id="r7E-ZC-oZe"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="meV-v0-4dq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Bcz-Kh-UcR" firstAttribute="top" secondItem="1m7-u4-vcU" secondAttribute="bottom" id="7Lc-TC-KQG"/>
+                            <constraint firstItem="1Yq-Bd-m3s" firstAttribute="top" secondItem="1m7-u4-vcU" secondAttribute="bottom" id="7lO-qB-PEe"/>
                             <constraint firstItem="1m7-u4-vcU" firstAttribute="leading" secondItem="meV-v0-4dq" secondAttribute="leading" id="Gig-wF-4l8"/>
                             <constraint firstItem="1m7-u4-vcU" firstAttribute="trailing" secondItem="meV-v0-4dq" secondAttribute="trailing" id="Rxx-cL-M7J"/>
                             <constraint firstItem="1m7-u4-vcU" firstAttribute="top" secondItem="meV-v0-4dq" secondAttribute="top" id="SR4-vL-an2"/>
                             <constraint firstItem="meV-v0-4dq" firstAttribute="bottom" secondItem="Bcz-Kh-UcR" secondAttribute="bottom" id="VDP-hH-NKt"/>
                             <constraint firstItem="meV-v0-4dq" firstAttribute="trailing" secondItem="Bcz-Kh-UcR" secondAttribute="trailing" id="XJO-sK-HbQ"/>
+                            <constraint firstItem="1Yq-Bd-m3s" firstAttribute="leading" secondItem="meV-v0-4dq" secondAttribute="leading" id="cHX-YL-RIN"/>
                             <constraint firstItem="Bcz-Kh-UcR" firstAttribute="leading" secondItem="meV-v0-4dq" secondAttribute="leading" id="fQg-QO-GUu"/>
+                            <constraint firstItem="Bcz-Kh-UcR" firstAttribute="top" secondItem="1Yq-Bd-m3s" secondAttribute="bottom" id="g1i-4W-Aes"/>
+                            <constraint firstItem="1Yq-Bd-m3s" firstAttribute="trailing" secondItem="meV-v0-4dq" secondAttribute="trailing" id="iin-xm-TL8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Feed" id="YWG-oh-r1j"/>
                     <connections>
                         <outlet property="articleTableView" destination="Bcz-Kh-UcR" id="SzX-14-qiL"/>
                         <outlet property="searchBar" destination="1m7-u4-vcU" id="cuz-1z-WYH"/>
+                        <outlet property="segmentedControll" destination="1Yq-Bd-m3s" id="09H-iq-4Mq"/>
                         <segue destination="5Wb-zf-nuJ" kind="show" identifier="GoToArticlePage" id="pXV-9v-0ad"/>
                     </connections>
                 </viewController>
@@ -456,7 +470,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="pLp-QI-5sv"/>
+        <segue reference="pXV-9v-0ad"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="rss_feed" width="24" height="24"/>

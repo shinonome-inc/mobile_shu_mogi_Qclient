@@ -18,6 +18,7 @@ struct ArticleData {
 class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var segmentedControll: UISegmentedControl!
     @IBOutlet weak var articleTableView: UITableView!
     let cornerRadiusValue: CGFloat = 8
     //cellの高さ設定
@@ -26,11 +27,15 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var dataItems = [ArticleData]()
     //画面遷移時のデータ受け渡し用
     var sendData = ArticleData(imgURL: "", titleText: "", discriptionText: "", likeNumber: 0, articleURL: "")
+    //segmented controllの選択肢
+    let segmentedItems = SearchOption.allCases
     //初期のクエリアイテム
     let initQueryItems = [
         URLQueryItem(name: "page", value: "1"),
         URLQueryItem(name: "per_page", value: "20")
     ]
+    //segmented controlの選択インデックス
+    var segmentedSelectedIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +52,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //記事データ取得
         let articleListDataRequest = RequestData(dataType: .article, queryItems: initQueryItems)
         getData(requestAirticleData: articleListDataRequest)
+        //segmented control 設定
+        setSegmentedControl()
     }
     
     //検索のアルゴリズムを変えたいならここをいじる
@@ -61,11 +68,14 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let searchText = self.searchBar.text {
             self.dataItems.removeAll()
-            let articleListDataRequest = RequestData(dataType: .article, queryItems: initQueryItems, searchDict: [.tag:searchText])
+            let articleListDataRequest = RequestData(dataType: .article, queryItems: initQueryItems, searchDict: [self.segmentedItems[self.segmentedSelectedIndex]:searchText])
             getData(requestAirticleData: articleListDataRequest)
         }
     }
     
+    @IBAction func actionSegmentedControl(_ sender: UISegmentedControl) {
+        self.segmentedSelectedIndex = sender.selectedSegmentIndex
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataItems.count
@@ -87,6 +97,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "GoToArticlePage", sender: nil)
     }
+    
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "GoToArticlePage") {
@@ -155,5 +167,12 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         cell.cellSetLayout()
         return cell
+    }
+    
+    func setSegmentedControl() {
+        self.segmentedControll.removeAllSegments()
+        for (i,x) in self.segmentedItems.enumerated() {
+            self.segmentedControll.insertSegment(withTitle: x.rawValue, at: i, animated: true)
+        }
     }
 }

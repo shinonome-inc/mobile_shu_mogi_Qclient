@@ -15,8 +15,11 @@ enum DataType: String {
     case auth = "authenticated_user"
 }
 
-enum SearchOption: String {
+enum SearchOption: String, CaseIterable {
+    case title = "title"
     case tag = "tag"
+    case body = "body"
+    case user = "user"
 }
 
 class RequestData {
