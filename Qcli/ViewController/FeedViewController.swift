@@ -166,6 +166,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.articleTableView.reloadData()
             print("👍 Reload the \(requestAirticleData.dataType.rawValue) data")
             
+            
         }, failure: { error in
             print("Failed to get the article list data.")
             if let error = error {
