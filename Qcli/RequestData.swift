@@ -26,7 +26,7 @@ class RequestData {
     var userInfo: qiitaUserInfo!
     //var headers: HTTPHeaders!
     var urlComponents: URLComponents!
-    let dataType: DataType!
+    var dataType: DataType!
     var queryItems: [URLQueryItem]!
     //qiitaのURL…&query=(searchOption):(String)
     var searchDict: [SearchOption:String]!

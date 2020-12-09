@@ -11,24 +11,20 @@ class RequestParametersModel {
     var dataType: DataType!
     private let baseUrl = "https://qiita.com/api/v2/"
     var url = ""
-    var pageNumber: Int?
     var perPageNumber: Int?
     var searchDict: [SearchOption:String]?
     var sortdict: [QueryOption:SortOption]?
-    var userInfo: qiitaUserInfo?
+
     private var queryItems: [URLQueryItem]!
     init(dataType: DataType,
          pageNumber: Int?,
          perPageNumber: Int?,
          searchDict: [SearchOption:String]?,
-         sortdict: [QueryOption:SortOption]?,
-         userInfo: qiitaUserInfo?) {
+         sortdict: [QueryOption:SortOption]?) {
         self.dataType = dataType
-        self.pageNumber = pageNumber
         self.perPageNumber = perPageNumber
         self.searchDict = searchDict
         self.sortdict = sortdict
-        self.userInfo = userInfo
         self.url = baseUrl + self.dataType.rawValue
     }
     
@@ -51,19 +47,12 @@ class RequestParametersModel {
         return export
     }
     
-    func assembleItemURL(pageNumber: Int?) -> String {
+    func assembleItemURL(pageNumber: Int) -> String {
         //データタイプが"記事"でないと警告が出る
         if self.dataType != DataType.article {
             print("ERROR: get a data type that is different from the specified data type.")
         }
-        //引数をself.pageNumberを代入
-        if let pageNumber = pageNumber {
-            self.pageNumber = pageNumber
-        } else {
-            print("❌ pageNumber is not the correct type.")
-        }
         //unwraping pageNumber, perPageNumber
-        guard let pageNumber = self.pageNumber else { return self.url }
         guard let perPageNumber = self.perPageNumber else { return self.url }
         self.queryItems = [
             URLQueryItem(name: QueryOption.page.rawValue, value: String(pageNumber)),

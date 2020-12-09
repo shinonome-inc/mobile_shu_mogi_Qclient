@@ -30,7 +30,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //segmented controllの選択肢
     let segmentedItems = SearchOption.allCases
     //データリクエストの宣言
-    var articleListDataRequest: RequestData!
+    //var articleListDataRequest: RequestData!
+    var articleListDataRequest: AirticleDataNetworkService!
     //segmented controlの選択インデックス
     var segmentedSelectedIndex = 0
     //スクロールデータ更新用のページカウント
@@ -49,22 +50,18 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if self.isLogined() {
             let userInfo = callUserInfo()
             print("Your Token 🔑: \(userInfo.token)")
-            self.articleListDataRequest = RequestData(dataType: .article, pageNumber: pageCount, perPageNumber: 20, userInfo: userInfo)
+            self.articleListDataRequest = AirticleDataNetworkService(
+                searchDict: nil,
+                userInfo: userInfo)
         } else {
-            self.articleListDataRequest = RequestData(dataType: .article, pageNumber: pageCount, perPageNumber: 20)
+            self.articleListDataRequest = AirticleDataNetworkService(
+                searchDict: nil,
+                userInfo: nil)
         }
         getData(requestAirticleData: self.articleListDataRequest)
         //segmented control 設定
         setSegmentedControl()
     }
-    
-    //検索のアルゴリズムを変えたいならここをいじる
-    //↓テキストが変わるごとにリクエストを送ると処理落ちする
-    //    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-    //        self.dataItems.removeAll()
-    //        let articleListDataRequest = RequestData(dataType: .article, queryItems: initQueryItems, searchDict: [.tag:searchText])
-    //        getData(requestAirticleData: articleListDataRequest)
-    //    }
     
     //テキストを入力してから、リクエストを送る方法
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -75,9 +72,13 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             if self.isLogined() {
                 let userInfo = callUserInfo()
-                self.articleListDataRequest = RequestData(dataType: .article, pageNumber: pageCount, perPageNumber: 20, searchDict: [self.segmentedItems[self.segmentedSelectedIndex]:searchText], userInfo: userInfo)
+                self.articleListDataRequest = AirticleDataNetworkService(
+                    searchDict: [self.segmentedItems[self.segmentedSelectedIndex]:searchText],
+                    userInfo: userInfo)
             } else {
-                self.articleListDataRequest = RequestData(dataType: .article, pageNumber: self.pageCount, perPageNumber: 20, searchDict: [self.segmentedItems[self.segmentedSelectedIndex]:searchText])
+                self.articleListDataRequest = AirticleDataNetworkService(
+                    searchDict: [self.segmentedItems[self.segmentedSelectedIndex]:searchText],
+                    userInfo: nil)
             }
             getData(requestAirticleData: self.articleListDataRequest)
         }
@@ -148,8 +149,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     //apiを叩きデータを保存する
-    func getData(requestAirticleData: RequestData) {
-        requestAirticleData.fetchAirtcleData(success: { (dataArray) in
+    func getData(requestAirticleData: AirticleDataNetworkService) {
+        requestAirticleData.fetch(success: { (dataArray) in
             dataArray?.forEach { (oneAirticleData) in
                 if let title = oneAirticleData.title,
                    let description = oneAirticleData.body,
@@ -164,7 +165,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }
             }
             self.articleTableView.reloadData()
-            print("👍 Reload the \(requestAirticleData.dataType.rawValue) data")
+            print("👍 Reload the article data")
             
             
         }, failure: { error in
