@@ -8,7 +8,7 @@
 import UIKit
 import Alamofire
 
-struct tagData {
+struct TagData {
     var tagTitle: String
     var imageURL: String
     var itemCount: Int
@@ -22,9 +22,9 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
     //cellの高さ設定
     let tableViewCellHeight: CGFloat = 50
     //最初に取得する記事欄のデータ
-    var dataItems = [tagData]()
+    var dataItems = [TagData]()
     //画面遷移時のデータ受け渡し用
-    var sendData = tagData(tagTitle: "", imageURL: "", itemCount: 0)
+    var sendData = TagData(tagTitle: "", imageURL: "", itemCount: 0)
     //データリクエストの宣言
     var tagListDataRequest: RequestData!
     //スクロールデータ更新用のページカウント
@@ -95,7 +95,7 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
                 if let title = oneTagData.id,
                    let imageUrl = oneTagData.iconUrl,
                    let itemCount = oneTagData.itemsCount {
-                    let oneData = tagData(tagTitle: title, imageURL: imageUrl, itemCount: itemCount)
+                    let oneData = TagData(tagTitle: title, imageURL: imageUrl, itemCount: itemCount)
                     self.dataItems.append(oneData)
                 } else {
                     print("ERROR: This data ↓ allocation failed.")
@@ -119,7 +119,7 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
 //                    if let titleData = json["id"].string,
 //                       let itemsCount = json["items_count"].int,
 //                       let imageURL = json["icon_url"].string {
-//                        let oneData = tagData(tagTitle: titleData, imageURL: imageURL, itemCount: itemsCount)
+//                        let oneData = TagData(tagTitle: titleData, imageURL: imageURL, itemCount: itemsCount)
 //                        self.dataItems.append(oneData)
 //                        print(oneData.tagTitle)
 //                    }
@@ -134,7 +134,7 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     //tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)で呼ばれる関数
-    func setCell(items: [tagData], indexPath: IndexPath) -> TagListTableViewCell {
+    func setCell(items: [TagData], indexPath: IndexPath) -> TagListTableViewCell {
         let cell = tagListTableView.dequeueReusableCell(withIdentifier: "tagCell", for: indexPath) as! TagListTableViewCell
         cell.tagTitle?.text = items[indexPath.row].tagTitle
         cell.tagCount?.text = "\(items[indexPath.row].itemCount)件"
@@ -155,10 +155,10 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
         return value
     }
     //userInfo呼び出し
-    func callUserInfo() -> qiitaUserInfo {
-        var value = qiitaUserInfo(token: "")
+    func callUserInfo() -> QiitaUserInfo {
+        var value = QiitaUserInfo(token: "")
         if let data = UserDefaults.standard.value(forKey:"userInfo") as? Data {
-            let userInfo = try? PropertyListDecoder().decode(Array<qiitaUserInfo>.self, from: data)
+            let userInfo = try? PropertyListDecoder().decode(Array<QiitaUserInfo>.self, from: data)
             if let userInfo = userInfo {
                 value = userInfo[0]
             }

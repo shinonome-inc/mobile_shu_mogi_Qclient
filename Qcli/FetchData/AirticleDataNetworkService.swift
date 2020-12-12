@@ -15,7 +15,7 @@ class AirticleDataNetworkService {
     let headers: HTTPHeaders?
     
     init(searchDict: [SearchOption:String]?,
-         userInfo: qiitaUserInfo?) {
+         userInfo: QiitaUserInfo?) {
         self.pageNumber = 1
         self.perPageNumber = 20
         self.searchDict = searchDict
@@ -63,8 +63,6 @@ class AirticleDataNetworkService {
                 return
             }
             success(exportData)
-            //ページ更新
-            self.pageNumber += 1
         }
     }
 }

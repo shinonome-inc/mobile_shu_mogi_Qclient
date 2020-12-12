@@ -8,7 +8,7 @@
 import UIKit
 
 
-struct qiitaUserInfo: Codable {
+struct QiitaUserInfo: Codable {
     var token: String
 }
 
@@ -18,8 +18,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var notLoginButton: UIButton!
     let cornerRadiusValue: CGFloat = 8
-    var qiitaInfo: qiitaUserInfo!
-    var result: [Any]!
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
@@ -33,9 +31,9 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         //2回目のログインだとログインをスキップさせる
-        if let _ = UserDefaults.standard.object(forKey: "isLogined") {
-            performSegue(withIdentifier: "toTabBarController", sender: nil)
-        }
+//        if let _ = UserDefaults.standard.object(forKey: "isLogined") {
+//            performSegue(withIdentifier: "toTabBarController", sender: nil)
+//        }
         
     }
     
@@ -72,8 +70,8 @@ class LoginViewController: UIViewController {
     }
     
     //トークン入力テキストフィールドからトークンを読み取る
-    func setUserInfo() -> qiitaUserInfo {
-        var info = qiitaUserInfo(token: "")
+    func setUserInfo() -> QiitaUserInfo {
+        var info = QiitaUserInfo(token: "")
         if let token = self.tokenTextField.text {
             info.token = token
             return info

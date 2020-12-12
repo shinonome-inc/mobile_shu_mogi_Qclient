@@ -23,7 +23,7 @@ enum SearchOption: String, CaseIterable {
 }
 
 class RequestData {
-    var userInfo: qiitaUserInfo!
+    var userInfo: QiitaUserInfo!
     //var headers: HTTPHeaders!
     var urlComponents: URLComponents!
     var dataType: DataType!
@@ -41,7 +41,7 @@ class RequestData {
     
         
     //認証用 -> userInfo:必要, dataType:必要, pageNumber&perPageNumber:不要 searchDict:不要
-    init(dataType: DataType ,userInfo: qiitaUserInfo) {
+    init(dataType: DataType ,userInfo: QiitaUserInfo) {
         self.userInfo = userInfo
         self.dataType = dataType
         self.queryItems = nil
@@ -56,7 +56,7 @@ class RequestData {
         self.searchDict = nil
     }
     //検索なし -> userInfo:不要, dataType:必要, pageNumber&perPageNumber:必要 searchDict:不要
-    init(dataType: DataType, pageNumber: Int, perPageNumber: Int, userInfo: qiitaUserInfo) {
+    init(dataType: DataType, pageNumber: Int, perPageNumber: Int, userInfo: QiitaUserInfo) {
         self.userInfo = userInfo
         self.dataType = dataType
         self.pageNumber = pageNumber
@@ -73,7 +73,7 @@ class RequestData {
     }
     
     //検索あり, ログインしている -> userInfo:必要, dataType:必要, pageNumber&perPageNumber:必要 searchDict:必要
-    init(dataType: DataType, pageNumber: Int, perPageNumber: Int, searchDict: [SearchOption:String], userInfo: qiitaUserInfo) {
+    init(dataType: DataType, pageNumber: Int, perPageNumber: Int, searchDict: [SearchOption:String], userInfo: QiitaUserInfo) {
         self.userInfo = userInfo
         self.dataType = dataType
         self.pageNumber = pageNumber
@@ -98,7 +98,7 @@ class RequestData {
     }
     
     //sortあり -> userInfo:不要, dataType:必要, pageNumber&perPageNumber:必要 searchDict:不要
-    init(userInfo: qiitaUserInfo, dataType: DataType, pageNumber: Int, perPageNumber: Int, sortdict: [QueryOption:SortOption]) {
+    init(userInfo: QiitaUserInfo, dataType: DataType, pageNumber: Int, perPageNumber: Int, sortdict: [QueryOption:SortOption]) {
         self.userInfo = userInfo
         self.dataType = dataType
         self.pageNumber = pageNumber
@@ -117,7 +117,7 @@ class RequestData {
         userDefault.set(isLogined, forKey: "isLogined")
     }
     
-    func saveUserDefault(userInfo: qiitaUserInfo) {
+    func saveUserDefault(userInfo: QiitaUserInfo) {
         //userDefaultにユーザー情報を入れる
         let userDefault = UserDefaults.standard
         userDefault.set(try? PropertyListEncoder().encode([userInfo]), forKey: "userInfo")

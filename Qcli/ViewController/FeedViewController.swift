@@ -26,7 +26,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //最初に取得する記事欄のデータ
     var dataItems = [ArticleData]()
     //画面遷移時のデータ受け渡し用
-    var sendData = ArticleData(imgURL: "", titleText: "", discriptionText: "", likeNumber: 0, articleURL: "")
+    var sendData: ArticleData?
     //segmented controllの選択肢
     let segmentedItems = SearchOption.allCases
     //データリクエストの宣言
@@ -130,10 +130,10 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     //userInfo呼び出し
-    func callUserInfo() -> qiitaUserInfo {
-        var value = qiitaUserInfo(token: "")
+    func callUserInfo() -> QiitaUserInfo {
+        var value = QiitaUserInfo(token: "")
         if let data = UserDefaults.standard.value(forKey:"userInfo") as? Data {
-            let userInfo = try? PropertyListDecoder().decode(Array<qiitaUserInfo>.self, from: data)
+            let userInfo = try? PropertyListDecoder().decode(Array<QiitaUserInfo>.self, from: data)
             if let userInfo = userInfo {
                 value = userInfo[0]
             }

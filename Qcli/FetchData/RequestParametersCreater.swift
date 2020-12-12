@@ -14,7 +14,7 @@ class RequestParametersModel {
     var perPageNumber: Int?
     var searchDict: [SearchOption:String]?
     var sortdict: [QueryOption:SortOption]?
-
+    
     private var queryItems: [URLQueryItem]!
     init(dataType: DataType,
          pageNumber: Int?,
@@ -26,6 +26,7 @@ class RequestParametersModel {
         self.searchDict = searchDict
         self.sortdict = sortdict
         self.url = baseUrl + self.dataType.rawValue
+        
     }
     
     //searchDict->String（エンコード済み）に変換
@@ -83,4 +84,31 @@ class RequestParametersModel {
         
         return self.url
     }
+    
+//    func assembleTagURL(pageNumber: Int) -> String {
+//        //データタイプが"タグ"でないと警告が出る
+//        if self.dataType != DataType.tag {
+//            print("ERROR: get a data type that is different from the specified data type.")
+//        }
+//        //Sortが指定されていなかったら指定する
+//        guard let sortDict = self.sortdict else {
+//            return self.url
+//        }
+//        //queryItemsの設定
+//        guard let perPageNumber = self.perPageNumber else { return self.url }
+//        self.queryItems = [
+//            URLQueryItem(name: QueryOption.page.rawValue, value: String(pageNumber)),
+//            URLQueryItem(name: QueryOption.perPage.rawValue, value: String(perPageNumber))
+//        ]
+//        if let sortdict = self.sortdict {
+//            if let sortKey = sortdict.keys.first,
+//               let sortValue = sortdict.values.first {
+//                self.queryItems.append(URLQueryItem(name: sortKey.rawValue, value: sortValue.rawValue))
+//            }
+//        }
+//        guard var urlComponents = URLComponents(string: self.url) else {
+//            return self.url
+//        }
+//        urlComponents.queryItems = queryItems
+//    }
 }
