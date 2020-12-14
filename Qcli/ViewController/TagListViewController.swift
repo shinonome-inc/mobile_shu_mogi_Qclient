@@ -14,10 +14,9 @@ struct TagData {
     var itemCount: Int
 }
 
-class TagListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class TagListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tagListTableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
     let cornerRadiusValue: CGFloat = 8
     //cellの高さ設定
     let tableViewCellHeight: CGFloat = 50
@@ -34,7 +33,7 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         tagListTableView.dataSource = self
         tagListTableView.delegate = self
-        searchBar.delegate = self
+
         //テーブルビューをスクロールさせたらキーボードを閉じる
         tagListTableView.keyboardDismissMode = .onDrag
         //タグデータ取得
@@ -50,12 +49,6 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Do any additional setup after loading the view.
     }
     
-    //検索のアルゴリズムを変えたいならここをいじる
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        searchItems = dataItems.filter({$0.tagTitle.lowercased().prefix(searchText.count) == searchText.lowercased()})
-//        searching = true
-//        tagListTableView.reloadData()
-//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        return dataItems.count

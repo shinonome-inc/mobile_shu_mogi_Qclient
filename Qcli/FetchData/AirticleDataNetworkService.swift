@@ -6,13 +6,13 @@
 //
 
 import Foundation
-import Alamofire
+
 class AirticleDataNetworkService {
     var perPageNumber: Int?
     var searchDict: [SearchOption:String]?
     var pageNumber: Int
     var sortdict: [QueryOption:SortOption]?
-    let headers: HTTPHeaders?
+    var userInfo: QiitaUserInfo?
     
     init(searchDict: [SearchOption:String]?,
          userInfo: QiitaUserInfo?) {
@@ -20,20 +20,12 @@ class AirticleDataNetworkService {
         self.perPageNumber = 20
         self.searchDict = searchDict
         self.sortdict = nil
-        if let userInfo = userInfo {
-            self.headers = [
-                "Authorization": "Bearer " + userInfo.token
-            ]
-            if let headers = self.headers {
-                print("Headers 👉 \(headers)")
-            }
-        } else {
-            self.headers = nil
-        }
+        self.userInfo = userInfo
     }
     
     func fetch(success: @escaping ((_ result: [AirticleModel]?) -> Void),
                failure: @escaping ((_ error: NSError?) -> Void)) {
+        //↓URLの設定
         let reqParamModel = RequestParametersModel(
             dataType: .article,
             pageNumber: self.pageNumber,
@@ -42,7 +34,18 @@ class AirticleDataNetworkService {
             sortdict: nil)
         let urlText = reqParamModel.assembleItemURL(pageNumber: pageNumber)
         guard let url = URL(string: urlText) else { return }
-        AF.request(url, headers: self.headers).response { response in
+        //↑URLの設定
+        
+        let qiitaRequest = QiitaRequest()
+        //↓ヘッダーの設定
+        if let userInfo = self.userInfo {
+            qiitaRequest.headers = [
+                "Authorization": "Bearer " + userInfo.token
+            ]
+        }
+        //↑ヘッダーの設定
+        //↓QittaRequestのメソッドrequestは引数にheadersを設置しなくてもリクエスト時にヘッダー情報を組み込むようにしている
+        qiitaRequest.request(url: url).response { response in
             guard let data = response.data else {
                 return
             }
