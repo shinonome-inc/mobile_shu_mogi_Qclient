@@ -30,7 +30,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //segmented controllの選択肢
     let segmentedItems = SearchOption.allCases
     //データリクエストの宣言
-    //var articleListDataRequest: RequestData!
     var articleListDataRequest: AirticleDataNetworkService!
     //segmented controlの選択インデックス
     var segmentedSelectedIndex = 0

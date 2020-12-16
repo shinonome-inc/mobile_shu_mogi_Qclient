@@ -40,8 +40,8 @@ class LoginViewController: UIViewController {
     @IBAction func login(_ sender: Any) {
         print("login button tapped")
         let userInfo = self.setUserInfo()
-        let authRequest = RequestData(dataType: .auth, userInfo: userInfo)
-        authRequest.isAuth(success: { (userData) in
+        let authRequest = AuthDataNetworkService(useInfo: userInfo)
+        authRequest.fetch(success: { (userData) in
             if let id = userData.id {
                 print("Authentication was successful with id = \(id).")
                 //認証成功した場合は次の画面に遷移する

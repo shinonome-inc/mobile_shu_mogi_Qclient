@@ -123,4 +123,11 @@ class RequestParametersCreater {
         
         return self.url
     }
+    
+    func assembleAuthURL() -> String {
+        if self.dataType != DataType.auth {
+            print("ERROR: get a data type that is different from the specified data type.")
+        }
+        return self.url
+    }
 }
