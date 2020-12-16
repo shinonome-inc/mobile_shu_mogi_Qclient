@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Alamofire
 
 struct TagData {
     var tagTitle: String
@@ -24,10 +23,10 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
     var dataItems = [TagData]()
     //画面遷移時のデータ受け渡し用
     var sendData = TagData(tagTitle: "", imageURL: "", itemCount: 0)
-    //データリクエストの宣言
-    var tagListDataRequest: RequestData!
     //スクロールデータ更新用のページカウント
     var pageCount = 1
+    //データリクエストの宣言
+    var tagListDataRequest: TagDataNetworkService!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,17 +35,16 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         //テーブルビューをスクロールさせたらキーボードを閉じる
         tagListTableView.keyboardDismissMode = .onDrag
-        //タグデータ取得
+        // Do any additional setup after loading the view.
         //userInfoがあるならuserInfoも追加する
         if self.isLogined() {
             let userInfo = callUserInfo()
             print("Your Token 🔑: \(userInfo.token)")
-            self.tagListDataRequest = RequestData(userInfo: userInfo, dataType: .tag, pageNumber: pageCount, perPageNumber: 20, sortdict: [QueryOption.sort:SortOption.count])
+            self.tagListDataRequest = TagDataNetworkService(sortDict: [QueryOption.sort:SortOption.count], userInfo: userInfo)
         } else {
-            self.tagListDataRequest = RequestData(dataType: .tag, pageNumber: pageCount, perPageNumber: 20, sortdict: [QueryOption.sort:SortOption.count])
+            self.tagListDataRequest = TagDataNetworkService(sortDict: [QueryOption.sort:SortOption.count], userInfo: nil)
         }
         getTagListData(requestTagListData: self.tagListDataRequest)
-        // Do any additional setup after loading the view.
     }
     
     
@@ -82,8 +80,8 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     //apiを叩きデータを保存する
-    func getTagListData(requestTagListData: RequestData) {
-        requestTagListData.fetchTagData(success: { (tagListData) in
+    func getTagListData(requestTagListData: TagDataNetworkService) {
+        requestTagListData.fetch(success: { (tagListData) in
             tagListData?.forEach{ (oneTagData) in
                 if let title = oneTagData.id,
                    let imageUrl = oneTagData.iconUrl,
@@ -96,7 +94,7 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
             }
             self.tagListTableView.reloadData()
-            print("👍 Reload the \(requestTagListData.dataType.rawValue) data")
+            print("👍 Reload the tag data")
         }, failure: { error in
             print("Failed to get the article list data.")
             if let error = error {

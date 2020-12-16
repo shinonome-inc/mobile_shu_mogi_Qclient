@@ -26,7 +26,7 @@ class AirticleDataNetworkService {
     func fetch(success: @escaping ((_ result: [AirticleModel]?) -> Void),
                failure: @escaping ((_ error: NSError?) -> Void)) {
         //↓URLの設定
-        let reqParamModel = RequestParametersModel(
+        let reqParamModel = RequestParametersCreater(
             dataType: .article,
             pageNumber: self.pageNumber,
             perPageNumber: self.perPageNumber,

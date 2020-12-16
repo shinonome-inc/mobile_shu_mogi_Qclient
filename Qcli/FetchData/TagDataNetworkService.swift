@@ -26,13 +26,13 @@ class TagDataNetworkService {
     func fetch(success: @escaping ((_ result: [TagModel]?) -> Void),
                failure: @escaping ((_ error: NSError?) -> Void)) {
         //↓URLの設定
-        let reqParamModel = RequestParametersModel(
+        let reqParamModel = RequestParametersCreater(
             dataType: .tag,
             pageNumber: self.pageNumber,
             perPageNumber: self.perPageNumber,
             searchDict: self.searchDict,
             sortdict: self.sortdict)
-        let urlText = reqParamModel.assembleItemURL(pageNumber: pageNumber)
+        let urlText = reqParamModel.assembleTagURL(pageNumber: pageNumber)
         guard let url = URL(string: urlText) else { return }
         //↑URLの設定
         let qiitaRequest = QiitaRequest()

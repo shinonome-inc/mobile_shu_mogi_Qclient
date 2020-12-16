@@ -7,7 +7,7 @@
 
 import Foundation
 
-class RequestParametersModel {
+class RequestParametersCreater {
     var dataType: DataType!
     private let baseUrl = "https://qiita.com/api/v2/"
     var url = ""
@@ -85,30 +85,42 @@ class RequestParametersModel {
         return self.url
     }
     
-//    func assembleTagURL(pageNumber: Int) -> String {
-//        //データタイプが"タグ"でないと警告が出る
-//        if self.dataType != DataType.tag {
-//            print("ERROR: get a data type that is different from the specified data type.")
-//        }
-//        //Sortが指定されていなかったら指定する
-//        guard let sortDict = self.sortdict else {
-//            return self.url
-//        }
-//        //queryItemsの設定
-//        guard let perPageNumber = self.perPageNumber else { return self.url }
-//        self.queryItems = [
-//            URLQueryItem(name: QueryOption.page.rawValue, value: String(pageNumber)),
-//            URLQueryItem(name: QueryOption.perPage.rawValue, value: String(perPageNumber))
-//        ]
-//        if let sortdict = self.sortdict {
-//            if let sortKey = sortdict.keys.first,
-//               let sortValue = sortdict.values.first {
-//                self.queryItems.append(URLQueryItem(name: sortKey.rawValue, value: sortValue.rawValue))
-//            }
-//        }
-//        guard var urlComponents = URLComponents(string: self.url) else {
-//            return self.url
-//        }
-//        urlComponents.queryItems = queryItems
-//    }
+    func assembleTagURL(pageNumber: Int) -> String {
+        //データタイプが"タグ"でないと警告が出る
+        if self.dataType != DataType.tag {
+            print("ERROR: get a data type that is different from the specified data type.")
+        }
+        //Sortが指定されていなかったら指定する
+        guard self.sortdict != nil else {
+            return self.url
+        }
+        //queryItemsの設定
+        guard let perPageNumber = self.perPageNumber else { return self.url }
+        self.queryItems = [
+            URLQueryItem(name: QueryOption.page.rawValue, value: String(pageNumber)),
+            URLQueryItem(name: QueryOption.perPage.rawValue, value: String(perPageNumber))
+        ]
+        //sortオプションがあればsortオプションを追加する
+        if let sortdict = self.sortdict {
+            if let sortKey = sortdict.keys.first,
+               let sortValue = sortdict.values.first {
+                self.queryItems.append(URLQueryItem(name: sortKey.rawValue, value: sortValue.rawValue))
+            }
+        }
+        guard var urlComponents = URLComponents(string: self.url) else {
+            return self.url
+        }
+        urlComponents.queryItems = self.queryItems
+        
+        if let url = urlComponents.string {
+            self.url = url
+        } else {
+            print("There was an error converting the URL Component to a String.")
+            return self.url
+        }
+        
+        print("Request 👉 \(self.url)")
+        
+        return self.url
+    }
 }
