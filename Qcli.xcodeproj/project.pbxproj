@@ -11,7 +11,7 @@
 		024AA82225614B5400E502F5 /* ArticlePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024AA82125614B5400E502F5 /* ArticlePageViewController.swift */; };
 		024AA8462562546300E502F5 /* TagListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024AA8452562546300E502F5 /* TagListViewController.swift */; };
 		024AA8492562AA2800E502F5 /* TagListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024AA8482562AA2800E502F5 /* TagListTableViewCell.swift */; };
-		02525A26256E00ED00BF440C /* QueryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02525A25256E00ED00BF440C /* QueryItem.swift */; };
+		02525A26256E00ED00BF440C /* QueryOption＋SortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02525A25256E00ED00BF440C /* QueryOption＋SortOption.swift */; };
 		0270910E2584C735006691B4 /* QiitaRequest+Headers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0270910D2584C735006691B4 /* QiitaRequest+Headers.swift */; };
 		02A990542557DAB900082955 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A990532557DAB900082955 /* AppDelegate.swift */; };
 		02A990562557DAB900082955 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A990552557DAB900082955 /* SceneDelegate.swift */; };
@@ -47,7 +47,7 @@
 		024AA82125614B5400E502F5 /* ArticlePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlePageViewController.swift; sourceTree = "<group>"; };
 		024AA8452562546300E502F5 /* TagListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListViewController.swift; sourceTree = "<group>"; };
 		024AA8482562AA2800E502F5 /* TagListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListTableViewCell.swift; sourceTree = "<group>"; };
-		02525A25256E00ED00BF440C /* QueryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryItem.swift; sourceTree = "<group>"; };
+		02525A25256E00ED00BF440C /* QueryOption＋SortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QueryOption＋SortOption.swift"; sourceTree = "<group>"; };
 		0270910D2584C735006691B4 /* QiitaRequest+Headers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QiitaRequest+Headers.swift"; sourceTree = "<group>"; };
 		027126022569419000DE392A /* APITestApp.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APITestApp.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		02A990502557DAB900082955 /* Qcli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Qcli.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,11 +121,9 @@
 				02C26678257B863500FC6D6D /* ViewController */,
 				02C2667A257B872700FC6D6D /* TableViewCell */,
 				02C26679257B866900FC6D6D /* DataModel */,
-				02DB99BB256804120048B9D9 /* DataType+SearchOption.swift */,
-				02525A25256E00ED00BF440C /* QueryItem.swift */,
+				02C98818258AD03900953B68 /* Type+Option */,
 				02C2667D257B90E300FC6D6D /* FetchData */,
 				02E1368E256FDE7E0050E4E7 /* TestData.swift */,
-				02E13692256FE7750050E4E7 /* ErrorData.swift */,
 			);
 			path = Qcli;
 			sourceTree = "<group>";
@@ -144,6 +142,7 @@
 		02C26679257B866900FC6D6D /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				02E13692256FE7750050E4E7 /* ErrorData.swift */,
 				020B886C2567C63500C2CFE2 /* QiitaModelData.swift */,
 			);
 			path = DataModel;
@@ -168,6 +167,15 @@
 				02C98808258AA89B00953B68 /* AuthDataNetworkService.swift */,
 			);
 			path = FetchData;
+			sourceTree = "<group>";
+		};
+		02C98818258AD03900953B68 /* Type+Option */ = {
+			isa = PBXGroup;
+			children = (
+				02DB99BB256804120048B9D9 /* DataType+SearchOption.swift */,
+				02525A25256E00ED00BF440C /* QueryOption＋SortOption.swift */,
+			);
+			path = "Type+Option";
 			sourceTree = "<group>";
 		};
 		2655B60BA1702758D5E31CB4 /* Frameworks */ = {
@@ -338,7 +346,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02525A26256E00ED00BF440C /* QueryItem.swift in Sources */,
+				02525A26256E00ED00BF440C /* QueryOption＋SortOption.swift in Sources */,
 				020B886D2567C63500C2CFE2 /* QiitaModelData.swift in Sources */,
 				02DB99BC256804120048B9D9 /* DataType+SearchOption.swift in Sources */,
 				02C2667F257B915200FC6D6D /* AirticleDataNetworkService.swift in Sources */,
