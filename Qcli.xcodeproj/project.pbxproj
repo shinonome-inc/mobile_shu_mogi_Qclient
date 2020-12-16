@@ -23,6 +23,7 @@
 		02A990EF255F5C5700082955 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A990EE255F5C5700082955 /* ArticleTableViewCell.swift */; };
 		02C2667F257B915200FC6D6D /* AirticleDataNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C2667E257B915200FC6D6D /* AirticleDataNetworkService.swift */; };
 		02C26683257B91F300FC6D6D /* RequestParametersCreater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C26682257B91F300FC6D6D /* RequestParametersCreater.swift */; };
+		02C9880325897E7F00953B68 /* TagDataNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C9880225897E7F00953B68 /* TagDataNetworkService.swift */; };
 		02DB99BC256804120048B9D9 /* RequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB99BB256804120048B9D9 /* RequestData.swift */; };
 		02E1368F256FDE7E0050E4E7 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E1368E256FDE7E0050E4E7 /* TestData.swift */; };
 		02E13693256FE7750050E4E7 /* ErrorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E13692256FE7750050E4E7 /* ErrorData.swift */; };
@@ -60,6 +61,7 @@
 		02A990EE255F5C5700082955 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		02C2667E257B915200FC6D6D /* AirticleDataNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirticleDataNetworkService.swift; sourceTree = "<group>"; };
 		02C26682257B91F300FC6D6D /* RequestParametersCreater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestParametersCreater.swift; sourceTree = "<group>"; };
+		02C9880225897E7F00953B68 /* TagDataNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDataNetworkService.swift; sourceTree = "<group>"; };
 		02DB99BB256804120048B9D9 /* RequestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestData.swift; sourceTree = "<group>"; };
 		02E1368E256FDE7E0050E4E7 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		02E13692256FE7750050E4E7 /* ErrorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorData.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				02C2667E257B915200FC6D6D /* AirticleDataNetworkService.swift */,
 				02C26682257B91F300FC6D6D /* RequestParametersCreater.swift */,
 				0270910D2584C735006691B4 /* QiitaRequest+Headers.swift */,
+				02C9880225897E7F00953B68 /* TagDataNetworkService.swift */,
 			);
 			path = FetchData;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				020B886D2567C63500C2CFE2 /* QiitaModelData.swift in Sources */,
 				02DB99BC256804120048B9D9 /* RequestData.swift in Sources */,
 				02C2667F257B915200FC6D6D /* AirticleDataNetworkService.swift in Sources */,
+				02C9880325897E7F00953B68 /* TagDataNetworkService.swift in Sources */,
 				02E1368F256FDE7E0050E4E7 /* TestData.swift in Sources */,
 				0270910E2584C735006691B4 /* QiitaRequest+Headers.swift in Sources */,
 				024AA8492562AA2800E502F5 /* TagListTableViewCell.swift in Sources */,
