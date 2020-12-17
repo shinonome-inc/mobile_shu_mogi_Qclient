@@ -48,7 +48,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //userInfoがあるならuserInfoも追加する
         if self.isLogined() {
             let userInfo = callUserInfo()
-            print("Your Token 🔑: \(userInfo.token)")
             self.articleListDataRequest = AirticleDataNetworkService(
                 searchDict: nil,
                 userInfo: userInfo)
@@ -131,12 +130,11 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //userInfo呼び出し
     func callUserInfo() -> QiitaUserInfo {
         var value = QiitaUserInfo(token: "")
-        if let data = UserDefaults.standard.value(forKey:"userInfo") as? Data {
-            let userInfo = try? PropertyListDecoder().decode(Array<QiitaUserInfo>.self, from: data)
-            if let userInfo = userInfo {
-                value = userInfo[0]
-            }
+        let keychain = KeyChain()
+        guard let token = keychain.get() else {
+            return value
         }
+        value.token = token
         return value
     }
     

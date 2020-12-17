@@ -80,8 +80,6 @@ class RequestParametersCreater {
             return self.url
         }
         
-        print("Request 👉 \(self.url)")
-        
         return self.url
     }
     
@@ -118,8 +116,6 @@ class RequestParametersCreater {
             print("There was an error converting the URL Component to a String.")
             return self.url
         }
-        
-        print("Request 👉 \(self.url)")
         
         return self.url
     }

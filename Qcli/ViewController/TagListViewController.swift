@@ -39,7 +39,6 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
         //userInfoがあるならuserInfoも追加する
         if self.isLogined() {
             let userInfo = callUserInfo()
-            print("Your Token 🔑: \(userInfo.token)")
             self.tagListDataRequest = TagDataNetworkService(sortDict: [QueryOption.sort:SortOption.count], userInfo: userInfo)
         } else {
             self.tagListDataRequest = TagDataNetworkService(sortDict: [QueryOption.sort:SortOption.count], userInfo: nil)
@@ -148,12 +147,11 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
     //userInfo呼び出し
     func callUserInfo() -> QiitaUserInfo {
         var value = QiitaUserInfo(token: "")
-        if let data = UserDefaults.standard.value(forKey:"userInfo") as? Data {
-            let userInfo = try? PropertyListDecoder().decode(Array<QiitaUserInfo>.self, from: data)
-            if let userInfo = userInfo {
-                value = userInfo[0]
-            }
+        let keychain = KeyChain()
+        guard let token = keychain.get() else {
+            return value
         }
+        value.token = token
         return value
     }
 }

@@ -7,5 +7,6 @@ target 'Qcli' do
 
   # Pods for Qcli
   pod 'Alamofire', '~> 5.2'
+  pod 'KeychainAccess'
 
 end

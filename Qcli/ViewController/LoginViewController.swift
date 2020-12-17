@@ -18,6 +18,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var notLoginButton: UIButton!
     let cornerRadiusValue: CGFloat = 8
+    let userInfoKeychain = KeyChain()
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
@@ -31,9 +32,9 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         //2回目のログインだとログインをスキップさせる
-//        if let _ = UserDefaults.standard.object(forKey: "isLogined") {
-//            performSegue(withIdentifier: "toTabBarController", sender: nil)
-//        }
+        if let _ = UserDefaults.standard.object(forKey: "isLogined") {
+            performSegue(withIdentifier: "toTabBarController", sender: nil)
+        }
         
     }
     
@@ -44,16 +45,20 @@ class LoginViewController: UIViewController {
         authRequest.fetch(success: { (userData) in
             if let id = userData.id {
                 print("Authentication was successful with id = \(id).")
+                //keychainにトークン情報を保存
+                self.userInfoKeychain.set(token: userInfo.token)
                 //認証成功した場合は次の画面に遷移する
                 self.performSegue(withIdentifier: "toTabBarController", sender: nil)
             } else {
                 print(userData)
                 print("Authentication was successful, but the id cannot be read.")
+                UserDefaults.standard.set(false, forKey: "isLogined")
                 self.displayMyAlertMessage(userMessage: "リクエストは送信できましたが、無効なトークンです。")
             }
         }, failure: { (error) in
             print("Authentication failed.")
             print(error)
+            UserDefaults.standard.set(false, forKey: "isLogined")
             self.displayMyAlertMessage(userMessage: "リクエスト送信できませんでした。")
         })
     }
