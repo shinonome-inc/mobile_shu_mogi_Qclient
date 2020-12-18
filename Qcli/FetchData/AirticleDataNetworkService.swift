@@ -12,15 +12,12 @@ class AirticleDataNetworkService {
     var searchDict: [SearchOption:String]?
     var pageNumber: Int
     var sortdict: [QueryOption:SortOption]?
-    var userInfo: QiitaUserInfo?
     
-    init(searchDict: [SearchOption:String]?,
-         userInfo: QiitaUserInfo?) {
+    init(searchDict: [SearchOption:String]?) {
         self.pageNumber = 1
         self.perPageNumber = 20
         self.searchDict = searchDict
         self.sortdict = nil
-        self.userInfo = userInfo
     }
     
     func fetch(success: @escaping ((_ result: [AirticleModel]?) -> Void),
@@ -37,13 +34,6 @@ class AirticleDataNetworkService {
         //↑URLの設定
         
         let qiitaRequest = QiitaRequest()
-        //↓ヘッダーの設定
-        if let userInfo = self.userInfo {
-            qiitaRequest.headers = [
-                "Authorization": "Bearer " + userInfo.token
-            ]
-        }
-        //↑ヘッダーの設定
         //↓QittaRequestのメソッドrequestは引数にheadersを設置しなくてもリクエスト時にヘッダー情報を組み込むようにしている
         qiitaRequest.request(url: url).response { response in
             guard let data = response.data else {

@@ -26,8 +26,6 @@ class KeyChain {
     
     func get() -> String? {
         if let exportStr = tokenInfo[KeychainValue.token.rawValue] {
-            print("👍 Success: Get your token in keychain")
-            print("🔑 Your token: \(exportStr)")
             return exportStr
         } else {
             print("⚠️ ERROR: Token information does not exist.")

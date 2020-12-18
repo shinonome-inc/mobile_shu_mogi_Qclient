@@ -45,17 +45,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //テーブルビューをスクロールさせたらキーボードを閉じる
         articleTableView.keyboardDismissMode = .onDrag
         //記事データ取得
-        //userInfoがあるならuserInfoも追加する
-        if self.isLogined() {
-            let userInfo = callUserInfo()
-            self.articleListDataRequest = AirticleDataNetworkService(
-                searchDict: nil,
-                userInfo: userInfo)
-        } else {
-            self.articleListDataRequest = AirticleDataNetworkService(
-                searchDict: nil,
-                userInfo: nil)
-        }
+        self.articleListDataRequest = AirticleDataNetworkService(searchDict: nil)
         getData(requestAirticleData: self.articleListDataRequest)
         //segmented control 設定
         setSegmentedControl()
@@ -68,16 +58,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             //ページカウント初期化
             self.pageCount = 1
             
-            if self.isLogined() {
-                let userInfo = callUserInfo()
-                self.articleListDataRequest = AirticleDataNetworkService(
-                    searchDict: [self.segmentedItems[self.segmentedSelectedIndex]:searchText],
-                    userInfo: userInfo)
-            } else {
-                self.articleListDataRequest = AirticleDataNetworkService(
-                    searchDict: [self.segmentedItems[self.segmentedSelectedIndex]:searchText],
-                    userInfo: nil)
-            }
+            self.articleListDataRequest = AirticleDataNetworkService(
+                searchDict: [self.segmentedItems[self.segmentedSelectedIndex]:searchText])
             getData(requestAirticleData: self.articleListDataRequest)
         }
     }
@@ -126,18 +108,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             articlePageVC.articleData = sendData
         }
     }
-    
-    //userInfo呼び出し
-    func callUserInfo() -> QiitaUserInfo {
-        var value = QiitaUserInfo(token: "")
-        let keychain = KeyChain()
-        guard let token = keychain.get() else {
-            return value
-        }
-        value.token = token
-        return value
-    }
-    
+        
     //ログイン判定
     func isLogined() -> Bool {
         var value = false

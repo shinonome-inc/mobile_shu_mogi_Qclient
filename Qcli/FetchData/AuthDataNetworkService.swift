@@ -8,10 +8,10 @@
 import Foundation
 
 class AuthDataNetworkService {
-    var userInfo: QiitaUserInfo?
+    var token: String?
     
-    init(useInfo: QiitaUserInfo?) {
-        self.userInfo = useInfo
+    init(token: String?) {
+        self.token = token
     }
     
     func fetch(success: @escaping (UserModel) -> (),
@@ -27,13 +27,13 @@ class AuthDataNetworkService {
         guard let url = URL(string: urlText) else { return }
         //↑URLの設定
         let qiitaRequest = QiitaRequest()
-        //↓ヘッダーの設定
-        if let userInfo = self.userInfo {
+        qiitaRequest.isNotAuth = false
+        if let token = self.token {
             qiitaRequest.headers = [
-                "Authorization": "Bearer " + userInfo.token
+                "Authorization": "Bearer " + token
             ]
         }
-        //↑ヘッダーの設定
+        
         qiitaRequest.request(url: url).response { response in
             guard let data = response.data else {
                 return

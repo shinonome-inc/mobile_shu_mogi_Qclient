@@ -12,15 +12,12 @@ class TagDataNetworkService {
     var searchDict: [SearchOption:String]?
     var pageNumber: Int
     var sortdict: [QueryOption:SortOption]?
-    var userInfo: QiitaUserInfo?
     
-    init(sortDict: [QueryOption:SortOption]?,
-         userInfo: QiitaUserInfo?) {
+    init(sortDict: [QueryOption:SortOption]?) {
         self.pageNumber = 1
         self.perPageNumber = 20
         self.searchDict = nil
         self.sortdict = sortDict
-        self.userInfo = userInfo
     }
     
     func fetch(success: @escaping ((_ result: [TagModel]?) -> Void),
@@ -36,13 +33,7 @@ class TagDataNetworkService {
         guard let url = URL(string: urlText) else { return }
         //↑URLの設定
         let qiitaRequest = QiitaRequest()
-        //↓ヘッダーの設定
-        if let userInfo = self.userInfo {
-            qiitaRequest.headers = [
-                "Authorization": "Bearer " + userInfo.token
-            ]
-        }
-        //↑ヘッダーの設定
+
         //↓QittaRequestのメソッドrequestは引数にheadersを設置しなくてもリクエスト時にヘッダー情報を組み込むようにしている
         qiitaRequest.request(url: url).response { response in
             guard let data = response.data else {

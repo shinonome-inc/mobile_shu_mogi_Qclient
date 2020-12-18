@@ -7,11 +7,6 @@
 
 import UIKit
 
-
-struct QiitaUserInfo: Codable {
-    var token: String
-}
-
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var tokenTextField: UITextField!
@@ -32,21 +27,24 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         //2回目のログインだとログインをスキップさせる
-        if let _ = UserDefaults.standard.object(forKey: "isLogined") {
-            performSegue(withIdentifier: "toTabBarController", sender: nil)
-        }
+//        if let _ = UserDefaults.standard.object(forKey: "isLogined") {
+//            performSegue(withIdentifier: "toTabBarController", sender: nil)
+//        }
         
     }
     
     @IBAction func login(_ sender: Any) {
-        print("login button tapped")
-        let userInfo = self.setUserInfo()
-        let authRequest = AuthDataNetworkService(useInfo: userInfo)
+        let token = self.getToken()
+        let authRequest = AuthDataNetworkService(token: token)
         authRequest.fetch(success: { (userData) in
             if let id = userData.id {
                 print("Authentication was successful with id = \(id).")
                 //keychainにトークン情報を保存
-                self.userInfoKeychain.set(token: userInfo.token)
+                if let token = token {
+                    self.userInfoKeychain.set(token: token)
+                } else {
+                    UserDefaults.standard.set(false, forKey: "isLogined")
+                }
                 //認証成功した場合は次の画面に遷移する
                 self.performSegue(withIdentifier: "toTabBarController", sender: nil)
             } else {
@@ -73,17 +71,7 @@ class LoginViewController: UIViewController {
     func testInput() {
         tokenTextField.text = "5826b1255becde9c13ed80bee2e510a979268d8f"
     }
-    
-    //トークン入力テキストフィールドからトークンを読み取る
-    func setUserInfo() -> QiitaUserInfo {
-        var info = QiitaUserInfo(token: "")
-        if let token = self.tokenTextField.text {
-            info.token = token
-            return info
-        }
-        return info
-    }
-    
+        
     //リクエスト失敗した時用のアラート
     func displayMyAlertMessage(userMessage: String) {
         let myAlert = UIAlertController(title:"Alert", message: userMessage, preferredStyle:  UIAlertController.Style.alert)
@@ -91,6 +79,10 @@ class LoginViewController: UIViewController {
         myAlert.addAction(okAction);
         self.present(myAlert,animated:true, completion:nil)
         
-    }    
+    }
+    
+    func getToken() -> String? {
+        return self.tokenTextField.text
+    }
     
 }

@@ -164,8 +164,8 @@
 			isa = PBXGroup;
 			children = (
 				02C26682257B91F300FC6D6D /* RequestParametersCreater.swift */,
-				02C2667E257B915200FC6D6D /* AirticleDataNetworkService.swift */,
 				0270910D2584C735006691B4 /* QiitaRequest+Headers.swift */,
+				02C2667E257B915200FC6D6D /* AirticleDataNetworkService.swift */,
 				02C9880225897E7F00953B68 /* TagDataNetworkService.swift */,
 				02C98808258AA89B00953B68 /* AuthDataNetworkService.swift */,
 			);

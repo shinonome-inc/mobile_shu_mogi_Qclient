@@ -36,13 +36,8 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
         //テーブルビューをスクロールさせたらキーボードを閉じる
         tagListTableView.keyboardDismissMode = .onDrag
         // Do any additional setup after loading the view.
-        //userInfoがあるならuserInfoも追加する
-        if self.isLogined() {
-            let userInfo = callUserInfo()
-            self.tagListDataRequest = TagDataNetworkService(sortDict: [QueryOption.sort:SortOption.count], userInfo: userInfo)
-        } else {
-            self.tagListDataRequest = TagDataNetworkService(sortDict: [QueryOption.sort:SortOption.count], userInfo: nil)
-        }
+       
+        self.tagListDataRequest = TagDataNetworkService(sortDict: [QueryOption.sort:SortOption.count])
         getTagListData(requestTagListData: self.tagListDataRequest)
     }
     
@@ -144,14 +139,5 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
         value = UserDefaults.standard.bool(forKey: "isLogined")
         return value
     }
-    //userInfo呼び出し
-    func callUserInfo() -> QiitaUserInfo {
-        var value = QiitaUserInfo(token: "")
-        let keychain = KeyChain()
-        guard let token = keychain.get() else {
-            return value
-        }
-        value.token = token
-        return value
-    }
+    
 }
