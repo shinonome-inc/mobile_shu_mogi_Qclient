@@ -108,7 +108,9 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "GoToArticlePage") {
             let articlePageVC = segue.destination as! ArticlePageViewController
-            articlePageVC.articleData = sendData
+            if let sendData = self.sendData {
+                articlePageVC.articleData = sendData
+            }
         }
     }
         
@@ -156,8 +158,11 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.likeLabel?.text = "\(items[indexPath.row].likeNumber)like"
         let url = URL(string: items[indexPath.row].imgURL)
         do {
-            let imageData = try Data(contentsOf: url!)
-            cell.articleIconImage?.image = UIImage(data: imageData)
+            if let url = url {
+                let imageData = try Data(contentsOf: url)
+                cell.articleIconImage?.image = UIImage(data: imageData)
+            }
+            
         } catch {
             cell.articleIconImage?.image = UIImage(named: "no-coupon-image.png")
         }
