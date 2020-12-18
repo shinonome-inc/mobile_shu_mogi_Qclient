@@ -35,6 +35,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var segmentedSelectedIndex = 0
     //スクロールデータ更新用のページカウント
     var pageCount = 1
+    //リクエストできる状態か判定
+    var isNotLoading = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,7 +96,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
         let distanceToBottom = maximumOffset - currentOffsetY
         
-        if distanceToBottom < 500 {
+        if distanceToBottom < 150 && self.isNotLoading {
+            self.isNotLoading = false
             self.pageCount += 1
             self.articleListDataRequest.pageNumber = self.pageCount
             self.getData(requestAirticleData: self.articleListDataRequest)
@@ -134,13 +137,14 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             self.articleTableView.reloadData()
             print("👍 Reload the article data")
-            
+            self.isNotLoading = true
             
         }, failure: { error in
             print("Failed to get the article list data.")
             if let error = error {
                 print(error)
             }
+            self.isNotLoading = true
         })
     }
     

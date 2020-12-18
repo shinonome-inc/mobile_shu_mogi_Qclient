@@ -27,6 +27,9 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
     var pageCount = 1
     //データリクエストの宣言
     var tagListDataRequest: TagDataNetworkService!
+    //リクエストできる状態か判定
+    var isNotLoading = true
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +70,8 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
         let distanceToBottom = maximumOffset - currentOffsetY
         
-        if distanceToBottom < 500 {
+        if distanceToBottom < 150 && self.isNotLoading {
+            self.isNotLoading = false
             self.pageCount += 1
             self.tagListDataRequest.pageNumber = self.pageCount
             getTagListData(requestTagListData: self.tagListDataRequest)
@@ -89,33 +93,14 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             self.tagListTableView.reloadData()
             print("👍 Reload the tag data")
+            self.isNotLoading = true
         }, failure: { error in
             print("Failed to get the article list data.")
             if let error = error {
                 print(error)
             }
+            self.isNotLoading = true
         })
-//        let url = "https://qiita.com/api/v2/tags?page=1&per_page=20&sort=count"
-//        AF.request(url, method: .get).validate().responseJSON { response in
-//            switch response.result {
-//            case .success(let value):
-//                let json = JSON(value)
-//                json.forEach {(_, json) in
-//                    if let titleData = json["id"].string,
-//                       let itemsCount = json["items_count"].int,
-//                       let imageURL = json["icon_url"].string {
-//                        let oneData = TagData(tagTitle: titleData, imageURL: imageURL, itemCount: itemsCount)
-//                        self.dataItems.append(oneData)
-//                        print(oneData.tagTitle)
-//                    }
-//                    
-//                }
-//                self.tagListTableView.reloadData()
-//                self.searchItems = self.dataItems
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
     }
     
     //tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)で呼ばれる関数

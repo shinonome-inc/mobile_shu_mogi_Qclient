@@ -27,9 +27,9 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         //2回目のログインだとログインをスキップさせる
-//        if let _ = UserDefaults.standard.object(forKey: "isLogined") {
-//            performSegue(withIdentifier: "toTabBarController", sender: nil)
-//        }
+        if let _ = UserDefaults.standard.object(forKey: "isLogined") {
+            performSegue(withIdentifier: "toTabBarController", sender: nil)
+        }
         
     }
     

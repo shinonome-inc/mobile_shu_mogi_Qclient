@@ -68,9 +68,7 @@ class RequestParametersCreater {
             let toStr = dictToStr(searcDict: searchDict)
             let searchOptionQuery = URLQueryItem(name: QueryOption.query.rawValue, value: toStr)
             urlComponents.queryItems?.append(searchOptionQuery)
-        } else {
-            print("⚠️ It does not use queries other than page specification.")
-        }
+        } 
         //↑searchbar検索用
         
         if let url = urlComponents.string {
