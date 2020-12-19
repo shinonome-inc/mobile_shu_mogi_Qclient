@@ -53,10 +53,6 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
         return setCell(items: dataItems, indexPath: indexPath)
     }
     
-    //tableviewcellの高さ設定
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tableViewCellHeight
-    }
     //tableviewcell選択時の処理
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
