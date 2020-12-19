@@ -28,29 +28,35 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
     //データリクエストの宣言
     var tagListDataRequest: TagDataNetworkService!
     //リクエストできる状態か判定
-    var isNotLoading = true
-
+    var isNotLoading = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tagListTableView.dataSource = self
         tagListTableView.delegate = self
-
+        
         //テーブルビューをスクロールさせたらキーボードを閉じる
         tagListTableView.keyboardDismissMode = .onDrag
         // Do any additional setup after loading the view.
-       
+        
         self.tagListDataRequest = TagDataNetworkService(sortDict: [QueryOption.sort:SortOption.count])
         getTagListData(requestTagListData: self.tagListDataRequest)
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return dataItems.count
+        return dataItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return setCell(items: dataItems, indexPath: indexPath)
+        guard let cell = tagListTableView.dequeueReusableCell(withIdentifier: "tagCell", for: indexPath) as? TagListTableViewCell else {
+            abort()
+        }
+        let model = dataItems[indexPath.row]
+        cell.setModel(model: model)
+        return cell
+        //return setCell(items: dataItems, indexPath: indexPath)
     }
     
     //tableviewcell選択時の処理
@@ -62,11 +68,11 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     //tableviewをスクロールしたら最下のcellにたどり着く前にデータ更新を行う
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let currentOffsetY = scrollView.contentOffset.y
-        let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
-        let distanceToBottom = maximumOffset - currentOffsetY
-        
-        if distanceToBottom < 150 && self.isNotLoading {
+        let height = scrollView.frame.size.height
+        let contentYoffset = scrollView.contentOffset.y
+        let distanceFromBottom = scrollView.contentSize.height - contentYoffset
+                
+        if distanceFromBottom < height && self.isNotLoading {
             self.isNotLoading = false
             self.pageCount += 1
             self.tagListDataRequest.pageNumber = self.pageCount
@@ -99,21 +105,6 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
         })
     }
     
-    //tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)で呼ばれる関数
-    func setCell(items: [TagData], indexPath: IndexPath) -> TagListTableViewCell {
-        let cell = tagListTableView.dequeueReusableCell(withIdentifier: "tagCell", for: indexPath) as! TagListTableViewCell
-        cell.tagTitle?.text = items[indexPath.row].tagTitle
-        cell.tagCount?.text = "\(items[indexPath.row].itemCount)件"
-        let url = URL(string: items[indexPath.row].imageURL)
-        do {
-            let imageData = try Data(contentsOf: url!)
-            cell.tagIconImage?.image = UIImage(data: imageData)
-        } catch {
-            cell.tagIconImage?.image = UIImage(named: "no-coupon-image.png")
-        }
-        cell.cellSetLayout()
-        return cell
-    }
     //ログイン判定
     func isLogined() -> Bool {
         var value = false

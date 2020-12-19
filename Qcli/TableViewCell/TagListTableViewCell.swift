@@ -27,4 +27,19 @@ class TagListTableViewCell: UITableViewCell {
         //アイコン画像を丸くする
         tagIconImage.layer.cornerRadius = tagIconImage.frame.size.width * 0.5
     }
+    
+    func setModel(model: TagData) {
+        self.tagTitle.text = model.tagTitle
+        self.tagCount.text = "\(model.itemCount)件"
+        if let url = URL(string: model.imageURL) {
+            do {
+                let imageData = try Data(contentsOf: url)
+                self.tagIconImage.image = UIImage(data: imageData)
+            } catch {
+                self.tagIconImage.image = UIImage(named: "no-coupon-image.png")
+            }
+            self.cellSetLayout()
+        }
+        
+    }
 }

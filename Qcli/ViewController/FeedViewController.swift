@@ -36,7 +36,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //スクロールデータ更新用のページカウント
     var pageCount = 1
     //リクエストできる状態か判定
-    var isNotLoading = true
+    var isNotLoading = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,7 +75,12 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return setCell(items: dataItems, indexPath: indexPath)
+        guard let cell = articleTableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as? ArticleTableViewCell else {
+            abort()
+        }
+        let model = dataItems[indexPath.row]
+        cell.setModel(model: model)
+        return cell
     }
     
     //tableviewcell選択時の処理
@@ -143,26 +148,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             self.isNotLoading = true
         })
-    }
-    
-    //tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)で呼ばれる関数
-    func setCell(items: [ArticleData], indexPath: IndexPath) -> ArticleTableViewCell {
-        let cell = articleTableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as! ArticleTableViewCell
-        cell.titleLabel?.text = items[indexPath.row].titleText
-        cell.discriptionLabel?.text = items[indexPath.row].discriptionText
-        cell.likeLabel?.text = "\(items[indexPath.row].likeNumber)like"
-        let url = URL(string: items[indexPath.row].imgURL)
-        do {
-            if let url = url {
-                let imageData = try Data(contentsOf: url)
-                cell.articleIconImage?.image = UIImage(data: imageData)
-            }
-            
-        } catch {
-            cell.articleIconImage?.image = UIImage(named: "no-coupon-image.png")
-        }
-        cell.cellSetLayout()
-        return cell
     }
     
     func setSegmentedControl() {
