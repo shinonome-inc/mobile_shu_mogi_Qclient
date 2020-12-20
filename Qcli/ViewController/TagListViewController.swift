@@ -22,7 +22,7 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
     //最初に取得する記事欄のデータ
     var dataItems = [TagData]()
     //画面遷移時のデータ受け渡し用
-    var sendData = TagData(tagTitle: "", imageURL: "", itemCount: 0)
+    var sendData: TagData?
     //スクロールデータ更新用のページカウント
     var pageCount = 1
     //データリクエストの宣言
