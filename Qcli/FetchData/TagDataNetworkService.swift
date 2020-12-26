@@ -8,12 +8,12 @@
 import Foundation
 
 class TagDataNetworkService {
-    var perPageNumber: Int?
+    var perPageNumber = 20
     var searchDict: [SearchOption: String]?
     var pageNumber: Int
-    var sortdict: [QueryOption:SortOption]?
+    var sortdict: [QueryOption: SortOption]?
     
-    init(sortDict: [QueryOption:SortOption]?) {
+    init(sortDict: [QueryOption: SortOption]?) {
         self.pageNumber = 1
         self.perPageNumber = 20
         self.searchDict = nil
@@ -26,7 +26,6 @@ class TagDataNetworkService {
         let reqParamModel = RequestParametersCreater(
             dataType: .tag,
             pageNumber: self.pageNumber,
-            perPageNumber: self.perPageNumber,
             searchDict: self.searchDict,
             sortdict: self.sortdict)
         let urlText = reqParamModel.assembleTagURL(pageNumber: pageNumber)

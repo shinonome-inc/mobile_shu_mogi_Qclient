@@ -15,13 +15,13 @@ class ArticlePageViewController: UIViewController {
     var articleData: ArticleData!
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let articleData = self.articleData {
-            let url = URL(string: articleData.articleURL)
-            if let url = url {
-                let urlRequest = URLRequest(url: url)
-                webView.load(urlRequest)
-            }
+        if let articleData = self.articleData,
+           let url = URL(string: articleData.articleURL) {
+            
+            let urlRequest = URLRequest(url: url)
+            webView.load(urlRequest)
         }
+        
     }
     
 }

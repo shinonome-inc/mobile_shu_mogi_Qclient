@@ -20,7 +20,6 @@ class AuthDataNetworkService {
         let reqParamCreater = RequestParametersCreater(
             dataType: .auth,
             pageNumber: nil,
-            perPageNumber: nil,
             searchDict: nil,
             sortdict: nil)
         let urlText = reqParamCreater.assembleAuthURL()

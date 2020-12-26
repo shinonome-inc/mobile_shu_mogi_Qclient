@@ -11,18 +11,16 @@ class RequestParametersCreater {
     var dataType: DataType!
     private let baseUrl = "https://qiita.com/api/v2/"
     var url = ""
-    var perPageNumber: Int?
+    var perPageNumber = 20
     var searchDict: [SearchOption: String]?
-    var sortdict: [QueryOption:SortOption]?
+    var sortdict: [QueryOption: SortOption]?
     
     private var queryItems: [URLQueryItem]!
     init(dataType: DataType,
          pageNumber: Int?,
-         perPageNumber: Int?,
          searchDict: [SearchOption: String]?,
-         sortdict: [QueryOption:SortOption]?) {
+         sortdict: [QueryOption: SortOption]?) {
         self.dataType = dataType
-        self.perPageNumber = perPageNumber
         self.searchDict = searchDict
         self.sortdict = sortdict
         self.url = baseUrl + self.dataType.rawValue
@@ -53,8 +51,7 @@ class RequestParametersCreater {
         if self.dataType != DataType.article {
             print("ERROR: get a data type that is different from the specified data type.")
         }
-        //unwraping pageNumber, perPageNumber
-        guard let perPageNumber = self.perPageNumber else { return self.url }
+
         self.queryItems = [
             URLQueryItem(name: QueryOption.page.rawValue, value: String(pageNumber)),
             URLQueryItem(name: QueryOption.perPage.rawValue, value: String(perPageNumber))
@@ -91,7 +88,6 @@ class RequestParametersCreater {
             return self.url
         }
         //queryItemsの設定
-        guard let perPageNumber = self.perPageNumber else { return self.url }
         self.queryItems = [
             URLQueryItem(name: QueryOption.page.rawValue, value: String(pageNumber)),
             URLQueryItem(name: QueryOption.perPage.rawValue, value: String(perPageNumber))

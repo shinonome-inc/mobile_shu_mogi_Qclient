@@ -8,16 +8,14 @@
 import Foundation
 
 class AirticleDataNetworkService {
-    var perPageNumber: Int?
+    var perPageNumber = 20
     var searchDict: [SearchOption: String]?
     var pageNumber: Int
-    var sortdict: [QueryOption:SortOption]?
+    var sortdict: [QueryOption: SortOption]?
     
     init(searchDict: [SearchOption: String]?) {
         self.pageNumber = 1
-        self.perPageNumber = 20
         self.searchDict = searchDict
-        self.sortdict = nil
     }
     
     func fetch(success: @escaping ((_ result: [AirticleModel]?) -> Void),
@@ -26,7 +24,6 @@ class AirticleDataNetworkService {
         let reqParamModel = RequestParametersCreater(
             dataType: .article,
             pageNumber: self.pageNumber,
-            perPageNumber: self.perPageNumber,
             searchDict: self.searchDict,
             sortdict: nil)
         let urlText = reqParamModel.assembleItemURL(pageNumber: pageNumber)
