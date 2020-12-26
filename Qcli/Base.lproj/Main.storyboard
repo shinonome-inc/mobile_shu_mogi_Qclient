@@ -99,22 +99,6 @@
             </objects>
             <point key="canvasLocation" x="-242.0289855072464" y="73.660714285714278"/>
         </scene>
-        <!--Item 2-->
-        <scene sceneID="K11-d6-b3b">
-            <objects>
-                <viewController id="KaB-Ws-9Gu" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="f3Q-M4-41I">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="qit-o7-taW"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="11h-6h-KrJ"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dEl-HH-NcB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1029" y="1069"/>
-        </scene>
         <!--Tag-->
         <scene sceneID="NQL-CJ-jTd">
             <objects>
@@ -461,7 +445,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7aZ-DV-Hc3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2848" y="1069"/>
+            <point key="canvasLocation" x="2032" y="1069"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="Kan-fl-fqk">
@@ -477,7 +461,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cTC-Y2-cA5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1954" y="1069"/>
+            <point key="canvasLocation" x="1138" y="1069"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="lkx-ob-tRN">
@@ -493,7 +477,6 @@
                         <segue destination="SdZ-Sh-DkO" kind="relationship" relationship="viewControllers" id="otO-4l-9pX"/>
                         <segue destination="gDB-hM-kAi" kind="relationship" relationship="viewControllers" id="s0G-QU-mti"/>
                         <segue destination="d4v-Os-75q" kind="relationship" relationship="viewControllers" id="M4X-yn-UXi"/>
-                        <segue destination="KaB-Ws-9Gu" kind="relationship" relationship="viewControllers" id="ikd-zJ-ne2"/>
                         <segue destination="wxi-dG-FOW" kind="relationship" relationship="viewControllers" id="qdL-YZ-MT0"/>
                     </connections>
                 </tabBarController>
