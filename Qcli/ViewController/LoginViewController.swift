@@ -12,11 +12,9 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var tokenTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var notLoginButton: UIButton!
-    let cornerRadiusValue: CGFloat = 8
     let userInfoKeychain = KeyChain()
     override func viewDidLoad() {
         super.viewDidLoad()
-        setLayout()
         testInput()
     }
     
@@ -59,12 +57,6 @@ class LoginViewController: UIViewController {
             UserDefaults.standard.set(false, forKey: "isLogined")
             self.displayMyAlertMessage(userMessage: "リクエスト送信できませんでした。")
         })
-    }
-    
-    func setLayout() {
-        tokenTextField.layer.cornerRadius = cornerRadiusValue
-        loginButton.layer.cornerRadius = cornerRadiusValue
-        notLoginButton.layer.cornerRadius = cornerRadiusValue
     }
     
     //テスト用トークン

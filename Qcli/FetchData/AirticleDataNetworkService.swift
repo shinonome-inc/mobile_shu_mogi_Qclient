@@ -9,11 +9,11 @@ import Foundation
 
 class AirticleDataNetworkService {
     var perPageNumber: Int?
-    var searchDict: [SearchOption:String]?
+    var searchDict: [SearchOption: String]?
     var pageNumber: Int
     var sortdict: [QueryOption:SortOption]?
     
-    init(searchDict: [SearchOption:String]?) {
+    init(searchDict: [SearchOption: String]?) {
         self.pageNumber = 1
         self.perPageNumber = 20
         self.searchDict = searchDict

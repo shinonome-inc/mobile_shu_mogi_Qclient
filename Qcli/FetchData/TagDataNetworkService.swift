@@ -9,7 +9,7 @@ import Foundation
 
 class TagDataNetworkService {
     var perPageNumber: Int?
-    var searchDict: [SearchOption:String]?
+    var searchDict: [SearchOption: String]?
     var pageNumber: Int
     var sortdict: [QueryOption:SortOption]?
     

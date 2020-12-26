@@ -17,10 +17,8 @@ struct ArticleData {
 
 class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
-    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var segmentedControll: UISegmentedControl!
     @IBOutlet weak var articleTableView: UITableView!
-    let cornerRadiusValue: CGFloat = 8
     //cellの高さ設定
     let tableViewCellHeight: CGFloat = 50
     //最初に取得する記事欄のデータ
@@ -40,10 +38,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        articleTableView.dataSource = self
-        articleTableView.delegate = self
-        searchBar.delegate = self
         //テーブルビューをスクロールさせたらキーボードを閉じる
         articleTableView.keyboardDismissMode = .onDrag
         //記事データ取得
@@ -55,7 +49,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     //テキストを入力してから、リクエストを送る方法
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if let searchText = self.searchBar.text {
+        if let searchText = searchBar.text {
             self.dataItems.removeAll()
             //ページカウント初期化
             self.pageCount = 1

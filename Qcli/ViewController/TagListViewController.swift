@@ -16,7 +16,6 @@ struct TagData {
 class TagListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tagListTableView: UITableView!
-    let cornerRadiusValue: CGFloat = 8
     //cellの高さ設定
     let tableViewCellHeight: CGFloat = 50
     //最初に取得する記事欄のデータ
@@ -33,11 +32,6 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tagListTableView.dataSource = self
-        tagListTableView.delegate = self
-        
-        //テーブルビューをスクロールさせたらキーボードを閉じる
-        tagListTableView.keyboardDismissMode = .onDrag
         // Do any additional setup after loading the view.
         
         self.tagListDataRequest = TagDataNetworkService(sortDict: [QueryOption.sort:SortOption.count])

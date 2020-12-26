@@ -12,14 +12,14 @@ class RequestParametersCreater {
     private let baseUrl = "https://qiita.com/api/v2/"
     var url = ""
     var perPageNumber: Int?
-    var searchDict: [SearchOption:String]?
+    var searchDict: [SearchOption: String]?
     var sortdict: [QueryOption:SortOption]?
     
     private var queryItems: [URLQueryItem]!
     init(dataType: DataType,
          pageNumber: Int?,
          perPageNumber: Int?,
-         searchDict: [SearchOption:String]?,
+         searchDict: [SearchOption: String]?,
          sortdict: [QueryOption:SortOption]?) {
         self.dataType = dataType
         self.perPageNumber = perPageNumber
@@ -31,7 +31,7 @@ class RequestParametersCreater {
     
     //searchDict->String（エンコード済み）に変換
     //ex)[tag:Swift] -> tag%3ASwift
-    func dictToStr(searcDict: [SearchOption:String]) -> String {
+    func dictToStr(searcDict: [SearchOption: String]) -> String {
         var export = ""
         var count = 1
         guard let searchDict = self.searchDict else { return "" }
