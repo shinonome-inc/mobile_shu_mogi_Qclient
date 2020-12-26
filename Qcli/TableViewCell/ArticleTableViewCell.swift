@@ -14,11 +14,6 @@ class ArticleTableViewCell: UITableViewCell {
     @IBOutlet weak var discriptionLabel: UILabel!
     @IBOutlet weak var likeLabel: UILabel!
     
-    func cellSetLayout() {
-        //アイコン画像を丸くする
-        articleIconImage.layer.cornerRadius = articleIconImage.frame.size.width * 0.5
-    }
-    
     func setModel(model: ArticleData) {
         self.titleLabel.text = model.titleText
         self.discriptionLabel.text = model.discriptionText
@@ -30,7 +25,6 @@ class ArticleTableViewCell: UITableViewCell {
             } catch {
                 self.articleIconImage.image = UIImage(named: "no-coupon-image.png")
             }
-            self.cellSetLayout()
         }
         
     }

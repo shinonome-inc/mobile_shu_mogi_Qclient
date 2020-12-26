@@ -13,11 +13,6 @@ class TagListTableViewCell: UITableViewCell {
     @IBOutlet weak var tagTitle: UILabel!
     @IBOutlet weak var tagCount: UILabel!
     
-    func cellSetLayout() {
-        //アイコン画像を丸くする
-        tagIconImage.layer.cornerRadius = tagIconImage.frame.size.width * 0.5
-    }
-    
     func setModel(model: TagData) {
         self.tagTitle.text = model.tagTitle
         self.tagCount.text = "\(model.itemCount)件"
@@ -28,7 +23,6 @@ class TagListTableViewCell: UITableViewCell {
             } catch {
                 self.tagIconImage.image = UIImage(named: "no-coupon-image.png")
             }
-            self.cellSetLayout()
         }
         
     }
