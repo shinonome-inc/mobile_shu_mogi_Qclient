@@ -20,8 +20,7 @@ class TagListTableViewCell: UITableViewCell {
             tagIconImage.setImage(with: url, completionHandler: { result in
                 switch result {
                 case .success(_): break
-                case .failure(let error):
-                    print("⚠️ SetImageError: \(error.localizedDescription)")
+                case .failure(_):
                     self.tagIconImage.image = UIImage(named: "no-coupon-image.png")
                 }
             })

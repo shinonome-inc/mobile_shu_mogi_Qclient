@@ -22,8 +22,7 @@ class ArticleTableViewCell: UITableViewCell {
             articleIconImage.setImage(with: url, completionHandler: { result in
                 switch result {
                 case .success(_): break
-                case .failure(let error):
-                    print("⚠️ SetImageError: \(error.localizedDescription)")
+                case .failure(_):
                     self.articleIconImage.image = UIImage(named: "no-coupon-image.png")
                 }
             })

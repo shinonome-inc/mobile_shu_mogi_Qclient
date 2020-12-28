@@ -10,15 +10,14 @@ import UIKit
 
 extension UIImageView {
     
-    @discardableResult
     public func setImage(
         with resource: Resource?,
         placeholder: Placeholder? = nil,
         options: KingfisherOptionsInfo? = nil,
         progressBlock: DownloadProgressBlock? = nil,
-        completionHandler: ((Result<RetrieveImageResult, KingfisherError>) -> Void)? = nil) -> DownloadTask?
-    {
-        return kf.setImage(
+        completionHandler: ((Result<RetrieveImageResult, KingfisherError>) -> Void)? = nil) {
+        
+        kf.setImage(
             with: resource,
             placeholder: placeholder,
             options: options,
