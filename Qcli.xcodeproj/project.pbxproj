@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		020B886D2567C63500C2CFE2 /* QiitaModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020B886C2567C63500C2CFE2 /* QiitaModelData.swift */; };
 		02256F5A258F0CFD004882A6 /* TagDetailListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02256F59258F0CFD004882A6 /* TagDetailListViewController.swift */; };
+		023D026625999E7F0043FE29 /* ImageView+Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023D026525999E7F0043FE29 /* ImageView+Kingfisher.swift */; };
 		024AA82225614B5400E502F5 /* ArticlePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024AA82125614B5400E502F5 /* ArticlePageViewController.swift */; };
 		024AA8462562546300E502F5 /* TagListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024AA8452562546300E502F5 /* TagListViewController.swift */; };
 		024AA8492562AA2800E502F5 /* TagListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024AA8482562AA2800E502F5 /* TagListTableViewCell.swift */; };
@@ -47,6 +48,7 @@
 		0022A2C1EDEB925B5A20B260 /* Pods-Qcli.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qcli.debug.xcconfig"; path = "Target Support Files/Pods-Qcli/Pods-Qcli.debug.xcconfig"; sourceTree = "<group>"; };
 		020B886C2567C63500C2CFE2 /* QiitaModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaModelData.swift; sourceTree = "<group>"; };
 		02256F59258F0CFD004882A6 /* TagDetailListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDetailListViewController.swift; sourceTree = "<group>"; };
+		023D026525999E7F0043FE29 /* ImageView+Kingfisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+Kingfisher.swift"; sourceTree = "<group>"; };
 		024AA82125614B5400E502F5 /* ArticlePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlePageViewController.swift; sourceTree = "<group>"; };
 		024AA8452562546300E502F5 /* TagListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListViewController.swift; sourceTree = "<group>"; };
 		024AA8482562AA2800E502F5 /* TagListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListTableViewCell.swift; sourceTree = "<group>"; };
@@ -94,6 +96,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		023D026425999E1D0043FE29 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				023D026525999E7F0043FE29 /* ImageView+Kingfisher.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		02A990472557DAB900082955 = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +138,7 @@
 				02C98818258AD03900953B68 /* Type+Option */,
 				02C2667D257B90E300FC6D6D /* FetchData */,
 				02C98819258B60B700953B68 /* KeyChain */,
+				023D026425999E1D0043FE29 /* Extensions */,
 				02E1368E256FDE7E0050E4E7 /* TestData.swift */,
 			);
 			path = Qcli;
@@ -371,6 +382,7 @@
 				02C98809258AA89B00953B68 /* AuthDataNetworkService.swift in Sources */,
 				024AA8492562AA2800E502F5 /* TagListTableViewCell.swift in Sources */,
 				024AA82225614B5400E502F5 /* ArticlePageViewController.swift in Sources */,
+				023D026625999E7F0043FE29 /* ImageView+Kingfisher.swift in Sources */,
 				02C9881B258B612400953B68 /* KeyChain.swift in Sources */,
 				02A990EF255F5C5700082955 /* ArticleTableViewCell.swift in Sources */,
 				02C26683257B91F300FC6D6D /* RequestParametersCreater.swift in Sources */,

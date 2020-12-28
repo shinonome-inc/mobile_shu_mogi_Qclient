@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 class ArticleTableViewCell: UITableViewCell {
 
@@ -20,12 +19,12 @@ class ArticleTableViewCell: UITableViewCell {
         self.discriptionLabel.text = model.discriptionText
         self.likeLabel.text = "\(model.likeNumber)like"
         if let url = URL(string: model.imgURL) {
-            articleIconImage.kf.setImage(with: url, completionHandler:  { result in
+            articleIconImage.setImage(with: url, completionHandler: { result in
                 switch result {
+                case .success(_): break
                 case .failure(let error):
                     print("⚠️ SetImageError: \(error.localizedDescription)")
                     self.articleIconImage.image = UIImage(named: "no-coupon-image.png")
-                case .success(_): break
                 }
             })
         }

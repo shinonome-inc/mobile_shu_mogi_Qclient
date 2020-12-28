@@ -17,12 +17,14 @@ class TagListTableViewCell: UITableViewCell {
         self.tagTitle.text = model.tagTitle
         self.tagCount.text = "\(model.itemCount)件"
         if let url = URL(string: model.imageURL) {
-            do {
-                let imageData = try Data(contentsOf: url)
-                self.tagIconImage.image = UIImage(data: imageData)
-            } catch {
-                self.tagIconImage.image = UIImage(named: "no-coupon-image.png")
-            }
+            tagIconImage.setImage(with: url, completionHandler: { result in
+                switch result {
+                case .success(_): break
+                case .failure(let error):
+                    print("⚠️ SetImageError: \(error.localizedDescription)")
+                    self.tagIconImage.image = UIImage(named: "no-coupon-image.png")
+                }
+            })
         }
         
     }
