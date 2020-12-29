@@ -15,6 +15,7 @@
 		024AA8492562AA2800E502F5 /* TagListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024AA8482562AA2800E502F5 /* TagListTableViewCell.swift */; };
 		02525A26256E00ED00BF440C /* QueryOption＋SortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02525A25256E00ED00BF440C /* QueryOption＋SortOption.swift */; };
 		0270910E2584C735006691B4 /* QiitaRequest+Headers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0270910D2584C735006691B4 /* QiitaRequest+Headers.swift */; };
+		02A1469A259B44F700285DD8 /* MyPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A14699259B44F700285DD8 /* MyPageTableViewCell.swift */; };
 		02A990542557DAB900082955 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A990532557DAB900082955 /* AppDelegate.swift */; };
 		02A990562557DAB900082955 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A990552557DAB900082955 /* SceneDelegate.swift */; };
 		02A9905B2557DAB900082955 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02A990592557DAB900082955 /* Main.storyboard */; };
@@ -55,6 +56,7 @@
 		02525A25256E00ED00BF440C /* QueryOption＋SortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QueryOption＋SortOption.swift"; sourceTree = "<group>"; };
 		0270910D2584C735006691B4 /* QiitaRequest+Headers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QiitaRequest+Headers.swift"; sourceTree = "<group>"; };
 		027126022569419000DE392A /* APITestApp.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APITestApp.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		02A14699259B44F700285DD8 /* MyPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewCell.swift; sourceTree = "<group>"; };
 		02A990502557DAB900082955 /* Qcli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Qcli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02A990532557DAB900082955 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02A990552557DAB900082955 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			children = (
 				02A990EE255F5C5700082955 /* ArticleTableViewCell.swift */,
 				024AA8482562AA2800E502F5 /* TagListTableViewCell.swift */,
+				02A14699259B44F700285DD8 /* MyPageTableViewCell.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				02256F5A258F0CFD004882A6 /* TagDetailListViewController.swift in Sources */,
 				0270910E2584C735006691B4 /* QiitaRequest+Headers.swift in Sources */,
 				02C98809258AA89B00953B68 /* AuthDataNetworkService.swift in Sources */,
+				02A1469A259B44F700285DD8 /* MyPageTableViewCell.swift in Sources */,
 				024AA8492562AA2800E502F5 /* TagListTableViewCell.swift in Sources */,
 				024AA82225614B5400E502F5 /* ArticlePageViewController.swift in Sources */,
 				023D026625999E7F0043FE29 /* ImageView+Kingfisher.swift in Sources */,
