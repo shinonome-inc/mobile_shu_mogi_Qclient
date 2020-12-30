@@ -477,10 +477,10 @@
             </objects>
             <point key="canvasLocation" x="2942.0289855072465" y="1068.75"/>
         </scene>
-        <!--View Controller-->
+        <!--My Page-->
         <scene sceneID="Kan-fl-fqk">
             <objects>
-                <viewController id="d4v-Os-75q" sceneMemberID="viewController">
+                <viewController id="d4v-Os-75q" customClass="MyPageViewController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JHn-II-d3M">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -623,7 +623,15 @@
                             <constraint firstItem="puu-pf-Rfi" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dru-na-jbc" secondAttribute="trailing" symbolic="YES" id="tqx-jB-evj"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="rBq-ij-8Mu"/>
+                    <navigationItem key="navigationItem" title="My Page" id="rBq-ij-8Mu"/>
+                    <connections>
+                        <outlet property="followButton" destination="VNw-Ha-X2P" id="tBK-Ag-YZO"/>
+                        <outlet property="follwerButton" destination="6VE-fa-QKX" id="cll-Rs-gfv"/>
+                        <outlet property="userDiscriptionLabel" destination="pUs-Q1-WWS" id="Xd0-o8-hpb"/>
+                        <outlet property="userIdLabel" destination="dru-na-jbc" id="uP1-xr-xhp"/>
+                        <outlet property="userImageView" destination="zow-ri-qfO" id="eEJ-gt-X9r"/>
+                        <outlet property="userNameLabel" destination="7Dd-AL-jxr" id="ZqM-gl-mFk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cTC-Y2-cA5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
