@@ -19,8 +19,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet weak var segmentedControll: UISegmentedControl!
     @IBOutlet weak var articleTableView: UITableView!
-    //cellの高さ設定
-    let tableViewCellHeight: CGFloat = 50
     //最初に取得する記事欄のデータ
     var dataItems = [ArticleData]()
     //画面遷移時のデータ受け渡し用
@@ -38,8 +36,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //テーブルビューをスクロールさせたらキーボードを閉じる
-        articleTableView.keyboardDismissMode = .onDrag
         //記事データ取得
         self.articleListDataRequest = AirticleDataNetworkService(searchDict: nil)
         getData(requestAirticleData: self.articleListDataRequest)
