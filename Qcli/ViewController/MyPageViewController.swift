@@ -35,6 +35,15 @@ class MyPageViewController: UIViewController {
         setProfile()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "FromMyPageToArticlePage") {
+            let articlePageVC = segue.destination as! ArticlePageViewController
+            if let sendData = self.sendData {
+                articlePageVC.articleData = sendData
+            }
+        }
+    }
+    
     //apiを叩きデータを保存する
     func getData(requestAirticleData: AirticleDataNetworkService) {
         requestAirticleData.fetch(success: { (dataArray) in
@@ -128,6 +137,27 @@ extension MyPageViewController: UITableViewDataSource {
         let model = dataItems[indexPath.row]
         cell.setModel(model: model)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        sendData = dataItems[indexPath.row]
+        //tableviewcell選択解除
+        tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "FromMyPageToArticlePage", sender: nil)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let currentOffsetY = scrollView.contentOffset.y
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
+        let distanceToBottom = maximumOffset - currentOffsetY
+        
+        if distanceToBottom < 150 && self.isNotLoading {
+            self.isNotLoading = false
+            self.pageCount += 1
+            self.myItemDataRequest.pageNumber = self.pageCount
+            self.getData(requestAirticleData: self.myItemDataRequest)
+            
+        }
     }
     
     
