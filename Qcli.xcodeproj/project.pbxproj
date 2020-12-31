@@ -17,6 +17,8 @@
 		0270910E2584C735006691B4 /* QiitaRequest+Headers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0270910D2584C735006691B4 /* QiitaRequest+Headers.swift */; };
 		02A1469A259B44F700285DD8 /* MyPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A14699259B44F700285DD8 /* MyPageTableViewCell.swift */; };
 		02A146A0259B675B00285DD8 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A1469F259B675B00285DD8 /* MyPageViewController.swift */; };
+		02A146A7259D92CB00285DD8 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A146A6259D92CB00285DD8 /* UserListViewController.swift */; };
+		02A146AB259D94EC00285DD8 /* UnwrappedDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A146AA259D94EC00285DD8 /* UnwrappedDataModel.swift */; };
 		02A990542557DAB900082955 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A990532557DAB900082955 /* AppDelegate.swift */; };
 		02A990562557DAB900082955 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A990552557DAB900082955 /* SceneDelegate.swift */; };
 		02A9905B2557DAB900082955 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02A990592557DAB900082955 /* Main.storyboard */; };
@@ -59,6 +61,8 @@
 		027126022569419000DE392A /* APITestApp.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APITestApp.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		02A14699259B44F700285DD8 /* MyPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewCell.swift; sourceTree = "<group>"; };
 		02A1469F259B675B00285DD8 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		02A146A6259D92CB00285DD8 /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
+		02A146AA259D94EC00285DD8 /* UnwrappedDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnwrappedDataModel.swift; sourceTree = "<group>"; };
 		02A990502557DAB900082955 /* Qcli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Qcli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02A990532557DAB900082955 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02A990552557DAB900082955 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -157,6 +161,7 @@
 				024AA82125614B5400E502F5 /* ArticlePageViewController.swift */,
 				02256F59258F0CFD004882A6 /* TagDetailListViewController.swift */,
 				02A1469F259B675B00285DD8 /* MyPageViewController.swift */,
+				02A146A6259D92CB00285DD8 /* UserListViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -166,6 +171,7 @@
 			children = (
 				02E13692256FE7750050E4E7 /* ErrorData.swift */,
 				020B886C2567C63500C2CFE2 /* QiitaModelData.swift */,
+				02A146AA259D94EC00285DD8 /* UnwrappedDataModel.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -380,6 +386,7 @@
 				02525A26256E00ED00BF440C /* QueryOption＋SortOption.swift in Sources */,
 				020B886D2567C63500C2CFE2 /* QiitaModelData.swift in Sources */,
 				02DB99BC256804120048B9D9 /* DataType+SearchOption.swift in Sources */,
+				02A146AB259D94EC00285DD8 /* UnwrappedDataModel.swift in Sources */,
 				02C2667F257B915200FC6D6D /* AirticleDataNetworkService.swift in Sources */,
 				02C9880325897E7F00953B68 /* TagDataNetworkService.swift in Sources */,
 				02E1368F256FDE7E0050E4E7 /* TestData.swift in Sources */,
@@ -394,6 +401,7 @@
 				02C9881B258B612400953B68 /* KeyChain.swift in Sources */,
 				02A990EF255F5C5700082955 /* ArticleTableViewCell.swift in Sources */,
 				02C26683257B91F300FC6D6D /* RequestParametersCreater.swift in Sources */,
+				02A146A7259D92CB00285DD8 /* UserListViewController.swift in Sources */,
 				02A990542557DAB900082955 /* AppDelegate.swift in Sources */,
 				02A9906F255907FE00082955 /* LoginViewController.swift in Sources */,
 				02E13693256FE7750050E4E7 /* ErrorData.swift in Sources */,

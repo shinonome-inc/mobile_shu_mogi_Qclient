@@ -1,0 +1,29 @@
+//
+//  UnwrappedDataModel.swift
+//  Qcli
+//
+//  Created by 吉田周平 on 2020/12/31.
+//
+
+import Foundation
+
+struct ArticleData {
+    var imgURL: String
+    var titleText: String
+    var discriptionText: String
+    var likeNumber: Int
+    var articleURL: String
+}
+
+struct TagData {
+    var tagTitle: String
+    var imageURL: String
+    var itemCount: Int
+}
+
+struct UserData {
+    var imageUrl: String
+    var userName: String
+    var userId: String
+    var itemCount: Int
+}

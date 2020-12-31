@@ -7,17 +7,11 @@
 
 import UIKit
 
-struct TagData {
-    var tagTitle: String
-    var imageURL: String
-    var itemCount: Int
-}
+
 
 class TagListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tagListTableView: UITableView!
-    //cellの高さ設定
-    let tableViewCellHeight: CGFloat = 50
     //最初に取得する記事欄のデータ
     var dataItems = [TagData]()
     //画面遷移時のデータ受け渡し用

@@ -7,14 +7,6 @@
 
 import UIKit
 
-struct ArticleData {
-    var imgURL: String
-    var titleText: String
-    var discriptionText: String
-    var likeNumber: Int
-    var articleURL: String
-}
-
 class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     @IBOutlet weak var segmentedControll: UISegmentedControl!
