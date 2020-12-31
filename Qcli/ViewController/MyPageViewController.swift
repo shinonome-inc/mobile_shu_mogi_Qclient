@@ -19,6 +19,8 @@ class MyPageViewController: UIViewController {
     
     //取得する記事データのリスト
     var dataItems = [ArticleData]()
+    //UserListVC用受け渡しデータ
+    var sendUserListType: UserListType?
     //画面遷移時のデータ受け渡し用
     var sendData: ArticleData?
     //データリクエストの宣言
@@ -35,7 +37,27 @@ class MyPageViewController: UIViewController {
         setProfile()
     }
     
+    @IBAction func followButtonTapped(_ sender: Any) {
+        sendUserListType = .follow
+        performSegue(withIdentifier: "toUserList", sender: nil)
+    }
+    
+    @IBAction func follwerButtonTapped(_ sender: Any) {
+        sendUserListType = .follower
+        performSegue(withIdentifier: "toUserList", sender: nil)
+    }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "toUserList") {
+            let userListVC = segue.destination as! UserListViewController
+            if let sendUserListType = self.sendUserListType,
+               let userId = self.userId {
+                userListVC.userListType = sendUserListType
+                userListVC.userId = userId
+            }
+        }
+        
         if (segue.identifier == "FromMyPageToArticlePage") {
             let articlePageVC = segue.destination as! ArticlePageViewController
             if let sendData = self.sendData {

@@ -578,12 +578,18 @@
                                 <state key="normal" title="Follow">
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="followButtonTapped:" destination="d4v-Os-75q" eventType="touchUpInside" id="KNt-BY-c85"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6VE-fa-QKX">
                                 <rect key="frame" x="54" y="223.5" width="58" height="30"/>
                                 <state key="normal" title="Follower">
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="follwerButtonTapped:" destination="d4v-Os-75q" eventType="touchUpInside" id="IqQ-vW-Gaf"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="puu-pf-Rfi"/>
@@ -621,11 +627,28 @@
                         <outlet property="userImageView" destination="zow-ri-qfO" id="eEJ-gt-X9r"/>
                         <outlet property="userNameLabel" destination="7Dd-AL-jxr" id="ZqM-gl-mFk"/>
                         <segue destination="5Wb-zf-nuJ" kind="show" identifier="FromMyPageToArticlePage" id="AHv-An-Oo6"/>
+                        <segue destination="Yrk-LB-Rkk" kind="show" identifier="toUserList" id="4Wv-6u-sId"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cTC-Y2-cA5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1137.68115942029" y="1804.6875"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="JhV-Ub-BDy">
+            <objects>
+                <viewController id="kEE-um-ZMT" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Wt4-UB-pK9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="yZb-62-C3C"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="069-IN-JEa"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8SJ-IG-hp0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2025" y="2632"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="lkx-ob-tRN">
@@ -722,6 +745,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PeI-CN-9fQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1137.68115942029" y="1068.75"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zr3-Zq-WVP">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Yrk-LB-Rkk" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="20A-PD-aDP"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xxh-7v-CZq">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="kEE-um-ZMT" kind="relationship" relationship="rootViewController" id="soi-U6-4Ma"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xbw-0F-ahH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2024.6376811594205" y="1804.6875"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
