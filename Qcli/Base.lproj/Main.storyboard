@@ -646,7 +646,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="50" id="JuM-qS-HEg" customClass="TagListTableViewCell" customModule="Qcli" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="50" id="JuM-qS-HEg" customClass="UserListTableViewCell" customModule="Qcli" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JuM-qS-HEg" id="UqT-gw-9HG">
@@ -685,8 +685,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="tagIconImage" destination="Wz6-JR-hd2" id="4c2-Se-T6o"/>
-                                            <outlet property="tagTitle" destination="K0Q-Wz-o7P" id="d3l-aP-gUt"/>
+                                            <outlet property="userIdLabel" destination="q8A-TH-X0j" id="kTP-vW-CZa"/>
+                                            <outlet property="userImageView" destination="Wz6-JR-hd2" id="Xq5-t0-aOd"/>
+                                            <outlet property="userNameLabel" destination="K0Q-Wz-o7P" id="4lo-BY-eP1"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

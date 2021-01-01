@@ -20,6 +20,7 @@
 		02A146A7259D92CB00285DD8 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A146A6259D92CB00285DD8 /* UserListViewController.swift */; };
 		02A146AB259D94EC00285DD8 /* UnwrappedDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A146AA259D94EC00285DD8 /* UnwrappedDataModel.swift */; };
 		02A146AF259DA70700285DD8 /* UserListType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A146AE259DA70700285DD8 /* UserListType.swift */; };
+		02A146B3259EF74600285DD8 /* UserListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A146B2259EF74600285DD8 /* UserListTableViewCell.swift */; };
 		02A990542557DAB900082955 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A990532557DAB900082955 /* AppDelegate.swift */; };
 		02A990562557DAB900082955 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A990552557DAB900082955 /* SceneDelegate.swift */; };
 		02A9905B2557DAB900082955 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02A990592557DAB900082955 /* Main.storyboard */; };
@@ -65,6 +66,7 @@
 		02A146A6259D92CB00285DD8 /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
 		02A146AA259D94EC00285DD8 /* UnwrappedDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnwrappedDataModel.swift; sourceTree = "<group>"; };
 		02A146AE259DA70700285DD8 /* UserListType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListType.swift; sourceTree = "<group>"; };
+		02A146B2259EF74600285DD8 /* UserListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListTableViewCell.swift; sourceTree = "<group>"; };
 		02A990502557DAB900082955 /* Qcli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Qcli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02A990532557DAB900082955 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02A990552557DAB900082955 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				02A990EE255F5C5700082955 /* ArticleTableViewCell.swift */,
 				024AA8482562AA2800E502F5 /* TagListTableViewCell.swift */,
 				02A14699259B44F700285DD8 /* MyPageTableViewCell.swift */,
+				02A146B2259EF74600285DD8 /* UserListTableViewCell.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				02256F5A258F0CFD004882A6 /* TagDetailListViewController.swift in Sources */,
 				0270910E2584C735006691B4 /* QiitaRequest+Headers.swift in Sources */,
 				02C98809258AA89B00953B68 /* AuthDataNetworkService.swift in Sources */,
+				02A146B3259EF74600285DD8 /* UserListTableViewCell.swift in Sources */,
 				02A146AF259DA70700285DD8 /* UserListType.swift in Sources */,
 				02A1469A259B44F700285DD8 /* MyPageTableViewCell.swift in Sources */,
 				024AA8492562AA2800E502F5 /* TagListTableViewCell.swift in Sources */,
