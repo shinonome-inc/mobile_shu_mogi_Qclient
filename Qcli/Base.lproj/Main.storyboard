@@ -627,17 +627,17 @@
                         <outlet property="userImageView" destination="zow-ri-qfO" id="eEJ-gt-X9r"/>
                         <outlet property="userNameLabel" destination="7Dd-AL-jxr" id="ZqM-gl-mFk"/>
                         <segue destination="5Wb-zf-nuJ" kind="show" identifier="FromMyPageToArticlePage" id="AHv-An-Oo6"/>
-                        <segue destination="Yrk-LB-Rkk" kind="show" identifier="toUserList" id="4Wv-6u-sId"/>
+                        <segue destination="kEE-um-ZMT" kind="show" identifier="toUserList" id="FqX-aV-cGM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cTC-Y2-cA5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1137.68115942029" y="1804.6875"/>
         </scene>
-        <!--View Controller-->
+        <!--User List View Controller-->
         <scene sceneID="JhV-Ub-BDy">
             <objects>
-                <viewController id="kEE-um-ZMT" sceneMemberID="viewController">
+                <viewController id="kEE-um-ZMT" customClass="UserListViewController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wt4-UB-pK9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -706,7 +706,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8SJ-IG-hp0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2025" y="2632"/>
+            <point key="canvasLocation" x="2070" y="1805"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="lkx-ob-tRN">
@@ -803,25 +803,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PeI-CN-9fQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1137.68115942029" y="1068.75"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="zr3-Zq-WVP">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Yrk-LB-Rkk" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="20A-PD-aDP"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xxh-7v-CZq">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="kEE-um-ZMT" kind="relationship" relationship="rootViewController" id="soi-U6-4Ma"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Xbw-0F-ahH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2024.6376811594205" y="1804.6875"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

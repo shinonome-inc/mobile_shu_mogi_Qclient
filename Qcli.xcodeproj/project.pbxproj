@@ -21,6 +21,7 @@
 		02A146AB259D94EC00285DD8 /* UnwrappedDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A146AA259D94EC00285DD8 /* UnwrappedDataModel.swift */; };
 		02A146AF259DA70700285DD8 /* UserListType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A146AE259DA70700285DD8 /* UserListType.swift */; };
 		02A146B3259EF74600285DD8 /* UserListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A146B2259EF74600285DD8 /* UserListTableViewCell.swift */; };
+		02A146BD259F6EF100285DD8 /* UserListNetworlService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A146BC259F6EF100285DD8 /* UserListNetworlService.swift */; };
 		02A990542557DAB900082955 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A990532557DAB900082955 /* AppDelegate.swift */; };
 		02A990562557DAB900082955 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A990552557DAB900082955 /* SceneDelegate.swift */; };
 		02A9905B2557DAB900082955 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02A990592557DAB900082955 /* Main.storyboard */; };
@@ -67,6 +68,7 @@
 		02A146AA259D94EC00285DD8 /* UnwrappedDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnwrappedDataModel.swift; sourceTree = "<group>"; };
 		02A146AE259DA70700285DD8 /* UserListType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListType.swift; sourceTree = "<group>"; };
 		02A146B2259EF74600285DD8 /* UserListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListTableViewCell.swift; sourceTree = "<group>"; };
+		02A146BC259F6EF100285DD8 /* UserListNetworlService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListNetworlService.swift; sourceTree = "<group>"; };
 		02A990502557DAB900082955 /* Qcli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Qcli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02A990532557DAB900082955 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02A990552557DAB900082955 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				02C2667E257B915200FC6D6D /* AirticleDataNetworkService.swift */,
 				02C9880225897E7F00953B68 /* TagDataNetworkService.swift */,
 				02C98808258AA89B00953B68 /* AuthDataNetworkService.swift */,
+				02A146BC259F6EF100285DD8 /* UserListNetworlService.swift */,
 			);
 			path = FetchData;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				02E13693256FE7750050E4E7 /* ErrorData.swift in Sources */,
 				02A990EB255E298700082955 /* FeedViewController.swift in Sources */,
 				024AA8462562546300E502F5 /* TagListViewController.swift in Sources */,
+				02A146BD259F6EF100285DD8 /* UserListNetworlService.swift in Sources */,
 				02A990562557DAB900082955 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

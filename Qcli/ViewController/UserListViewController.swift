@@ -15,4 +15,9 @@ class UserListViewController: UIViewController {
     var userId: String?
     //取得するデータのリスト
     var dataItems = [UserData]()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
 }
