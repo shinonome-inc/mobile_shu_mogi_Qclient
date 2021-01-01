@@ -8,6 +8,6 @@
 import Foundation
 
 enum UserListType: String {
-    case follow = "Follow"
-    case follower = "Follower"
+    case follow = "followees"
+    case follower = "followers"
 }

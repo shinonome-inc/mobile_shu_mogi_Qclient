@@ -14,17 +14,22 @@ class RequestParametersCreater {
     var perPageNumber = 20
     var searchDict: [SearchOption: String]?
     var sortdict: [QueryOption: SortOption]?
+    var userType: UserListType?
+    var userId: String?
     
     private var queryItems: [URLQueryItem]!
     init(dataType: DataType,
          pageNumber: Int?,
-         searchDict: [SearchOption: String]?,
-         sortdict: [QueryOption: SortOption]?) {
+         searchDict: [SearchOption: String]? = nil,
+         sortdict: [QueryOption: SortOption]? = nil,
+         userType: UserListType? = nil,
+         userId: String? = nil) {
         self.dataType = dataType
         self.searchDict = searchDict
         self.sortdict = sortdict
         self.url = baseUrl + self.dataType.rawValue
-        
+        self.userType = userType
+        self.userId = userId
     }
     
     //searchDict->String（エンコード済み）に変換
@@ -118,6 +123,43 @@ class RequestParametersCreater {
         if self.dataType != DataType.auth {
             print("ERROR: get a data type that is different from the specified data type.")
         }
+        return self.url
+    }
+    
+    func assembleUserURL(pageNumber: Int) -> String {
+        //データタイプが"タグ"でないと警告が出る
+        if self.dataType != DataType.user {
+            print("ERROR: get a data type that is different from the specified data type.")
+        }
+        //UserIdが入力チェック
+        if let userId = self.userId {
+            self.url += "/" + userId
+        } else {
+            print("⚠️ UserId = nil")
+        }
+        //UserType入力チェック
+        if let userType = self.userType {
+            self.url += "/" + userType.rawValue
+        } else {
+            print("⚠️ UseType = nil")
+        }
+        //queryItemsの設定
+        self.queryItems = [
+            URLQueryItem(name: QueryOption.page.rawValue, value: String(pageNumber)),
+            URLQueryItem(name: QueryOption.perPage.rawValue, value: String(perPageNumber))
+        ]
+        guard var urlComponents = URLComponents(string: self.url) else {
+            return self.url
+        }
+        urlComponents.queryItems = self.queryItems
+        
+        if let url = urlComponents.string {
+            self.url = url
+        } else {
+            print("There was an error converting the URL Component to a String.")
+            return self.url
+        }
+        
         return self.url
     }
 }
