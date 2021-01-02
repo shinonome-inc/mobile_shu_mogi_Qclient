@@ -15,9 +15,9 @@ class UserListViewController: UIViewController {
     //ユーザーid
     var userId: String?
     //取得するデータのリスト
-    var dataItems = [UserData]()
+    var dataItems = [UserDetailData]()
     //送信用データ
-    var sendData: UserData?
+    var sendData: UserDetailData?
     //データリクエストの宣言
     var userListDataRequest: UserListNetworlService!
     //ページカウント
@@ -40,8 +40,17 @@ class UserListViewController: UIViewController {
                 if let name = oneUserListData.name,
                    let id = oneUserListData.id,
                    let imageURL = oneUserListData.profileImageUrl,
-                   let itemCount = oneUserListData.itemsCount {
-                    let oneData = UserData(imageUrl: imageURL, userName: name, userId: id, itemCount: itemCount)
+                   let itemCount = oneUserListData.itemsCount,
+                   let followeesCount = oneUserListData.followeesCount,
+                   let followersCount = oneUserListData.followersCount,
+                   let description = oneUserListData.description{
+                    let oneData = UserDetailData(imageUrl: imageURL,
+                                                 userName: name,
+                                                 userId: id,
+                                                 itemCount: itemCount,
+                                                 discription: description,
+                                                 followCount: followeesCount,
+                                                 followerCount: followersCount)
                     self.dataItems.append(oneData)
                 } else {
                     print("ERROR: This data ↓ allocation failed.")

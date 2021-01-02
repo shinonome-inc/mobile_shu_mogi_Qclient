@@ -12,7 +12,7 @@ class UserListTableViewCell: UITableViewCell {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userIdLabel: UILabel!
     
-    func setModel(model: UserData) {
+    func setModel(model: UserDetailData) {
         userNameLabel.text = model.userName
         userIdLabel.text = "@" + model.userId
         if let url = URL(string: model.imageUrl) {

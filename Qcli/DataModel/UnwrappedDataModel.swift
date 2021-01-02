@@ -27,3 +27,13 @@ struct UserData {
     var userId: String
     var itemCount: Int
 }
+
+struct UserDetailData {
+    var imageUrl: String
+    var userName: String
+    var userId: String
+    var itemCount: Int
+    var discription: String
+    var followCount: Int
+    var followerCount: Int
+}
