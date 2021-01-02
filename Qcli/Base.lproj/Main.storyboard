@@ -691,6 +691,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="kEE-um-ZMT" id="b7E-su-H5N"/>
+                                    <outlet property="delegate" destination="kEE-um-ZMT" id="zix-b7-ycA"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yZb-62-C3C"/>
@@ -703,6 +707,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="069-IN-JEa"/>
+                    <connections>
+                        <outlet property="userListTableView" destination="hiJ-iB-sXh" id="VE9-WH-jyg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8SJ-IG-hp0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
