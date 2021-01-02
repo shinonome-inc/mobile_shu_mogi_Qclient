@@ -80,5 +80,17 @@ extension UserListViewController: UITableViewDataSource {
         return cell
     }
     
-    
+    //tableviewをスクロールしたら最下のcellにたどり着く前にデータ更新を行う
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let currentOffsetY = scrollView.contentOffset.y
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
+        let distanceToBottom = maximumOffset - currentOffsetY
+        
+        if distanceToBottom < 150 && self.isNotLoading {
+            self.isNotLoading = false
+            self.pageNumber += 1
+            self.userListDataRequest.pageNumber = self.pageNumber
+            self.getData(requestUserListData: self.userListDataRequest)        
+        }
+    }
 }
