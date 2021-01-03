@@ -152,4 +152,18 @@ extension UserDetailViewController: UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "FromUserDetailToArticlePage", sender: nil)
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let currentOffsetY = scrollView.contentOffset.y
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
+        let distanceToBottom = maximumOffset - currentOffsetY
+        
+        if distanceToBottom < 150 && self.isNotLoading {
+            self.isNotLoading = false
+            self.pageCount += 1
+            self.myItemDataRequest.pageNumber = self.pageCount
+            self.getData(requestAirticleData: self.myItemDataRequest)
+            
+        }
+    }
 }
