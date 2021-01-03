@@ -40,6 +40,26 @@ class UserDetailViewController: UIViewController {
         setProfile(model: userDetailData)
     }
     
+    @IBAction func followButtonTapped(_ sender: Any) {
+        sendUserListType = .follow
+        performSegue(withIdentifier: "FromUserDetailToUserList", sender: nil)
+    }
+    
+    @IBAction func FollowerButtonTapped(_ sender: Any) {
+        sendUserListType = .follower
+        performSegue(withIdentifier: "FromUserDetailToUserList", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "FromUserDetailToUserList") {
+            let userListVC = segue.destination as! UserListViewController
+            if let sendUserListType = self.sendUserListType,
+               let userId = self.userId {
+                userListVC.userListType = sendUserListType
+                userListVC.userId = userId
+            }
+        }
+    }
     //apiを叩きデータを保存する
     func getData(requestAirticleData: AirticleDataNetworkService) {
         requestAirticleData.fetch(success: { (dataArray) in

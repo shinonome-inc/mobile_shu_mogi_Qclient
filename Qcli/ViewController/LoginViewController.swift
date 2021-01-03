@@ -25,9 +25,9 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         //2回目のログインだとログインをスキップさせる
-        if let _ = UserDefaults.standard.object(forKey: "isLogined") {
-            performSegue(withIdentifier: "toTabBarController", sender: nil)
-        }
+//        if let _ = UserDefaults.standard.object(forKey: "isLogined") {
+//            performSegue(withIdentifier: "toTabBarController", sender: nil)
+//        }
         
     }
     
@@ -61,7 +61,7 @@ class LoginViewController: UIViewController {
     
     //テスト用トークン
     func testInput() {
-        tokenTextField.text = "5826b1255becde9c13ed80bee2e510a979268d8f"
+        tokenTextField.text = "9f20c9c8e14da64bd16e95a6d425f38e57bbbac6"
     }
         
     //リクエスト失敗した時用のアラート
