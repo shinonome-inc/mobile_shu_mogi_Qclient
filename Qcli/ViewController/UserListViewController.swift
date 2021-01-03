@@ -42,16 +42,27 @@ class UserListViewController: UIViewController {
                    let imageURL = oneUserListData.profileImageUrl,
                    let itemCount = oneUserListData.itemsCount,
                    let followeesCount = oneUserListData.followeesCount,
-                   let followersCount = oneUserListData.followersCount,
-                   let description = oneUserListData.description{
-                    let oneData = UserDetailData(imageUrl: imageURL,
-                                                 userName: name,
-                                                 userId: id,
-                                                 itemCount: itemCount,
-                                                 discription: description,
-                                                 followCount: followeesCount,
-                                                 followerCount: followersCount)
-                    self.dataItems.append(oneData)
+                   let followersCount = oneUserListData.followersCount {
+                    if let description = oneUserListData.description {
+                        let oneData = UserDetailData(imageUrl: imageURL,
+                                                     userName: name,
+                                                     userId: id,
+                                                     itemCount: itemCount,
+                                                     discription: description,
+                                                     followCount: followeesCount,
+                                                     followerCount: followersCount)
+                        self.dataItems.append(oneData)
+                    } else {
+                        let oneData = UserDetailData(imageUrl: imageURL,
+                                                     userName: name,
+                                                     userId: id,
+                                                     itemCount: itemCount,
+                                                     discription: "",
+                                                     followCount: followeesCount,
+                                                     followerCount: followersCount)
+                        self.dataItems.append(oneData)
+                    }
+                    
                 } else {
                     print("ERROR: This data ↓ allocation failed.")
                     print(oneUserListData)
