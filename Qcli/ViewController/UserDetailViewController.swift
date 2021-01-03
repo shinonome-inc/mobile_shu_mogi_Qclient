@@ -59,6 +59,13 @@ class UserDetailViewController: UIViewController {
                 userListVC.userId = userId
             }
         }
+        
+        if (segue.identifier == "FromUserDetailToArticlePage") {
+            let articlePageVC = segue.destination as! ArticlePageViewController
+            if let sendData = self.sendData {
+                articlePageVC.articleData = sendData
+            }
+        }
     }
     //apiを叩きデータを保存する
     func getData(requestAirticleData: AirticleDataNetworkService) {
@@ -140,5 +147,9 @@ extension UserDetailViewController: UITableViewDataSource {
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        sendData = dataItems[indexPath.row]
+        tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "FromUserDetailToArticlePage", sender: nil)
+    }
 }
