@@ -69,6 +69,15 @@ class UserListViewController: UIViewController {
             self.isNotLoading = true
         })
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "FromUserListToUserDetail") {
+            let userDetailVC = segue.destination as! UserDetailViewController
+            if let sendData = self.sendData {
+                userDetailVC.receivedData = sendData
+            }
+        }
+    }
 }
 
 extension UserListViewController: UITableViewDelegate {
@@ -87,6 +96,12 @@ extension UserListViewController: UITableViewDataSource {
         let model = dataItems[indexPath.row]
         cell.setModel(model: model)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        sendData = dataItems[indexPath.row]
+        tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "FromUserListToUserDetail", sender: nil)
     }
     
     //tableviewをスクロールしたら最下のcellにたどり着く前にデータ更新を行う

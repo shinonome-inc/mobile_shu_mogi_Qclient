@@ -36,7 +36,8 @@ class UserDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        guard let userDetailData = self.receivedData else { return }
+        setProfile(model: userDetailData)
     }
     
     //apiを叩きデータを保存する
