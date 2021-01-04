@@ -71,11 +71,11 @@ class MyPageViewController: UIViewController {
         requestAirticleData.fetch(success: { (dataArray) in
             dataArray?.forEach { (oneAirticleData) in
                 if let title = oneAirticleData.title,
-                   let description = oneAirticleData.body,
+                   let createdAt = oneAirticleData.createdAt,
                    let like = oneAirticleData.likesCount,
                    let imageURL = oneAirticleData.user.profileImageUrl,
                    let articleURL = oneAirticleData.url {
-                    let oneData = ArticleData(imgURL: imageURL, titleText: title, discriptionText: description, likeNumber: like, articleURL: articleURL)
+                    let oneData = ArticleData(imgURL: imageURL, titleText: title, createdAt: createdAt, likeNumber: like, articleURL: articleURL)
                     self.dataItems.append(oneData)
                 } else {
                     print("ERROR: This data ↓ allocation failed.")

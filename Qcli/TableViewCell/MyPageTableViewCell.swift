@@ -14,7 +14,11 @@ class MyPageTableViewCell: UITableViewCell {
     
     func setModel(model: ArticleData) {
         titleLabel.text = model.titleText
-        discriptionLabel.text = model.discriptionText
+        if let createdAt = model.createdAt.toJpDateString() {
+            self.discriptionLabel.text = createdAt + "に作成"
+        } else {
+            self.discriptionLabel.text = ""
+        }
         likeLabel.text = "\(model.likeNumber)like"
     }
 }

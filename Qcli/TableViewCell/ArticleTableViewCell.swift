@@ -16,7 +16,11 @@ class ArticleTableViewCell: UITableViewCell {
     
     func setModel(model: ArticleData) {
         self.titleLabel.text = model.titleText
-        self.discriptionLabel.text = model.discriptionText
+        if let createdAt = model.createdAt.toJpDateString() {
+            self.discriptionLabel.text = createdAt + "に作成"
+        } else {
+            self.discriptionLabel.text = ""
+        }
         self.likeLabel.text = "\(model.likeNumber)like"
         if let url = URL(string: model.imgURL) {
             articleIconImage.setImage(with: url, completionHandler: { result in
@@ -29,5 +33,5 @@ class ArticleTableViewCell: UITableViewCell {
         }
         
     }
-
+    
 }

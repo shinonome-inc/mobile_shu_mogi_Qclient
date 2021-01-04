@@ -10,7 +10,7 @@ import Foundation
 struct ArticleData {
     var imgURL: String
     var titleText: String
-    var discriptionText: String
+    var createdAt: String
     var likeNumber: Int
     var articleURL: String
 }
