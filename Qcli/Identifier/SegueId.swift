@@ -8,6 +8,7 @@
 import Foundation
 
 enum SegueId: String {
+    case fromLoginToTabBarController = "FromLoginToTabBarController"
     case fromFeedToArticle = "GoToArticlePage"
     case fromTagListToTagDetailList = "FromTagListToTagDetailList"
     case fromTagDetailToArticlePage = "FromTagDetailToArticlePage"

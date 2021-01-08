@@ -26,7 +26,7 @@ class LoginViewController: UIViewController {
         super.viewDidAppear(animated)
         //2回目のログインだとログインをスキップさせる
 //        if let _ = UserDefaults.standard.object(forKey: "isLogined") {
-//            performSegue(withIdentifier: "toTabBarController", sender: nil)
+//            performSegue(withIdentifier: SegueId.fromLoginToTabBarController.rawValue, sender: nil)
 //        }
         
     }
@@ -44,7 +44,7 @@ class LoginViewController: UIViewController {
                     UserDefaults.standard.set(false, forKey: "isLogined")
                 }
                 //認証成功した場合は次の画面に遷移する
-                self.performSegue(withIdentifier: "toTabBarController", sender: nil)
+                self.performSegue(withIdentifier: SegueId.fromLoginToTabBarController.rawValue, sender: nil)
             } else {
                 print(userData)
                 print("Authentication was successful, but the id cannot be read.")
