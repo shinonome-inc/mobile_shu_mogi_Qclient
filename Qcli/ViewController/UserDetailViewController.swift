@@ -42,16 +42,16 @@ class UserDetailViewController: UIViewController {
     
     @IBAction func followButtonTapped(_ sender: Any) {
         sendUserListType = .follow
-        performSegue(withIdentifier: "FromUserDetailToUserList", sender: nil)
+        performSegue(withIdentifier: SegueId.fromUserDetailToUserList.rawValue, sender: nil)
     }
     
     @IBAction func FollowerButtonTapped(_ sender: Any) {
         sendUserListType = .follower
-        performSegue(withIdentifier: "FromUserDetailToUserList", sender: nil)
+        performSegue(withIdentifier: SegueId.fromUserDetailToUserList.rawValue, sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "FromUserDetailToUserList") {
+        if (segue.identifier == SegueId.fromUserDetailToUserList.rawValue) {
             let userListVC = segue.destination as! UserListViewController
             if let sendUserListType = self.sendUserListType,
                let userId = self.userId {
@@ -60,7 +60,7 @@ class UserDetailViewController: UIViewController {
             }
         }
         
-        if (segue.identifier == "FromUserDetailToArticlePage") {
+        if (segue.identifier == SegueId.fromUserDetailToArticlePage.rawValue) {
             let articlePageVC = segue.destination as! ArticlePageViewController
             if let sendData = self.sendData {
                 articlePageVC.articleData = sendData
@@ -150,7 +150,7 @@ extension UserDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         sendData = dataItems[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "FromUserDetailToArticlePage", sender: nil)
+        performSegue(withIdentifier: SegueId.fromUserDetailToArticlePage.rawValue, sender: nil)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

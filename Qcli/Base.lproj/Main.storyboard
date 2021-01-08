@@ -627,7 +627,7 @@
                         <outlet property="userImageView" destination="zow-ri-qfO" id="eEJ-gt-X9r"/>
                         <outlet property="userNameLabel" destination="7Dd-AL-jxr" id="ZqM-gl-mFk"/>
                         <segue destination="5Wb-zf-nuJ" kind="show" identifier="FromMyPageToArticlePage" id="AHv-An-Oo6"/>
-                        <segue destination="kEE-um-ZMT" kind="show" identifier="toUserList" id="FqX-aV-cGM"/>
+                        <segue destination="kEE-um-ZMT" kind="show" identifier="FromMyPageToUserList" id="FqX-aV-cGM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cTC-Y2-cA5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -972,7 +972,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="FqX-aV-cGM"/>
-        <segue reference="AHv-An-Oo6"/>
+        <segue reference="19S-FT-jNr"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="person" catalog="system" width="128" height="117"/>

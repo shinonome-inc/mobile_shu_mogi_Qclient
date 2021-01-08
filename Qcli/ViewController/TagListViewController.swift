@@ -51,7 +51,7 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.sendData = self.dataItems[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "FromTagListToTagDetailList", sender: nil)
+        performSegue(withIdentifier: SegueId.fromTagListToTagDetailList.rawValue, sender: nil)
     }
     //tableviewをスクロールしたら最下のcellにたどり着く前にデータ更新を行う
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -100,7 +100,7 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "FromTagListToTagDetailList") {
+        if (segue.identifier == SegueId.fromTagListToTagDetailList.rawValue) {
             let destinationVC = segue.destination as! TagDetailListViewController
             if let sendData = self.sendData {
                 destinationVC.receiveData = sendData

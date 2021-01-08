@@ -70,7 +70,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         sendData = dataItems[indexPath.row]
         //tableviewcell選択解除
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "GoToArticlePage", sender: nil)
+        performSegue(withIdentifier: SegueId.fromFeedToArticle.rawValue, sender: nil)
     }
     //tableviewをスクロールしたら最下のcellにたどり着く前にデータ更新を行う
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -88,7 +88,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "GoToArticlePage") {
+        if (segue.identifier == SegueId.fromFeedToArticle.rawValue) {
             let articlePageVC = segue.destination as! ArticlePageViewController
             if let sendData = self.sendData {
                 articlePageVC.articleData = sendData

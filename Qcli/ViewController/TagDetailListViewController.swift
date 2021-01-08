@@ -77,7 +77,7 @@ class TagDetailListViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "FromTagDetailToArticlePage") {
+        if (segue.identifier == SegueId.fromTagDetailToArticlePage.rawValue) {
             let articlePageVC = segue.destination as! ArticlePageViewController
             if let sendData = self.sendData {
                 articlePageVC.articleData = sendData
@@ -108,6 +108,6 @@ extension TagDetailListViewController: UITableViewDataSource {
         sendData = dataItems[indexPath.row]
         //tableviewcell選択解除
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "FromTagDetailToArticlePage", sender: nil)
+        performSegue(withIdentifier: SegueId.fromTagDetailToArticlePage.rawValue, sender: nil)
     }
 }

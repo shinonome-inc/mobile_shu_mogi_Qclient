@@ -24,6 +24,7 @@
 		02A146BD259F6EF100285DD8 /* UserListNetworlService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A146BC259F6EF100285DD8 /* UserListNetworlService.swift */; };
 		02A146C125A1861500285DD8 /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A146C025A1861500285DD8 /* UserDetailViewController.swift */; };
 		02A146D225A34F2600285DD8 /* DateFormat+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A146D125A34F2600285DD8 /* DateFormat+String.swift */; };
+		02A146EF25A851B300285DD8 /* SegueId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A146EE25A851B300285DD8 /* SegueId.swift */; };
 		02A990542557DAB900082955 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A990532557DAB900082955 /* AppDelegate.swift */; };
 		02A990562557DAB900082955 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A990552557DAB900082955 /* SceneDelegate.swift */; };
 		02A9905B2557DAB900082955 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02A990592557DAB900082955 /* Main.storyboard */; };
@@ -73,6 +74,7 @@
 		02A146BC259F6EF100285DD8 /* UserListNetworlService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListNetworlService.swift; sourceTree = "<group>"; };
 		02A146C025A1861500285DD8 /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 		02A146D125A34F2600285DD8 /* DateFormat+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormat+String.swift"; sourceTree = "<group>"; };
+		02A146EE25A851B300285DD8 /* SegueId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueId.swift; sourceTree = "<group>"; };
 		02A990502557DAB900082955 /* Qcli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Qcli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02A990532557DAB900082955 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02A990552557DAB900082955 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +125,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		02A146ED25A8518C00285DD8 /* Identifier */ = {
+			isa = PBXGroup;
+			children = (
+				02A146EE25A851B300285DD8 /* SegueId.swift */,
+			);
+			path = Identifier;
+			sourceTree = "<group>";
+		};
 		02A990472557DAB900082955 = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +167,7 @@
 				02C98818258AD03900953B68 /* Type+Option */,
 				02C2667D257B90E300FC6D6D /* FetchData */,
 				02C98819258B60B700953B68 /* KeyChain */,
+				02A146ED25A8518C00285DD8 /* Identifier */,
 				023D026425999E1D0043FE29 /* Extensions */,
 				02E1368E256FDE7E0050E4E7 /* TestData.swift */,
 			);
@@ -406,6 +417,7 @@
 				02C9880325897E7F00953B68 /* TagDataNetworkService.swift in Sources */,
 				02E1368F256FDE7E0050E4E7 /* TestData.swift in Sources */,
 				02256F5A258F0CFD004882A6 /* TagDetailListViewController.swift in Sources */,
+				02A146EF25A851B300285DD8 /* SegueId.swift in Sources */,
 				0270910E2584C735006691B4 /* QiitaRequest+Headers.swift in Sources */,
 				02C98809258AA89B00953B68 /* AuthDataNetworkService.swift in Sources */,
 				02A146B3259EF74600285DD8 /* UserListTableViewCell.swift in Sources */,

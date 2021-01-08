@@ -39,17 +39,17 @@ class MyPageViewController: UIViewController {
     
     @IBAction func followButtonTapped(_ sender: Any) {
         sendUserListType = .follow
-        performSegue(withIdentifier: "toUserList", sender: nil)
+        performSegue(withIdentifier: SegueId.fromMyPageToUserList.rawValue, sender: nil)
     }
     
     @IBAction func follwerButtonTapped(_ sender: Any) {
         sendUserListType = .follower
-        performSegue(withIdentifier: "toUserList", sender: nil)
+        performSegue(withIdentifier: SegueId.fromMyPageToUserList.rawValue, sender: nil)
     }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "toUserList") {
+        if (segue.identifier == SegueId.fromMyPageToUserList.rawValue) {
             let userListVC = segue.destination as! UserListViewController
             if let sendUserListType = self.sendUserListType,
                let userId = self.userId {
@@ -58,7 +58,7 @@ class MyPageViewController: UIViewController {
             }
         }
         
-        if (segue.identifier == "FromMyPageToArticlePage") {
+        if (segue.identifier == SegueId.fromMyPageToArticlePage.rawValue) {
             let articlePageVC = segue.destination as! ArticlePageViewController
             if let sendData = self.sendData {
                 articlePageVC.articleData = sendData
@@ -165,7 +165,7 @@ extension MyPageViewController: UITableViewDataSource {
         sendData = dataItems[indexPath.row]
         //tableviewcell選択解除
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "FromMyPageToArticlePage", sender: nil)
+        performSegue(withIdentifier: SegueId.fromMyPageToArticlePage.rawValue, sender: nil)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

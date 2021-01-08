@@ -88,7 +88,7 @@ class UserListViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "FromUserListToUserDetail") {
+        if (segue.identifier == SegueId.fromUserListToUserDetail.rawValue) {
             let userDetailVC = segue.destination as! UserDetailViewController
             if let sendData = self.sendData {
                 userDetailVC.receivedData = sendData
@@ -118,7 +118,7 @@ extension UserListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         sendData = dataItems[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "FromUserListToUserDetail", sender: nil)
+        performSegue(withIdentifier: SegueId.fromUserListToUserDetail.rawValue, sender: nil)
     }
     
     //tableviewをスクロールしたら最下のcellにたどり着く前にデータ更新を行う
