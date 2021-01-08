@@ -27,8 +27,14 @@ class UserListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let userId = self.userId else { return }
-        guard let userListType = self.userListType else { return }
+        guard let userId = self.userId else {
+            assertionFailure("userId → nil")
+            return
+        }
+        guard let userListType = self.userListType else {
+            assertionFailure("userListType → nil")
+            return
+        }
         self.userListDataRequest = UserListNetworlService(userType: userListType, userId: userId)
         getData(requestUserListData: userListDataRequest)
     }
