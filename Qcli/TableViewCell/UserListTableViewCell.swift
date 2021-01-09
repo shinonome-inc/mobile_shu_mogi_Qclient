@@ -11,6 +11,9 @@ class UserListTableViewCell: UITableViewCell {
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userIdLabel: UILabel!
+    @IBOutlet weak var postCountLabel: UILabel!
+    @IBOutlet weak var followersCountLabel: UILabel!
+    @IBOutlet weak var discriptionLabel: UILabel!
     
     func setModel(model: UserDetailData) {
         //userNameがない場合の対処
@@ -29,5 +32,8 @@ class UserListTableViewCell: UITableViewCell {
                 }
             })
         }
+        postCountLabel.text = "post: \(model.itemCount)"
+        followersCountLabel.text = "follower: \(model.followerCount)"
+        discriptionLabel.text = model.discription
     }
 }
