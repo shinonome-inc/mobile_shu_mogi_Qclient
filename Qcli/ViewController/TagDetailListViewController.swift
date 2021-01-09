@@ -26,10 +26,10 @@ class TagDetailListViewController: UIViewController {
         super.viewDidLoad()
         articleTableView.dataSource = self
         articleTableView.delegate = self
-        if let receiveData = self.receiveData {
-            self.articleListDataRequest = AirticleDataNetworkService(searchDict: [SearchOption.tag:receiveData.tagTitle])
-            self.getData(requestAirticleData: self.articleListDataRequest)
-            self.navigationItem.title = receiveData.tagTitle
+        if let receiveData = receiveData {
+            articleListDataRequest = AirticleDataNetworkService(searchDict: [SearchOption.tag:receiveData.tagTitle])
+            getData(requestAirticleData: articleListDataRequest)
+            navigationItem.title = receiveData.tagTitle
         }
     }
     //apiを叩きデータを保存する
@@ -37,11 +37,11 @@ class TagDetailListViewController: UIViewController {
         requestAirticleData.fetch(success: { (dataArray) in
             dataArray?.forEach { (oneAirticleData) in
                 if let title = oneAirticleData.title,
-                   let description = oneAirticleData.body,
+                   let createdAt = oneAirticleData.createdAt,
                    let like = oneAirticleData.likesCount,
                    let imageURL = oneAirticleData.user.profileImageUrl,
                    let articleURL = oneAirticleData.url {
-                    let oneData = ArticleData(imgURL: imageURL, titleText: title, discriptionText: description, likeNumber: like, articleURL: articleURL)
+                    let oneData = ArticleData(imgURL: imageURL, titleText: title, createdAt: createdAt, likeNumber: like, articleURL: articleURL)
                     self.dataItems.append(oneData)
                 } else {
                     print("ERROR: This data ↓ allocation failed.")
@@ -58,6 +58,7 @@ class TagDetailListViewController: UIViewController {
                 print(error)
             }
             self.isNotLoading = true
+            //TODO: エラー画面を作成し、遷移させる
         })
     }
     
@@ -67,30 +68,26 @@ class TagDetailListViewController: UIViewController {
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
         let distanceToBottom = maximumOffset - currentOffsetY
         
-        if distanceToBottom < 150 && self.isNotLoading {
-            self.isNotLoading = false
-            self.pageCount += 1
-            self.articleListDataRequest.pageNumber = self.pageCount
-            self.getData(requestAirticleData: self.articleListDataRequest)
+        if distanceToBottom < 150 && isNotLoading {
+            isNotLoading = false
+            pageCount += 1
+            articleListDataRequest.pageNumber = pageCount
+            getData(requestAirticleData: articleListDataRequest)
             
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "FromTagDetailToArticlePage") {
+        if (segue.identifier == SegueId.fromTagDetailToArticlePage.rawValue) {
             let articlePageVC = segue.destination as! ArticlePageViewController
-            if let sendData = self.sendData {
+            if let sendData = sendData {
                 articlePageVC.articleData = sendData
             }
         }
     }
 }
 
-extension TagDetailListViewController: UITableViewDelegate {
-    
-}
-
-extension TagDetailListViewController: UITableViewDataSource {
+extension TagDetailListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataItems.count
     }
@@ -108,6 +105,6 @@ extension TagDetailListViewController: UITableViewDataSource {
         sendData = dataItems[indexPath.row]
         //tableviewcell選択解除
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "FromTagDetailToArticlePage", sender: nil)
+        performSegue(withIdentifier: SegueId.fromTagDetailToArticlePage.rawValue, sender: nil)
     }
 }

@@ -7,20 +7,10 @@
 
 import UIKit
 
-struct ArticleData {
-    var imgURL: String
-    var titleText: String
-    var discriptionText: String
-    var likeNumber: Int
-    var articleURL: String
-}
-
-class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class FeedViewController: UIViewController, UISearchBarDelegate {
     
     @IBOutlet weak var segmentedControll: UISegmentedControl!
     @IBOutlet weak var articleTableView: UITableView!
-    //cellの高さ設定
-    let tableViewCellHeight: CGFloat = 50
     //最初に取得する記事欄のデータ
     var dataItems = [ArticleData]()
     //画面遷移時のデータ受け渡し用
@@ -38,11 +28,9 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //テーブルビューをスクロールさせたらキーボードを閉じる
-        articleTableView.keyboardDismissMode = .onDrag
         //記事データ取得
-        self.articleListDataRequest = AirticleDataNetworkService(searchDict: nil)
-        getData(requestAirticleData: self.articleListDataRequest)
+        articleListDataRequest = AirticleDataNetworkService(searchDict: nil)
+        getData(requestAirticleData: articleListDataRequest)
         //segmented control 設定
         setSegmentedControl()
     }
@@ -50,20 +38,77 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //テキストを入力してから、リクエストを送る方法
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let searchText = searchBar.text {
-            self.dataItems.removeAll()
+            dataItems.removeAll()
             //ページカウント初期化
-            self.pageCount = 1
+            pageCount = 1
             
-            self.articleListDataRequest = AirticleDataNetworkService(
-                searchDict: [self.segmentedItems[self.segmentedSelectedIndex]:searchText])
-            getData(requestAirticleData: self.articleListDataRequest)
+            articleListDataRequest = AirticleDataNetworkService(
+                searchDict: [segmentedItems[segmentedSelectedIndex]:searchText])
+            getData(requestAirticleData: articleListDataRequest)
         }
     }
     
     @IBAction func actionSegmentedControl(_ sender: UISegmentedControl) {
-        self.segmentedSelectedIndex = sender.selectedSegmentIndex
+        segmentedSelectedIndex = sender.selectedSegmentIndex
     }
     
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == SegueId.fromFeedToArticle.rawValue) {
+            let articlePageVC = segue.destination as! ArticlePageViewController
+            if let sendData = sendData {
+                articlePageVC.articleData = sendData
+            }
+        }
+    }
+        
+    //ログイン判定
+    func isLogined() -> Bool {
+        var value = false
+        value = UserDefaults.standard.bool(forKey: "isLogined")
+        return value
+    }
+    
+    //apiを叩きデータを保存する
+    func getData(requestAirticleData: AirticleDataNetworkService) {
+        requestAirticleData.fetch(success: { (dataArray) in
+            dataArray?.forEach { (oneAirticleData) in
+                if let title = oneAirticleData.title,
+                   let createdAt = oneAirticleData.createdAt,
+                   let like = oneAirticleData.likesCount,
+                   let imageURL = oneAirticleData.user.profileImageUrl,
+                   let articleURL = oneAirticleData.url {
+                    let oneData = ArticleData(imgURL: imageURL, titleText: title, createdAt: createdAt, likeNumber: like, articleURL: articleURL)
+                    self.dataItems.append(oneData)
+                } else {
+                    print("ERROR: This data ↓ allocation failed.")
+                    print(oneAirticleData)
+                }
+            }
+            self.articleTableView.reloadData()
+            print("👍 Reload the article data")
+            self.isNotLoading = true
+            
+        }, failure: { error in
+            print("Failed to get the article list data.")
+            if let error = error {
+                print(error)
+            }
+            self.isNotLoading = true
+            //TODO: エラー画面を作成し、遷移させる
+        })
+    }
+    
+    func setSegmentedControl() {
+        segmentedControll.removeAllSegments()
+        for (i,x) in segmentedItems.enumerated() {
+            segmentedControll.insertSegment(withTitle: x.rawValue, at: i, animated: true)
+        }
+    }
+}
+
+extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataItems.count
     }
@@ -82,7 +127,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         sendData = dataItems[indexPath.row]
         //tableviewcell選択解除
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "GoToArticlePage", sender: nil)
+        performSegue(withIdentifier: SegueId.fromFeedToArticle.rawValue, sender: nil)
     }
     //tableviewをスクロールしたら最下のcellにたどり着く前にデータ更新を行う
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -90,64 +135,12 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
         let distanceToBottom = maximumOffset - currentOffsetY
         
-        if distanceToBottom < 150 && self.isNotLoading {
-            self.isNotLoading = false
-            self.pageCount += 1
-            self.articleListDataRequest.pageNumber = self.pageCount
-            self.getData(requestAirticleData: self.articleListDataRequest)
+        if distanceToBottom < 150 && isNotLoading {
+            isNotLoading = false
+            pageCount += 1
+            articleListDataRequest.pageNumber = pageCount
+            getData(requestAirticleData: articleListDataRequest)
             
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "GoToArticlePage") {
-            let articlePageVC = segue.destination as! ArticlePageViewController
-            if let sendData = self.sendData {
-                articlePageVC.articleData = sendData
-            }
-        }
-    }
-        
-    //ログイン判定
-    func isLogined() -> Bool {
-        var value = false
-        value = UserDefaults.standard.bool(forKey: "isLogined")
-        return value
-    }
-    
-    //apiを叩きデータを保存する
-    func getData(requestAirticleData: AirticleDataNetworkService) {
-        requestAirticleData.fetch(success: { (dataArray) in
-            dataArray?.forEach { (oneAirticleData) in
-                if let title = oneAirticleData.title,
-                   let description = oneAirticleData.body,
-                   let like = oneAirticleData.likesCount,
-                   let imageURL = oneAirticleData.user.profileImageUrl,
-                   let articleURL = oneAirticleData.url {
-                    let oneData = ArticleData(imgURL: imageURL, titleText: title, discriptionText: description, likeNumber: like, articleURL: articleURL)
-                    self.dataItems.append(oneData)
-                } else {
-                    print("ERROR: This data ↓ allocation failed.")
-                    print(oneAirticleData)
-                }
-            }
-            self.articleTableView.reloadData()
-            print("👍 Reload the article data")
-            self.isNotLoading = true
-            
-        }, failure: { error in
-            print("Failed to get the article list data.")
-            if let error = error {
-                print(error)
-            }
-            self.isNotLoading = true
-        })
-    }
-    
-    func setSegmentedControl() {
-        self.segmentedControll.removeAllSegments()
-        for (i,x) in self.segmentedItems.enumerated() {
-            self.segmentedControll.insertSegment(withTitle: x.rawValue, at: i, animated: true)
         }
     }
 }

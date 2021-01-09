@@ -15,7 +15,7 @@ class ArticlePageViewController: UIViewController {
     var articleData: ArticleData!
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let articleData = self.articleData,
+        if let articleData = articleData,
            let url = URL(string: articleData.articleURL) {
             
             let urlRequest = URLRequest(url: url)

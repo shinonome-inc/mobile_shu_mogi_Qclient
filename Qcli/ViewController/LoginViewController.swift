@@ -25,14 +25,14 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         //2回目のログインだとログインをスキップさせる
-        if let _ = UserDefaults.standard.object(forKey: "isLogined") {
-            performSegue(withIdentifier: "toTabBarController", sender: nil)
-        }
+//        if let _ = UserDefaults.standard.object(forKey: "isLogined") {
+//            performSegue(withIdentifier: SegueId.fromLoginToTabBarController.rawValue, sender: nil)
+//        }
         
     }
     
     @IBAction func login(_ sender: Any) {
-        let token = self.getToken()
+        let token = getToken()
         let authRequest = AuthDataNetworkService(token: token)
         authRequest.fetch(success: { (userData) in
             if let id = userData.id {
@@ -44,7 +44,7 @@ class LoginViewController: UIViewController {
                     UserDefaults.standard.set(false, forKey: "isLogined")
                 }
                 //認証成功した場合は次の画面に遷移する
-                self.performSegue(withIdentifier: "toTabBarController", sender: nil)
+                self.performSegue(withIdentifier: SegueId.fromLoginToTabBarController.rawValue, sender: nil)
             } else {
                 print(userData)
                 print("Authentication was successful, but the id cannot be read.")
@@ -61,7 +61,7 @@ class LoginViewController: UIViewController {
     
     //テスト用トークン
     func testInput() {
-        tokenTextField.text = "5826b1255becde9c13ed80bee2e510a979268d8f"
+        tokenTextField.text = "9f20c9c8e14da64bd16e95a6d425f38e57bbbac6"
     }
         
     //リクエスト失敗した時用のアラート
@@ -69,12 +69,12 @@ class LoginViewController: UIViewController {
         let myAlert = UIAlertController(title:"Alert", message: userMessage, preferredStyle:  UIAlertController.Style.alert)
         let okAction = UIAlertAction(title:"OK", style: UIAlertAction.Style.default, handler:nil)
         myAlert.addAction(okAction);
-        self.present(myAlert,animated:true, completion:nil)
+        present(myAlert,animated:true, completion:nil)
         
     }
     
     func getToken() -> String? {
-        return self.tokenTextField.text
+        return tokenTextField.text
     }
     
 }

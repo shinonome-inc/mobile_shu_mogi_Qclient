@@ -15,6 +15,16 @@
 		024AA8492562AA2800E502F5 /* TagListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024AA8482562AA2800E502F5 /* TagListTableViewCell.swift */; };
 		02525A26256E00ED00BF440C /* QueryOption＋SortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02525A25256E00ED00BF440C /* QueryOption＋SortOption.swift */; };
 		0270910E2584C735006691B4 /* QiitaRequest+Headers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0270910D2584C735006691B4 /* QiitaRequest+Headers.swift */; };
+		02A1469A259B44F700285DD8 /* MyPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A14699259B44F700285DD8 /* MyPageTableViewCell.swift */; };
+		02A146A0259B675B00285DD8 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A1469F259B675B00285DD8 /* MyPageViewController.swift */; };
+		02A146A7259D92CB00285DD8 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A146A6259D92CB00285DD8 /* UserListViewController.swift */; };
+		02A146AB259D94EC00285DD8 /* UnwrappedDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A146AA259D94EC00285DD8 /* UnwrappedDataModel.swift */; };
+		02A146AF259DA70700285DD8 /* UserListType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A146AE259DA70700285DD8 /* UserListType.swift */; };
+		02A146B3259EF74600285DD8 /* UserListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A146B2259EF74600285DD8 /* UserListTableViewCell.swift */; };
+		02A146BD259F6EF100285DD8 /* UserListNetworlService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A146BC259F6EF100285DD8 /* UserListNetworlService.swift */; };
+		02A146C125A1861500285DD8 /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A146C025A1861500285DD8 /* UserDetailViewController.swift */; };
+		02A146D225A34F2600285DD8 /* DateFormat+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A146D125A34F2600285DD8 /* DateFormat+String.swift */; };
+		02A146EF25A851B300285DD8 /* SegueId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A146EE25A851B300285DD8 /* SegueId.swift */; };
 		02A990542557DAB900082955 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A990532557DAB900082955 /* AppDelegate.swift */; };
 		02A990562557DAB900082955 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A990552557DAB900082955 /* SceneDelegate.swift */; };
 		02A9905B2557DAB900082955 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02A990592557DAB900082955 /* Main.storyboard */; };
@@ -55,6 +65,16 @@
 		02525A25256E00ED00BF440C /* QueryOption＋SortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QueryOption＋SortOption.swift"; sourceTree = "<group>"; };
 		0270910D2584C735006691B4 /* QiitaRequest+Headers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QiitaRequest+Headers.swift"; sourceTree = "<group>"; };
 		027126022569419000DE392A /* APITestApp.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APITestApp.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		02A14699259B44F700285DD8 /* MyPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewCell.swift; sourceTree = "<group>"; };
+		02A1469F259B675B00285DD8 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		02A146A6259D92CB00285DD8 /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
+		02A146AA259D94EC00285DD8 /* UnwrappedDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnwrappedDataModel.swift; sourceTree = "<group>"; };
+		02A146AE259DA70700285DD8 /* UserListType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListType.swift; sourceTree = "<group>"; };
+		02A146B2259EF74600285DD8 /* UserListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListTableViewCell.swift; sourceTree = "<group>"; };
+		02A146BC259F6EF100285DD8 /* UserListNetworlService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListNetworlService.swift; sourceTree = "<group>"; };
+		02A146C025A1861500285DD8 /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
+		02A146D125A34F2600285DD8 /* DateFormat+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormat+String.swift"; sourceTree = "<group>"; };
+		02A146EE25A851B300285DD8 /* SegueId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueId.swift; sourceTree = "<group>"; };
 		02A990502557DAB900082955 /* Qcli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Qcli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02A990532557DAB900082955 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02A990552557DAB900082955 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,8 +120,17 @@
 			isa = PBXGroup;
 			children = (
 				023D026525999E7F0043FE29 /* ImageView+Kingfisher.swift */,
+				02A146D125A34F2600285DD8 /* DateFormat+String.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		02A146ED25A8518C00285DD8 /* Identifier */ = {
+			isa = PBXGroup;
+			children = (
+				02A146EE25A851B300285DD8 /* SegueId.swift */,
+			);
+			path = Identifier;
 			sourceTree = "<group>";
 		};
 		02A990472557DAB900082955 = {
@@ -138,6 +167,7 @@
 				02C98818258AD03900953B68 /* Type+Option */,
 				02C2667D257B90E300FC6D6D /* FetchData */,
 				02C98819258B60B700953B68 /* KeyChain */,
+				02A146ED25A8518C00285DD8 /* Identifier */,
 				023D026425999E1D0043FE29 /* Extensions */,
 				02E1368E256FDE7E0050E4E7 /* TestData.swift */,
 			);
@@ -152,6 +182,9 @@
 				024AA8452562546300E502F5 /* TagListViewController.swift */,
 				024AA82125614B5400E502F5 /* ArticlePageViewController.swift */,
 				02256F59258F0CFD004882A6 /* TagDetailListViewController.swift */,
+				02A1469F259B675B00285DD8 /* MyPageViewController.swift */,
+				02A146A6259D92CB00285DD8 /* UserListViewController.swift */,
+				02A146C025A1861500285DD8 /* UserDetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -161,6 +194,7 @@
 			children = (
 				02E13692256FE7750050E4E7 /* ErrorData.swift */,
 				020B886C2567C63500C2CFE2 /* QiitaModelData.swift */,
+				02A146AA259D94EC00285DD8 /* UnwrappedDataModel.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -170,6 +204,8 @@
 			children = (
 				02A990EE255F5C5700082955 /* ArticleTableViewCell.swift */,
 				024AA8482562AA2800E502F5 /* TagListTableViewCell.swift */,
+				02A14699259B44F700285DD8 /* MyPageTableViewCell.swift */,
+				02A146B2259EF74600285DD8 /* UserListTableViewCell.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -182,6 +218,7 @@
 				02C2667E257B915200FC6D6D /* AirticleDataNetworkService.swift */,
 				02C9880225897E7F00953B68 /* TagDataNetworkService.swift */,
 				02C98808258AA89B00953B68 /* AuthDataNetworkService.swift */,
+				02A146BC259F6EF100285DD8 /* UserListNetworlService.swift */,
 			);
 			path = FetchData;
 			sourceTree = "<group>";
@@ -191,6 +228,7 @@
 			children = (
 				02DB99BB256804120048B9D9 /* DataType+SearchOption.swift */,
 				02525A25256E00ED00BF440C /* QueryOption＋SortOption.swift */,
+				02A146AE259DA70700285DD8 /* UserListType.swift */,
 			);
 			path = "Type+Option";
 			sourceTree = "<group>";
@@ -374,23 +412,33 @@
 				02525A26256E00ED00BF440C /* QueryOption＋SortOption.swift in Sources */,
 				020B886D2567C63500C2CFE2 /* QiitaModelData.swift in Sources */,
 				02DB99BC256804120048B9D9 /* DataType+SearchOption.swift in Sources */,
+				02A146AB259D94EC00285DD8 /* UnwrappedDataModel.swift in Sources */,
 				02C2667F257B915200FC6D6D /* AirticleDataNetworkService.swift in Sources */,
 				02C9880325897E7F00953B68 /* TagDataNetworkService.swift in Sources */,
 				02E1368F256FDE7E0050E4E7 /* TestData.swift in Sources */,
 				02256F5A258F0CFD004882A6 /* TagDetailListViewController.swift in Sources */,
+				02A146EF25A851B300285DD8 /* SegueId.swift in Sources */,
 				0270910E2584C735006691B4 /* QiitaRequest+Headers.swift in Sources */,
 				02C98809258AA89B00953B68 /* AuthDataNetworkService.swift in Sources */,
+				02A146B3259EF74600285DD8 /* UserListTableViewCell.swift in Sources */,
+				02A146AF259DA70700285DD8 /* UserListType.swift in Sources */,
+				02A1469A259B44F700285DD8 /* MyPageTableViewCell.swift in Sources */,
 				024AA8492562AA2800E502F5 /* TagListTableViewCell.swift in Sources */,
+				02A146C125A1861500285DD8 /* UserDetailViewController.swift in Sources */,
 				024AA82225614B5400E502F5 /* ArticlePageViewController.swift in Sources */,
 				023D026625999E7F0043FE29 /* ImageView+Kingfisher.swift in Sources */,
+				02A146A0259B675B00285DD8 /* MyPageViewController.swift in Sources */,
 				02C9881B258B612400953B68 /* KeyChain.swift in Sources */,
 				02A990EF255F5C5700082955 /* ArticleTableViewCell.swift in Sources */,
 				02C26683257B91F300FC6D6D /* RequestParametersCreater.swift in Sources */,
+				02A146A7259D92CB00285DD8 /* UserListViewController.swift in Sources */,
 				02A990542557DAB900082955 /* AppDelegate.swift in Sources */,
 				02A9906F255907FE00082955 /* LoginViewController.swift in Sources */,
 				02E13693256FE7750050E4E7 /* ErrorData.swift in Sources */,
 				02A990EB255E298700082955 /* FeedViewController.swift in Sources */,
 				024AA8462562546300E502F5 /* TagListViewController.swift in Sources */,
+				02A146D225A34F2600285DD8 /* DateFormat+String.swift in Sources */,
+				02A146BD259F6EF100285DD8 /* UserListNetworlService.swift in Sources */,
 				02A990562557DAB900082955 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

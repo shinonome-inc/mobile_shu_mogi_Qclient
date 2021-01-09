@@ -15,9 +15,13 @@ class ArticleTableViewCell: UITableViewCell {
     @IBOutlet weak var likeLabel: UILabel!
     
     func setModel(model: ArticleData) {
-        self.titleLabel.text = model.titleText
-        self.discriptionLabel.text = model.discriptionText
-        self.likeLabel.text = "\(model.likeNumber)like"
+        titleLabel.text = model.titleText
+        if let createdAt = model.createdAt.toJpDateString() {
+            discriptionLabel.text = createdAt + "に作成"
+        } else {
+            discriptionLabel.text = ""
+        }
+        likeLabel.text = "\(model.likeNumber)like"
         if let url = URL(string: model.imgURL) {
             articleIconImage.setImage(with: url, completionHandler: { result in
                 switch result {
@@ -29,5 +33,5 @@ class ArticleTableViewCell: UITableViewCell {
         }
         
     }
-
+    
 }
