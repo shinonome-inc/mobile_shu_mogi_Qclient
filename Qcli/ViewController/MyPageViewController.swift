@@ -101,50 +101,50 @@ class MyPageViewController: UIViewController {
         let keychain = KeyChain()
         guard let token = keychain.get() else { return }
         let authRequest = AuthDataNetworkService(token: token)
-        setUserInfo(request: authRequest)
-    }
-    
-    func setUserInfo(request: AuthDataNetworkService) {
-        request.fetch(success: { (userData) in
-            if let id = userData.id {
-                self.userId = id
-                self.userIdLabel.text = "@\(id)"
-                self.myItemDataRequest = AirticleDataNetworkService(searchDict: [SearchOption.user: id])
-                self.getData(requestAirticleData: self.myItemDataRequest)
-            }
-            if let name = userData.name {
-                self.userNameLabel.text = name
-            }
-            if let userDiscription = userData.description {
-                self.userDiscriptionLabel.text = userDiscription
-            }
-            if let followNumber = userData.followeesCount {
-                self.followButton.setTitle(" \(followNumber) Follow ", for: .normal)
-                if followNumber <= 0 {
-                    self.followButton.isEnabled = false
-                }
-            }
-            if let followerNumber = userData.followersCount {
-                self.follwerButton.setTitle(" \(followerNumber) Follower ", for: .normal)
-                if followerNumber <= 0 {
-                    self.follwerButton.isEnabled = false
-                }
-            }
-            if let imgUrl = userData.profileImageUrl,
-               let url = URL(string: imgUrl) {
-                self.userImageView.setImage(with: url, completionHandler: { result in
-                    switch result {
-                    case .success(_): break
-                    case .failure(_):
-                        self.userImageView.image = UIImage(named: "no-coupon-image.png")
-                    }
-                })
-            }
+        authRequest.fetch(success: { (userData) in
+            self.setUserInfo(userData: userData)
         }, failure: { (error) in
             print("↓ Could not call profile.")
             print(error)
             //TODO: エラー画面を作成し、遷移させる
         })
+    }
+    
+    func setUserInfo(userData: UserModel) {
+        if let id = userData.id {
+            self.userId = id
+            self.userIdLabel.text = "@\(id)"
+            self.myItemDataRequest = AirticleDataNetworkService(searchDict: [SearchOption.user: id])
+            self.getData(requestAirticleData: self.myItemDataRequest)
+        }
+        if let name = userData.name {
+            self.userNameLabel.text = name
+        }
+        if let userDiscription = userData.description {
+            self.userDiscriptionLabel.text = userDiscription
+        }
+        if let followNumber = userData.followeesCount {
+            self.followButton.setTitle(" \(followNumber) Follow ", for: .normal)
+            if followNumber <= 0 {
+                self.followButton.isEnabled = false
+            }
+        }
+        if let followerNumber = userData.followersCount {
+            self.follwerButton.setTitle(" \(followerNumber) Follower ", for: .normal)
+            if followerNumber <= 0 {
+                self.follwerButton.isEnabled = false
+            }
+        }
+        if let imgUrl = userData.profileImageUrl,
+           let url = URL(string: imgUrl) {
+            self.userImageView.setImage(with: url, completionHandler: { result in
+                switch result {
+                case .success(_): break
+                case .failure(_):
+                    self.userImageView.image = UIImage(named: "no-coupon-image.png")
+                }
+            })
+        }
     }
 }
 
