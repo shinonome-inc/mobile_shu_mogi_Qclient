@@ -97,11 +97,7 @@ class UserListViewController: UIViewController {
     }
 }
 
-extension UserListViewController: UITableViewDelegate {
-    
-}
-
-extension UserListViewController: UITableViewDataSource {
+extension UserListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataItems.count
     }

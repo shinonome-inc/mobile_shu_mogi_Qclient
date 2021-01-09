@@ -86,11 +86,7 @@ class TagDetailListViewController: UIViewController {
     }
 }
 
-extension TagDetailListViewController: UITableViewDelegate {
-    
-}
-
-extension TagDetailListViewController: UITableViewDataSource {
+extension TagDetailListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataItems.count
     }

@@ -129,11 +129,7 @@ class UserDetailViewController: UIViewController {
     }
 }
 
-extension UserDetailViewController: UITableViewDelegate {
-    
-}
-
-extension UserDetailViewController: UITableViewDataSource {
+extension UserDetailViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.dataItems.count
     }

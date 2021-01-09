@@ -143,11 +143,7 @@ class MyPageViewController: UIViewController {
     }
 }
 
-extension MyPageViewController: UITableViewDelegate {
-    
-}
-
-extension MyPageViewController: UITableViewDataSource {
+extension MyPageViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataItems.count
     }
