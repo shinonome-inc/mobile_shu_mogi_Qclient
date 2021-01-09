@@ -103,7 +103,11 @@ class UserDetailViewController: UIViewController {
         self.myItemDataRequest = AirticleDataNetworkService(searchDict: [SearchOption.user: model.userId])
         self.getData(requestAirticleData: self.myItemDataRequest)
         
-        self.userNameLabel.text = model.userName
+        if model.userName == "" {
+            self.userNameLabel.text = model.userId
+        } else {
+            self.userNameLabel.text = model.userName
+        }
         
         self.userDiscriptionLabel.text = model.discription
         
