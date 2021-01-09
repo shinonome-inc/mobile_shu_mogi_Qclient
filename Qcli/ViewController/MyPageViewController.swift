@@ -92,6 +92,7 @@ class MyPageViewController: UIViewController {
                 print(error)
             }
             self.isNotLoading = true
+            //TODO: エラー画面を作成し、遷移させる
         })
     }
     
@@ -142,7 +143,7 @@ class MyPageViewController: UIViewController {
         }, failure: { (error) in
             print("↓ Could not call profile.")
             print(error)
-            //のちにエラー画面を作って遷移させる
+            //TODO: エラー画面を作成し、遷移させる
         })
     }
 }
