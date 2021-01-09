@@ -27,15 +27,15 @@ class UserListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let userId = self.userId else {
+        guard let userId = userId else {
             assertionFailure("userId → nil")
             return
         }
-        guard let userListType = self.userListType else {
+        guard let userListType = userListType else {
             assertionFailure("userListType → nil")
             return
         }
-        self.userListDataRequest = UserListNetworlService(userType: userListType, userId: userId)
+        userListDataRequest = UserListNetworlService(userType: userListType, userId: userId)
         getData(requestUserListData: userListDataRequest)
     }
     
@@ -91,7 +91,7 @@ class UserListViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == SegueId.fromUserListToUserDetail.rawValue) {
             let userDetailVC = segue.destination as! UserDetailViewController
-            if let sendData = self.sendData {
+            if let sendData = sendData {
                 userDetailVC.receivedData = sendData
             }
         }
@@ -124,11 +124,11 @@ extension UserListViewController: UITableViewDataSource, UITableViewDelegate {
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
         let distanceToBottom = maximumOffset - currentOffsetY
         
-        if distanceToBottom < 150 && self.isNotLoading {
-            self.isNotLoading = false
-            self.pageNumber += 1
-            self.userListDataRequest.pageNumber = self.pageNumber
-            self.getData(requestUserListData: self.userListDataRequest)        
+        if distanceToBottom < 150 && isNotLoading {
+            isNotLoading = false
+            pageNumber += 1
+            userListDataRequest.pageNumber = pageNumber
+            getData(requestUserListData: userListDataRequest)        
         }
     }
 }

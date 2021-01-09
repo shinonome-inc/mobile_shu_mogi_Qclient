@@ -29,8 +29,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         //記事データ取得
-        self.articleListDataRequest = AirticleDataNetworkService(searchDict: nil)
-        getData(requestAirticleData: self.articleListDataRequest)
+        articleListDataRequest = AirticleDataNetworkService(searchDict: nil)
+        getData(requestAirticleData: articleListDataRequest)
         //segmented control 設定
         setSegmentedControl()
     }
@@ -38,18 +38,18 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //テキストを入力してから、リクエストを送る方法
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let searchText = searchBar.text {
-            self.dataItems.removeAll()
+            dataItems.removeAll()
             //ページカウント初期化
-            self.pageCount = 1
+            pageCount = 1
             
-            self.articleListDataRequest = AirticleDataNetworkService(
-                searchDict: [self.segmentedItems[self.segmentedSelectedIndex]:searchText])
-            getData(requestAirticleData: self.articleListDataRequest)
+            articleListDataRequest = AirticleDataNetworkService(
+                searchDict: [segmentedItems[segmentedSelectedIndex]:searchText])
+            getData(requestAirticleData: articleListDataRequest)
         }
     }
     
     @IBAction func actionSegmentedControl(_ sender: UISegmentedControl) {
-        self.segmentedSelectedIndex = sender.selectedSegmentIndex
+        segmentedSelectedIndex = sender.selectedSegmentIndex
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -78,11 +78,11 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
         let distanceToBottom = maximumOffset - currentOffsetY
         
-        if distanceToBottom < 150 && self.isNotLoading {
-            self.isNotLoading = false
-            self.pageCount += 1
-            self.articleListDataRequest.pageNumber = self.pageCount
-            self.getData(requestAirticleData: self.articleListDataRequest)
+        if distanceToBottom < 150 && isNotLoading {
+            isNotLoading = false
+            pageCount += 1
+            articleListDataRequest.pageNumber = pageCount
+            getData(requestAirticleData: articleListDataRequest)
             
         }
     }
@@ -90,7 +90,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == SegueId.fromFeedToArticle.rawValue) {
             let articlePageVC = segue.destination as! ArticlePageViewController
-            if let sendData = self.sendData {
+            if let sendData = sendData {
                 articlePageVC.articleData = sendData
             }
         }
@@ -134,9 +134,9 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func setSegmentedControl() {
-        self.segmentedControll.removeAllSegments()
-        for (i,x) in self.segmentedItems.enumerated() {
-            self.segmentedControll.insertSegment(withTitle: x.rawValue, at: i, animated: true)
+        segmentedControll.removeAllSegments()
+        for (i,x) in segmentedItems.enumerated() {
+            segmentedControll.insertSegment(withTitle: x.rawValue, at: i, animated: true)
         }
     }
 }

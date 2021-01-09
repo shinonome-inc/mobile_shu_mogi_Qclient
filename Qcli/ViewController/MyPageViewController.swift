@@ -51,8 +51,8 @@ class MyPageViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == SegueId.fromMyPageToUserList.rawValue) {
             let userListVC = segue.destination as! UserListViewController
-            if let sendUserListType = self.sendUserListType,
-               let userId = self.userId {
+            if let sendUserListType = sendUserListType,
+               let userId = userId {
                 userListVC.userListType = sendUserListType
                 userListVC.userId = userId
             }
@@ -60,7 +60,7 @@ class MyPageViewController: UIViewController {
         
         if (segue.identifier == SegueId.fromMyPageToArticlePage.rawValue) {
             let articlePageVC = segue.destination as! ArticlePageViewController
-            if let sendData = self.sendData {
+            if let sendData = sendData {
                 articlePageVC.articleData = sendData
             }
         }
@@ -174,11 +174,11 @@ extension MyPageViewController: UITableViewDataSource, UITableViewDelegate {
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
         let distanceToBottom = maximumOffset - currentOffsetY
         
-        if distanceToBottom < 150 && self.isNotLoading {
-            self.isNotLoading = false
-            self.pageCount += 1
-            self.myItemDataRequest.pageNumber = self.pageCount
-            self.getData(requestAirticleData: self.myItemDataRequest)
+        if distanceToBottom < 150 && isNotLoading {
+            isNotLoading = false
+            pageCount += 1
+            myItemDataRequest.pageNumber = pageCount
+            getData(requestAirticleData: myItemDataRequest)
             
         }
     }

@@ -27,7 +27,7 @@ class AuthDataNetworkService {
         //↑URLの設定
         let qiitaRequest = QiitaRequest()
         qiitaRequest.isNotAuth = false
-        if let token = self.token {
+        if let token = token {
             qiitaRequest.headers = [
                 "Authorization": "Bearer " + token
             ]

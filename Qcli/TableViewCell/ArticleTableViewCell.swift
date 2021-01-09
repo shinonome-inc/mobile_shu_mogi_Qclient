@@ -15,13 +15,13 @@ class ArticleTableViewCell: UITableViewCell {
     @IBOutlet weak var likeLabel: UILabel!
     
     func setModel(model: ArticleData) {
-        self.titleLabel.text = model.titleText
+        titleLabel.text = model.titleText
         if let createdAt = model.createdAt.toJpDateString() {
-            self.discriptionLabel.text = createdAt + "に作成"
+            discriptionLabel.text = createdAt + "に作成"
         } else {
-            self.discriptionLabel.text = ""
+            discriptionLabel.text = ""
         }
-        self.likeLabel.text = "\(model.likeNumber)like"
+        likeLabel.text = "\(model.likeNumber)like"
         if let url = URL(string: model.imgURL) {
             articleIconImage.setImage(with: url, completionHandler: { result in
                 switch result {

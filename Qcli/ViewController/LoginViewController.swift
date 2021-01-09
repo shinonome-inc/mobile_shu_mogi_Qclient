@@ -32,7 +32,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func login(_ sender: Any) {
-        let token = self.getToken()
+        let token = getToken()
         let authRequest = AuthDataNetworkService(token: token)
         authRequest.fetch(success: { (userData) in
             if let id = userData.id {
@@ -69,12 +69,12 @@ class LoginViewController: UIViewController {
         let myAlert = UIAlertController(title:"Alert", message: userMessage, preferredStyle:  UIAlertController.Style.alert)
         let okAction = UIAlertAction(title:"OK", style: UIAlertAction.Style.default, handler:nil)
         myAlert.addAction(okAction);
-        self.present(myAlert,animated:true, completion:nil)
+        present(myAlert,animated:true, completion:nil)
         
     }
     
     func getToken() -> String? {
-        return self.tokenTextField.text
+        return tokenTextField.text
     }
     
 }

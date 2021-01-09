@@ -14,7 +14,7 @@ class AirticleDataNetworkService {
     var sortdict: [QueryOption: SortOption]?
     
     init(searchDict: [SearchOption: String]?) {
-        self.pageNumber = 1
+        pageNumber = 1
         self.searchDict = searchDict
     }
     
@@ -23,8 +23,8 @@ class AirticleDataNetworkService {
         //↓URLの設定
         let reqParamModel = RequestParametersCreater(
             dataType: .article,
-            pageNumber: self.pageNumber,
-            searchDict: self.searchDict,
+            pageNumber: pageNumber,
+            searchDict: searchDict,
             sortdict: nil)
         let urlText = reqParamModel.assembleItemURL(pageNumber: pageNumber)
         guard let url = URL(string: urlText) else { return }

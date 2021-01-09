@@ -13,14 +13,14 @@ class QiitaRequest {
     var headers: HTTPHeaders? = nil
     func request(url: URL) -> DataRequest {
         print("Request 👉 \(url)")
-        if self.isNotAuth {
-            self.setHeaders()
+        if isNotAuth {
+            setHeaders()
         }            
         
-        if let headers = self.headers {
+        if let headers = headers {
             print("Headers 👉 \(String(describing: headers))")
         }
-        let dataRequest = AF.request(url, headers: self.headers)
+        let dataRequest = AF.request(url, headers: headers)
         return dataRequest
     }
     
@@ -28,12 +28,12 @@ class QiitaRequest {
         let keyhchain = KeyChain()
         if let token = keyhchain.get() {
             
-            self.headers = [
+            headers = [
                 "Authorization": "Bearer " + token
             ]            
             
         } else {
-            self.headers = nil
+            headers = nil
         }
     }
 }

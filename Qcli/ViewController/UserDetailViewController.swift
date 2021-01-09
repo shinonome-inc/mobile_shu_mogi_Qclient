@@ -36,7 +36,7 @@ class UserDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let userDetailData = self.receivedData else { return }
+        guard let userDetailData = receivedData else { return }
         setProfile(model: userDetailData)
     }
     
@@ -53,8 +53,8 @@ class UserDetailViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == SegueId.fromUserDetailToUserList.rawValue) {
             let userListVC = segue.destination as! UserListViewController
-            if let sendUserListType = self.sendUserListType,
-               let userId = self.userId {
+            if let sendUserListType = sendUserListType,
+               let userId = userId {
                 userListVC.userListType = sendUserListType
                 userListVC.userId = userId
             }
@@ -62,7 +62,7 @@ class UserDetailViewController: UIViewController {
         
         if (segue.identifier == SegueId.fromUserDetailToArticlePage.rawValue) {
             let articlePageVC = segue.destination as! ArticlePageViewController
-            if let sendData = self.sendData {
+            if let sendData = sendData {
                 articlePageVC.articleData = sendData
             }
         }
@@ -99,31 +99,31 @@ class UserDetailViewController: UIViewController {
     
     func setProfile(model: UserDetailData) {
         
-        self.userId = model.userId
-        self.userIdLabel.text = "@\(model.userId)"
-        self.myItemDataRequest = AirticleDataNetworkService(searchDict: [SearchOption.user: model.userId])
-        self.getData(requestAirticleData: self.myItemDataRequest)
+        userId = model.userId
+        userIdLabel.text = "@\(model.userId)"
+        myItemDataRequest = AirticleDataNetworkService(searchDict: [SearchOption.user: model.userId])
+        getData(requestAirticleData: myItemDataRequest)
         
         if model.userName == "" {
-            self.userNameLabel.text = model.userId
+            userNameLabel.text = model.userId
         } else {
-            self.userNameLabel.text = model.userName
+            userNameLabel.text = model.userName
         }
         
-        self.userDiscriptionLabel.text = model.discription
+        userDiscriptionLabel.text = model.discription
         
-        self.followButton.setTitle(" \(model.followCount) Follow ", for: .normal)
+        followButton.setTitle(" \(model.followCount) Follow ", for: .normal)
         if model.followCount <= 0 {
-            self.followButton.isEnabled = false
+            followButton.isEnabled = false
         }
         
-        self.follwerButton.setTitle(" \(model.followerCount) Follower ", for: .normal)
+        follwerButton.setTitle(" \(model.followerCount) Follower ", for: .normal)
         if model.followerCount <= 0 {
-            self.follwerButton.isEnabled = false
+            follwerButton.isEnabled = false
         }
         
         if let url = URL(string: model.imageUrl) {
-            self.userImageView.setImage(with: url, completionHandler: { result in
+            userImageView.setImage(with: url, completionHandler: { result in
                 switch result {
                 case .success(_): break
                 case .failure(_):
@@ -136,7 +136,7 @@ class UserDetailViewController: UIViewController {
 
 extension UserDetailViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.dataItems.count
+        return dataItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -159,11 +159,11 @@ extension UserDetailViewController: UITableViewDataSource, UITableViewDelegate {
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
         let distanceToBottom = maximumOffset - currentOffsetY
         
-        if distanceToBottom < 150 && self.isNotLoading {
-            self.isNotLoading = false
-            self.pageCount += 1
-            self.myItemDataRequest.pageNumber = self.pageCount
-            self.getData(requestAirticleData: self.myItemDataRequest)
+        if distanceToBottom < 150 && isNotLoading {
+            isNotLoading = false
+            pageCount += 1
+            myItemDataRequest.pageNumber = pageCount
+            getData(requestAirticleData: myItemDataRequest)
             
         }
     }

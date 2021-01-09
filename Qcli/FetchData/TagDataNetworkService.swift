@@ -14,10 +14,10 @@ class TagDataNetworkService {
     var sortdict: [QueryOption: SortOption]?
     
     init(sortDict: [QueryOption: SortOption]?) {
-        self.pageNumber = 1
-        self.perPageNumber = 20
-        self.searchDict = nil
-        self.sortdict = sortDict
+        pageNumber = 1
+        perPageNumber = 20
+        searchDict = nil
+        sortdict = sortDict
     }
     
     func fetch(success: @escaping ((_ result: [TagModel]?) -> Void),
@@ -25,9 +25,9 @@ class TagDataNetworkService {
         //↓URLの設定
         let reqParamModel = RequestParametersCreater(
             dataType: .tag,
-            pageNumber: self.pageNumber,
-            searchDict: self.searchDict,
-            sortdict: self.sortdict)
+            pageNumber: pageNumber,
+            searchDict: searchDict,
+            sortdict: sortdict)
         let urlText = reqParamModel.assembleTagURL(pageNumber: pageNumber)
         guard let url = URL(string: urlText) else { return }
         //↑URLの設定

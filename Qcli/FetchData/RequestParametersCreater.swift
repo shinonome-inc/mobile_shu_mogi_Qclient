@@ -27,7 +27,7 @@ class RequestParametersCreater {
         self.dataType = dataType
         self.searchDict = searchDict
         self.sortdict = sortdict
-        self.url = baseUrl + self.dataType.rawValue
+        url = baseUrl + dataType.rawValue
         self.userType = userType
         self.userId = userId
     }
@@ -37,7 +37,7 @@ class RequestParametersCreater {
     func dictToStr(searcDict: [SearchOption: String]) -> String {
         var export = ""
         var count = 1
-        guard let searchDict = self.searchDict else { return "" }
+        guard let searchDict = searchDict else { return "" }
         let maxCount = searchDict.count
         for (key, value) in searchDict {
             let searchQuery = key.rawValue + ":" + value
@@ -53,20 +53,20 @@ class RequestParametersCreater {
     
     func assembleItemURL(pageNumber: Int) -> String {
         //データタイプが"記事"でないと警告が出る
-        if self.dataType != DataType.article {
+        if dataType != DataType.article {
             print("ERROR: get a data type that is different from the specified data type.")
         }
 
-        self.queryItems = [
+        queryItems = [
             URLQueryItem(name: QueryOption.page.rawValue, value: String(pageNumber)),
             URLQueryItem(name: QueryOption.perPage.rawValue, value: String(perPageNumber))
         ]
-        guard var urlComponents = URLComponents(string: self.url) else {
-            return self.url
+        guard var urlComponents = URLComponents(string: url) else {
+            return url
         }
         urlComponents.queryItems = queryItems
         //↓searchbar検索用
-        if let searchDict = self.searchDict {
+        if let searchDict = searchDict {
             let toStr = dictToStr(searcDict: searchDict)
             let searchOptionQuery = URLQueryItem(name: QueryOption.query.rawValue, value: toStr)
             urlComponents.queryItems?.append(searchOptionQuery)
@@ -77,89 +77,89 @@ class RequestParametersCreater {
             self.url = url
         } else {
             print("There was an error converting the URL Component to a String.")
-            return self.url
+            return url
         }
         
-        return self.url
+        return url
     }
     
     func assembleTagURL(pageNumber: Int) -> String {
         //データタイプが"タグ"でないと警告が出る
-        if self.dataType != DataType.tag {
+        if dataType != DataType.tag {
             print("ERROR: get a data type that is different from the specified data type.")
         }
         //Sortが指定されていなかったら指定する
-        guard self.sortdict != nil else {
-            return self.url
+        guard sortdict != nil else {
+            return url
         }
         //queryItemsの設定
-        self.queryItems = [
+        queryItems = [
             URLQueryItem(name: QueryOption.page.rawValue, value: String(pageNumber)),
             URLQueryItem(name: QueryOption.perPage.rawValue, value: String(perPageNumber))
         ]
         //sortオプションがあればsortオプションを追加する
-        if let sortdict = self.sortdict {
+        if let sortdict = sortdict {
             if let sortKey = sortdict.keys.first,
                let sortValue = sortdict.values.first {
-                self.queryItems.append(URLQueryItem(name: sortKey.rawValue, value: sortValue.rawValue))
+                queryItems.append(URLQueryItem(name: sortKey.rawValue, value: sortValue.rawValue))
             }
         }
-        guard var urlComponents = URLComponents(string: self.url) else {
-            return self.url
+        guard var urlComponents = URLComponents(string: url) else {
+            return url
         }
-        urlComponents.queryItems = self.queryItems
+        urlComponents.queryItems = queryItems
         
         if let url = urlComponents.string {
             self.url = url
         } else {
             print("There was an error converting the URL Component to a String.")
-            return self.url
+            return url
         }
         
-        return self.url
+        return url
     }
     
     func assembleAuthURL() -> String {
-        if self.dataType != DataType.auth {
+        if dataType != DataType.auth {
             print("ERROR: get a data type that is different from the specified data type.")
         }
-        return self.url
+        return url
     }
     
     func assembleUserURL(pageNumber: Int) -> String {
         //データタイプが"タグ"でないと警告が出る
-        if self.dataType != DataType.user {
+        if dataType != DataType.user {
             print("ERROR: get a data type that is different from the specified data type.")
         }
         //UserIdが入力チェック
-        if let userId = self.userId {
-            self.url += "/" + userId
+        if let userId = userId {
+            url += "/" + userId
         } else {
             print("⚠️ UserId = nil")
         }
         //UserType入力チェック
-        if let userType = self.userType {
-            self.url += "/" + userType.rawValue
+        if let userType = userType {
+            url += "/" + userType.rawValue
         } else {
             print("⚠️ UseType = nil")
         }
         //queryItemsの設定
-        self.queryItems = [
+        queryItems = [
             URLQueryItem(name: QueryOption.page.rawValue, value: String(pageNumber)),
             URLQueryItem(name: QueryOption.perPage.rawValue, value: String(perPageNumber))
         ]
-        guard var urlComponents = URLComponents(string: self.url) else {
-            return self.url
+        guard var urlComponents = URLComponents(string: url) else {
+            return url
         }
-        urlComponents.queryItems = self.queryItems
+        urlComponents.queryItems = queryItems
         
         if let url = urlComponents.string {
             self.url = url
         } else {
             print("There was an error converting the URL Component to a String.")
-            return self.url
+            return url
         }
         
-        return self.url
+        return url
     }
 }

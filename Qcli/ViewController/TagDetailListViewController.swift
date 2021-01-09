@@ -26,10 +26,10 @@ class TagDetailListViewController: UIViewController {
         super.viewDidLoad()
         articleTableView.dataSource = self
         articleTableView.delegate = self
-        if let receiveData = self.receiveData {
-            self.articleListDataRequest = AirticleDataNetworkService(searchDict: [SearchOption.tag:receiveData.tagTitle])
-            self.getData(requestAirticleData: self.articleListDataRequest)
-            self.navigationItem.title = receiveData.tagTitle
+        if let receiveData = receiveData {
+            articleListDataRequest = AirticleDataNetworkService(searchDict: [SearchOption.tag:receiveData.tagTitle])
+            getData(requestAirticleData: articleListDataRequest)
+            navigationItem.title = receiveData.tagTitle
         }
     }
     //apiを叩きデータを保存する
@@ -68,11 +68,11 @@ class TagDetailListViewController: UIViewController {
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
         let distanceToBottom = maximumOffset - currentOffsetY
         
-        if distanceToBottom < 150 && self.isNotLoading {
-            self.isNotLoading = false
-            self.pageCount += 1
-            self.articleListDataRequest.pageNumber = self.pageCount
-            self.getData(requestAirticleData: self.articleListDataRequest)
+        if distanceToBottom < 150 && isNotLoading {
+            isNotLoading = false
+            pageCount += 1
+            articleListDataRequest.pageNumber = pageCount
+            getData(requestAirticleData: articleListDataRequest)
             
         }
     }
@@ -80,7 +80,7 @@ class TagDetailListViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == SegueId.fromTagDetailToArticlePage.rawValue) {
             let articlePageVC = segue.destination as! ArticlePageViewController
-            if let sendData = self.sendData {
+            if let sendData = sendData {
                 articlePageVC.articleData = sendData
             }
         }

@@ -23,9 +23,9 @@ class UserListNetworlService {
         //↓URLの設定
         let reqParamModel = RequestParametersCreater(
             dataType: .user,
-            pageNumber: self.pageNumber,
-            userType: self.userType,
-            userId: self.userId)
+            pageNumber: pageNumber,
+            userType: userType,
+            userId: userId)
         let urlText = reqParamModel.assembleUserURL(pageNumber: pageNumber)
         guard let url = URL(string: urlText) else { return }
         //↑URLの設定

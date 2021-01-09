@@ -28,8 +28,8 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        self.tagListDataRequest = TagDataNetworkService(sortDict: [QueryOption.sort:SortOption.count])
-        getTagListData(requestTagListData: self.tagListDataRequest)
+        tagListDataRequest = TagDataNetworkService(sortDict: [QueryOption.sort:SortOption.count])
+        getTagListData(requestTagListData: tagListDataRequest)
     }
     
     
@@ -49,7 +49,7 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     //tableviewcell選択時の処理
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.sendData = self.dataItems[indexPath.row]
+        sendData = dataItems[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: SegueId.fromTagListToTagDetailList.rawValue, sender: nil)
     }
@@ -59,11 +59,11 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
         let contentYoffset = scrollView.contentOffset.y
         let distanceFromBottom = scrollView.contentSize.height - contentYoffset
                 
-        if distanceFromBottom < height && self.isNotLoading {
-            self.isNotLoading = false
-            self.pageCount += 1
-            self.tagListDataRequest.pageNumber = self.pageCount
-            getTagListData(requestTagListData: self.tagListDataRequest)
+        if distanceFromBottom < height && isNotLoading {
+            isNotLoading = false
+            pageCount += 1
+            tagListDataRequest.pageNumber = pageCount
+            getTagListData(requestTagListData: tagListDataRequest)
         }
     }
     //apiを叩きデータを保存する
@@ -103,7 +103,7 @@ class TagListViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == SegueId.fromTagListToTagDetailList.rawValue) {
             let destinationVC = segue.destination as! TagDetailListViewController
-            if let sendData = self.sendData {
+            if let sendData = sendData {
                 destinationVC.receiveData = sendData
             }
         }
