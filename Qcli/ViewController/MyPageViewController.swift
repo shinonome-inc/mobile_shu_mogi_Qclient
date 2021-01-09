@@ -47,7 +47,6 @@ class MyPageViewController: UIViewController {
         performSegue(withIdentifier: SegueId.fromMyPageToUserList.rawValue, sender: nil)
     }
     
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == SegueId.fromMyPageToUserList.rawValue) {
             let userListVC = segue.destination as! UserListViewController
@@ -96,7 +95,6 @@ class MyPageViewController: UIViewController {
         })
     }
     
-    
     func setProfile() {
         let keychain = KeyChain()
         guard let token = keychain.get() else { return }
@@ -112,36 +110,36 @@ class MyPageViewController: UIViewController {
     
     func setUserInfo(userData: UserModel) {
         if let id = userData.id {
-            self.userId = id
-            self.userIdLabel.text = "@\(id)"
-            self.myItemDataRequest = AirticleDataNetworkService(searchDict: [SearchOption.user: id])
-            self.getData(requestAirticleData: self.myItemDataRequest)
+            userId = id
+            userIdLabel.text = "@\(id)"
+            myItemDataRequest = AirticleDataNetworkService(searchDict: [SearchOption.user: id])
+            getData(requestAirticleData: myItemDataRequest)
         }
         if let name = userData.name {
-            self.userNameLabel.text = name
+            userNameLabel.text = name
         }
         if let userDiscription = userData.description {
-            self.userDiscriptionLabel.text = userDiscription
+            userDiscriptionLabel.text = userDiscription
         }
         if let followNumber = userData.followeesCount {
-            self.followButton.setTitle(" \(followNumber) Follow ", for: .normal)
+            followButton.setTitle(" \(followNumber) Follow ", for: .normal)
             if followNumber <= 0 {
-                self.followButton.isEnabled = false
+                followButton.isEnabled = false
             }
         }
         if let followerNumber = userData.followersCount {
-            self.follwerButton.setTitle(" \(followerNumber) Follower ", for: .normal)
+            follwerButton.setTitle(" \(followerNumber) Follower ", for: .normal)
             if followerNumber <= 0 {
-                self.follwerButton.isEnabled = false
+                follwerButton.isEnabled = false
             }
         }
         if let imgUrl = userData.profileImageUrl,
            let url = URL(string: imgUrl) {
-            self.userImageView.setImage(with: url, completionHandler: { result in
+            userImageView.setImage(with: url, completionHandler: { result in
                 switch result {
                 case .success(_): break
                 case .failure(_):
-                    self.userImageView.image = UIImage(named: "no-coupon-image.png")
+                    self.self.userImageView.image = UIImage(named: "no-coupon-image.png")
                 }
             })
         }
