@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class FeedViewController: UIViewController, UISearchBarDelegate {
     
     @IBOutlet weak var segmentedControll: UISegmentedControl!
     @IBOutlet weak var articleTableView: UITableView!
@@ -52,40 +52,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         segmentedSelectedIndex = sender.selectedSegmentIndex
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataItems.count
-    }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = articleTableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as? ArticleTableViewCell else {
-            abort()
-        }
-        let model = dataItems[indexPath.row]
-        cell.setModel(model: model)
-        return cell
-    }
-    
-    //tableviewcell選択時の処理
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        sendData = dataItems[indexPath.row]
-        //tableviewcell選択解除
-        tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: SegueId.fromFeedToArticle.rawValue, sender: nil)
-    }
-    //tableviewをスクロールしたら最下のcellにたどり着く前にデータ更新を行う
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let currentOffsetY = scrollView.contentOffset.y
-        let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
-        let distanceToBottom = maximumOffset - currentOffsetY
-        
-        if distanceToBottom < 150 && isNotLoading {
-            isNotLoading = false
-            pageCount += 1
-            articleListDataRequest.pageNumber = pageCount
-            getData(requestAirticleData: articleListDataRequest)
-            
-        }
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == SegueId.fromFeedToArticle.rawValue) {
@@ -137,6 +104,43 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         segmentedControll.removeAllSegments()
         for (i,x) in segmentedItems.enumerated() {
             segmentedControll.insertSegment(withTitle: x.rawValue, at: i, animated: true)
+        }
+    }
+}
+
+extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataItems.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = articleTableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as? ArticleTableViewCell else {
+            abort()
+        }
+        let model = dataItems[indexPath.row]
+        cell.setModel(model: model)
+        return cell
+    }
+    
+    //tableviewcell選択時の処理
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        sendData = dataItems[indexPath.row]
+        //tableviewcell選択解除
+        tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: SegueId.fromFeedToArticle.rawValue, sender: nil)
+    }
+    //tableviewをスクロールしたら最下のcellにたどり着く前にデータ更新を行う
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let currentOffsetY = scrollView.contentOffset.y
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
+        let distanceToBottom = maximumOffset - currentOffsetY
+        
+        if distanceToBottom < 150 && isNotLoading {
+            isNotLoading = false
+            pageCount += 1
+            articleListDataRequest.pageNumber = pageCount
+            getData(requestAirticleData: articleListDataRequest)
+            
         }
     }
 }
