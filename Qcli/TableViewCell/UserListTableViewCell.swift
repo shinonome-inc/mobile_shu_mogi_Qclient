@@ -13,7 +13,12 @@ class UserListTableViewCell: UITableViewCell {
     @IBOutlet weak var userIdLabel: UILabel!
     
     func setModel(model: UserDetailData) {
-        userNameLabel.text = model.userName
+        //userNameがない場合の対処
+        if model.userName == "" {
+            userNameLabel.text = model.userId
+        } else {
+            userNameLabel.text = model.userName
+        }
         userIdLabel.text = "@" + model.userId
         if let url = URL(string: model.imageUrl) {
             userImageView.setImage(with: url, completionHandler: { result in
