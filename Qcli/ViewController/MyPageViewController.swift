@@ -100,7 +100,11 @@ class MyPageViewController: UIViewController {
         let keychain = KeyChain()
         guard let token = keychain.get() else { return }
         let authRequest = AuthDataNetworkService(token: token)
-        authRequest.fetch(success: { (userData) in
+        setUserInfo(request: authRequest)
+    }
+    
+    func setUserInfo(request: AuthDataNetworkService) {
+        request.fetch(success: { (userData) in
             if let id = userData.id {
                 self.userId = id
                 self.userIdLabel.text = "@\(id)"
