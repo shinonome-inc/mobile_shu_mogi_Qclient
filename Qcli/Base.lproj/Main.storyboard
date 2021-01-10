@@ -770,6 +770,82 @@
             </objects>
             <point key="canvasLocation" x="794" y="74"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="pzH-Ot-fOE">
+            <objects>
+                <viewController id="bZd-Bw-Gkw" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="akn-Rg-euX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OaP-fY-nxG">
+                                <rect key="frame" x="174.5" y="369" width="65.5" height="38.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DNs-ef-XXh">
+                                <rect key="frame" x="132.5" y="419.5" width="149" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Slu-aC-C6Y">
+                                <rect key="frame" x="20" y="720" width="374" height="62"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="62" id="acA-Mt-Bc3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="RELOAD">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath=" layer.cornerRadius">
+                                        <nil key="value"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="login:" destination="b0C-cx-wVq" eventType="touchUpInside" id="vNK-il-N7w"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oKs-JZ-QUH">
+                                <rect key="frame" x="20" y="798" width="374" height="62"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="62" id="rCi-qj-Gaq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="ログイン画面に戻る">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath=" layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="mpO-er-PLJ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="OaP-fY-nxG" firstAttribute="centerX" secondItem="akn-Rg-euX" secondAttribute="centerX" id="KbY-c3-g1M"/>
+                            <constraint firstItem="oKs-JZ-QUH" firstAttribute="bottom" secondItem="akn-Rg-euX" secondAttribute="bottom" constant="-36" id="fS4-IP-EIv"/>
+                            <constraint firstItem="mpO-er-PLJ" firstAttribute="trailing" secondItem="oKs-JZ-QUH" secondAttribute="trailing" constant="20" id="gLm-hH-QEW"/>
+                            <constraint firstItem="DNs-ef-XXh" firstAttribute="top" secondItem="OaP-fY-nxG" secondAttribute="bottom" constant="12" id="iwV-n5-8sW"/>
+                            <constraint firstItem="oKs-JZ-QUH" firstAttribute="top" secondItem="Slu-aC-C6Y" secondAttribute="bottom" constant="16" id="mIe-nx-fV7"/>
+                            <constraint firstItem="DNs-ef-XXh" firstAttribute="centerX" secondItem="akn-Rg-euX" secondAttribute="centerX" id="mji-7K-ISY"/>
+                            <constraint firstItem="oKs-JZ-QUH" firstAttribute="leading" secondItem="mpO-er-PLJ" secondAttribute="leading" constant="20" id="pLE-18-mYR"/>
+                            <constraint firstItem="Slu-aC-C6Y" firstAttribute="leading" secondItem="mpO-er-PLJ" secondAttribute="leading" constant="20" id="s1a-cL-cZm"/>
+                            <constraint firstItem="OaP-fY-nxG" firstAttribute="centerY" secondItem="akn-Rg-euX" secondAttribute="centerY" constant="-60" id="sBW-xN-tPP"/>
+                            <constraint firstItem="mpO-er-PLJ" firstAttribute="trailing" secondItem="Slu-aC-C6Y" secondAttribute="trailing" constant="20" id="zPU-m2-Z9i"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qjL-3D-01a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2175" y="74"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="tAW-m9-x2k">
             <objects>
@@ -850,7 +926,7 @@
             <objects>
                 <viewController id="hOO-eJ-Pkf" customClass="UserDetailViewController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4Sh-d7-Rgw">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pAQ-7Z-vc1">
