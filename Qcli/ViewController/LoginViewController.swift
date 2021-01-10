@@ -19,15 +19,17 @@ class LoginViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
+        self.setUpNotificationForTextField()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         //2回目のログインだとログインをスキップさせる
-//        if let _ = UserDefaults.standard.object(forKey: "isLogined") {
-//            performSegue(withIdentifier: SegueId.fromLoginToTabBarController.rawValue, sender: nil)
-//        }
+        //        if let _ = UserDefaults.standard.object(forKey: "isLogined") {
+        //            performSegue(withIdentifier: SegueId.fromLoginToTabBarController.rawValue, sender: nil)
+        //        }
         
     }
     
@@ -63,7 +65,7 @@ class LoginViewController: UIViewController {
     func testInput() {
         tokenTextField.text = "9f20c9c8e14da64bd16e95a6d425f38e57bbbac6"
     }
-        
+    
     //リクエスト失敗した時用のアラート
     func displayMyAlertMessage(userMessage: String) {
         let myAlert = UIAlertController(title:"Alert", message: userMessage, preferredStyle:  UIAlertController.Style.alert)
