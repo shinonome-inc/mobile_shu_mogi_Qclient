@@ -63,13 +63,6 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
         }
     }
         
-    //ログイン判定
-    func isLogined() -> Bool {
-        var value = false
-        value = UserDefaults.standard.bool(forKey: "isLogined")
-        return value
-    }
-    
     //apiを叩きデータを保存する
     func getData(requestAirticleData: AirticleDataNetworkService) {
         requestAirticleData.fetch(success: { (dataArray) in

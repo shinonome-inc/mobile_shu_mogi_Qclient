@@ -13,12 +13,14 @@ class QiitaRequest {
     var headers: HTTPHeaders? = nil
     func request(url: URL) -> DataRequest {
         print("Request 👉 \(url)")
-        if isNotAuth {
+        if isNotAuth && isLogined() {
             setHeaders()
-        }            
+        } 
         
         if let headers = headers {
             print("Headers 👉 \(String(describing: headers))")
+        } else {
+            print("Headers 👉 None")
         }
         let dataRequest = AF.request(url, headers: headers)
         return dataRequest
@@ -35,6 +37,12 @@ class QiitaRequest {
         } else {
             headers = nil
         }
+    }
+    
+    func isLogined() -> Bool {
+        var value = false
+        value = UserDefaults.standard.bool(forKey: "isLogined")
+        return value
     }
 }
 

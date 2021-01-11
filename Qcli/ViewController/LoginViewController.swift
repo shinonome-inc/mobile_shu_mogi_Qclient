@@ -61,6 +61,11 @@ class LoginViewController: UIViewController {
         })
     }
     
+    @IBAction func useAppWithoutLogin(_ sender: Any) {
+        UserDefaults.standard.set(false, forKey: "isLogined")
+        self.performSegue(withIdentifier: SegueId.fromLoginToTabBarController.rawValue, sender: nil)
+    }
+    
     //テスト用トークン
     func testInput() {
         tokenTextField.text = "9f20c9c8e14da64bd16e95a6d425f38e57bbbac6"

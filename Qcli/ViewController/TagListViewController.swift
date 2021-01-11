@@ -58,14 +58,7 @@ class TagListViewController: UIViewController {
             //TODO: エラー画面を作成し、遷移させる
         })
     }
-    
-    //ログイン判定
-    func isLogined() -> Bool {
-        var value = false
-        value = UserDefaults.standard.bool(forKey: "isLogined")
-        return value
-    }
-    
+        
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == SegueId.fromTagListToTagDetailList.rawValue) {
             let destinationVC = segue.destination as! TagDetailListViewController
