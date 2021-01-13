@@ -771,10 +771,10 @@
             </objects>
             <point key="canvasLocation" x="794" y="74"/>
         </scene>
-        <!--View Controller-->
+        <!--Error View Controller-->
         <scene sceneID="pzH-Ot-fOE">
             <objects>
-                <viewController id="bZd-Bw-Gkw" sceneMemberID="viewController">
+                <viewController id="bZd-Bw-Gkw" customClass="ErrorViewController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="akn-Rg-euX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -806,9 +806,6 @@
                                         <nil key="value"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="login:" destination="b0C-cx-wVq" eventType="touchUpInside" id="vNK-il-N7w"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oKs-JZ-QUH">
                                 <rect key="frame" x="20" y="798" width="374" height="62"/>
@@ -842,6 +839,11 @@
                             <constraint firstItem="mpO-er-PLJ" firstAttribute="trailing" secondItem="Slu-aC-C6Y" secondAttribute="trailing" constant="20" id="zPU-m2-Z9i"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="backLoginVCButton" destination="oKs-JZ-QUH" id="wqH-HY-4q5"/>
+                        <outlet property="errorMessageLabel" destination="DNs-ef-XXh" id="52c-WT-XYK"/>
+                        <outlet property="reloadButton" destination="Slu-aC-C6Y" id="yZg-XX-FDh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qjL-3D-01a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
