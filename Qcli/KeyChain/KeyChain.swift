@@ -33,4 +33,15 @@ class KeyChain {
             return nil
         }
     }
+    
+    func remove() {
+        do {
+            try tokenInfo.remove(KeychainValue.token.rawValue)
+            print("👍 Success: Delete your token in keychain")
+        } catch let error {
+            print("⚠️ ERROR: Could not delete token.")
+            print("error: \(error)")
+        }
+        
+    }
 }
