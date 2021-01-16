@@ -25,11 +25,14 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
     var pageCount = 1
     //リクエストできる状態か判定
     var isNotLoading = false
+    //エラー時の遷移先
+    var errorViewController: ErrorViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //記事データ取得
         articleListDataRequest = AirticleDataNetworkService(searchDict: nil)
+        articleListDataRequest.errorDelegate = self
         getData(requestAirticleData: articleListDataRequest)
         //segmented control 設定
         setSegmentedControl()
@@ -136,4 +139,25 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
             
         }
     }
+}
+
+extension FeedViewController: ErrorDelegate {
+    func backToLoginViewController() {
+        let identifier = ViewControllerIdentifier.login.rawValue
+        if let storyboard = self.storyboard,
+           let navigationController = self.navigationController {
+            let loginViewController = storyboard.instantiateViewController(identifier: identifier) as! LoginViewController
+            navigationController.pushViewController(loginViewController, animated: true)
+        }
+    }
+    
+    func segueErrorViewController() {
+        let identifier = ViewControllerIdentifier.error.rawValue
+        if let storyboard = self.storyboard {
+            let errorViewController = storyboard.instantiateViewController(identifier: identifier) as! ErrorViewController
+            errorViewController.qiitaError = .rateLimitExceededError
+            self.present(errorViewController, animated: true, completion: nil)
+        }
+    }
+    
 }

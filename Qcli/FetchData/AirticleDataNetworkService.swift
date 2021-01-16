@@ -12,6 +12,7 @@ class AirticleDataNetworkService {
     var searchDict: [SearchOption: String]?
     var pageNumber: Int
     var sortdict: [QueryOption: SortOption]?
+    var errorDelegate: ErrorDelegate?
     
     init(searchDict: [SearchOption: String]?) {
         pageNumber = 1
@@ -44,6 +45,9 @@ class AirticleDataNetworkService {
                     if let message = exceptionData.message,
                        let type = exceptionData.type {
                         print("message: \(message), type: \(type)")
+                        if let errorDelegate = self.errorDelegate {
+                            errorDelegate.segueErrorViewController()
+                        }
                     }
                 } else {
                     print("Failed to get error message.")

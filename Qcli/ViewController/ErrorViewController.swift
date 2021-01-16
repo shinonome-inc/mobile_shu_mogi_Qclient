@@ -13,9 +13,13 @@ class ErrorViewController: UIViewController {
     @IBOutlet weak var backLoginVCButton: UIButton!
     @IBOutlet weak var errorMessageLabel: UILabel!
     var qiitaError: QiitaError?
+    var errorDelegate: ErrorDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let qiitaError = qiitaError {
+            setConfig(qiitaError: qiitaError)
+        }
     }
     
     func setConfig(qiitaError: QiitaError) {
@@ -30,4 +34,14 @@ class ErrorViewController: UIViewController {
             reloadButton.isHidden = false
         }
     }
+    @IBAction func backToLoginButtonTapped(_ sender: Any) {
+        print("backToLogin Tapped")
+        let identifier = ViewControllerIdentifier.login.rawValue
+        if let storyboard = self.storyboard,
+           let navigationController = self.navigationController {
+            let loginViewController = storyboard.instantiateViewController(identifier: identifier) as! LoginViewController
+            navigationController.pushViewController(loginViewController, animated: true)
+        }
+    }
+    
 }

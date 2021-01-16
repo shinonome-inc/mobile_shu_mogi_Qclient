@@ -20,6 +20,7 @@
 		0270910E2584C735006691B4 /* QiitaRequest+Headers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0270910D2584C735006691B4 /* QiitaRequest+Headers.swift */; };
 		028EE73425B1D7200062C079 /* ErrorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028EE73325B1D7200062C079 /* ErrorDelegate.swift */; };
 		028EE73A25B2C2040062C079 /* ViewControllerIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028EE73925B2C2040062C079 /* ViewControllerIdentifier.swift */; };
+		028EE73E25B2F4830062C079 /* ReloadDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028EE73D25B2F4820062C079 /* ReloadDelegate.swift */; };
 		02A1469A259B44F700285DD8 /* MyPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A14699259B44F700285DD8 /* MyPageTableViewCell.swift */; };
 		02A146A0259B675B00285DD8 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A1469F259B675B00285DD8 /* MyPageViewController.swift */; };
 		02A146A7259D92CB00285DD8 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A146A6259D92CB00285DD8 /* UserListViewController.swift */; };
@@ -75,6 +76,7 @@
 		027126022569419000DE392A /* APITestApp.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APITestApp.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		028EE73325B1D7200062C079 /* ErrorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorDelegate.swift; sourceTree = "<group>"; };
 		028EE73925B2C2040062C079 /* ViewControllerIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerIdentifier.swift; sourceTree = "<group>"; };
+		028EE73D25B2F4820062C079 /* ReloadDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReloadDelegate.swift; sourceTree = "<group>"; };
 		02A14699259B44F700285DD8 /* MyPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewCell.swift; sourceTree = "<group>"; };
 		02A1469F259B675B00285DD8 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		02A146A6259D92CB00285DD8 /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				028EE73325B1D7200062C079 /* ErrorDelegate.swift */,
+				028EE73D25B2F4820062C079 /* ReloadDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02525A26256E00ED00BF440C /* QueryOption＋SortOption.swift in Sources */,
+				028EE73E25B2F4830062C079 /* ReloadDelegate.swift in Sources */,
 				020B886D2567C63500C2CFE2 /* QiitaModelData.swift in Sources */,
 				02DB99BC256804120048B9D9 /* DataType+SearchOption.swift in Sources */,
 				02A146AB259D94EC00285DD8 /* UnwrappedDataModel.swift in Sources */,
