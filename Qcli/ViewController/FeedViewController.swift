@@ -140,14 +140,6 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension FeedViewController: ErrorDelegate {
-    var errorViewController: ErrorViewController {
-        let identifier = ViewControllerIdentifier.error.rawValue
-        guard let storyboard = self.storyboard else { abort() }
-        let vc = storyboard.instantiateViewController(identifier: identifier) as! ErrorViewController
-        vc.errorDelegate = self
-        return vc
-    }
-    
     func backToLoginViewController() {
         let identifier = ViewControllerIdentifier.login.rawValue
         if let storyboard = self.storyboard,
@@ -158,12 +150,13 @@ extension FeedViewController: ErrorDelegate {
     }
     
     func segueErrorViewController(qiitaError: QiitaError) {
+        //Prepare ErrorViewController
+        guard let storyboard = self.storyboard else { abort() }
+        let identifier = ViewControllerIdentifier.error.rawValue
+        let errorViewController = storyboard.instantiateViewController(identifier: identifier) as! ErrorViewController
+        errorViewController.errorDelegate = self
+        //Send property, Segue
         errorViewController.qiitaError = qiitaError
-        if errorViewController.qiitaError == nil {
-            print("nilです")
-        } else {
-            print("nilじゃない")
-        }
         self.present(errorViewController, animated: true, completion: nil)
     }
     

@@ -8,7 +8,6 @@
 import Foundation
 
 protocol ErrorDelegate: NSObjectProtocol {
-    var errorViewController: ErrorViewController { get }
     func segueErrorViewController(qiitaError: QiitaError)
     func backToLoginViewController()
 }
