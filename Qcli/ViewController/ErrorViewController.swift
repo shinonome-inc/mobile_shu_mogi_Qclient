@@ -35,12 +35,9 @@ class ErrorViewController: UIViewController {
         }
     }
     @IBAction func backToLoginButtonTapped(_ sender: Any) {
-        print("backToLogin Tapped")
-        let identifier = ViewControllerIdentifier.login.rawValue
-        if let storyboard = self.storyboard,
-           let navigationController = self.navigationController {
-            let loginViewController = storyboard.instantiateViewController(identifier: identifier) as! LoginViewController
-            navigationController.pushViewController(loginViewController, animated: true)
+        self.dismiss(animated: true, completion: nil)
+        if let errorDelegate = errorDelegate {
+            errorDelegate.backToLoginViewController()
         }
     }
     

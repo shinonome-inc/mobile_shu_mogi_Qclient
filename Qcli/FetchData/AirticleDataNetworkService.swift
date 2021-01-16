@@ -46,7 +46,7 @@ class AirticleDataNetworkService {
                        let type = exceptionData.type {
                         print("message: \(message), type: \(type)")
                         if let errorDelegate = self.errorDelegate {
-                            errorDelegate.segueErrorViewController()
+                            errorDelegate.segueErrorViewController(qiitaError: .rateLimitExceededError)
                         }
                     }
                 } else {

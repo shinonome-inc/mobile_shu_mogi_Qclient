@@ -25,8 +25,6 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
     var pageCount = 1
     //リクエストできる状態か判定
     var isNotLoading = false
-    //エラー時の遷移先
-    var errorViewController: ErrorViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -142,6 +140,14 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension FeedViewController: ErrorDelegate {
+    var errorViewController: ErrorViewController {
+        let identifier = ViewControllerIdentifier.error.rawValue
+        guard let storyboard = self.storyboard else { abort() }
+        let vc = storyboard.instantiateViewController(identifier: identifier) as! ErrorViewController
+        vc.errorDelegate = self
+        return vc
+    }
+    
     func backToLoginViewController() {
         let identifier = ViewControllerIdentifier.login.rawValue
         if let storyboard = self.storyboard,
@@ -151,13 +157,14 @@ extension FeedViewController: ErrorDelegate {
         }
     }
     
-    func segueErrorViewController() {
-        let identifier = ViewControllerIdentifier.error.rawValue
-        if let storyboard = self.storyboard {
-            let errorViewController = storyboard.instantiateViewController(identifier: identifier) as! ErrorViewController
-            errorViewController.qiitaError = .rateLimitExceededError
-            self.present(errorViewController, animated: true, completion: nil)
+    func segueErrorViewController(qiitaError: QiitaError) {
+        errorViewController.qiitaError = qiitaError
+        if errorViewController.qiitaError == nil {
+            print("nilです")
+        } else {
+            print("nilじゃない")
         }
+        self.present(errorViewController, animated: true, completion: nil)
     }
     
 }
