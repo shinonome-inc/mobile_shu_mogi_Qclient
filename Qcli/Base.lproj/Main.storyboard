@@ -806,6 +806,9 @@
                                         <nil key="value"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="reload:" destination="bZd-Bw-Gkw" eventType="touchUpInside" id="noH-Ud-I69"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oKs-JZ-QUH">
                                 <rect key="frame" x="20" y="798" width="374" height="62"/>

@@ -10,5 +10,6 @@ import Foundation
 protocol ErrorDelegate: NSObjectProtocol {
     func segueErrorViewController(qiitaError: QiitaError)
     func backToLoginViewController()
+    func reload()
 }
 

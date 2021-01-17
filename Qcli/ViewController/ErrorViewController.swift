@@ -34,10 +34,18 @@ class ErrorViewController: UIViewController {
             reloadButton.isHidden = false
         }
     }
+    
     @IBAction func backToLoginButtonTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
         if let errorDelegate = errorDelegate {
             errorDelegate.backToLoginViewController()
+        }
+    }
+    
+    @IBAction func reload(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+        if let errorDelegate = errorDelegate {
+            errorDelegate.reload()
         }
     }
     

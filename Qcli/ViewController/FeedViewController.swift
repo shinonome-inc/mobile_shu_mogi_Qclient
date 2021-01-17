@@ -160,4 +160,8 @@ extension FeedViewController: ErrorDelegate {
         self.present(errorViewController, animated: true, completion: nil)
     }
     
+    func reload() {
+        getData(requestAirticleData: articleListDataRequest)
+    }
+        
 }
