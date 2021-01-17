@@ -62,6 +62,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func useAppWithoutLogin(_ sender: Any) {
+        self.userInfoKeychain.remove()
         UserDefaults.standard.set(false, forKey: "isLogined")
         self.performSegue(withIdentifier: SegueId.fromLoginToTabBarController.rawValue, sender: nil)
     }
