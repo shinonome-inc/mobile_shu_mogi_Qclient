@@ -13,6 +13,7 @@ enum KeychainValue: String {
 }
 class KeyChain {
     var tokenInfo: Keychain!
+    var errorDelegate: ErrorDelegate?
     init() {
         tokenInfo = Keychain(service: KeychainValue.serviceName.rawValue)
     }
@@ -30,6 +31,9 @@ class KeyChain {
         } else {
             print("⚠️ ERROR: Token information does not exist.")
             UserDefaults.standard.set(false, forKey: "isLogined")
+            if let delegate = errorDelegate {
+                delegate.segueErrorViewController(qiitaError: .unauthorizedError)
+            }
             return nil
         }
     }

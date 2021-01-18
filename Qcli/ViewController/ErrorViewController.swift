@@ -28,7 +28,6 @@ class ErrorViewController: UIViewController {
         case .rateLimitExceededError:
             reloadButton.isHidden = false
         case .unauthorizedError:
-            backLoginVCButton.setTitle("戻る", for: .normal)
             reloadButton.isHidden = true
         case .connectionError:
             reloadButton.isHidden = false

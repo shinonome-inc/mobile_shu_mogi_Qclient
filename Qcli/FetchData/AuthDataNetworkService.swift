@@ -9,6 +9,7 @@ import Foundation
 
 class AuthDataNetworkService {
     var token: String?
+    var errorDelegate: ErrorDelegate?
     
     init(token: String?) {
         self.token = token
@@ -45,6 +46,9 @@ class AuthDataNetworkService {
                     if let message = exceptionData.message,
                        let type = exceptionData.type {
                         print("message: \(message), type: \(type)")
+                        if let errorDelegate = self.errorDelegate {
+                            errorDelegate.segueErrorViewController(qiitaError: .rateLimitExceededError)
+                        }
                     }
                 } else {
                     print("Failed to get error message.")
