@@ -40,10 +40,6 @@ class MyPageViewController: UIViewController {
         setProfile()
     }
     
-    override func viewWillLayoutSubviews() {
-        print("viewWillLayoutSubviews")
-    }
-    
     @IBAction func followButtonTapped(_ sender: Any) {
         sendUserListType = .follow
         performSegue(withIdentifier: SegueId.fromMyPageToUserList.rawValue, sender: nil)

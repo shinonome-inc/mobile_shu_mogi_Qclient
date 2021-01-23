@@ -12,6 +12,7 @@ class TagDataNetworkService {
     var searchDict: [SearchOption: String]?
     var pageNumber: Int
     var sortdict: [QueryOption: SortOption]?
+    var errorDelegate: ErrorDelegate?
     
     init(sortDict: [QueryOption: SortOption]?) {
         pageNumber = 1
@@ -46,6 +47,9 @@ class TagDataNetworkService {
                     if let message = exceptionData.message,
                        let type = exceptionData.type {
                         print("message: \(message), type: \(type)")
+                        if let errorDelegate = self.errorDelegate {
+                            errorDelegate.segueErrorViewController(qiitaError: .rateLimitExceededError)
+                        }
                     }
                 } else {
                     print("Failed to get error message.")

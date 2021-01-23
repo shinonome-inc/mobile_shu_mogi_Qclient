@@ -29,6 +29,7 @@ class TagListViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         tagListDataRequest = TagDataNetworkService(sortDict: [QueryOption.sort:SortOption.count])
+        tagListDataRequest.errorDelegate = self
         getTagListData(requestTagListData: tagListDataRequest)
     }
        
@@ -103,4 +104,38 @@ extension TagListViewController: UITableViewDelegate, UITableViewDataSource {
             getTagListData(requestTagListData: tagListDataRequest)
         }
     }
+}
+
+extension TagListViewController: ErrorDelegate {
+    func backToLoginViewController() {
+        let identifier = ViewControllerIdentifier.login.rawValue
+        if let storyboard = self.storyboard,
+           let navigationController = self.navigationController {
+            let loginViewController = storyboard.instantiateViewController(identifier: identifier) as! LoginViewController
+            navigationController.pushViewController(loginViewController, animated: true)
+        }
+    }
+    
+    func segueErrorViewController(qiitaError: QiitaError) {
+        //↓ErrorViewを使う
+        //let errorView = ErrorView()
+        //errorView.errorDelegate = self
+        //errorView.navigationController = self.navigationController
+        //errorView.tabbarController = self.tabBarController
+        //errorView.appear()
+        //↓Error VCを使う
+        guard let storyboard = self.storyboard else { abort() }
+        let identifier = ViewControllerIdentifier.error.rawValue
+        let errorViewController = storyboard.instantiateViewController(identifier: identifier) as! ErrorViewController
+        errorViewController.errorDelegate = self
+        errorViewController.qiitaError = qiitaError
+        errorViewController.checkSafeArea(viewController: self)
+        addChild(errorViewController)
+        view.addSubview(errorViewController.view)
+    }
+    
+    func reload() {
+        getTagListData(requestTagListData: tagListDataRequest)
+    }
+        
 }

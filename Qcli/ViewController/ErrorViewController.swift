@@ -47,14 +47,14 @@ class ErrorViewController: UIViewController {
     }
     
     @IBAction func backToLoginButtonTapped(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        self.view.removeFromSuperview()
         if let errorDelegate = errorDelegate {
             errorDelegate.backToLoginViewController()
         }
     }
     
     @IBAction func reload(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        self.view.removeFromSuperview()
         if let errorDelegate = errorDelegate {
             errorDelegate.reload()
         }
