@@ -39,14 +39,14 @@ extension ArticlePageViewController: WKNavigationDelegate {
 
 extension ArticlePageViewController: ErrorDelegate {
     func segueErrorViewController(qiitaError: QiitaError) {
-        //Prepare ErrorViewController
         guard let storyboard = self.storyboard else { abort() }
         let identifier = ViewControllerIdentifier.error.rawValue
         let errorViewController = storyboard.instantiateViewController(identifier: identifier) as! ErrorViewController
         errorViewController.errorDelegate = self
-        //Send property, Segue
         errorViewController.qiitaError = qiitaError
-        self.present(errorViewController, animated: true, completion: nil)
+        errorViewController.checkSafeArea(viewController: self)
+        addChild(errorViewController)
+        view.addSubview(errorViewController.view)
     }
     
     func backToLoginViewController() {

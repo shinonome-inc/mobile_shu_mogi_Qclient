@@ -34,6 +34,18 @@ class ErrorViewController: UIViewController {
         }
     }
     
+    func checkSafeArea(viewController: UIViewController) {
+        guard let tabBarController = viewController.tabBarController else { return }
+        guard let navBarController = viewController.navigationController else { return }
+        let tabBarHeight = tabBarController.tabBar.frame.height
+        let navBarHeight = navBarController.navigationBar.frame.height
+        let height = viewController.view.frame.height - tabBarHeight - navBarHeight
+        self.view.frame = CGRect(x: 0.0,
+                                 y: navBarHeight,
+                                 width: viewController.view.frame.width,
+                                 height: height)
+    }
+    
     @IBAction func backToLoginButtonTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
         if let errorDelegate = errorDelegate {
