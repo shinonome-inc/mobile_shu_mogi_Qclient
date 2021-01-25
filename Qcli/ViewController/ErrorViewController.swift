@@ -31,6 +31,8 @@ class ErrorViewController: UIViewController {
             reloadButton.isHidden = true
         case .connectionError:
             reloadButton.isHidden = false
+        case .unexpectedError:
+            reloadButton.isHidden = true
         }
     }
     

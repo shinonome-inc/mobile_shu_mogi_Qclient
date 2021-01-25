@@ -46,12 +46,13 @@ class AuthDataNetworkService {
                     if let message = exceptionData.message,
                        let type = exceptionData.type {
                         print("message: \(message), type: \(type)")
-                        if let errorDelegate = self.errorDelegate {
-                            errorDelegate.segueErrorViewController(qiitaError: .rateLimitExceededError)
-                        }
+                        self.showErrorView(qiitaError: .rateLimitExceededError)
+                    } else {
+                        self.showErrorView(qiitaError: .unexpectedError)
                     }
                 } else {
                     print("Failed to get error message.")
+                    self.showErrorView(qiitaError: .unexpectedError)
                 }
                 if let error = response.error {
                     failure(error as NSError)
@@ -61,6 +62,13 @@ class AuthDataNetworkService {
             success(exportData)
         }
         
-       
+    }
+    
+    func showErrorView(qiitaError: QiitaError) {
+        if let errorDelegate = self.errorDelegate {
+            errorDelegate.segueErrorViewController(qiitaError: qiitaError)
+        } else {
+            print("⚠️ ErrorDelegate: nil")
+        }
     }
 }
