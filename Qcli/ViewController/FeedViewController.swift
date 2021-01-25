@@ -151,20 +151,22 @@ extension FeedViewController: ErrorDelegate {
     
     func segueErrorViewController(qiitaError: QiitaError) {
         //↓ErrorViewを使う
-        //let errorView = ErrorView()
-        //errorView.errorDelegate = self
-        //errorView.navigationController = self.navigationController
-        //errorView.tabbarController = self.tabBarController
-        //errorView.appear()
+        guard let nib = Bundle.main.loadNibNamed("ErrorView", owner: self, options: nil) else { return }
+        let errorView = nib.first as! ErrorView
+        errorView.checkSafeArea(viewController: self)
+        errorView.errorDelegate = self
+        errorView.qiitaError = qiitaError
+        errorView.setConfig()
+        view.addSubview(errorView)
         //↓Error VCを使う
-        guard let storyboard = self.storyboard else { abort() }
-        let identifier = ViewControllerIdentifier.error.rawValue
-        let errorViewController = storyboard.instantiateViewController(identifier: identifier) as! ErrorViewController
-        errorViewController.errorDelegate = self
-        errorViewController.qiitaError = qiitaError
-        errorViewController.checkSafeArea(viewController: self)
-        addChild(errorViewController)
-        view.addSubview(errorViewController.view)
+        //guard let storyboard = self.storyboard else { abort() }
+        //let identifier = ViewControllerIdentifier.error.rawValue
+        //let errorViewController = storyboard.instantiateViewController(identifier: identifier) as! ErrorViewController
+        //errorViewController.errorDelegate = self
+        //errorViewController.qiitaError = qiitaError
+        //errorViewController.checkSafeArea(viewController: self)
+        //addChild(errorViewController)
+        //view.addSubview(errorViewController.view)
     }
     
     func reload() {

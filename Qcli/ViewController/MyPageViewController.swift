@@ -187,14 +187,13 @@ extension MyPageViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension MyPageViewController: ErrorDelegate {
     func segueErrorViewController(qiitaError: QiitaError) {
-        guard let storyboard = self.storyboard else { abort() }
-        let identifier = ViewControllerIdentifier.error.rawValue
-        let errorViewController = storyboard.instantiateViewController(identifier: identifier) as! ErrorViewController
-        errorViewController.errorDelegate = self
-        errorViewController.qiitaError = qiitaError
-        errorViewController.checkSafeArea(viewController: self)
-        addChild(errorViewController)
-        view.addSubview(errorViewController.view)
+        guard let nib = Bundle.main.loadNibNamed("ErrorView", owner: self, options: nil) else { return }
+        let errorView = nib.first as! ErrorView
+        errorView.checkSafeArea(viewController: self)
+        errorView.errorDelegate = self
+        errorView.qiitaError = qiitaError
+        errorView.setConfig()
+        view.addSubview(errorView)
     }
     
     func backToLoginViewController() {
