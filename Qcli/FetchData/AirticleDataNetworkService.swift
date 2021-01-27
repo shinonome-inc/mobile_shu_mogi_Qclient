@@ -12,6 +12,7 @@ class AirticleDataNetworkService {
     var searchDict: [SearchOption: String]?
     var pageNumber: Int
     var sortdict: [QueryOption: SortOption]?
+    var errorDelegate: ErrorDelegate?
     
     init(searchDict: [SearchOption: String]?) {
         pageNumber = 1
@@ -44,15 +45,27 @@ class AirticleDataNetworkService {
                     if let message = exceptionData.message,
                        let type = exceptionData.type {
                         print("message: \(message), type: \(type)")
+                        self.showErrorView(qiitaError: .rateLimitExceededError)
+                    } else {
+                        self.showErrorView(qiitaError: .unexpectedError)
                     }
                 } else {
                     print("Failed to get error message.")
+                    self.showErrorView(qiitaError: .unexpectedError)
                 }
                 
                 failure(response.error as NSError?)
                 return
             }
             success(exportData)
+        }
+    }
+    
+    func showErrorView(qiitaError: QiitaError) {
+        if let errorDelegate = self.errorDelegate {
+            errorDelegate.segueErrorViewController(qiitaError: qiitaError)
+        } else {
+            print("⚠️ ErrorDelegate: nil")
         }
     }
 }

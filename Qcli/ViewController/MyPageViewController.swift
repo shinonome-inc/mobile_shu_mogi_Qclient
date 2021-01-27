@@ -31,9 +31,12 @@ class MyPageViewController: UIViewController {
     var isNotLoading = false
     //データリクエスト時に扱うユーザーID
     var userId: String?
+    //キーチェーン
+    var keychain = KeyChain()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        keychain.errorDelegate = self
         setProfile()
     }
     
@@ -96,7 +99,6 @@ class MyPageViewController: UIViewController {
     }
     
     func setProfile() {
-        let keychain = KeyChain()
         guard let token = keychain.get() else { return }
         let authRequest = AuthDataNetworkService(token: token)
         authRequest.fetch(success: { (userData) in
@@ -179,6 +181,31 @@ extension MyPageViewController: UITableViewDataSource, UITableViewDelegate {
             getData(requestAirticleData: myItemDataRequest)
             
         }
+    }
+    
+}
+
+extension MyPageViewController: ErrorDelegate {
+    func segueErrorViewController(qiitaError: QiitaError) {
+        guard let nib = Bundle.main.loadNibNamed("ErrorView", owner: self, options: nil) else { return }
+        let errorView = nib.first as! ErrorView
+        errorView.checkSafeArea(viewController: self)
+        errorView.errorDelegate = self
+        errorView.qiitaError = qiitaError
+        errorView.setConfig()
+        view.addSubview(errorView)
+    }
+    
+    func backToLoginViewController() {
+        let identifier = ViewControllerIdentifier.login.rawValue
+        if let storyboard = self.storyboard,
+           let navigationController = self.navigationController {
+            let loginViewController = storyboard.instantiateViewController(identifier: identifier) as! LoginViewController
+            navigationController.pushViewController(loginViewController, animated: true)
+        }
+    }
+    
+    func reload() {        
     }
     
     

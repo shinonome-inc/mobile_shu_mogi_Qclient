@@ -11,7 +11,7 @@
         <!--Login View Controller-->
         <scene sceneID="iku-Z5-h21">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="b0C-cx-wVq" customClass="LoginViewController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" hidesBottomBarWhenPushed="YES" id="b0C-cx-wVq" customClass="LoginViewController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hdy-WR-4R6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -34,10 +34,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath=" layer.cornerRadius">
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="8"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="b0C-cx-wVq" id="NQo-rG-gMU"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="001-Vu-6nT">
                                 <rect key="frame" x="20" y="719" width="374" height="62"/>
@@ -50,8 +53,8 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath=" layer.cornerRadius">
-                                        <nil key="value"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -69,12 +72,12 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath=" layer.cornerRadius">
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="8"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="HJO-XP-GKx" kind="show" identifier="FromLoginToTabBarController" id="ROs-X6-VR6"/>
+                                    <action selector="useAppWithoutLogin:" destination="b0C-cx-wVq" eventType="touchUpInside" id="q0l-2U-gWJ"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UP5-xI-fam">
@@ -108,6 +111,7 @@
                         <outlet property="loginButton" destination="001-Vu-6nT" id="ueN-U8-sOI"/>
                         <outlet property="notLoginButton" destination="l7i-j8-3Fw" id="ec4-IB-mHb"/>
                         <outlet property="tokenTextField" destination="OcD-zW-oWe" id="46e-R9-iH0"/>
+                        <segue destination="HJO-XP-GKx" kind="show" identifier="FromLoginToTabBarController" id="xHA-hM-spd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R4y-o7-Clg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -117,7 +121,7 @@
         <!--Tag-->
         <scene sceneID="NQL-CJ-jTd">
             <objects>
-                <viewController id="qIu-wI-ptY" customClass="TagListViewController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TagListViewController" id="qIu-wI-ptY" customClass="TagListViewController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hck-QS-bH8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -201,7 +205,7 @@
         <!--Feed-->
         <scene sceneID="G8n-w1-qVX">
             <objects>
-                <viewController storyboardIdentifier="Feed" id="pp6-ne-L28" customClass="FeedViewController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FeedViewController" id="pp6-ne-L28" customClass="FeedViewController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4aI-Xm-Pkb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -331,13 +335,13 @@
         <!--Article Page View Controller-->
         <scene sceneID="yKx-KX-Law">
             <objects>
-                <viewController id="5Wb-zf-nuJ" customClass="ArticlePageViewController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ArticlePageViewController" id="5Wb-zf-nuJ" customClass="ArticlePageViewController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vi8-tX-uUC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4iS-Z1-fpH">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -366,7 +370,7 @@
         <!--Tag Detail List View Controller-->
         <scene sceneID="bOE-u2-rMA">
             <objects>
-                <viewController id="FYr-6k-k6w" customClass="TagDetailListViewController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TagDetailViewController" id="FYr-6k-k6w" customClass="TagDetailListViewController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bfa-xj-zQh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -480,7 +484,7 @@
         <!--My Page-->
         <scene sceneID="Kan-fl-fqk">
             <objects>
-                <viewController id="d4v-Os-75q" customClass="MyPageViewController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyPageViewController" id="d4v-Os-75q" customClass="MyPageViewController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JHn-II-d3M">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -637,7 +641,7 @@
         <!--User List View Controller-->
         <scene sceneID="JhV-Ub-BDy">
             <objects>
-                <viewController id="kEE-um-ZMT" customClass="UserListViewController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserListViewController" id="kEE-um-ZMT" customClass="UserListViewController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wt4-UB-pK9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -767,6 +771,91 @@
             </objects>
             <point key="canvasLocation" x="794" y="74"/>
         </scene>
+        <!--Error View Controller-->
+        <scene sceneID="pzH-Ot-fOE">
+            <objects>
+                <viewController storyboardIdentifier="ErrorViewController" id="bZd-Bw-Gkw" customClass="ErrorViewController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="akn-Rg-euX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OaP-fY-nxG">
+                                <rect key="frame" x="174.5" y="368.5" width="65" height="39"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DNs-ef-XXh">
+                                <rect key="frame" x="16" y="419.5" width="382" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Slu-aC-C6Y">
+                                <rect key="frame" x="20" y="720" width="374" height="62"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="62" id="acA-Mt-Bc3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="RELOAD">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="reload:" destination="bZd-Bw-Gkw" eventType="touchUpInside" id="noH-Ud-I69"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oKs-JZ-QUH">
+                                <rect key="frame" x="20" y="798" width="374" height="62"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="62" id="rCi-qj-Gaq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="ログイン画面に戻る">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="backToLoginButtonTapped:" destination="bZd-Bw-Gkw" eventType="touchUpInside" id="FPF-RZ-mPT"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="mpO-er-PLJ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="DNs-ef-XXh" firstAttribute="leading" secondItem="mpO-er-PLJ" secondAttribute="leading" constant="16" id="F8H-70-Gzn"/>
+                            <constraint firstItem="OaP-fY-nxG" firstAttribute="centerX" secondItem="akn-Rg-euX" secondAttribute="centerX" id="KbY-c3-g1M"/>
+                            <constraint firstItem="oKs-JZ-QUH" firstAttribute="bottom" secondItem="akn-Rg-euX" secondAttribute="bottom" constant="-36" id="fS4-IP-EIv"/>
+                            <constraint firstItem="mpO-er-PLJ" firstAttribute="trailing" secondItem="oKs-JZ-QUH" secondAttribute="trailing" constant="20" id="gLm-hH-QEW"/>
+                            <constraint firstItem="DNs-ef-XXh" firstAttribute="top" secondItem="OaP-fY-nxG" secondAttribute="bottom" constant="12" id="iwV-n5-8sW"/>
+                            <constraint firstItem="oKs-JZ-QUH" firstAttribute="top" secondItem="Slu-aC-C6Y" secondAttribute="bottom" constant="16" id="mIe-nx-fV7"/>
+                            <constraint firstItem="DNs-ef-XXh" firstAttribute="centerX" secondItem="akn-Rg-euX" secondAttribute="centerX" id="mji-7K-ISY"/>
+                            <constraint firstItem="oKs-JZ-QUH" firstAttribute="leading" secondItem="mpO-er-PLJ" secondAttribute="leading" constant="20" id="pLE-18-mYR"/>
+                            <constraint firstItem="Slu-aC-C6Y" firstAttribute="leading" secondItem="mpO-er-PLJ" secondAttribute="leading" constant="20" id="s1a-cL-cZm"/>
+                            <constraint firstItem="OaP-fY-nxG" firstAttribute="centerY" secondItem="akn-Rg-euX" secondAttribute="centerY" constant="-60" id="sBW-xN-tPP"/>
+                            <constraint firstItem="mpO-er-PLJ" firstAttribute="trailing" secondItem="Slu-aC-C6Y" secondAttribute="trailing" constant="20" id="zPU-m2-Z9i"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backLoginVCButton" destination="oKs-JZ-QUH" id="wqH-HY-4q5"/>
+                        <outlet property="errorMessageLabel" destination="DNs-ef-XXh" id="52c-WT-XYK"/>
+                        <outlet property="reloadButton" destination="Slu-aC-C6Y" id="yZg-XX-FDh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qjL-3D-01a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2175" y="74"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="tAW-m9-x2k">
             <objects>
@@ -845,7 +934,7 @@
         <!--User Profile-->
         <scene sceneID="hma-2Z-vbW">
             <objects>
-                <viewController id="hOO-eJ-Pkf" customClass="UserDetailViewController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserDetailViewController" id="hOO-eJ-Pkf" customClass="UserDetailViewController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4Sh-d7-Rgw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1002,7 +1091,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="sSv-pR-fSU"/>
-        <segue reference="19S-FT-jNr"/>
+        <segue reference="pXV-9v-0ad"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="person" catalog="system" width="128" height="117"/>

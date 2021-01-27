@@ -9,6 +9,7 @@ import Foundation
 
 class AuthDataNetworkService {
     var token: String?
+    var errorDelegate: ErrorDelegate?
     
     init(token: String?) {
         self.token = token
@@ -45,9 +46,13 @@ class AuthDataNetworkService {
                     if let message = exceptionData.message,
                        let type = exceptionData.type {
                         print("message: \(message), type: \(type)")
+                        self.showErrorView(qiitaError: .rateLimitExceededError)
+                    } else {
+                        self.showErrorView(qiitaError: .unexpectedError)
                     }
                 } else {
                     print("Failed to get error message.")
+                    self.showErrorView(qiitaError: .unexpectedError)
                 }
                 if let error = response.error {
                     failure(error as NSError)
@@ -57,6 +62,13 @@ class AuthDataNetworkService {
             success(exportData)
         }
         
-       
+    }
+    
+    func showErrorView(qiitaError: QiitaError) {
+        if let errorDelegate = self.errorDelegate {
+            errorDelegate.segueErrorViewController(qiitaError: qiitaError)
+        } else {
+            print("⚠️ ErrorDelegate: nil")
+        }
     }
 }
