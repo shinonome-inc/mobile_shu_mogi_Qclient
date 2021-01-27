@@ -37,6 +37,7 @@ class MyPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         keychain.errorDelegate = self
+        hideUserItems()
         setProfile()
     }
     
@@ -145,6 +146,7 @@ class MyPageViewController: UIViewController {
                 }
             })
         }
+        showUserItems()
     }
 }
 
@@ -183,6 +185,23 @@ extension MyPageViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+    func hideUserItems() {
+        userNameLabel.isHidden = true
+        userIdLabel.isHidden = true
+        userImageView.isHidden = true
+        userDiscriptionLabel.isHidden = true
+        followButton.isHidden = true
+        follwerButton.isHidden = true
+    }
+    
+    func showUserItems() {
+        userNameLabel.isHidden = false
+        userIdLabel.isHidden = false
+        userImageView.isHidden = false
+        userDiscriptionLabel.isHidden = false
+        followButton.isHidden = false
+        follwerButton.isHidden = false
+    }
 }
 
 extension MyPageViewController: ErrorDelegate {
