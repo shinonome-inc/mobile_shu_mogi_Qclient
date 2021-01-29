@@ -225,8 +225,7 @@ extension MyPageViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension MyPageViewController: ErrorDelegate {
     func segueErrorViewController(qiitaError: QiitaError) {
-        guard let nib = Bundle.main.loadNibNamed("ErrorView", owner: self, options: nil) else { return }
-        let errorView = nib.first as! ErrorView
+        let errorView = ErrorView.make()
         errorView.checkSafeArea(viewController: self)
         errorView.errorDelegate = self
         errorView.qiitaError = qiitaError

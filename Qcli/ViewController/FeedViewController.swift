@@ -168,8 +168,9 @@ extension FeedViewController: ErrorDelegate {
     
     func segueErrorViewController(qiitaError: QiitaError) {
         //↓ErrorViewを使う
-        guard let nib = Bundle.main.loadNibNamed("ErrorView", owner: self, options: nil) else { return }
-        let errorView = nib.first as! ErrorView
+        //guard let nib = Bundle.main.loadNibNamed("ErrorView", owner: self, options: nil) else { return }
+        //let errorView = nib.first as! ErrorView
+        let errorView = ErrorView.make()
         errorView.checkSafeArea(viewController: self)
         errorView.errorDelegate = self
         errorView.qiitaError = qiitaError
