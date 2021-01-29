@@ -13,7 +13,11 @@ class TagListViewController: UIViewController {
     
     @IBOutlet weak var tagListTableView: UITableView!
     //最初に取得する記事欄のデータ
-    var dataItems = [TagData]()
+    var dataItems = [TagData]() {
+        didSet {
+            tagListTableView.reloadData()
+        }
+    }
     //画面遷移時のデータ受け渡し用
     var sendData: TagData?
     //スクロールデータ更新用のページカウント
@@ -31,6 +35,11 @@ class TagListViewController: UIViewController {
         tagListDataRequest = TagDataNetworkService(sortDict: [QueryOption.sort:SortOption.count])
         tagListDataRequest.errorDelegate = self
         getTagListData(requestTagListData: tagListDataRequest)
+        
+        //set refresh control
+        tagListTableView.refreshControl = UIRefreshControl()
+        guard let refreshControl = tagListTableView.refreshControl else { return }
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
        
     //apiを叩きデータを保存する
@@ -67,6 +76,15 @@ class TagListViewController: UIViewController {
                 destinationVC.receiveData = sendData
             }
         }
+    }
+    
+    @objc func refresh() {
+        dataItems.removeAll()
+        pageCount = 1
+        tagListDataRequest.pageNumber = pageCount
+        getTagListData(requestTagListData: tagListDataRequest)
+        guard let refreshControl = tagListTableView.refreshControl else { return }
+        refreshControl.endRefreshing()
     }
 }
 extension TagListViewController: UITableViewDelegate, UITableViewDataSource {

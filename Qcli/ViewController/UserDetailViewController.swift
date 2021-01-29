@@ -20,7 +20,11 @@ class UserDetailViewController: UIViewController {
     //UserListVCから受け取るデータ
     var receivedData: UserDetailData?
     //取得する記事データのリスト
-    var dataItems = [ArticleData]()
+    var dataItems = [ArticleData]() {
+        didSet {
+            articleTableView.reloadData()
+        }
+    }
     //UserListVC用受け渡しデータ
     var sendUserListType: UserListType?
     //画面遷移時のデータ受け渡し用
@@ -38,6 +42,10 @@ class UserDetailViewController: UIViewController {
         super.viewDidLoad()
         guard let userDetailData = receivedData else { return }
         setProfile(model: userDetailData)
+        //set refresh control
+        articleTableView.refreshControl = UIRefreshControl()
+        guard let refreshControl = articleTableView.refreshControl else { return }
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
     @IBAction func followButtonTapped(_ sender: Any) {
@@ -131,6 +139,15 @@ class UserDetailViewController: UIViewController {
                 }
             })
         }
+    }
+    
+    @objc func refresh() {
+        dataItems.removeAll()
+        pageCount = 1
+        myItemDataRequest.pageNumber = pageCount
+        getData(requestAirticleData: myItemDataRequest)
+        guard let refreshControl = articleTableView.refreshControl else { return }
+        refreshControl.endRefreshing()
     }
 }
 

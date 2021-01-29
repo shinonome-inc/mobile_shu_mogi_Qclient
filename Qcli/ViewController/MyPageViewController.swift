@@ -18,7 +18,11 @@ class MyPageViewController: UIViewController {
     @IBOutlet weak var articleTableView: UITableView!
     
     //取得する記事データのリスト
-    var dataItems = [ArticleData]()
+    var dataItems = [ArticleData]() {
+        didSet {
+            articleTableView.reloadData()
+        }
+    }
     //UserListVC用受け渡しデータ
     var sendUserListType: UserListType?
     //画面遷移時のデータ受け渡し用
@@ -39,6 +43,10 @@ class MyPageViewController: UIViewController {
         keychain.errorDelegate = self
         hideUserItems()
         setProfile()
+        //set refresh control
+        articleTableView.refreshControl = UIRefreshControl()
+        guard let refreshControl = articleTableView.refreshControl else { return }
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
     @IBAction func followButtonTapped(_ sender: Any) {
@@ -80,12 +88,13 @@ class MyPageViewController: UIViewController {
                    let articleURL = oneAirticleData.url {
                     let oneData = ArticleData(imgURL: imageURL, titleText: title, createdAt: createdAt, likeNumber: like, articleURL: articleURL)
                     self.dataItems.append(oneData)
+                    print("dataItems \(self.dataItems)")
+                    print("dataItems appended")
                 } else {
                     print("ERROR: This data ↓ allocation failed.")
                     print(oneAirticleData)
                 }
             }
-            self.articleTableView.reloadData()
             print("👍 Reload the article data")
             self.isNotLoading = true
             
@@ -147,6 +156,16 @@ class MyPageViewController: UIViewController {
             })
         }
         showUserItems()
+    }
+    
+    @objc func refresh() {
+        dataItems.removeAll()
+        pageCount = 1
+        myItemDataRequest.pageNumber = pageCount
+        getData(requestAirticleData: myItemDataRequest)
+        articleTableView.reloadData()
+        guard let refreshControl = articleTableView.refreshControl else { return }
+        refreshControl.endRefreshing()
     }
 }
 

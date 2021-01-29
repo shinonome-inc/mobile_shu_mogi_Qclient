@@ -14,7 +14,11 @@ class TagDetailListViewController: UIViewController {
     //データリクエストの宣言
     var articleListDataRequest: AirticleDataNetworkService!
     //最初に取得する記事欄のデータ
-    var dataItems = [ArticleData]()
+    var dataItems = [ArticleData]() {
+        didSet {
+            articleTableView.reloadData()
+        }
+    }
     //画面遷移時のデータ受け渡し用
     var sendData: ArticleData?
     //スクロールデータ更新用のページカウント
@@ -32,6 +36,10 @@ class TagDetailListViewController: UIViewController {
             getData(requestAirticleData: articleListDataRequest)
             navigationItem.title = receiveData.tagTitle
         }
+        //set refresh control
+        articleTableView.refreshControl = UIRefreshControl()
+        guard let refreshControl = articleTableView.refreshControl else { return }
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     //apiを叩きデータを保存する
     func getData(requestAirticleData: AirticleDataNetworkService) {
@@ -49,7 +57,6 @@ class TagDetailListViewController: UIViewController {
                     print(oneAirticleData)
                 }
             }
-            self.articleTableView.reloadData()
             print("👍 Reload the article data")
             self.isNotLoading = true
             
@@ -85,6 +92,15 @@ class TagDetailListViewController: UIViewController {
                 articlePageVC.articleData = sendData
             }
         }
+    }
+    
+    @objc func refresh() {
+        dataItems.removeAll()
+        pageCount = 1
+        articleListDataRequest.pageNumber = pageCount
+        getData(requestAirticleData: articleListDataRequest)
+        guard let refreshControl = articleTableView.refreshControl else { return }
+        refreshControl.endRefreshing()
     }
 }
 
