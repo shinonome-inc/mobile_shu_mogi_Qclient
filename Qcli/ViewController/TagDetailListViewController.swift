@@ -28,6 +28,7 @@ class TagDetailListViewController: UIViewController {
         articleTableView.delegate = self
         if let receiveData = receiveData {
             articleListDataRequest = AirticleDataNetworkService(searchDict: [SearchOption.tag:receiveData.tagTitle])
+            articleListDataRequest.errorDelegate = self
             getData(requestAirticleData: articleListDataRequest)
             navigationItem.title = receiveData.tagTitle
         }
@@ -107,4 +108,30 @@ extension TagDetailListViewController: UITableViewDataSource, UITableViewDelegat
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: SegueId.fromTagDetailToArticlePage.rawValue, sender: nil)
     }
+}
+
+extension TagDetailListViewController: ErrorDelegate {
+    func backToLoginViewController() {
+        let identifier = ViewControllerIdentifier.login.rawValue
+        if let storyboard = self.storyboard,
+           let navigationController = self.navigationController {
+            let loginViewController = storyboard.instantiateViewController(identifier: identifier) as! LoginViewController
+            navigationController.pushViewController(loginViewController, animated: true)
+        }
+    }
+    
+    func segueErrorViewController(qiitaError: QiitaError) {
+        guard let nib = Bundle.main.loadNibNamed("ErrorView", owner: self, options: nil) else { return }
+        let errorView = nib.first as! ErrorView
+        errorView.checkSafeArea(viewController: self)
+        errorView.errorDelegate = self
+        errorView.qiitaError = qiitaError
+        errorView.setConfig()
+        view.addSubview(errorView)
+    }
+    
+    func reload() {
+        getData(requestAirticleData: articleListDataRequest)
+    }
+        
 }
