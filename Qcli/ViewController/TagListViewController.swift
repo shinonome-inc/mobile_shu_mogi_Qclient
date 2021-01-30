@@ -26,7 +26,8 @@ class TagListViewController: UIViewController {
     var tagListDataRequest: TagDataNetworkService!
     //リクエストできる状態か判定
     var isNotLoading = false
-    
+    //set refreshControl
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,8 +38,7 @@ class TagListViewController: UIViewController {
         getTagListData(requestTagListData: tagListDataRequest)
         
         //set refresh control
-        tagListTableView.refreshControl = UIRefreshControl()
-        guard let refreshControl = tagListTableView.refreshControl else { return }
+        tagListTableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
        
@@ -83,7 +83,6 @@ class TagListViewController: UIViewController {
         pageCount = 1
         tagListDataRequest.pageNumber = pageCount
         getTagListData(requestTagListData: tagListDataRequest)
-        guard let refreshControl = tagListTableView.refreshControl else { return }
         refreshControl.endRefreshing()
     }
 }

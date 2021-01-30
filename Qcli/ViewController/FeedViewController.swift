@@ -29,6 +29,8 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
     var pageCount = 1
     //リクエストできる状態か判定
     var isNotLoading = false
+    //set refreshControl
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,8 +41,7 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
         //segmented control 設定
         setSegmentedControl()
         //set refresh control
-        articleTableView.refreshControl = UIRefreshControl()
-        guard let refreshControl = articleTableView.refreshControl else { return }
+        articleTableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
@@ -113,7 +114,6 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
         pageCount = 1
         articleListDataRequest.pageNumber = pageCount
         getData(requestAirticleData: articleListDataRequest)
-        guard let refreshControl = articleTableView.refreshControl else { return }
         refreshControl.endRefreshing()
     }
 }

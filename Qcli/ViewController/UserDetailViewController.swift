@@ -37,14 +37,15 @@ class UserDetailViewController: UIViewController {
     var isNotLoading = false
     //データリクエスト時に扱うユーザーID
     var userId: String?
+    //set refreshControl
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let userDetailData = receivedData else { return }
         setProfile(model: userDetailData)
         //set refresh control
-        articleTableView.refreshControl = UIRefreshControl()
-        guard let refreshControl = articleTableView.refreshControl else { return }
+        articleTableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
@@ -146,7 +147,6 @@ class UserDetailViewController: UIViewController {
         pageCount = 1
         myItemDataRequest.pageNumber = pageCount
         getData(requestAirticleData: myItemDataRequest)
-        guard let refreshControl = articleTableView.refreshControl else { return }
         refreshControl.endRefreshing()
     }
 }

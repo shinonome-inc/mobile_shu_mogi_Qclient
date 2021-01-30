@@ -37,6 +37,8 @@ class MyPageViewController: UIViewController {
     var userId: String?
     //キーチェーン
     var keychain = KeyChain()
+    //set refreshControl
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,8 +46,7 @@ class MyPageViewController: UIViewController {
         hideUserItems()
         setProfile()
         //set refresh control
-        articleTableView.refreshControl = UIRefreshControl()
-        guard let refreshControl = articleTableView.refreshControl else { return }
+        articleTableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
@@ -164,7 +165,6 @@ class MyPageViewController: UIViewController {
         myItemDataRequest.pageNumber = pageCount
         getData(requestAirticleData: myItemDataRequest)
         articleTableView.reloadData()
-        guard let refreshControl = articleTableView.refreshControl else { return }
         refreshControl.endRefreshing()
     }
 }
