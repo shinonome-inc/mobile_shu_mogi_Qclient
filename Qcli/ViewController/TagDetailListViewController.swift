@@ -14,13 +14,19 @@ class TagDetailListViewController: UIViewController {
     //データリクエストの宣言
     var articleListDataRequest: AirticleDataNetworkService!
     //最初に取得する記事欄のデータ
-    var dataItems = [ArticleData]()
+    var dataItems = [ArticleData]() {
+        didSet {
+            articleTableView.reloadData()
+        }
+    }
     //画面遷移時のデータ受け渡し用
     var sendData: ArticleData?
     //スクロールデータ更新用のページカウント
     var pageCount = 1
     //リクエストできる状態か判定
     var isNotLoading = false
+    //set refreshControl
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +34,13 @@ class TagDetailListViewController: UIViewController {
         articleTableView.delegate = self
         if let receiveData = receiveData {
             articleListDataRequest = AirticleDataNetworkService(searchDict: [SearchOption.tag:receiveData.tagTitle])
+            articleListDataRequest.errorDelegate = self
             getData(requestAirticleData: articleListDataRequest)
             navigationItem.title = receiveData.tagTitle
         }
+        //set refresh control
+        articleTableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     //apiを叩きデータを保存する
     func getData(requestAirticleData: AirticleDataNetworkService) {
@@ -48,7 +58,6 @@ class TagDetailListViewController: UIViewController {
                     print(oneAirticleData)
                 }
             }
-            self.articleTableView.reloadData()
             print("👍 Reload the article data")
             self.isNotLoading = true
             
@@ -85,6 +94,14 @@ class TagDetailListViewController: UIViewController {
             }
         }
     }
+    
+    @objc func refresh() {
+        dataItems.removeAll()
+        pageCount = 1
+        articleListDataRequest.pageNumber = pageCount
+        getData(requestAirticleData: articleListDataRequest)
+        refreshControl.endRefreshing()
+    }
 }
 
 extension TagDetailListViewController: UITableViewDataSource, UITableViewDelegate {
@@ -107,4 +124,29 @@ extension TagDetailListViewController: UITableViewDataSource, UITableViewDelegat
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: SegueId.fromTagDetailToArticlePage.rawValue, sender: nil)
     }
+}
+
+extension TagDetailListViewController: ErrorDelegate {
+    func backToLoginViewController() {
+        let identifier = ViewControllerIdentifier.login.rawValue
+        if let storyboard = self.storyboard,
+           let navigationController = self.navigationController {
+            let loginViewController = storyboard.instantiateViewController(identifier: identifier) as! LoginViewController
+            navigationController.pushViewController(loginViewController, animated: true)
+        }
+    }
+    
+    func segueErrorViewController(qiitaError: QiitaError) {
+        let errorView = ErrorView.make()
+        errorView.checkSafeArea(viewController: self)
+        errorView.errorDelegate = self
+        errorView.qiitaError = qiitaError
+        errorView.setConfig()
+        view.addSubview(errorView)
+    }
+    
+    func reload() {
+        getData(requestAirticleData: articleListDataRequest)
+    }
+        
 }

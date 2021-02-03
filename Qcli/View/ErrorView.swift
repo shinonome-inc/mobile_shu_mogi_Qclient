@@ -16,6 +16,13 @@ class ErrorView: UIView {
     var qiitaError: QiitaError?
     var errorDelegate: ErrorDelegate?
     
+    static func make() -> ErrorView {
+        let view = UINib(nibName: "ErrorView", bundle: nil)
+            .instantiate(withOwner: nil, options: nil)
+            .first as! ErrorView
+        return view
+    }
+    
     @IBAction func backToLoginButtonTapped(_ sender: Any) {
         self.removeFromSuperview()
         if let errorDelegate = errorDelegate {

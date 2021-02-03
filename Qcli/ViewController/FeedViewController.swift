@@ -12,7 +12,11 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var segmentedControll: UISegmentedControl!
     @IBOutlet weak var articleTableView: UITableView!
     //最初に取得する記事欄のデータ
-    var dataItems = [ArticleData]()
+    var dataItems = [ArticleData]() {
+        didSet {
+            articleTableView.reloadData()
+        }
+    }
     //画面遷移時のデータ受け渡し用
     var sendData: ArticleData?
     //segmented controllの選択肢
@@ -25,6 +29,8 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
     var pageCount = 1
     //リクエストできる状態か判定
     var isNotLoading = false
+    //set refreshControl
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +40,9 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
         getData(requestAirticleData: articleListDataRequest)
         //segmented control 設定
         setSegmentedControl()
+        //set refresh control
+        articleTableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
     //テキストを入力してから、リクエストを送る方法
@@ -80,7 +89,6 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
                     print(oneAirticleData)
                 }
             }
-            self.articleTableView.reloadData()
             print("👍 Reload the article data")
             self.isNotLoading = true
             
@@ -99,6 +107,14 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
         for (i,x) in segmentedItems.enumerated() {
             segmentedControll.insertSegment(withTitle: x.rawValue, at: i, animated: true)
         }
+    }
+    
+    @objc func refresh() {
+        dataItems.removeAll()
+        pageCount = 1
+        articleListDataRequest.pageNumber = pageCount
+        getData(requestAirticleData: articleListDataRequest)
+        refreshControl.endRefreshing()
     }
 }
 
@@ -121,6 +137,7 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
         sendData = dataItems[indexPath.row]
         //tableviewcell選択解除
         tableView.deselectRow(at: indexPath, animated: true)
+        print("dataItems しばらくたって　get: \(dataItems.count)")
         performSegue(withIdentifier: SegueId.fromFeedToArticle.rawValue, sender: nil)
     }
     //tableviewをスクロールしたら最下のcellにたどり着く前にデータ更新を行う
@@ -151,8 +168,9 @@ extension FeedViewController: ErrorDelegate {
     
     func segueErrorViewController(qiitaError: QiitaError) {
         //↓ErrorViewを使う
-        guard let nib = Bundle.main.loadNibNamed("ErrorView", owner: self, options: nil) else { return }
-        let errorView = nib.first as! ErrorView
+        //guard let nib = Bundle.main.loadNibNamed("ErrorView", owner: self, options: nil) else { return }
+        //let errorView = nib.first as! ErrorView
+        let errorView = ErrorView.make()
         errorView.checkSafeArea(viewController: self)
         errorView.errorDelegate = self
         errorView.qiitaError = qiitaError

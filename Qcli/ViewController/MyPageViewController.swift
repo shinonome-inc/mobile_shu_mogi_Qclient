@@ -18,7 +18,11 @@ class MyPageViewController: UIViewController {
     @IBOutlet weak var articleTableView: UITableView!
     
     //取得する記事データのリスト
-    var dataItems = [ArticleData]()
+    var dataItems = [ArticleData]() {
+        didSet {
+            articleTableView.reloadData()
+        }
+    }
     //UserListVC用受け渡しデータ
     var sendUserListType: UserListType?
     //画面遷移時のデータ受け渡し用
@@ -33,11 +37,17 @@ class MyPageViewController: UIViewController {
     var userId: String?
     //キーチェーン
     var keychain = KeyChain()
+    //set refreshControl
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         keychain.errorDelegate = self
+        hideUserItems()
         setProfile()
+        //set refresh control
+        articleTableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
     @IBAction func followButtonTapped(_ sender: Any) {
@@ -79,12 +89,13 @@ class MyPageViewController: UIViewController {
                    let articleURL = oneAirticleData.url {
                     let oneData = ArticleData(imgURL: imageURL, titleText: title, createdAt: createdAt, likeNumber: like, articleURL: articleURL)
                     self.dataItems.append(oneData)
+                    print("dataItems \(self.dataItems)")
+                    print("dataItems appended")
                 } else {
                     print("ERROR: This data ↓ allocation failed.")
                     print(oneAirticleData)
                 }
             }
-            self.articleTableView.reloadData()
             print("👍 Reload the article data")
             self.isNotLoading = true
             
@@ -145,6 +156,16 @@ class MyPageViewController: UIViewController {
                 }
             })
         }
+        showUserItems()
+    }
+    
+    @objc func refresh() {
+        dataItems.removeAll()
+        pageCount = 1
+        myItemDataRequest.pageNumber = pageCount
+        getData(requestAirticleData: myItemDataRequest)
+        articleTableView.reloadData()
+        refreshControl.endRefreshing()
     }
 }
 
@@ -183,12 +204,28 @@ extension MyPageViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+    func hideUserItems() {
+        userNameLabel.isHidden = true
+        userIdLabel.isHidden = true
+        userImageView.isHidden = true
+        userDiscriptionLabel.isHidden = true
+        followButton.isHidden = true
+        follwerButton.isHidden = true
+    }
+    
+    func showUserItems() {
+        userNameLabel.isHidden = false
+        userIdLabel.isHidden = false
+        userImageView.isHidden = false
+        userDiscriptionLabel.isHidden = false
+        followButton.isHidden = false
+        follwerButton.isHidden = false
+    }
 }
 
 extension MyPageViewController: ErrorDelegate {
     func segueErrorViewController(qiitaError: QiitaError) {
-        guard let nib = Bundle.main.loadNibNamed("ErrorView", owner: self, options: nil) else { return }
-        let errorView = nib.first as! ErrorView
+        let errorView = ErrorView.make()
         errorView.checkSafeArea(viewController: self)
         errorView.errorDelegate = self
         errorView.qiitaError = qiitaError
