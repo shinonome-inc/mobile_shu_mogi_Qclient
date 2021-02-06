@@ -9,5 +9,6 @@ target 'Qcli' do
   pod 'Alamofire', '~> 5.2'
   pod 'KeychainAccess'
   pod 'Kingfisher', '~> 5.0'
+  pod "MarkdownView"
 
 end

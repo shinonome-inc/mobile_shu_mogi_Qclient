@@ -7,9 +7,11 @@
 
 import UIKit
 import WebKit
+import MarkdownView
 
 class ArticlePageViewController: UIViewController {
     
+    @IBOutlet weak var webViewArea: UIView!
     @IBOutlet weak var webView: WKWebView!
     var urlStr: String!
     var articleData: ArticleData?
@@ -17,6 +19,12 @@ class ArticlePageViewController: UIViewController {
         super.viewDidLoad()
         webView.navigationDelegate = self
         webViewLoad(articleData: articleData)
+    }
+    
+    func makeMarkdownView() -> MarkdownView {
+        let md = MarkdownView()
+        md.navigationDelegate
+        return md
     }
     
     func webViewLoad(articleData: ArticleData?) {
@@ -35,6 +43,12 @@ extension ArticlePageViewController: WKNavigationDelegate {
         segueErrorViewController(qiitaError: .connectionError)
     }
 
+}
+
+extension MarkdownView: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError: Error) {
+        segueErrorViewController(qiitaError: .connectionError)
+    }
 }
 
 extension ArticlePageViewController: ErrorDelegate {
