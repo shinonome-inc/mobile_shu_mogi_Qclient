@@ -20,11 +20,11 @@ class SettingViewController: UIViewController {
     }
     
     func tappedPPCell() {
-        print("tappedPPCell")
+        performSegue(withIdentifier: SegueId.fromSettingToPrivacyPolicy.rawValue, sender: nil)
     }
     
     func tappedTOSCell() {
-        print("tappedTOSCell")
+        performSegue(withIdentifier: SegueId.fromSettingToTermsOfService.rawValue, sender: nil)
     }
     
     func tappedLogout() {

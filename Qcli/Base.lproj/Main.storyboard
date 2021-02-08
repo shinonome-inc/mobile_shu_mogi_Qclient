@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="niY-SG-oki">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -590,15 +590,15 @@
                     <navigationItem key="navigationItem" title="Setting" id="irc-QM-h8r"/>
                     <connections>
                         <outlet property="settingTableView" destination="Xhn-EU-Ig4" id="kp6-nE-c8A"/>
-                        <segue destination="ORn-OU-oeS" kind="presentation" id="7uv-Ws-T5b"/>
-                        <segue destination="oit-is-JyP" kind="presentation" id="9FN-XA-7gM"/>
+                        <segue destination="Wfh-lz-FUp" kind="presentation" identifier="fromSettingToPrivacyPolicy" id="7uv-Ws-T5b"/>
+                        <segue destination="nYA-Ot-6gW" kind="presentation" identifier="fromSettingToTermsOfService" id="9FN-XA-7gM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7aZ-DV-Hc3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2942" y="1805"/>
         </scene>
-        <!--View Controller-->
+        <!--プライバシーポリシー-->
         <scene sceneID="6rS-bz-EUH">
             <objects>
                 <viewController id="ORn-OU-oeS" sceneMemberID="viewController">
@@ -607,7 +607,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="deP-ct-27O">
-                                <rect key="frame" x="16" y="18" width="382" height="790"/>
+                                <rect key="frame" x="16" y="74" width="382" height="734"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <mutableString key="text">プライバシーポリシー
 
@@ -650,10 +650,11 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                             <constraint firstItem="GfJ-yf-TzJ" firstAttribute="bottom" secondItem="deP-ct-27O" secondAttribute="bottom" id="sMg-Lr-huI"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="プライバシーポリシー" id="T0f-VB-w53"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Ha-x5-VdR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3857" y="1805"/>
+            <point key="canvasLocation" x="4766.666666666667" y="1804.6875"/>
         </scene>
         <!--My Page-->
         <scene sceneID="Kan-fl-fqk">
@@ -1120,7 +1121,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
             <objects>
                 <viewController storyboardIdentifier="UserDetailViewController" id="hOO-eJ-Pkf" customClass="UserDetailViewController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4Sh-d7-Rgw">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pAQ-7Z-vc1">
@@ -1301,7 +1302,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
             </objects>
             <point key="canvasLocation" x="2942.0289855072465" y="1068.75"/>
         </scene>
-        <!--View Controller-->
+        <!--利用規約-->
         <scene sceneID="KUU-W5-KFO">
             <objects>
                 <viewController id="oit-is-JyP" sceneMemberID="viewController">
@@ -1310,7 +1311,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MTB-tB-lhh">
-                                <rect key="frame" x="16" y="18" width="382" height="790"/>
+                                <rect key="frame" x="16" y="74" width="382" height="734"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <mutableString key="text">Qiita Feed App プライバシーポリシー
 Shinonome, inc.（以下「当社」といいます。）は、当社が運営するサービス（以下「本サービス」といいます。）を提供するにあたり、個人情報保護に関する法規範を遵守し、以下のプライバシーポリシー（以下「本ポリシー」といいます。）に従って個人情報の適切な取得、利用、提供等を行います。
@@ -1367,10 +1368,47 @@ MAIL: Matarai@shinonome.io</mutableString>
                             <constraint firstItem="CF7-z2-uY6" firstAttribute="trailing" secondItem="MTB-tB-lhh" secondAttribute="trailing" constant="16" id="rtG-k9-qZd"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="利用規約" id="KJQ-sF-e9X"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QaW-zk-hJD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2942" y="2493"/>
+            <point key="canvasLocation" x="3850.7246376811595" y="2492.4107142857142"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="kIU-Sx-6Sv">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wfh-lz-FUp" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0Mr-E8-Pao">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ORn-OU-oeS" kind="relationship" relationship="rootViewController" id="7ub-A6-QP7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G9I-Ee-MXW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3856.521739130435" y="1804.6875"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Gbh-z3-S70">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nYA-Ot-6gW" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xGY-Oy-uxA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="oit-is-JyP" kind="relationship" relationship="rootViewController" id="kfR-zn-95w"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wAa-Vn-LBF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2940.579710144928" y="2492.4107142857142"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
