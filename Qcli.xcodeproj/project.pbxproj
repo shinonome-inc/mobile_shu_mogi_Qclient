@@ -14,6 +14,7 @@
 		0244246425CF9128006EF1DD /* SegueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0244246325CF9128006EF1DD /* SegueTableViewCell.swift */; };
 		0244246825CF9159006EF1DD /* RightDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0244246725CF9159006EF1DD /* RightDetailTableViewCell.swift */; };
 		0244246C25CF91BD006EF1DD /* SimpleTitileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0244246B25CF91BD006EF1DD /* SimpleTitileTableViewCell.swift */; };
+		0244247025CFFC53006EF1DD /* CellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0244246F25CFFC53006EF1DD /* CellType.swift */; };
 		024AA82225614B5400E502F5 /* ArticlePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024AA82125614B5400E502F5 /* ArticlePageViewController.swift */; };
 		024AA8462562546300E502F5 /* TagListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024AA8452562546300E502F5 /* TagListViewController.swift */; };
 		024AA8492562AA2800E502F5 /* TagListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024AA8482562AA2800E502F5 /* TagListTableViewCell.swift */; };
@@ -75,6 +76,7 @@
 		0244246325CF9128006EF1DD /* SegueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueTableViewCell.swift; sourceTree = "<group>"; };
 		0244246725CF9159006EF1DD /* RightDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightDetailTableViewCell.swift; sourceTree = "<group>"; };
 		0244246B25CF91BD006EF1DD /* SimpleTitileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTitileTableViewCell.swift; sourceTree = "<group>"; };
+		0244246F25CFFC53006EF1DD /* CellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellType.swift; sourceTree = "<group>"; };
 		024AA82125614B5400E502F5 /* ArticlePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlePageViewController.swift; sourceTree = "<group>"; };
 		024AA8452562546300E502F5 /* TagListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListViewController.swift; sourceTree = "<group>"; };
 		024AA8482562AA2800E502F5 /* TagListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListTableViewCell.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				0244246325CF9128006EF1DD /* SegueTableViewCell.swift */,
 				0244246725CF9159006EF1DD /* RightDetailTableViewCell.swift */,
 				0244246B25CF91BD006EF1DD /* SimpleTitileTableViewCell.swift */,
+				0244246F25CFFC53006EF1DD /* CellType.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -487,6 +490,7 @@
 				02A146C125A1861500285DD8 /* UserDetailViewController.swift in Sources */,
 				025353E525BBF555008F29F5 /* ErrorView.swift in Sources */,
 				0244246C25CF91BD006EF1DD /* SimpleTitileTableViewCell.swift in Sources */,
+				0244247025CFFC53006EF1DD /* CellType.swift in Sources */,
 				024AA82225614B5400E502F5 /* ArticlePageViewController.swift in Sources */,
 				023D026625999E7F0043FE29 /* ImageView+Kingfisher.swift in Sources */,
 				02A146A0259B675B00285DD8 /* MyPageViewController.swift in Sources */,

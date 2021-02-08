@@ -9,6 +9,7 @@ import UIKit
 
 class SegueTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var titleLabel: UILabel!
     
 
 }

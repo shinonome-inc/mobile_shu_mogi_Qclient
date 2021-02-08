@@ -9,6 +9,7 @@ import UIKit
 
 class SimpleTitileTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var titleLabel: UILabel!
     
 
 }
