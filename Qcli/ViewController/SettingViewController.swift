@@ -17,6 +17,8 @@ class SettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         settingTableView.reloadData()
+        //delete tableview fotter sepalator
+        settingTableView.tableFooterView = UIView()
     }
     
     func tappedPPCell() {
