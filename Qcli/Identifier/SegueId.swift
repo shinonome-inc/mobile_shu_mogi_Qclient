@@ -17,4 +17,6 @@ enum SegueId: String {
     case fromUserListToUserDetail = "FromUserListToUserDetail"
     case fromUserDetailToUserList = "FromUserDetailToUserList"
     case fromUserDetailToArticlePage = "FromUserDetailToArticlePage"
+    case fromSettingToPrivacyPolicy = "fromSettingToPrivacyPolicy"
+    case fromSettingToTermsOfService = "fromSettingToTermsOfService"
 }

@@ -10,6 +10,11 @@
 		020B886D2567C63500C2CFE2 /* QiitaModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020B886C2567C63500C2CFE2 /* QiitaModelData.swift */; };
 		02256F5A258F0CFD004882A6 /* TagDetailListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02256F59258F0CFD004882A6 /* TagDetailListViewController.swift */; };
 		023D026625999E7F0043FE29 /* ImageView+Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023D026525999E7F0043FE29 /* ImageView+Kingfisher.swift */; };
+		0244246025CF8B51006EF1DD /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0244245F25CF8B51006EF1DD /* SettingViewController.swift */; };
+		0244246425CF9128006EF1DD /* SegueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0244246325CF9128006EF1DD /* SegueTableViewCell.swift */; };
+		0244246825CF9159006EF1DD /* RightDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0244246725CF9159006EF1DD /* RightDetailTableViewCell.swift */; };
+		0244246C25CF91BD006EF1DD /* SimpleTitileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0244246B25CF91BD006EF1DD /* SimpleTitileTableViewCell.swift */; };
+		0244247025CFFC53006EF1DD /* CellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0244246F25CFFC53006EF1DD /* CellType.swift */; };
 		024AA82225614B5400E502F5 /* ArticlePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024AA82125614B5400E502F5 /* ArticlePageViewController.swift */; };
 		024AA8462562546300E502F5 /* TagListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024AA8452562546300E502F5 /* TagListViewController.swift */; };
 		024AA8492562AA2800E502F5 /* TagListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024AA8482562AA2800E502F5 /* TagListTableViewCell.swift */; };
@@ -67,6 +72,11 @@
 		020B886C2567C63500C2CFE2 /* QiitaModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaModelData.swift; sourceTree = "<group>"; };
 		02256F59258F0CFD004882A6 /* TagDetailListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDetailListViewController.swift; sourceTree = "<group>"; };
 		023D026525999E7F0043FE29 /* ImageView+Kingfisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+Kingfisher.swift"; sourceTree = "<group>"; };
+		0244245F25CF8B51006EF1DD /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		0244246325CF9128006EF1DD /* SegueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueTableViewCell.swift; sourceTree = "<group>"; };
+		0244246725CF9159006EF1DD /* RightDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightDetailTableViewCell.swift; sourceTree = "<group>"; };
+		0244246B25CF91BD006EF1DD /* SimpleTitileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTitileTableViewCell.swift; sourceTree = "<group>"; };
+		0244246F25CFFC53006EF1DD /* CellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellType.swift; sourceTree = "<group>"; };
 		024AA82125614B5400E502F5 /* ArticlePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlePageViewController.swift; sourceTree = "<group>"; };
 		024AA8452562546300E502F5 /* TagListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListViewController.swift; sourceTree = "<group>"; };
 		024AA8482562AA2800E502F5 /* TagListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListTableViewCell.swift; sourceTree = "<group>"; };
@@ -224,6 +234,7 @@
 				02A146A6259D92CB00285DD8 /* UserListViewController.swift */,
 				02A146C025A1861500285DD8 /* UserDetailViewController.swift */,
 				024DF53725AAF313007F2351 /* ErrorViewController.swift */,
+				0244245F25CF8B51006EF1DD /* SettingViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -245,6 +256,10 @@
 				024AA8482562AA2800E502F5 /* TagListTableViewCell.swift */,
 				02A14699259B44F700285DD8 /* MyPageTableViewCell.swift */,
 				02A146B2259EF74600285DD8 /* UserListTableViewCell.swift */,
+				0244246325CF9128006EF1DD /* SegueTableViewCell.swift */,
+				0244246725CF9159006EF1DD /* RightDetailTableViewCell.swift */,
+				0244246B25CF91BD006EF1DD /* SimpleTitileTableViewCell.swift */,
+				0244246F25CFFC53006EF1DD /* CellType.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -457,6 +472,7 @@
 				02A146AB259D94EC00285DD8 /* UnwrappedDataModel.swift in Sources */,
 				02C2667F257B915200FC6D6D /* AirticleDataNetworkService.swift in Sources */,
 				02C9880325897E7F00953B68 /* TagDataNetworkService.swift in Sources */,
+				0244246425CF9128006EF1DD /* SegueTableViewCell.swift in Sources */,
 				02E1368F256FDE7E0050E4E7 /* TestData.swift in Sources */,
 				02256F5A258F0CFD004882A6 /* TagDetailListViewController.swift in Sources */,
 				02A146EF25A851B300285DD8 /* SegueId.swift in Sources */,
@@ -466,12 +482,15 @@
 				02A146B3259EF74600285DD8 /* UserListTableViewCell.swift in Sources */,
 				028EE73425B1D7200062C079 /* ErrorDelegate.swift in Sources */,
 				02A146AF259DA70700285DD8 /* UserListType.swift in Sources */,
+				0244246825CF9159006EF1DD /* RightDetailTableViewCell.swift in Sources */,
 				024DF53025AACC00007F2351 /* LoginViewController+UITextFieldDelegate.swift in Sources */,
 				02A1469A259B44F700285DD8 /* MyPageTableViewCell.swift in Sources */,
 				024AA8492562AA2800E502F5 /* TagListTableViewCell.swift in Sources */,
 				024DF53825AAF313007F2351 /* ErrorViewController.swift in Sources */,
 				02A146C125A1861500285DD8 /* UserDetailViewController.swift in Sources */,
 				025353E525BBF555008F29F5 /* ErrorView.swift in Sources */,
+				0244246C25CF91BD006EF1DD /* SimpleTitileTableViewCell.swift in Sources */,
+				0244247025CFFC53006EF1DD /* CellType.swift in Sources */,
 				024AA82225614B5400E502F5 /* ArticlePageViewController.swift in Sources */,
 				023D026625999E7F0043FE29 /* ImageView+Kingfisher.swift in Sources */,
 				02A146A0259B675B00285DD8 /* MyPageViewController.swift in Sources */,
@@ -479,6 +498,7 @@
 				02A990EF255F5C5700082955 /* ArticleTableViewCell.swift in Sources */,
 				02C26683257B91F300FC6D6D /* RequestParametersCreater.swift in Sources */,
 				02A146A7259D92CB00285DD8 /* UserListViewController.swift in Sources */,
+				0244246025CF8B51006EF1DD /* SettingViewController.swift in Sources */,
 				02A990542557DAB900082955 /* AppDelegate.swift in Sources */,
 				02A9906F255907FE00082955 /* LoginViewController.swift in Sources */,
 				02E13693256FE7750050E4E7 /* ErrorData.swift in Sources */,

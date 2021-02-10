@@ -41,6 +41,7 @@ class KeyChain {
     func remove() {
         do {
             try tokenInfo.remove(KeychainValue.token.rawValue)
+            UserDefaults.standard.set(false, forKey: "isLogined")
             print("👍 Success: Delete your token in keychain")
         } catch let error {
             print("⚠️ ERROR: Could not delete token.")

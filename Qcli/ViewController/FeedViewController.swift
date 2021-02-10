@@ -137,7 +137,6 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
         sendData = dataItems[indexPath.row]
         //tableviewcell選択解除
         tableView.deselectRow(at: indexPath, animated: true)
-        print("dataItems しばらくたって　get: \(dataItems.count)")
         performSegue(withIdentifier: SegueId.fromFeedToArticle.rawValue, sender: nil)
     }
     //tableviewをスクロールしたら最下のcellにたどり着く前にデータ更新を行う
