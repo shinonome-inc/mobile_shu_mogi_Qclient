@@ -17,7 +17,7 @@ class SettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         settingTableView.reloadData()
-        //delete tableview fotter sepalator
+        //delete tableview footter sepalator
         settingTableView.tableFooterView = UIView()
     }
     
