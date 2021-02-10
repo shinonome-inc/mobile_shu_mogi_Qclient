@@ -346,7 +346,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4iS-Z1-fpH">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -358,7 +358,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="4iS-Z1-fpH" firstAttribute="leading" secondItem="O1G-Jc-xa5" secondAttribute="leading" id="V4y-Hr-xYP"/>
-                            <constraint firstItem="O1G-Jc-xa5" firstAttribute="bottom" secondItem="4iS-Z1-fpH" secondAttribute="bottom" id="kuH-Sy-d2v"/>
+                            <constraint firstAttribute="bottom" secondItem="4iS-Z1-fpH" secondAttribute="bottom" id="kuH-Sy-d2v"/>
                             <constraint firstItem="O1G-Jc-xa5" firstAttribute="trailing" secondItem="4iS-Z1-fpH" secondAttribute="trailing" id="lew-MI-ydK"/>
                             <constraint firstItem="4iS-Z1-fpH" firstAttribute="top" secondItem="O1G-Jc-xa5" secondAttribute="top" id="vJC-05-W8e"/>
                         </constraints>
@@ -609,7 +609,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="deP-ct-27O">
                                 <rect key="frame" x="16" y="74" width="382" height="734"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <mutableString key="text">プライバシーポリシー
+                                <string key="text">プライバシーポリシー
 
 情報の収集と使用
 
@@ -635,7 +635,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
 
 お問い合わせ
 
-プライバシーポリシーについてご質問やご提案がありましたら、mcz9mmdev@gmail.comまでお気軽にお問い合わせください。</mutableString>
+プライバシーポリシーについてご質問やご提案がありましたら、mcz9mmdev@gmail.comまでお気軽にお問い合わせください。</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1121,7 +1121,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
             <objects>
                 <viewController storyboardIdentifier="UserDetailViewController" id="hOO-eJ-Pkf" customClass="UserDetailViewController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4Sh-d7-Rgw">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pAQ-7Z-vc1">
@@ -1313,7 +1313,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MTB-tB-lhh">
                                 <rect key="frame" x="16" y="74" width="382" height="734"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <mutableString key="text">Qiita Feed App プライバシーポリシー
+                                <string key="text">Qiita Feed App プライバシーポリシー
 Shinonome, inc.（以下「当社」といいます。）は、当社が運営するサービス（以下「本サービス」といいます。）を提供するにあたり、個人情報保護に関する法規範を遵守し、以下のプライバシーポリシー（以下「本ポリシー」といいます。）に従って個人情報の適切な取得、利用、提供等を行います。
 
 1. 個人情報について
@@ -1353,7 +1353,7 @@ Shinonome, inc.（以下「当社」といいます。）は、当社が運営�
 7. 個人情報に関するお問い合わせ等について
 このプライバシーポリシーに関するお問い合わせは、下記までお願いいたします。
 Shinonome, inc. アプリ開発チーム
-MAIL: Matarai@shinonome.io</mutableString>
+MAIL: Matarai@shinonome.io</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
