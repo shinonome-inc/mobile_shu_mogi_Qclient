@@ -89,7 +89,6 @@ class MyPageViewController: UIViewController {
                    let articleURL = oneAirticleData.url {
                     let oneData = ArticleData(imgURL: imageURL, titleText: title, createdAt: createdAt, likeNumber: like, articleURL: articleURL)
                     self.dataItems.append(oneData)
-                    print("dataItems \(self.dataItems)")
                     print("dataItems appended")
                 } else {
                     print("ERROR: This data ↓ allocation failed.")

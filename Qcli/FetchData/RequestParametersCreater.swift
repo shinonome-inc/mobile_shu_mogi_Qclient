@@ -165,13 +165,16 @@ class RequestParametersCreater {
     
     func assembleOAuthURL() -> String {
         let clientId = AuthorizeKey.clientId
+        let scopekey = "scope"
+        let scopeValue = "read_qiita+write_qiita"
         //データタイプが"OAuth"でないと警告が出る
         if dataType != DataType.oauth {
             print("ERROR: get a data type that is different from the specified data type.")
         }
         //queryItemsの設定
         queryItems = [
-            URLQueryItem(name: QueryOption.clientId.rawValue, value: clientId.rawValue)
+            URLQueryItem(name: QueryOption.clientId.rawValue, value: clientId.rawValue),
+            URLQueryItem(name: scopekey, value: scopeValue)
         ]
         guard var urlComponents = URLComponents(string: url) else {
             return url

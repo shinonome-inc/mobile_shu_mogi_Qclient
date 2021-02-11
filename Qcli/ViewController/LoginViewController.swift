@@ -33,12 +33,10 @@ class LoginViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print(segue.destination)
         if (segue.identifier == SegueId.fromLoginToOAuthController.rawValue) {
             if let destinationNavigationController = segue.destination as? UINavigationController,
                let oAuthViewController = destinationNavigationController.topViewController as? OAuthViewController {
                 oAuthViewController.delegate = self
-                print("delegate connected")
             }
             
         }

@@ -16,16 +16,13 @@ class OAuthViewController: UIViewController {
         super.viewDidLoad()
         webview.navigationDelegate = self
         loadWebView()
-        let getToken = RequestParametersCreater(dataType: .getToken).assembleGetTokenURL()
-        print("test getToken: \(getToken)")
     }
     
     func loadWebView() {
         let oAuthURL = RequestParametersCreater(dataType: .oauth).assembleOAuthURL()
-        print("test oauth: \(oAuthURL)")
+        print("LoadView 👉\(oAuthURL)")
         guard let url = URL(string: oAuthURL) else { return }
         let urlRequest = URLRequest(url: url)
-        
         webview.load(urlRequest)
     }
     //リクエスト失敗した時用のアラート
