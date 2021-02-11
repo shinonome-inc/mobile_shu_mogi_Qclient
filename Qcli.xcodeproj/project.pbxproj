@@ -21,6 +21,8 @@
 		024CF41C25D4DD4100216D5D /* OAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024CF41B25D4DD4100216D5D /* OAuthViewController.swift */; };
 		024CF42025D4EA5600216D5D /* AuthorizeKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024CF41F25D4EA5500216D5D /* AuthorizeKey.swift */; };
 		024CF42625D503D300216D5D /* URL+GetCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024CF42525D503D300216D5D /* URL+GetCode.swift */; };
+		024CF42E25D5217100216D5D /* GetTokenNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024CF42D25D5217000216D5D /* GetTokenNetworkService.swift */; };
+		024CF43225D5410900216D5D /* OAuthViewControllerDidFinish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024CF43125D5410900216D5D /* OAuthViewControllerDidFinish.swift */; };
 		024DF53025AACC00007F2351 /* LoginViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024DF52F25AACC00007F2351 /* LoginViewController+UITextFieldDelegate.swift */; };
 		024DF53825AAF313007F2351 /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024DF53725AAF313007F2351 /* ErrorViewController.swift */; };
 		024DF53C25AAF410007F2351 /* QiitaError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024DF53B25AAF410007F2351 /* QiitaError.swift */; };
@@ -86,6 +88,8 @@
 		024CF41B25D4DD4100216D5D /* OAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthViewController.swift; sourceTree = "<group>"; };
 		024CF41F25D4EA5500216D5D /* AuthorizeKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeKey.swift; sourceTree = "<group>"; };
 		024CF42525D503D300216D5D /* URL+GetCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+GetCode.swift"; sourceTree = "<group>"; };
+		024CF42D25D5217000216D5D /* GetTokenNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTokenNetworkService.swift; sourceTree = "<group>"; };
+		024CF43125D5410900216D5D /* OAuthViewControllerDidFinish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthViewControllerDidFinish.swift; sourceTree = "<group>"; };
 		024DF52F25AACC00007F2351 /* LoginViewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		024DF53725AAF313007F2351 /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
 		024DF53B25AAF410007F2351 /* QiitaError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaError.swift; sourceTree = "<group>"; };
@@ -173,6 +177,7 @@
 			children = (
 				028EE73325B1D7200062C079 /* ErrorDelegate.swift */,
 				028EE73D25B2F4820062C079 /* ReloadDelegate.swift */,
+				024CF43125D5410900216D5D /* OAuthViewControllerDidFinish.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -282,6 +287,7 @@
 				02C9880225897E7F00953B68 /* TagDataNetworkService.swift */,
 				02C98808258AA89B00953B68 /* AuthDataNetworkService.swift */,
 				02A146BC259F6EF100285DD8 /* UserListNetworlService.swift */,
+				024CF42D25D5217000216D5D /* GetTokenNetworkService.swift */,
 			);
 			path = FetchData;
 			sourceTree = "<group>";
@@ -517,6 +523,8 @@
 				02A990EB255E298700082955 /* FeedViewController.swift in Sources */,
 				024AA8462562546300E502F5 /* TagListViewController.swift in Sources */,
 				02A146D225A34F2600285DD8 /* DateFormat+String.swift in Sources */,
+				024CF43225D5410900216D5D /* OAuthViewControllerDidFinish.swift in Sources */,
+				024CF42E25D5217100216D5D /* GetTokenNetworkService.swift in Sources */,
 				02A146BD259F6EF100285DD8 /* UserListNetworlService.swift in Sources */,
 				02A990562557DAB900082955 /* SceneDelegate.swift in Sources */,
 				024DF53C25AAF410007F2351 /* QiitaError.swift in Sources */,

@@ -103,3 +103,14 @@ struct TagModel: Codable {
         case itemsCount = "items_count"
     }
 }
+
+struct AccessInfoModel: Codable {
+    var clientId: String?
+    var scopes: [String]?
+    var token: String?
+    enum CodingKeys: String, CodingKey {
+        case clientId = "client_id"
+        case scopes = "scopes"
+        case token = "token"
+    }
+}

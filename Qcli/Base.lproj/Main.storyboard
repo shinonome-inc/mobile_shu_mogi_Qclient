@@ -25,23 +25,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Token" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OcD-zW-oWe">
-                                <rect key="frame" x="20" y="601" width="374" height="62"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="62" id="7HH-yh-I1m"/>
-                                </constraints>
-                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="8"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outlet property="delegate" destination="b0C-cx-wVq" id="NQo-rG-gMU"/>
-                                </connections>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="001-Vu-6nT">
                                 <rect key="frame" x="20" y="719" width="374" height="62"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -95,13 +78,10 @@
                             <constraint firstItem="UP5-xI-fam" firstAttribute="top" secondItem="Hdy-WR-4R6" secondAttribute="top" constant="134" id="CYC-HT-Jh7"/>
                             <constraint firstItem="l7i-j8-3Fw" firstAttribute="top" secondItem="001-Vu-6nT" secondAttribute="bottom" constant="17" id="DBB-w4-OM9"/>
                             <constraint firstItem="KcV-TZ-IYh" firstAttribute="centerX" secondItem="Hdy-WR-4R6" secondAttribute="centerX" id="Fqk-47-aSs"/>
-                            <constraint firstItem="o63-Q9-cWq" firstAttribute="trailing" secondItem="OcD-zW-oWe" secondAttribute="trailing" constant="20" id="IUI-yd-ZiB"/>
                             <constraint firstItem="KcV-TZ-IYh" firstAttribute="top" secondItem="UP5-xI-fam" secondAttribute="bottom" constant="10" id="Imo-os-opc"/>
                             <constraint firstAttribute="bottom" secondItem="l7i-j8-3Fw" secondAttribute="bottom" constant="36" id="O7N-ey-XZd"/>
                             <constraint firstItem="001-Vu-6nT" firstAttribute="leading" secondItem="o63-Q9-cWq" secondAttribute="leading" constant="20" id="Oj2-QI-CoA"/>
                             <constraint firstItem="UP5-xI-fam" firstAttribute="centerX" secondItem="Hdy-WR-4R6" secondAttribute="centerX" id="alJ-hv-Szv"/>
-                            <constraint firstItem="001-Vu-6nT" firstAttribute="top" secondItem="OcD-zW-oWe" secondAttribute="bottom" constant="56" id="c7a-px-daj"/>
-                            <constraint firstItem="OcD-zW-oWe" firstAttribute="leading" secondItem="o63-Q9-cWq" secondAttribute="leading" constant="20" id="gZ7-LQ-SaU"/>
                             <constraint firstItem="o63-Q9-cWq" firstAttribute="trailing" secondItem="001-Vu-6nT" secondAttribute="trailing" constant="20" id="iLa-KJ-34O"/>
                             <constraint firstItem="l7i-j8-3Fw" firstAttribute="leading" secondItem="o63-Q9-cWq" secondAttribute="leading" constant="20" id="sd8-oz-Fkx"/>
                         </constraints>
@@ -110,14 +90,13 @@
                     <connections>
                         <outlet property="loginButton" destination="001-Vu-6nT" id="ueN-U8-sOI"/>
                         <outlet property="notLoginButton" destination="l7i-j8-3Fw" id="ec4-IB-mHb"/>
-                        <outlet property="tokenTextField" destination="OcD-zW-oWe" id="46e-R9-iH0"/>
                         <segue destination="HJO-XP-GKx" kind="show" identifier="FromLoginToTabBarController" id="xHA-hM-spd"/>
                         <segue destination="Fvr-GB-wOQ" kind="presentation" identifier="fromLoginToOAuthController" id="o59-x9-kqs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R4y-o7-Clg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1177" y="74"/>
+            <point key="canvasLocation" x="742" y="74"/>
         </scene>
         <!--Tag-->
         <scene sceneID="NQL-CJ-jTd">
@@ -965,12 +944,11 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                     <navigationItem key="navigationItem" title="Qiita Auth" id="BFc-RN-5TO"/>
                     <connections>
                         <outlet property="webview" destination="Tge-SY-NZQ" id="YUI-f9-cyn"/>
-                        <segue destination="HJO-XP-GKx" kind="show" identifier="fromOAuthToTabBarController" id="DeJ-SO-bMh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sir-f4-VQc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="679.71014492753625" y="-303.34821428571428"/>
+            <point key="canvasLocation" x="2471" y="-619"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="lkx-ob-tRN">
@@ -1094,7 +1072,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nn4-3I-8mE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1958" y="74"/>
+            <point key="canvasLocation" x="-236" y="74"/>
         </scene>
         <!--Feed-->
         <scene sceneID="LFy-gp-qV9">
@@ -1158,7 +1136,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
             <objects>
                 <viewController storyboardIdentifier="UserDetailViewController" id="hOO-eJ-Pkf" customClass="UserDetailViewController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4Sh-d7-Rgw">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pAQ-7Z-vc1">
@@ -1463,11 +1441,10 @@ MAIL: Matarai@shinonome.io</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HGP-8c-EbK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-230.43478260869566" y="-303.34821428571428"/>
+            <point key="canvasLocation" x="1703" y="-619"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="xHA-hM-spd"/>
         <segue reference="sSv-pR-fSU"/>
         <segue reference="19S-FT-jNr"/>
     </inferredMetricsTieBreakers>

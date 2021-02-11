@@ -10,6 +10,7 @@ import WebKit
 
 class OAuthViewController: UIViewController {
     @IBOutlet weak var webview: WKWebView!
+    var delegate: OAuthViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,13 @@ class OAuthViewController: UIViewController {
         
         webview.load(urlRequest)
     }
+    //リクエスト失敗した時用のアラート
+    func displayMyAlertMessage(userMessage: String) {
+        let myAlert = UIAlertController(title:"Alert", message: userMessage, preferredStyle:  UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title:"OK", style: UIAlertAction.Style.default, handler:nil)
+        myAlert.addAction(okAction);
+        present(myAlert,animated:true, completion:nil)
+    }
 }
 
 extension OAuthViewController: WKNavigationDelegate {
@@ -34,7 +42,17 @@ extension OAuthViewController: WKNavigationDelegate {
         
         if let redirectURL = navigationAction.request.url,
            let code = redirectURL.getCode() {
-            print("code \(code)")
+            let getToken = GetTokenNetworkService()
+            getToken.accessToken(code: code,
+                                 success: {
+                                    self.dismiss(animated: true, completion: nil)
+                                    if let delegate = self.delegate {
+                                        delegate.oAuthViewControllerDidFinish()
+                                    }
+                                 },
+                                 failure: {
+                                    self.displayMyAlertMessage(userMessage: "トークン取得に失敗しました。")
+                                 })
             
         }
         
