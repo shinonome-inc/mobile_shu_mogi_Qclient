@@ -34,31 +34,32 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func login(_ sender: Any) {
-        let token = getToken()
-        let authRequest = AuthDataNetworkService(token: token)
-        authRequest.fetch(success: { (userData) in
-            if let id = userData.id {
-                print("Authentication was successful with id = \(id).")
-                //keychainにトークン情報を保存
-                if let token = token {
-                    self.userInfoKeychain.set(token: token)
-                } else {
-                    UserDefaults.standard.set(false, forKey: "isLogined")
-                }
-                //認証成功した場合は次の画面に遷移する
-                self.performSegue(withIdentifier: SegueId.fromLoginToTabBarController.rawValue, sender: nil)
-            } else {
-                print(userData)
-                print("Authentication was successful, but the id cannot be read.")
-                UserDefaults.standard.set(false, forKey: "isLogined")
-                self.displayMyAlertMessage(userMessage: "リクエストは送信できましたが、無効なトークンです。")
-            }
-        }, failure: { (error) in
-            print("Authentication failed.")
-            print(error)
-            UserDefaults.standard.set(false, forKey: "isLogined")
-            self.displayMyAlertMessage(userMessage: "リクエスト送信できませんでした。")
-        })
+        
+//        let token = getToken()
+//        let authRequest = AuthDataNetworkService(token: token)
+//        authRequest.fetch(success: { (userData) in
+//            if let id = userData.id {
+//                print("Authentication was successful with id = \(id).")
+//                //keychainにトークン情報を保存
+//                if let token = token {
+//                    self.userInfoKeychain.set(token: token)
+//                } else {
+//                    UserDefaults.standard.set(false, forKey: "isLogined")
+//                }
+//                //認証成功した場合は次の画面に遷移する
+//                self.performSegue(withIdentifier: SegueId.fromLoginToTabBarController.rawValue, sender: nil)
+//            } else {
+//                print(userData)
+//                print("Authentication was successful, but the id cannot be read.")
+//                UserDefaults.standard.set(false, forKey: "isLogined")
+//                self.displayMyAlertMessage(userMessage: "リクエストは送信できましたが、無効なトークンです。")
+//            }
+//        }, failure: { (error) in
+//            print("Authentication failed.")
+//            print(error)
+//            UserDefaults.standard.set(false, forKey: "isLogined")
+//            self.displayMyAlertMessage(userMessage: "リクエスト送信できませんでした。")
+//        })
     }
     
     @IBAction func useAppWithoutLogin(_ sender: Any) {
