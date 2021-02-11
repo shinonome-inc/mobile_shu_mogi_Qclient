@@ -34,7 +34,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func login(_ sender: Any) {
-        
+        performSegue(withIdentifier: SegueId.fromLoginToOAuthController.rawValue, sender: nil)
 //        let token = getToken()
 //        let authRequest = AuthDataNetworkService(token: token)
 //        authRequest.fetch(success: { (userData) in

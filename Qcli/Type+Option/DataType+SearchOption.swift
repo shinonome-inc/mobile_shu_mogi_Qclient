@@ -12,6 +12,8 @@ enum DataType: String {
     case user = "users"
     case tag = "tags"
     case auth = "authenticated_user"
+    case oauth = "oauth/authorize"
+    case getToken = "access_tokens"
 }
 
 enum SearchOption: String, CaseIterable {
