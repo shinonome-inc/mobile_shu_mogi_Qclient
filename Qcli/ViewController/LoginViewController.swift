@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import WebKit
 
 class LoginViewController: UIViewController {
     
@@ -20,7 +21,6 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
-        self.setUpNotificationForTextField()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -47,6 +47,8 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func useAppWithoutLogin(_ sender: Any) {
+        let webViewData = WebViewData()
+        webViewData.deleteCache()
         self.userInfoKeychain.remove()
         UserDefaults.standard.set(false, forKey: "isLogined")
         self.performSegue(withIdentifier: SegueId.fromLoginToTabBarController.rawValue, sender: nil)

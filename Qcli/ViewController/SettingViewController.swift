@@ -31,6 +31,8 @@ class SettingViewController: UIViewController {
     
     func tappedLogout() {
         userInfoKeychain.remove()
+        let webViewData = WebViewData()
+        webViewData.deleteCache()
         let identifier = ViewControllerIdentifier.login.rawValue
         if let storyboard = self.storyboard,
            let navigationController = self.navigationController {
