@@ -20,6 +20,7 @@
 		024AA8492562AA2800E502F5 /* TagListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024AA8482562AA2800E502F5 /* TagListTableViewCell.swift */; };
 		024CF41C25D4DD4100216D5D /* OAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024CF41B25D4DD4100216D5D /* OAuthViewController.swift */; };
 		024CF42025D4EA5600216D5D /* AuthorizeKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024CF41F25D4EA5500216D5D /* AuthorizeKey.swift */; };
+		024CF42625D503D300216D5D /* URL+GetCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024CF42525D503D300216D5D /* URL+GetCode.swift */; };
 		024DF53025AACC00007F2351 /* LoginViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024DF52F25AACC00007F2351 /* LoginViewController+UITextFieldDelegate.swift */; };
 		024DF53825AAF313007F2351 /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024DF53725AAF313007F2351 /* ErrorViewController.swift */; };
 		024DF53C25AAF410007F2351 /* QiitaError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024DF53B25AAF410007F2351 /* QiitaError.swift */; };
@@ -84,6 +85,7 @@
 		024AA8482562AA2800E502F5 /* TagListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListTableViewCell.swift; sourceTree = "<group>"; };
 		024CF41B25D4DD4100216D5D /* OAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthViewController.swift; sourceTree = "<group>"; };
 		024CF41F25D4EA5500216D5D /* AuthorizeKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizeKey.swift; sourceTree = "<group>"; };
+		024CF42525D503D300216D5D /* URL+GetCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+GetCode.swift"; sourceTree = "<group>"; };
 		024DF52F25AACC00007F2351 /* LoginViewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		024DF53725AAF313007F2351 /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
 		024DF53B25AAF410007F2351 /* QiitaError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaError.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				023D026525999E7F0043FE29 /* ImageView+Kingfisher.swift */,
 				02A146D125A34F2600285DD8 /* DateFormat+String.swift */,
 				024DF52F25AACC00007F2351 /* LoginViewController+UITextFieldDelegate.swift */,
+				024CF42525D503D300216D5D /* URL+GetCode.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 				024DF53025AACC00007F2351 /* LoginViewController+UITextFieldDelegate.swift in Sources */,
 				02A1469A259B44F700285DD8 /* MyPageTableViewCell.swift in Sources */,
 				024CF41C25D4DD4100216D5D /* OAuthViewController.swift in Sources */,
+				024CF42625D503D300216D5D /* URL+GetCode.swift in Sources */,
 				024AA8492562AA2800E502F5 /* TagListTableViewCell.swift in Sources */,
 				024DF53825AAF313007F2351 /* ErrorViewController.swift in Sources */,
 				02A146C125A1861500285DD8 /* UserDetailViewController.swift in Sources */,
