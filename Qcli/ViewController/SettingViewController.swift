@@ -31,6 +31,8 @@ class SettingViewController: UIViewController {
     
     func tappedLogout() {
         userInfoKeychain.remove()
+        let webViewData = WebViewData()
+        webViewData.deleteCache()
         let identifier = ViewControllerIdentifier.login.rawValue
         if let storyboard = self.storyboard,
            let navigationController = self.navigationController {
@@ -61,40 +63,38 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            switch AppInfoCellType(rawValue: indexPath.row) {
+            guard let appInfoCellType = AppInfoCellType(rawValue: indexPath.row) else { abort() }
+            switch appInfoCellType {
             case .pp:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "SegueTableViewCell", for: indexPath) as? SegueTableViewCell else {
                     fatalError()
                 }
-                cell.titleLabel.text = AppInfoCellType.pp.titleMessage
+                cell.titleLabel.text = appInfoCellType.titleMessage
                 return cell
             case .tos:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "SegueTableViewCell", for: indexPath) as? SegueTableViewCell else {
                     fatalError()
                 }
-                cell.titleLabel.text = AppInfoCellType.tos.titleMessage
+                cell.titleLabel.text = appInfoCellType.titleMessage
                 return cell
             case .ver:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "RightDetailTableViewCell", for: indexPath) as? RightDetailTableViewCell else {
                     fatalError()
                 }
-                cell.titleLabel.text = AppInfoCellType.ver.titleMessage
+                cell.titleLabel.text = appInfoCellType.titleMessage
                 let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
                 cell.versionLabel.text = version
                 return cell
-            default:
-                break
             }
         } else if indexPath.section == 1 {
-            switch OtherCellType(rawValue: indexPath.row) {
+            guard let otherCellType = OtherCellType(rawValue: indexPath.row) else { abort() }
+            switch otherCellType {
             case .logout:
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "SimpleTitleTableViewCell", for: indexPath) as? SimpleTitileTableViewCell else {
                     fatalError()
                 }
-                cell.titleLabel.text = OtherCellType.logout.titleMessage
+                cell.titleLabel.text = otherCellType.titleMessage
                 return cell
-            default:
-                break
             }
         }
         fatalError("Unexpected inconsistency in \(#function)")

@@ -19,7 +19,7 @@ class RequestParametersCreater {
     
     private var queryItems: [URLQueryItem]!
     init(dataType: DataType,
-         pageNumber: Int?,
+         pageNumber: Int? = nil,
          searchDict: [SearchOption: String]? = nil,
          sortdict: [QueryOption: SortOption]? = nil,
          userType: UserListType? = nil,
@@ -160,6 +160,37 @@ class RequestParametersCreater {
             return url
         }
         
+        return url
+    }
+    
+    func assembleOAuthURL() -> String {
+        let clientId = AuthorizeKey.clientId
+        let scopekey = "scope"
+        let scopeValue = "read_qiita+write_qiita"
+        //データタイプが"OAuth"でないと警告が出る
+        if dataType != DataType.oauth {
+            print("ERROR: get a data type that is different from the specified data type.")
+        }
+        //queryItemsの設定
+        queryItems = [
+            URLQueryItem(name: QueryOption.clientId.rawValue, value: clientId.rawValue),
+            URLQueryItem(name: scopekey, value: scopeValue)
+        ]
+        guard var urlComponents = URLComponents(string: url) else {
+            return url
+        }
+        urlComponents.queryItems = queryItems
+        
+        if let url = urlComponents.string {
+            self.url = url
+        } else {
+            print("There was an error converting the URL Component to a String.")
+            return url
+        }
+        return url
+    }
+    
+    func assembleGetTokenURL() -> String {
         return url
     }
 }

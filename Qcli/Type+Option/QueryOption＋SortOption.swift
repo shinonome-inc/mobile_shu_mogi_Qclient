@@ -12,6 +12,7 @@ enum QueryOption: String {
     case perPage = "per_page"
     case query = "query"
     case sort = "sort"
+    case clientId = "client_id"
 }
 
 enum SortOption: String {
