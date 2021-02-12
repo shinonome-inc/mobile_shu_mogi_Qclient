@@ -27,7 +27,7 @@ class OAuthViewController: UIViewController {
     }
     //リクエスト失敗した時用のアラート
     func displayMyAlertMessage(userMessage: String) {
-        let myAlert = UIAlertController(title:"Alert", message: userMessage, preferredStyle:  UIAlertController.Style.alert)
+        let myAlert = UIAlertController(title: "Error", message: userMessage, preferredStyle:  UIAlertController.Style.alert)
         let okAction = UIAlertAction(title:"OK", style: UIAlertAction.Style.default, handler:nil)
         myAlert.addAction(okAction);
         present(myAlert,animated:true, completion:nil)
@@ -38,7 +38,7 @@ extension OAuthViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         
         if let redirectURL = navigationAction.request.url,
-           let code = redirectURL.getCode() {
+           let code = redirectURL.getCodeQueryValue() {
             let getToken = GetTokenNetworkService()
             getToken.accessToken(code: code,
                                  success: {
