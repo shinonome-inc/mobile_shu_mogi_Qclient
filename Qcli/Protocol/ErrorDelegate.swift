@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ErrorDelegate: NSObjectProtocol {
+protocol ErrorDelegate: AnyObject {
     func segueErrorViewController(qiitaError: QiitaError)
     func backToLoginViewController()
     func reload()

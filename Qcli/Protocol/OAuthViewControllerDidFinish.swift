@@ -6,6 +6,6 @@
 //
 
 import Foundation
-protocol OAuthViewControllerDelegate {
+protocol OAuthViewControllerDelegate: AnyObject {
     func oAuthViewControllerDidFinish()
 }
