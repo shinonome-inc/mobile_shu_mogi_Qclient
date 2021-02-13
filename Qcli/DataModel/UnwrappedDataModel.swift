@@ -19,6 +19,7 @@ struct TagData {
     var tagTitle: String
     var imageURL: String
     var itemCount: Int
+    var followersCount: Int
 }
 
 struct UserData {
