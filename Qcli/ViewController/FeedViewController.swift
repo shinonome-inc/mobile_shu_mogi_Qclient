@@ -66,9 +66,10 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == SegueId.fromFeedToArticle.rawValue) {
-            let articlePageVC = segue.destination as! ArticlePageViewController
-            if let sendData = sendData {
-                articlePageVC.articleData = sendData
+            if let navigationController = segue.destination as? UINavigationController,
+               let articlePageViewController = navigationController.topViewController as? ArticlePageViewController,
+               let sendData = sendData {
+                articlePageViewController.articleData = sendData
             }
         }
     }

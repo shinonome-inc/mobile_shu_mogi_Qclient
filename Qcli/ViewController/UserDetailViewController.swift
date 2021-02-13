@@ -70,9 +70,10 @@ class UserDetailViewController: UIViewController {
         }
         
         if (segue.identifier == SegueId.fromUserDetailToArticlePage.rawValue) {
-            let articlePageVC = segue.destination as! ArticlePageViewController
-            if let sendData = sendData {
-                articlePageVC.articleData = sendData
+            if let navigationController = segue.destination as? UINavigationController,
+               let articlePageViewController = navigationController.topViewController as? ArticlePageViewController,
+               let sendData = sendData {
+                articlePageViewController.articleData = sendData
             }
         }
     }

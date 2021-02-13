@@ -320,14 +320,14 @@
                     <connections>
                         <outlet property="articleTableView" destination="Bcz-Kh-UcR" id="SzX-14-qiL"/>
                         <outlet property="segmentedControll" destination="1Yq-Bd-m3s" id="09H-iq-4Mq"/>
-                        <segue destination="5Wb-zf-nuJ" kind="presentation" identifier="GoToArticlePage" id="pXV-9v-0ad"/>
+                        <segue destination="6vj-nF-an0" kind="presentation" identifier="GoToArticlePage" id="pXV-9v-0ad"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zuw-UB-IFw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1007.2463768115942" y="1804.6875"/>
         </scene>
-        <!--Article Page View Controller-->
+        <!--Article-->
         <scene sceneID="yKx-KX-Law">
             <objects>
                 <viewController storyboardIdentifier="ArticlePageViewController" id="5Wb-zf-nuJ" customClass="ArticlePageViewController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
@@ -336,7 +336,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4iS-Z1-fpH">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="786"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -353,14 +353,14 @@
                             <constraint firstItem="4iS-Z1-fpH" firstAttribute="top" secondItem="O1G-Jc-xa5" secondAttribute="top" id="vJC-05-W8e"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="FOS-qw-TYX"/>
+                    <navigationItem key="navigationItem" title="Article" id="FOS-qw-TYX"/>
                     <connections>
                         <outlet property="webView" destination="4iS-Z1-fpH" id="sK0-tl-9nV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5F-vp-7v4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1007" y="3443"/>
+            <point key="canvasLocation" x="-97.101449275362327" y="3442.6339285714284"/>
         </scene>
         <!--Tag Detail List View Controller-->
         <scene sceneID="bOE-u2-rMA">
@@ -457,7 +457,7 @@
                     <navigationItem key="navigationItem" id="cC2-zJ-uYV"/>
                     <connections>
                         <outlet property="articleTableView" destination="kS6-OD-LpJ" id="ZgM-Hh-iOh"/>
-                        <segue destination="5Wb-zf-nuJ" kind="presentation" identifier="FromTagDetailToArticlePage" id="iDl-aI-MCm"/>
+                        <segue destination="6vj-nF-an0" kind="presentation" identifier="FromTagDetailToArticlePage" id="iDl-aI-MCm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fpG-bH-SUi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -800,7 +800,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                         <outlet property="userIdLabel" destination="dru-na-jbc" id="uP1-xr-xhp"/>
                         <outlet property="userImageView" destination="zow-ri-qfO" id="eEJ-gt-X9r"/>
                         <outlet property="userNameLabel" destination="7Dd-AL-jxr" id="ZqM-gl-mFk"/>
-                        <segue destination="5Wb-zf-nuJ" kind="presentation" identifier="FromMyPageToArticlePage" id="AHv-An-Oo6"/>
+                        <segue destination="6vj-nF-an0" kind="presentation" identifier="FromMyPageToArticlePage" id="AHv-An-Oo6"/>
                         <segue destination="kEE-um-ZMT" kind="show" identifier="FromMyPageToUserList" id="FqX-aV-cGM"/>
                     </connections>
                 </viewController>
@@ -813,11 +813,11 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
             <objects>
                 <viewController storyboardIdentifier="UserListViewController" id="kEE-um-ZMT" customClass="UserListViewController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wt4-UB-pK9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hiJ-iB-sXh">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="123" id="JuM-qS-HEg" customClass="UserListTableViewCell" customModule="Qcli" customModuleProvider="target">
@@ -1159,7 +1159,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pAQ-7Z-vc1">
-                                <rect key="frame" x="0.0" y="258.5" width="414" height="554.5"/>
+                                <rect key="frame" x="0.0" y="170.5" width="414" height="637.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArticleCell" rowHeight="50" id="8GL-HB-lpO" customClass="MyPageTableViewCell" customModule="Qcli" customModuleProvider="target">
@@ -1222,7 +1222,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                                 </connections>
                             </tableView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kYG-TI-RsD">
-                                <rect key="frame" x="5" y="93" width="100" height="100"/>
+                                <rect key="frame" x="5" y="5" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="ENk-si-MT7"/>
                                     <constraint firstAttribute="width" constant="100" id="YqG-PH-lDF"/>
@@ -1234,19 +1234,19 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xCv-dX-8Un">
-                                <rect key="frame" x="129" y="105" width="67" height="34"/>
+                                <rect key="frame" x="129" y="17" width="67" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKs-Fo-mz8">
-                                <rect key="frame" x="129" y="152" width="57" height="29"/>
+                                <rect key="frame" x="129" y="64" width="57" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SU6-Uf-erS">
-                                <rect key="frame" x="5" y="198" width="404" height="20.5"/>
+                                <rect key="frame" x="5" y="110" width="404" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1257,7 +1257,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KqU-bc-ozg">
-                                <rect key="frame" x="5" y="223.5" width="44" height="30"/>
+                                <rect key="frame" x="5" y="135.5" width="44" height="30"/>
                                 <state key="normal" title="Follow">
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
@@ -1266,7 +1266,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XHo-08-3x1">
-                                <rect key="frame" x="54" y="223.5" width="58" height="30"/>
+                                <rect key="frame" x="54" y="135.5" width="58" height="30"/>
                                 <state key="normal" title="Follower">
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
@@ -1310,7 +1310,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                         <outlet property="userImageView" destination="kYG-TI-RsD" id="vUG-Qe-BOF"/>
                         <outlet property="userNameLabel" destination="xCv-dX-8Un" id="hah-jK-FC8"/>
                         <segue destination="kEE-um-ZMT" kind="show" identifier="FromUserDetailToUserList" id="sSv-pR-fSU"/>
-                        <segue destination="5Wb-zf-nuJ" kind="presentation" identifier="FromUserDetailToArticlePage" id="19S-FT-jNr"/>
+                        <segue destination="6vj-nF-an0" kind="presentation" identifier="FromUserDetailToArticlePage" id="19S-FT-jNr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l1Z-jD-MJQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1468,10 +1468,31 @@ MAIL: Matarai@shinonome.io</string>
             </objects>
             <point key="canvasLocation" x="1703" y="-619"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Jkx-f4-QDY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6vj-nF-an0" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xkE-2O-UEJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Pacifico-Regular" family="Pacifico" pointSize="17"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="5Wb-zf-nuJ" kind="relationship" relationship="rootViewController" id="1yf-oP-Qby"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t5i-Ko-JKw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1007.2463768115942" y="3442.6339285714284"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="FqX-aV-cGM"/>
-        <segue reference="pXV-9v-0ad"/>
+        <segue reference="19S-FT-jNr"/>
+        <segue reference="sSv-pR-fSU"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="gearshape" catalog="system" width="128" height="121"/>
