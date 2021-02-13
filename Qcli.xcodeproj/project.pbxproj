@@ -62,6 +62,7 @@
 		02DB99BC256804120048B9D9 /* DataType+SearchOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DB99BB256804120048B9D9 /* DataType+SearchOption.swift */; };
 		02E1368F256FDE7E0050E4E7 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E1368E256FDE7E0050E4E7 /* TestData.swift */; };
 		02E13693256FE7750050E4E7 /* ErrorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E13692256FE7750050E4E7 /* ErrorData.swift */; };
+		02F99E2925D78ABE00896719 /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02F99E2825D78ABE00896719 /* Pacifico-Regular.ttf */; };
 		675A99C01E5B2032D3662E6E /* Pods_Qcli.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 105D3B6E37BA817A4F352A2E /* Pods_Qcli.framework */; };
 /* End PBXBuildFile section */
 
@@ -135,6 +136,7 @@
 		02DB99BB256804120048B9D9 /* DataType+SearchOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataType+SearchOption.swift"; sourceTree = "<group>"; };
 		02E1368E256FDE7E0050E4E7 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		02E13692256FE7750050E4E7 /* ErrorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorData.swift; sourceTree = "<group>"; };
+		02F99E2825D78ABE00896719 /* Pacifico-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pacifico-Regular.ttf"; sourceTree = "<group>"; };
 		105D3B6E37BA817A4F352A2E /* Pods_Qcli.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Qcli.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F6543D98951B36C857F91C4 /* Pods-Qcli.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qcli.release.xcconfig"; path = "Target Support Files/Pods-Qcli/Pods-Qcli.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -235,6 +237,7 @@
 				02A146ED25A8518C00285DD8 /* Identifier */,
 				023D026425999E1D0043FE29 /* Extensions */,
 				028EE73225B1D6890062C079 /* Protocol */,
+				02F99E2725D78A5C00896719 /* CustomFont */,
 				02E1368E256FDE7E0050E4E7 /* TestData.swift */,
 			);
 			path = Qcli;
@@ -318,6 +321,14 @@
 				0243670D25D561C200745C73 /* WebViewData.swift */,
 			);
 			path = KeyChain;
+			sourceTree = "<group>";
+		};
+		02F99E2725D78A5C00896719 /* CustomFont */ = {
+			isa = PBXGroup;
+			children = (
+				02F99E2825D78ABE00896719 /* Pacifico-Regular.ttf */,
+			);
+			path = CustomFont;
 			sourceTree = "<group>";
 		};
 		2655B60BA1702758D5E31CB4 /* Frameworks */ = {
@@ -430,6 +441,7 @@
 				02A9905D2557DABB00082955 /* Assets.xcassets in Resources */,
 				02A9905B2557DAB900082955 /* Main.storyboard in Resources */,
 				025353EB25BEBE5A008F29F5 /* ErrorView.xib in Resources */,
+				02F99E2925D78ABE00896719 /* Pacifico-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
