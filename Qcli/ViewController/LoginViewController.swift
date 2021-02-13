@@ -10,9 +10,6 @@ import WebKit
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var tokenTextField: UITextField!
-    @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var notLoginButton: UIButton!
     let userInfoKeychain = KeyChain()
     override func viewDidLoad() {
         super.viewDidLoad()

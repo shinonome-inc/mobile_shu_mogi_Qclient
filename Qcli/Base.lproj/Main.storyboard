@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qiita Feed App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KcV-TZ-IYh">
-                                <rect key="frame" x="92" y="276.5" width="230" height="63"/>
+                                <rect key="frame" x="86.5" y="276.5" width="241" height="63"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="63" id="4y1-NW-CDy"/>
                                 </constraints>
@@ -66,11 +66,6 @@
                                 <state key="normal" title="ログインせずに利用する">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="8"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="useAppWithoutLogin:" destination="b0C-cx-wVq" eventType="touchUpInside" id="q0l-2U-gWJ"/>
                                 </connections>
@@ -99,8 +94,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="U1i-OI-1Yd"/>
                     <connections>
-                        <outlet property="loginButton" destination="001-Vu-6nT" id="ueN-U8-sOI"/>
-                        <outlet property="notLoginButton" destination="l7i-j8-3Fw" id="ec4-IB-mHb"/>
                         <segue destination="HJO-XP-GKx" kind="show" identifier="FromLoginToTabBarController" id="xHA-hM-spd"/>
                         <segue destination="Fvr-GB-wOQ" kind="presentation" identifier="fromLoginToOAuthController" id="o59-x9-kqs"/>
                     </connections>
@@ -221,7 +214,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Bcz-Kh-UcR">
-                                <rect key="frame" x="0.0" y="175" width="414" height="638"/>
+                                <rect key="frame" x="0.0" y="207" width="414" height="606"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArticleCell" rowHeight="50" id="nCP-C9-IvT" customClass="ArticleTableViewCell" customModule="Qcli" customModuleProvider="target">
@@ -306,7 +299,7 @@
                                 </connections>
                             </searchBar>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1Yq-Bd-m3s">
-                                <rect key="frame" x="0.0" y="144" width="414" height="32"/>
+                                <rect key="frame" x="12" y="160" width="390" height="32"/>
                                 <segments>
                                     <segment title="First"/>
                                     <segment title="Second"/>
@@ -319,16 +312,16 @@
                         <viewLayoutGuide key="safeArea" id="meV-v0-4dq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="1Yq-Bd-m3s" firstAttribute="top" secondItem="1m7-u4-vcU" secondAttribute="bottom" id="7lO-qB-PEe"/>
+                            <constraint firstItem="1Yq-Bd-m3s" firstAttribute="top" secondItem="1m7-u4-vcU" secondAttribute="bottom" constant="16" id="7lO-qB-PEe"/>
                             <constraint firstItem="1m7-u4-vcU" firstAttribute="leading" secondItem="meV-v0-4dq" secondAttribute="leading" id="Gig-wF-4l8"/>
                             <constraint firstItem="1m7-u4-vcU" firstAttribute="trailing" secondItem="meV-v0-4dq" secondAttribute="trailing" id="Rxx-cL-M7J"/>
                             <constraint firstItem="1m7-u4-vcU" firstAttribute="top" secondItem="meV-v0-4dq" secondAttribute="top" id="SR4-vL-an2"/>
                             <constraint firstItem="meV-v0-4dq" firstAttribute="bottom" secondItem="Bcz-Kh-UcR" secondAttribute="bottom" id="VDP-hH-NKt"/>
                             <constraint firstItem="meV-v0-4dq" firstAttribute="trailing" secondItem="Bcz-Kh-UcR" secondAttribute="trailing" id="XJO-sK-HbQ"/>
-                            <constraint firstItem="1Yq-Bd-m3s" firstAttribute="leading" secondItem="meV-v0-4dq" secondAttribute="leading" id="cHX-YL-RIN"/>
+                            <constraint firstItem="1Yq-Bd-m3s" firstAttribute="leading" secondItem="meV-v0-4dq" secondAttribute="leading" constant="12" id="cHX-YL-RIN"/>
                             <constraint firstItem="Bcz-Kh-UcR" firstAttribute="leading" secondItem="meV-v0-4dq" secondAttribute="leading" id="fQg-QO-GUu"/>
-                            <constraint firstItem="Bcz-Kh-UcR" firstAttribute="top" secondItem="1Yq-Bd-m3s" secondAttribute="bottom" id="g1i-4W-Aes"/>
-                            <constraint firstItem="1Yq-Bd-m3s" firstAttribute="trailing" secondItem="meV-v0-4dq" secondAttribute="trailing" id="iin-xm-TL8"/>
+                            <constraint firstItem="Bcz-Kh-UcR" firstAttribute="top" secondItem="1Yq-Bd-m3s" secondAttribute="bottom" constant="16" id="g1i-4W-Aes"/>
+                            <constraint firstItem="1Yq-Bd-m3s" firstAttribute="trailing" secondItem="meV-v0-4dq" secondAttribute="trailing" constant="-12" id="iin-xm-TL8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Feed" id="YWG-oh-r1j"/>
@@ -832,7 +825,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hiJ-iB-sXh">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="63" width="414" height="745"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="123" id="JuM-qS-HEg" customClass="UserListTableViewCell" customModule="Qcli" customModuleProvider="target">
@@ -920,19 +913,33 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                                     <outlet property="delegate" destination="kEE-um-ZMT" id="zix-b7-ycA"/>
                                 </connections>
                             </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="OYa-ae-wO2">
+                                <rect key="frame" x="12" y="16" width="390" height="32"/>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                                <connections>
+                                    <action selector="tapSegmentedControl:" destination="kEE-um-ZMT" eventType="valueChanged" id="QPZ-PO-TuP"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yZb-62-C3C"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="hiJ-iB-sXh" firstAttribute="top" secondItem="OYa-ae-wO2" secondAttribute="bottom" constant="16" id="1Ta-BF-eJt"/>
+                            <constraint firstItem="yZb-62-C3C" firstAttribute="trailing" secondItem="OYa-ae-wO2" secondAttribute="trailing" constant="12" id="1YI-lU-jO4"/>
                             <constraint firstItem="hiJ-iB-sXh" firstAttribute="leading" secondItem="yZb-62-C3C" secondAttribute="leading" id="9hM-gq-F5V"/>
+                            <constraint firstItem="OYa-ae-wO2" firstAttribute="top" secondItem="yZb-62-C3C" secondAttribute="top" constant="16" id="KBd-dr-tnI"/>
                             <constraint firstItem="yZb-62-C3C" firstAttribute="bottom" secondItem="hiJ-iB-sXh" secondAttribute="bottom" id="LgS-CC-EcK"/>
-                            <constraint firstItem="hiJ-iB-sXh" firstAttribute="top" secondItem="yZb-62-C3C" secondAttribute="top" id="bHP-Qx-9v5"/>
                             <constraint firstItem="yZb-62-C3C" firstAttribute="trailing" secondItem="hiJ-iB-sXh" secondAttribute="trailing" id="cKk-Ev-LsA"/>
+                            <constraint firstItem="OYa-ae-wO2" firstAttribute="leading" secondItem="yZb-62-C3C" secondAttribute="leading" constant="12" id="l2h-lL-f7c"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="069-IN-JEa"/>
                     <connections>
                         <outlet property="userListTableView" destination="hiJ-iB-sXh" id="VE9-WH-jyg"/>
+                        <outlet property="userTypeSegmentedControl" destination="OYa-ae-wO2" id="73W-tg-VeE"/>
                         <segue destination="hOO-eJ-Pkf" kind="show" identifier="FromUserListToUserDetail" id="RUJ-YT-HVC"/>
                     </connections>
                 </viewController>
@@ -1506,7 +1513,7 @@ MAIL: Matarai@shinonome.io</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="19S-FT-jNr"/>
+        <segue reference="pXV-9v-0ad"/>
         <segue reference="sSv-pR-fSU"/>
     </inferredMetricsTieBreakers>
     <resources>

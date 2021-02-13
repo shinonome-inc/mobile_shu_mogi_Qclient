@@ -10,6 +10,7 @@ import UIKit
 class UserListViewController: UIViewController {
     
     @IBOutlet weak var userListTableView: UITableView!
+    @IBOutlet weak var userTypeSegmentedControl: UISegmentedControl!
     //ユーザーリストのタイプ
     var userListType: UserListType?
     //ユーザーid
@@ -24,6 +25,8 @@ class UserListViewController: UIViewController {
     var pageNumber = 1
     //リクエストできるか状態かの判定
     var isNotLoading = false
+    //segmented control
+    let segmentedTypeItems = UserListType.allCases
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,8 +40,26 @@ class UserListViewController: UIViewController {
         }
         userListDataRequest = UserListNetworlService(userType: userListType, userId: userId)
         getData(requestUserListData: userListDataRequest)
+        setSegmentedControl(userListType: userListType)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == SegueId.fromUserListToUserDetail.rawValue) {
+            let userDetailVC = segue.destination as! UserDetailViewController
+            if let sendData = sendData {
+                userDetailVC.receivedData = sendData
+            }
+        }
+    }
+    
+    @IBAction func tapSegmentedControl(_ sender: UISegmentedControl) {
+        dataItems.removeAll()
+        guard let userId = userId else { return }
+        let selectedUserType = segmentedTypeItems[sender.selectedSegmentIndex]
+        userListType = selectedUserType
+        userListDataRequest = UserListNetworlService(userType: selectedUserType, userId: userId)
+        getData(requestUserListData: userListDataRequest)
+    }
     //apiを叩きデータを保存する
     func getData(requestUserListData: UserListNetworlService) {
         requestUserListData.fetch(success: { (dataArray) in
@@ -88,12 +109,15 @@ class UserListViewController: UIViewController {
         })
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == SegueId.fromUserListToUserDetail.rawValue) {
-            let userDetailVC = segue.destination as! UserDetailViewController
-            if let sendData = sendData {
-                userDetailVC.receivedData = sendData
-            }
+    func setSegmentedControl(userListType: UserListType) {
+        userTypeSegmentedControl.removeAllSegments()
+        let segmentedTitleItems = segmentedTypeItems.map { $0.title } //["フォロー中", "フォロワー"]
+        for (index, title) in segmentedTitleItems.enumerated() {
+            userTypeSegmentedControl.insertSegment(withTitle: title, at: index, animated: true)
+        }
+        //UISegmentedControlの選択状態を更新する
+        if let nowSelectedIndex = segmentedTypeItems.firstIndex(of: userListType) {
+            userTypeSegmentedControl.selectedSegmentIndex = nowSelectedIndex
         }
     }
 }
@@ -127,8 +151,15 @@ extension UserListViewController: UITableViewDataSource, UITableViewDelegate {
         if distanceToBottom < 150 && isNotLoading {
             isNotLoading = false
             pageNumber += 1
+            guard let userId = userId,
+                  let userListType = userListType else { return }
+            userListDataRequest = UserListNetworlService(userType: userListType, userId: userId)
             userListDataRequest.pageNumber = pageNumber
-            getData(requestUserListData: userListDataRequest)        
+            getData(requestUserListData: userListDataRequest)
         }
     }
+}
+
+extension UserListViewController: UISearchBarDelegate {
+    
 }
