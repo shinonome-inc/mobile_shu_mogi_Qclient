@@ -9,7 +9,7 @@ import UIKit
 
 class UserListViewController: UIViewController {
     
-    @IBOutlet weak var userListTableView: UITableView!
+    @IBOutlet weak var userListCollectionView: UICollectionView!
     @IBOutlet weak var userTypeSegmentedControl: UISegmentedControl!
     //ユーザーリストのタイプ
     var userListType: UserListType?
@@ -95,7 +95,7 @@ class UserListViewController: UIViewController {
                     print(oneUserListData)
                 }
             }
-            self.userListTableView.reloadData()
+            self.userListCollectionView.reloadData()
             print("👍 Reload the article data")
             self.isNotLoading = true
             
@@ -122,13 +122,13 @@ class UserListViewController: UIViewController {
     }
 }
 
-extension UserListViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension UserListViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataItems.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = userListTableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as? UserListTableViewCell else {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = userListCollectionView.dequeueReusableCell(withReuseIdentifier: "UserCell", for: indexPath) as? UserListCollectionViewCell else {
             abort()
         }
         let model = dataItems[indexPath.row]
@@ -136,13 +136,13 @@ extension UserListViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         sendData = dataItems[indexPath.row]
-        tableView.deselectRow(at: indexPath, animated: true)
+        collectionView.deselectItem(at: indexPath, animated: true)
         performSegue(withIdentifier: SegueId.fromUserListToUserDetail.rawValue, sender: nil)
     }
     
-    //tableviewをスクロールしたら最下のcellにたどり着く前にデータ更新を行う
+    //collectionviewをスクロールしたら最下のcellにたどり着く前にデータ更新を行う
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let currentOffsetY = scrollView.contentOffset.y
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
@@ -160,6 +160,3 @@ extension UserListViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-extension UserListViewController: UISearchBarDelegate {
-    
-}

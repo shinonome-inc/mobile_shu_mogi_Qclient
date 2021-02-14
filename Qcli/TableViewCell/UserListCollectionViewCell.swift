@@ -7,12 +7,11 @@
 
 import UIKit
 
-class UserListTableViewCell: UITableViewCell {
+class UserListCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userIdLabel: UILabel!
-    @IBOutlet weak var postCountLabel: UILabel!
-    @IBOutlet weak var followersCountLabel: UILabel!
+    @IBOutlet weak var postCountAndFollowersCountLabel: UILabel!
     @IBOutlet weak var discriptionLabel: UILabel!
     
     func setModel(model: UserDetailData) {
@@ -32,8 +31,7 @@ class UserListTableViewCell: UITableViewCell {
                 }
             })
         }
-        postCountLabel.text = "post: \(model.itemCount)"
-        followersCountLabel.text = "follower: \(model.followerCount)"
+        postCountAndFollowersCountLabel.text = "Post: \(model.itemCount), Follower: \(model.followerCount)"
         discriptionLabel.text = model.discription
     }
 }
