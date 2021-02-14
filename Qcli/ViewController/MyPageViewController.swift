@@ -35,6 +35,8 @@ class MyPageViewController: UIViewController {
     var isNotLoading = false
     //データリクエスト時に扱うユーザーID
     var userId: String?
+    //ユーザーの名前
+    var userName: String?
     //キーチェーン
     var keychain = KeyChain()
     //set refreshControl
@@ -64,9 +66,11 @@ class MyPageViewController: UIViewController {
         if (segue.identifier == SegueId.fromMyPageToUserList.rawValue) {
             let userListVC = segue.destination as! UserListViewController
             if let sendUserListType = sendUserListType,
-               let userId = userId {
+               let userId = userId,
+               let userName = userName {
                 userListVC.userListType = sendUserListType
                 userListVC.userId = userId
+                userListVC.userName = userName
             }
         }
         
@@ -128,8 +132,15 @@ class MyPageViewController: UIViewController {
             myItemDataRequest = AirticleDataNetworkService(searchDict: [SearchOption.user: id])
             getData(requestAirticleData: myItemDataRequest)
         }
-        if let name = userData.name {
-            userNameLabel.text = name
+        if let name = userData.name,
+           let id = userData.id {
+            if name == "" {
+                userName = id
+                userNameLabel.text = id
+            } else {
+                userName = name
+                userNameLabel.text = name
+            }
         }
         if let userDiscription = userData.description {
             userDiscriptionLabel.text = userDiscription

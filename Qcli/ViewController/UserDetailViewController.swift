@@ -39,6 +39,8 @@ class UserDetailViewController: UIViewController {
     var userId: String?
     //set refreshControl
     let refreshControl = UIRefreshControl()
+    //UserListVCに受け渡し用
+    var userName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,9 +65,11 @@ class UserDetailViewController: UIViewController {
         if (segue.identifier == SegueId.fromUserDetailToUserList.rawValue) {
             let userListVC = segue.destination as! UserListViewController
             if let sendUserListType = sendUserListType,
-               let userId = userId {
+               let userId = userId,
+               let userName = userName {
                 userListVC.userListType = sendUserListType
                 userListVC.userId = userId
+                userListVC.userName = userName
             }
         }
         
@@ -116,8 +120,10 @@ class UserDetailViewController: UIViewController {
         
         if model.userName == "" {
             userNameLabel.text = model.userId
+            userName = model.userId
         } else {
             userNameLabel.text = model.userName
+            userName = model.userName
         }
         
         userDiscriptionLabel.text = model.discription

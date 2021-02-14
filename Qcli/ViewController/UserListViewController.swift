@@ -15,6 +15,8 @@ class UserListViewController: UIViewController {
     var userListType: UserListType?
     //ユーザーid
     var userId: String?
+    //ユーザーの名前
+    var userName: String?
     //取得するデータのリスト
     var dataItems = [UserDetailData]()
     //送信用データ
@@ -30,6 +32,9 @@ class UserListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let userName = userName {
+            title = userName
+        }
         guard let userId = userId else {
             assertionFailure("userId → nil")
             return
