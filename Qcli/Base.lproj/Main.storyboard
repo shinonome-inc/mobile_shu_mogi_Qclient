@@ -225,7 +225,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rbt-qw-DVp">
-                                                    <rect key="frame" x="5" y="5" width="40" height="40"/>
+                                                    <rect key="frame" x="16" y="5" width="40" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="3Ap-ca-Oub"/>
                                                         <constraint firstAttribute="width" constant="40" id="SyF-WK-Ahv"/>
@@ -237,51 +237,36 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbw-V8-ueC">
-                                                    <rect key="frame" x="63" y="0.0" width="44" height="28"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="28" id="EuZ-Rf-ElX"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="shY-sY-LzZ">
-                                                    <rect key="frame" x="63" y="28" width="44" height="22"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="22" id="fhr-UZ-DiO"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPn-y1-jO9">
-                                                    <rect key="frame" x="107" y="14" width="302" height="22"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="22" id="Llo-Pr-pnw"/>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="36" id="uOb-IO-WhI"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="64" y="8" width="334" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="shY-sY-LzZ">
+                                                    <rect key="frame" x="64" y="27.5" width="334" height="14.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="14.5" id="aCL-Bk-KCF"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.50980752709999999" green="0.50979751350000002" blue="0.50980430840000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="wbw-V8-ueC" firstAttribute="top" secondItem="dJM-eu-ZRF" secondAttribute="top" id="3oF-kn-vtz"/>
+                                                <constraint firstItem="wbw-V8-ueC" firstAttribute="top" secondItem="dJM-eu-ZRF" secondAttribute="top" constant="8" id="3oF-kn-vtz"/>
                                                 <constraint firstItem="rbt-qw-DVp" firstAttribute="top" secondItem="dJM-eu-ZRF" secondAttribute="top" constant="5" id="8Tt-TJ-63A"/>
-                                                <constraint firstItem="KPn-y1-jO9" firstAttribute="leading" secondItem="shY-sY-LzZ" secondAttribute="trailing" id="DXj-pm-2s8"/>
-                                                <constraint firstItem="KPn-y1-jO9" firstAttribute="leading" secondItem="wbw-V8-ueC" secondAttribute="trailing" id="J30-1S-kfq"/>
-                                                <constraint firstItem="wbw-V8-ueC" firstAttribute="leading" secondItem="rbt-qw-DVp" secondAttribute="trailing" constant="18" id="Jlg-DU-0NJ"/>
-                                                <constraint firstItem="shY-sY-LzZ" firstAttribute="leading" secondItem="rbt-qw-DVp" secondAttribute="trailing" constant="18" id="LdG-nV-tbB"/>
-                                                <constraint firstAttribute="trailing" secondItem="KPn-y1-jO9" secondAttribute="trailing" constant="5" id="jxl-AT-eUo"/>
+                                                <constraint firstItem="wbw-V8-ueC" firstAttribute="leading" secondItem="rbt-qw-DVp" secondAttribute="trailing" constant="8" id="Jlg-DU-0NJ"/>
+                                                <constraint firstItem="shY-sY-LzZ" firstAttribute="leading" secondItem="rbt-qw-DVp" secondAttribute="trailing" constant="8" id="LdG-nV-tbB"/>
+                                                <constraint firstAttribute="bottom" secondItem="shY-sY-LzZ" secondAttribute="bottom" constant="8" id="g9X-8I-MRT"/>
                                                 <constraint firstItem="shY-sY-LzZ" firstAttribute="top" secondItem="wbw-V8-ueC" secondAttribute="bottom" id="pQ4-dO-wt7"/>
-                                                <constraint firstItem="KPn-y1-jO9" firstAttribute="top" secondItem="dJM-eu-ZRF" secondAttribute="top" constant="14" id="uSH-L5-RIf"/>
-                                                <constraint firstItem="rbt-qw-DVp" firstAttribute="leading" secondItem="dJM-eu-ZRF" secondAttribute="leading" constant="5" id="xfq-E6-maq"/>
+                                                <constraint firstAttribute="trailing" secondItem="wbw-V8-ueC" secondAttribute="trailing" constant="16" id="tql-VY-LLa"/>
+                                                <constraint firstItem="rbt-qw-DVp" firstAttribute="leading" secondItem="dJM-eu-ZRF" secondAttribute="leading" constant="16" id="xfq-E6-maq"/>
+                                                <constraint firstAttribute="trailing" secondItem="shY-sY-LzZ" secondAttribute="trailing" constant="16" id="zXT-YP-abi"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="articleIconImage" destination="rbt-qw-DVp" id="sRU-05-h63"/>
                                             <outlet property="discriptionLabel" destination="shY-sY-LzZ" id="Syb-n3-jPm"/>
-                                            <outlet property="likeLabel" destination="KPn-y1-jO9" id="IZr-ao-8L0"/>
                                             <outlet property="titleLabel" destination="wbw-V8-ueC" id="63d-t9-ted"/>
                                         </connections>
                                     </tableViewCell>
@@ -382,18 +367,18 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArticleCell" rowHeight="50" id="wvt-2T-hzo" customClass="ArticleTableViewCell" customModule="Qcli" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArticleCell" rowHeight="50" id="jsw-j1-Cin" customClass="ArticleTableViewCell" customModule="Qcli" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wvt-2T-hzo" id="gi0-BK-yIV">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jsw-j1-Cin" id="tmb-HY-DL9">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hze-E8-pgJ">
-                                                    <rect key="frame" x="5" y="5" width="40" height="40"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6QZ-E6-Mkv">
+                                                    <rect key="frame" x="16" y="5" width="40" height="40"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="40" id="QC9-cU-SHn"/>
-                                                        <constraint firstAttribute="height" constant="40" id="djY-Zp-GXx"/>
+                                                        <constraint firstAttribute="width" constant="40" id="5dz-Mt-zCS"/>
+                                                        <constraint firstAttribute="height" constant="40" id="D8m-7h-e2M"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -401,53 +386,38 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jpg-LQ-6rb">
-                                                    <rect key="frame" x="63" y="0.0" width="44" height="28"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="28" id="vRL-Fk-a5Q"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jfQ-R3-NsT">
-                                                    <rect key="frame" x="63" y="28" width="44" height="22"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="22" id="suU-cl-UiL"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O36-Gs-V8g">
-                                                    <rect key="frame" x="107" y="14" width="302" height="22"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="36" id="MMz-VB-5qK"/>
-                                                        <constraint firstAttribute="height" constant="22" id="w0F-sx-LSY"/>
-                                                    </constraints>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CSo-MR-Eex">
+                                                    <rect key="frame" x="64" y="8" width="334" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ek5-6R-elL">
+                                                    <rect key="frame" x="64" y="27.5" width="334" height="14.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="14.5" id="yIb-bm-owy"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.50980752709999999" green="0.50979751350000002" blue="0.50980430840000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="O36-Gs-V8g" firstAttribute="leading" secondItem="Jpg-LQ-6rb" secondAttribute="trailing" id="1JM-HF-9Uh"/>
-                                                <constraint firstItem="jfQ-R3-NsT" firstAttribute="leading" secondItem="hze-E8-pgJ" secondAttribute="trailing" constant="18" id="QLO-9b-NK7"/>
-                                                <constraint firstItem="O36-Gs-V8g" firstAttribute="leading" secondItem="jfQ-R3-NsT" secondAttribute="trailing" id="UG9-fz-zus"/>
-                                                <constraint firstItem="O36-Gs-V8g" firstAttribute="top" secondItem="gi0-BK-yIV" secondAttribute="top" constant="14" id="Vig-r7-Euw"/>
-                                                <constraint firstAttribute="trailing" secondItem="O36-Gs-V8g" secondAttribute="trailing" constant="5" id="YcB-DL-4pr"/>
-                                                <constraint firstItem="hze-E8-pgJ" firstAttribute="leading" secondItem="gi0-BK-yIV" secondAttribute="leading" constant="5" id="acA-8f-i9H"/>
-                                                <constraint firstItem="jfQ-R3-NsT" firstAttribute="top" secondItem="Jpg-LQ-6rb" secondAttribute="bottom" id="hqu-AN-l4v"/>
-                                                <constraint firstItem="Jpg-LQ-6rb" firstAttribute="leading" secondItem="hze-E8-pgJ" secondAttribute="trailing" constant="18" id="sM4-7g-fBq"/>
-                                                <constraint firstItem="hze-E8-pgJ" firstAttribute="top" secondItem="gi0-BK-yIV" secondAttribute="top" constant="5" id="wgG-kT-enh"/>
-                                                <constraint firstItem="Jpg-LQ-6rb" firstAttribute="top" secondItem="gi0-BK-yIV" secondAttribute="top" id="ylh-Gn-bBw"/>
+                                                <constraint firstItem="CSo-MR-Eex" firstAttribute="leading" secondItem="6QZ-E6-Mkv" secondAttribute="trailing" constant="8" id="2sB-nG-zD0"/>
+                                                <constraint firstAttribute="trailing" secondItem="CSo-MR-Eex" secondAttribute="trailing" constant="16" id="7Pk-NQ-Nxs"/>
+                                                <constraint firstItem="Ek5-6R-elL" firstAttribute="top" secondItem="CSo-MR-Eex" secondAttribute="bottom" id="CJ9-bg-6kl"/>
+                                                <constraint firstAttribute="bottom" secondItem="Ek5-6R-elL" secondAttribute="bottom" constant="8" id="L4C-uJ-4XO"/>
+                                                <constraint firstAttribute="trailing" secondItem="Ek5-6R-elL" secondAttribute="trailing" constant="16" id="OqN-gF-dc0"/>
+                                                <constraint firstItem="6QZ-E6-Mkv" firstAttribute="top" secondItem="tmb-HY-DL9" secondAttribute="top" constant="5" id="PSM-iE-hHn"/>
+                                                <constraint firstItem="CSo-MR-Eex" firstAttribute="top" secondItem="tmb-HY-DL9" secondAttribute="top" constant="8" id="ROZ-wG-XVl"/>
+                                                <constraint firstItem="6QZ-E6-Mkv" firstAttribute="leading" secondItem="tmb-HY-DL9" secondAttribute="leading" constant="16" id="cE3-M3-swh"/>
+                                                <constraint firstItem="Ek5-6R-elL" firstAttribute="leading" secondItem="6QZ-E6-Mkv" secondAttribute="trailing" constant="8" id="r1L-AP-NU7"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="articleIconImage" destination="hze-E8-pgJ" id="i1W-H1-XLT"/>
-                                            <outlet property="discriptionLabel" destination="jfQ-R3-NsT" id="SXa-Z2-CQz"/>
-                                            <outlet property="likeLabel" destination="O36-Gs-V8g" id="Mn7-dJ-GAP"/>
-                                            <outlet property="titleLabel" destination="Jpg-LQ-6rb" id="lma-UI-oYV"/>
+                                            <outlet property="articleIconImage" destination="6QZ-E6-Mkv" id="3Rg-3t-TlW"/>
+                                            <outlet property="discriptionLabel" destination="Ek5-6R-elL" id="nLM-6K-akk"/>
+                                            <outlet property="titleLabel" destination="CSo-MR-Eex" id="41u-Hc-eK2"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -821,11 +791,11 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
             <objects>
                 <viewController storyboardIdentifier="UserListViewController" id="kEE-um-ZMT" customClass="UserListViewController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wt4-UB-pK9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hiJ-iB-sXh">
-                                <rect key="frame" x="0.0" y="151" width="414" height="662"/>
+                                <rect key="frame" x="0.0" y="63" width="414" height="745"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="292" id="JuM-qS-HEg" customClass="UserListTableViewCell" customModule="Qcli" customModuleProvider="target">
@@ -926,7 +896,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                                 </connections>
                             </tableView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="OYa-ae-wO2">
-                                <rect key="frame" x="12" y="104" width="390" height="32"/>
+                                <rect key="frame" x="12" y="16" width="390" height="32"/>
                                 <segments>
                                     <segment title="First"/>
                                     <segment title="Second"/>
@@ -1003,6 +973,8 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.52434545759999995" green="0.75037294629999995" blue="0.31362012030000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="selectedImageTintColor" red="0.52434545759999995" green="0.75037294629999995" blue="0.31362012030000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBar>
                     <connections>
                         <segue destination="SdZ-Sh-DkO" kind="relationship" relationship="viewControllers" id="otO-4l-9pX"/>
@@ -1118,11 +1090,11 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
             </objects>
             <point key="canvasLocation" x="-236" y="74"/>
         </scene>
-        <!--Feed-->
+        <!--フィード-->
         <scene sceneID="LFy-gp-qV9">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SdZ-Sh-DkO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Feed" image="rss_feed" id="RbB-ye-Zxr"/>
+                    <tabBarItem key="tabBarItem" title="フィード" image="List" id="RbB-ye-Zxr"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6Kf-1E-Ypd">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -1193,7 +1165,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pAQ-7Z-vc1">
-                                <rect key="frame" x="0.0" y="257.5" width="414" height="555.5"/>
+                                <rect key="frame" x="0.0" y="169.5" width="414" height="638.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArticleCell" rowHeight="50" id="8GL-HB-lpO" customClass="MyPageTableViewCell" customModule="Qcli" customModuleProvider="target">
@@ -1256,7 +1228,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                                 </connections>
                             </tableView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kYG-TI-RsD">
-                                <rect key="frame" x="5" y="93" width="100" height="100"/>
+                                <rect key="frame" x="5" y="5" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="ENk-si-MT7"/>
                                     <constraint firstAttribute="width" constant="100" id="YqG-PH-lDF"/>
@@ -1268,19 +1240,19 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xCv-dX-8Un">
-                                <rect key="frame" x="129" y="105" width="67" height="34"/>
+                                <rect key="frame" x="129" y="17" width="67" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKs-Fo-mz8">
-                                <rect key="frame" x="129" y="152" width="57" height="29"/>
+                                <rect key="frame" x="129" y="64" width="57" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SU6-Uf-erS">
-                                <rect key="frame" x="5" y="198" width="404" height="20.5"/>
+                                <rect key="frame" x="5" y="110" width="404" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1291,7 +1263,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KqU-bc-ozg">
-                                <rect key="frame" x="5" y="222.5" width="44" height="30"/>
+                                <rect key="frame" x="5" y="134.5" width="44" height="30"/>
                                 <state key="normal" title="Follow">
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
@@ -1300,7 +1272,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XHo-08-3x1">
-                                <rect key="frame" x="54" y="222.5" width="58" height="30"/>
+                                <rect key="frame" x="54" y="134.5" width="58" height="30"/>
                                 <state key="normal" title="Follower">
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
@@ -1525,13 +1497,13 @@ MAIL: Matarai@shinonome.io</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="AHv-An-Oo6"/>
-        <segue reference="FqX-aV-cGM"/>
+        <segue reference="19S-FT-jNr"/>
+        <segue reference="sSv-pR-fSU"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="List" width="24" height="24"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="person" catalog="system" width="128" height="117"/>
-        <image name="rss_feed" width="24" height="24"/>
         <image name="tag" catalog="system" width="128" height="119"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

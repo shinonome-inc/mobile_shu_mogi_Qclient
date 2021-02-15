@@ -8,6 +8,7 @@
 import Foundation
 
 struct ArticleData {
+    var id: String
     var imgURL: String
     var titleText: String
     var createdAt: String

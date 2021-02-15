@@ -12,16 +12,14 @@ class ArticleTableViewCell: UITableViewCell {
     @IBOutlet weak var articleIconImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var discriptionLabel: UILabel!
-    @IBOutlet weak var likeLabel: UILabel!
     
     func setModel(model: ArticleData) {
         titleLabel.text = model.titleText
         if let createdAt = model.createdAt.toJpDateString() {
-            discriptionLabel.text = createdAt + "に作成"
+            discriptionLabel.text = "@\(model.id) 投稿日: \(createdAt) LGTM: \(model.likeNumber)"
         } else {
             discriptionLabel.text = ""
         }
-        likeLabel.text = "\(model.likeNumber)like"
         if let url = URL(string: model.imgURL) {
             articleIconImage.setImage(with: url, completionHandler: { result in
                 switch result {
