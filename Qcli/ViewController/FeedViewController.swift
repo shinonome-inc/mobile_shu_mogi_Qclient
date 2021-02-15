@@ -34,6 +34,7 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController!.setNavigationBarColor()
         //記事データ取得
         articleListDataRequest = AirticleDataNetworkService(searchDict: nil)
         articleListDataRequest.errorDelegate = self

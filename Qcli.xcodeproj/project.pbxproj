@@ -33,6 +33,7 @@
 		025353E525BBF555008F29F5 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025353E425BBF555008F29F5 /* ErrorView.swift */; };
 		025353EB25BEBE5A008F29F5 /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 025353EA25BEBE5A008F29F5 /* ErrorView.xib */; };
 		0270910E2584C735006691B4 /* QiitaRequest+Headers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0270910D2584C735006691B4 /* QiitaRequest+Headers.swift */; };
+		0273286025DA948D0044B597 /* NavigationBarColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0273285F25DA948D0044B597 /* NavigationBarColor.swift */; };
 		028EE73425B1D7200062C079 /* ErrorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028EE73325B1D7200062C079 /* ErrorDelegate.swift */; };
 		028EE73A25B2C2040062C079 /* ViewControllerIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028EE73925B2C2040062C079 /* ViewControllerIdentifier.swift */; };
 		028EE73E25B2F4830062C079 /* ReloadDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028EE73D25B2F4820062C079 /* ReloadDelegate.swift */; };
@@ -106,6 +107,7 @@
 		025353EA25BEBE5A008F29F5 /* ErrorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
 		0270910D2584C735006691B4 /* QiitaRequest+Headers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QiitaRequest+Headers.swift"; sourceTree = "<group>"; };
 		027126022569419000DE392A /* APITestApp.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APITestApp.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0273285F25DA948D0044B597 /* NavigationBarColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarColor.swift; sourceTree = "<group>"; };
 		028EE73325B1D7200062C079 /* ErrorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorDelegate.swift; sourceTree = "<group>"; };
 		028EE73925B2C2040062C079 /* ViewControllerIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerIdentifier.swift; sourceTree = "<group>"; };
 		028EE73D25B2F4820062C079 /* ReloadDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReloadDelegate.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				02A146D125A34F2600285DD8 /* DateFormat+String.swift */,
 				024CF42525D503D300216D5D /* URL+GetCode.swift */,
 				02F99E2E25D7965B00896719 /* UIView+AddBackGroundImage.swift */,
+				0273285F25DA948D0044B597 /* NavigationBarColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -524,6 +527,7 @@
 				028EE73425B1D7200062C079 /* ErrorDelegate.swift in Sources */,
 				02F99E2F25D7965B00896719 /* UIView+AddBackGroundImage.swift in Sources */,
 				02A146AF259DA70700285DD8 /* UserListType.swift in Sources */,
+				0273286025DA948D0044B597 /* NavigationBarColor.swift in Sources */,
 				0244246825CF9159006EF1DD /* RightDetailTableViewCell.swift in Sources */,
 				02A1469A259B44F700285DD8 /* MyPageTableViewCell.swift in Sources */,
 				024CF41C25D4DD4100216D5D /* OAuthViewController.swift in Sources */,
