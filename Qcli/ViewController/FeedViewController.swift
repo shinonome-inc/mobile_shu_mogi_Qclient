@@ -34,6 +34,7 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController!.setNavigationBarColor()
         //記事データ取得
         articleListDataRequest = AirticleDataNetworkService(searchDict: nil)
         articleListDataRequest.errorDelegate = self
@@ -66,9 +67,10 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == SegueId.fromFeedToArticle.rawValue) {
-            let articlePageVC = segue.destination as! ArticlePageViewController
-            if let sendData = sendData {
-                articlePageVC.articleData = sendData
+            if let navigationController = segue.destination as? UINavigationController,
+               let articlePageViewController = navigationController.topViewController as? ArticlePageViewController,
+               let sendData = sendData {
+                articlePageViewController.articleData = sendData
             }
         }
     }
@@ -81,8 +83,9 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
                    let createdAt = oneAirticleData.createdAt,
                    let like = oneAirticleData.likesCount,
                    let imageURL = oneAirticleData.user.profileImageUrl,
-                   let articleURL = oneAirticleData.url {
-                    let oneData = ArticleData(imgURL: imageURL, titleText: title, createdAt: createdAt, likeNumber: like, articleURL: articleURL)
+                   let articleURL = oneAirticleData.url,
+                   let id = oneAirticleData.user.id {
+                    let oneData = ArticleData(id: id, imgURL: imageURL, titleText: title, createdAt: createdAt, likeNumber: like, articleURL: articleURL)
                     self.dataItems.append(oneData)
                 } else {
                     print("ERROR: This data ↓ allocation failed.")

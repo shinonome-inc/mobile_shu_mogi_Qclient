@@ -11,11 +11,11 @@ import UIKit
 
 class TagListViewController: UIViewController {
     
-    @IBOutlet weak var tagListTableView: UITableView!
+    @IBOutlet weak var tagListCollectionView: UICollectionView!
     //最初に取得する記事欄のデータ
     var dataItems = [TagData]() {
         didSet {
-            tagListTableView.reloadData()
+            tagListCollectionView.reloadData()
         }
     }
     //画面遷移時のデータ受け渡し用
@@ -38,7 +38,7 @@ class TagListViewController: UIViewController {
         getTagListData(requestTagListData: tagListDataRequest)
         
         //set refresh control
-        tagListTableView.refreshControl = refreshControl
+        tagListCollectionView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
        
@@ -48,15 +48,16 @@ class TagListViewController: UIViewController {
             tagListData?.forEach{ (oneTagData) in
                 if let title = oneTagData.id,
                    let imageUrl = oneTagData.iconUrl,
-                   let itemCount = oneTagData.itemsCount {
-                    let oneData = TagData(tagTitle: title, imageURL: imageUrl, itemCount: itemCount)
+                   let itemCount = oneTagData.itemsCount,
+                   let followersCount = oneTagData.followersCount {
+                    let oneData = TagData(tagTitle: title, imageURL: imageUrl, itemCount: itemCount, followersCount: followersCount)
                     self.dataItems.append(oneData)
                 } else {
                     print("ERROR: This data ↓ allocation failed.")
                     print(oneTagData)
                 }
             }
-            self.tagListTableView.reloadData()
+            self.tagListCollectionView.reloadData()
             print("👍 Reload the tag data")
             self.isNotLoading = true
         }, failure: { error in
@@ -86,14 +87,14 @@ class TagListViewController: UIViewController {
         refreshControl.endRefreshing()
     }
 }
-extension TagListViewController: UITableViewDelegate, UITableViewDataSource {
+extension TagListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataItems.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tagListTableView.dequeueReusableCell(withIdentifier: "tagCell", for: indexPath) as? TagListTableViewCell else {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = tagListCollectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagListCollectionViewCell else {
             abort()
         }
         let model = dataItems[indexPath.row]
@@ -102,13 +103,13 @@ extension TagListViewController: UITableViewDelegate, UITableViewDataSource {
         //return setCell(items: dataItems, indexPath: indexPath)
     }
     
-    //tableviewcell選択時の処理
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    //collectionViewcell選択時の処理
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         sendData = dataItems[indexPath.row]
-        tableView.deselectRow(at: indexPath, animated: true)
+        collectionView.deselectItem(at: indexPath, animated: true)
         performSegue(withIdentifier: SegueId.fromTagListToTagDetailList.rawValue, sender: nil)
     }
-    //tableviewをスクロールしたら最下のcellにたどり着く前にデータ更新を行う
+    //collectionViewをスクロールしたら最下のcellにたどり着く前にデータ更新を行う
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let height = scrollView.frame.size.height
         let contentYoffset = scrollView.contentOffset.y

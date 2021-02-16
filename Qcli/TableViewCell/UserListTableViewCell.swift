@@ -14,8 +14,10 @@ class UserListTableViewCell: UITableViewCell {
     @IBOutlet weak var postCountLabel: UILabel!
     @IBOutlet weak var followersCountLabel: UILabel!
     @IBOutlet weak var discriptionLabel: UILabel!
+    @IBOutlet weak var borderView: UIView!
     
     func setModel(model: UserDetailData) {
+        setBorderView()
         //userNameがない場合の対処
         if model.userName == "" {
             userNameLabel.text = model.userId
@@ -35,5 +37,11 @@ class UserListTableViewCell: UITableViewCell {
         postCountLabel.text = "post: \(model.itemCount)"
         followersCountLabel.text = "follower: \(model.followerCount)"
         discriptionLabel.text = model.discription
+    }
+    
+    func setBorderView() {
+        borderView.layer.cornerRadius = 8
+        borderView.layer.borderWidth = 1
+        borderView.layer.borderColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
     }
 }

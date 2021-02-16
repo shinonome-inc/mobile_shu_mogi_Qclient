@@ -8,6 +8,7 @@
 import Foundation
 
 struct ArticleData {
+    var id: String
     var imgURL: String
     var titleText: String
     var createdAt: String
@@ -19,6 +20,7 @@ struct TagData {
     var tagTitle: String
     var imageURL: String
     var itemCount: Int
+    var followersCount: Int
 }
 
 struct UserData {

@@ -35,6 +35,8 @@ class MyPageViewController: UIViewController {
     var isNotLoading = false
     //データリクエスト時に扱うユーザーID
     var userId: String?
+    //ユーザーの名前
+    var userName: String?
     //キーチェーン
     var keychain = KeyChain()
     //set refreshControl
@@ -64,16 +66,19 @@ class MyPageViewController: UIViewController {
         if (segue.identifier == SegueId.fromMyPageToUserList.rawValue) {
             let userListVC = segue.destination as! UserListViewController
             if let sendUserListType = sendUserListType,
-               let userId = userId {
+               let userId = userId,
+               let userName = userName {
                 userListVC.userListType = sendUserListType
                 userListVC.userId = userId
+                userListVC.userName = userName
             }
         }
         
         if (segue.identifier == SegueId.fromMyPageToArticlePage.rawValue) {
-            let articlePageVC = segue.destination as! ArticlePageViewController
-            if let sendData = sendData {
-                articlePageVC.articleData = sendData
+            if let navigationController = segue.destination as? UINavigationController,
+               let articlePageViewController = navigationController.topViewController as? ArticlePageViewController,
+               let sendData = sendData {
+                articlePageViewController.articleData = sendData
             }
         }
     }
@@ -86,8 +91,9 @@ class MyPageViewController: UIViewController {
                    let createdAt = oneAirticleData.createdAt,
                    let like = oneAirticleData.likesCount,
                    let imageURL = oneAirticleData.user.profileImageUrl,
-                   let articleURL = oneAirticleData.url {
-                    let oneData = ArticleData(imgURL: imageURL, titleText: title, createdAt: createdAt, likeNumber: like, articleURL: articleURL)
+                   let articleURL = oneAirticleData.url,
+                   let id = oneAirticleData.user.id {
+                    let oneData = ArticleData(id: id, imgURL: imageURL, titleText: title, createdAt: createdAt, likeNumber: like, articleURL: articleURL)
                     self.dataItems.append(oneData)
                     print("dataItems appended")
                 } else {
@@ -127,8 +133,15 @@ class MyPageViewController: UIViewController {
             myItemDataRequest = AirticleDataNetworkService(searchDict: [SearchOption.user: id])
             getData(requestAirticleData: myItemDataRequest)
         }
-        if let name = userData.name {
-            userNameLabel.text = name
+        if let name = userData.name,
+           let id = userData.id {
+            if name == "" {
+                userName = id
+                userNameLabel.text = id
+            } else {
+                userName = name
+                userNameLabel.text = name
+            }
         }
         if let userDiscription = userData.description {
             userDiscriptionLabel.text = userDiscription

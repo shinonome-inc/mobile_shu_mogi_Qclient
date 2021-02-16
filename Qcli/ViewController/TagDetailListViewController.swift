@@ -50,8 +50,9 @@ class TagDetailListViewController: UIViewController {
                    let createdAt = oneAirticleData.createdAt,
                    let like = oneAirticleData.likesCount,
                    let imageURL = oneAirticleData.user.profileImageUrl,
-                   let articleURL = oneAirticleData.url {
-                    let oneData = ArticleData(imgURL: imageURL, titleText: title, createdAt: createdAt, likeNumber: like, articleURL: articleURL)
+                   let articleURL = oneAirticleData.url,
+                   let id = oneAirticleData.user.id {
+                    let oneData = ArticleData(id: id, imgURL: imageURL, titleText: title, createdAt: createdAt, likeNumber: like, articleURL: articleURL)
                     self.dataItems.append(oneData)
                 } else {
                     print("ERROR: This data ↓ allocation failed.")
@@ -88,9 +89,10 @@ class TagDetailListViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == SegueId.fromTagDetailToArticlePage.rawValue) {
-            let articlePageVC = segue.destination as! ArticlePageViewController
-            if let sendData = sendData {
-                articlePageVC.articleData = sendData
+            if let navigationController = segue.destination as? UINavigationController,
+               let articlePageViewController = navigationController.topViewController as? ArticlePageViewController,
+               let sendData = sendData {
+                articlePageViewController.articleData = sendData
             }
         }
     }

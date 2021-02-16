@@ -39,6 +39,8 @@ class UserDetailViewController: UIViewController {
     var userId: String?
     //set refreshControl
     let refreshControl = UIRefreshControl()
+    //UserListVCに受け渡し用
+    var userName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,16 +65,19 @@ class UserDetailViewController: UIViewController {
         if (segue.identifier == SegueId.fromUserDetailToUserList.rawValue) {
             let userListVC = segue.destination as! UserListViewController
             if let sendUserListType = sendUserListType,
-               let userId = userId {
+               let userId = userId,
+               let userName = userName {
                 userListVC.userListType = sendUserListType
                 userListVC.userId = userId
+                userListVC.userName = userName
             }
         }
         
         if (segue.identifier == SegueId.fromUserDetailToArticlePage.rawValue) {
-            let articlePageVC = segue.destination as! ArticlePageViewController
-            if let sendData = sendData {
-                articlePageVC.articleData = sendData
+            if let navigationController = segue.destination as? UINavigationController,
+               let articlePageViewController = navigationController.topViewController as? ArticlePageViewController,
+               let sendData = sendData {
+                articlePageViewController.articleData = sendData
             }
         }
     }
@@ -84,8 +89,9 @@ class UserDetailViewController: UIViewController {
                    let createdAt = oneAirticleData.createdAt,
                    let like = oneAirticleData.likesCount,
                    let imageURL = oneAirticleData.user.profileImageUrl,
-                   let articleURL = oneAirticleData.url {
-                    let oneData = ArticleData(imgURL: imageURL, titleText: title, createdAt: createdAt, likeNumber: like, articleURL: articleURL)
+                   let articleURL = oneAirticleData.url,
+                   let id = oneAirticleData.user.id {
+                    let oneData = ArticleData(id: id, imgURL: imageURL, titleText: title, createdAt: createdAt, likeNumber: like, articleURL: articleURL)
                     self.dataItems.append(oneData)
                 } else {
                     print("ERROR: This data ↓ allocation failed.")
@@ -115,8 +121,10 @@ class UserDetailViewController: UIViewController {
         
         if model.userName == "" {
             userNameLabel.text = model.userId
+            userName = model.userId
         } else {
             userNameLabel.text = model.userName
+            userName = model.userName
         }
         
         userDiscriptionLabel.text = model.discription
