@@ -13,7 +13,6 @@ class LoginViewController: UIViewController {
     let userInfoKeychain = KeyChain()
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addBackGroundImage(image: #imageLiteral(resourceName: "background"))
     }
     
     override func viewWillAppear(_ animated: Bool) {

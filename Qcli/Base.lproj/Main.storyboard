@@ -22,6 +22,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="6LM-ay-sXQ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qiita Feed App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KcV-TZ-IYh">
                                 <rect key="frame" x="92" y="276.5" width="230" height="63"/>
                                 <constraints>
@@ -83,13 +86,17 @@
                             <constraint firstItem="KcV-TZ-IYh" firstAttribute="centerY" secondItem="Hdy-WR-4R6" secondAttribute="centerY" constant="-140" id="Amt-xh-VTo"/>
                             <constraint firstItem="o63-Q9-cWq" firstAttribute="trailing" secondItem="l7i-j8-3Fw" secondAttribute="trailing" constant="20" id="BCZ-Cc-9sl"/>
                             <constraint firstItem="l7i-j8-3Fw" firstAttribute="top" secondItem="001-Vu-6nT" secondAttribute="bottom" constant="17" id="DBB-w4-OM9"/>
+                            <constraint firstItem="6LM-ay-sXQ" firstAttribute="top" secondItem="Hdy-WR-4R6" secondAttribute="top" id="DpN-Dd-yMS"/>
                             <constraint firstItem="KcV-TZ-IYh" firstAttribute="centerX" secondItem="Hdy-WR-4R6" secondAttribute="centerX" id="Fqk-47-aSs"/>
                             <constraint firstItem="GSb-oL-0z1" firstAttribute="top" secondItem="KcV-TZ-IYh" secondAttribute="bottom" constant="8" id="Mk1-Wb-gSX"/>
                             <constraint firstAttribute="bottom" secondItem="l7i-j8-3Fw" secondAttribute="bottom" constant="36" id="O7N-ey-XZd"/>
                             <constraint firstItem="001-Vu-6nT" firstAttribute="leading" secondItem="o63-Q9-cWq" secondAttribute="leading" constant="20" id="Oj2-QI-CoA"/>
+                            <constraint firstAttribute="bottom" secondItem="6LM-ay-sXQ" secondAttribute="bottom" id="Rxn-NX-PbM"/>
+                            <constraint firstAttribute="trailing" secondItem="6LM-ay-sXQ" secondAttribute="trailing" id="VHr-hd-a6U"/>
                             <constraint firstItem="o63-Q9-cWq" firstAttribute="trailing" secondItem="001-Vu-6nT" secondAttribute="trailing" constant="20" id="iLa-KJ-34O"/>
                             <constraint firstItem="GSb-oL-0z1" firstAttribute="centerX" secondItem="Hdy-WR-4R6" secondAttribute="centerX" id="oYv-bE-qEB"/>
                             <constraint firstItem="l7i-j8-3Fw" firstAttribute="leading" secondItem="o63-Q9-cWq" secondAttribute="leading" constant="20" id="sd8-oz-Fkx"/>
+                            <constraint firstItem="6LM-ay-sXQ" firstAttribute="leading" secondItem="Hdy-WR-4R6" secondAttribute="leading" id="xev-nJ-1Qv"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="U1i-OI-1Yd"/>
@@ -1502,6 +1509,7 @@ MAIL: Matarai@shinonome.io</string>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="List" width="24" height="24"/>
+        <image name="background" width="375" height="812"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="tag" catalog="system" width="128" height="119"/>

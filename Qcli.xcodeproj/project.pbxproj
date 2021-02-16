@@ -64,7 +64,6 @@
 		02E1368F256FDE7E0050E4E7 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E1368E256FDE7E0050E4E7 /* TestData.swift */; };
 		02E13693256FE7750050E4E7 /* ErrorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E13692256FE7750050E4E7 /* ErrorData.swift */; };
 		02F99E2925D78ABE00896719 /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02F99E2825D78ABE00896719 /* Pacifico-Regular.ttf */; };
-		02F99E2F25D7965B00896719 /* UIView+AddBackGroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F99E2E25D7965B00896719 /* UIView+AddBackGroundImage.swift */; };
 		675A99C01E5B2032D3662E6E /* Pods_Qcli.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 105D3B6E37BA817A4F352A2E /* Pods_Qcli.framework */; };
 /* End PBXBuildFile section */
 
@@ -140,7 +139,6 @@
 		02E1368E256FDE7E0050E4E7 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		02E13692256FE7750050E4E7 /* ErrorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorData.swift; sourceTree = "<group>"; };
 		02F99E2825D78ABE00896719 /* Pacifico-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pacifico-Regular.ttf"; sourceTree = "<group>"; };
-		02F99E2E25D7965B00896719 /* UIView+AddBackGroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AddBackGroundImage.swift"; sourceTree = "<group>"; };
 		105D3B6E37BA817A4F352A2E /* Pods_Qcli.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Qcli.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F6543D98951B36C857F91C4 /* Pods-Qcli.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qcli.release.xcconfig"; path = "Target Support Files/Pods-Qcli/Pods-Qcli.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -170,7 +168,6 @@
 				023D026525999E7F0043FE29 /* ImageView+Kingfisher.swift */,
 				02A146D125A34F2600285DD8 /* DateFormat+String.swift */,
 				024CF42525D503D300216D5D /* URL+GetCode.swift */,
-				02F99E2E25D7965B00896719 /* UIView+AddBackGroundImage.swift */,
 				0273285F25DA948D0044B597 /* NavigationBarColor.swift */,
 			);
 			path = Extensions;
@@ -525,7 +522,6 @@
 				028EE73A25B2C2040062C079 /* ViewControllerIdentifier.swift in Sources */,
 				02A146B3259EF74600285DD8 /* UserListTableViewCell.swift in Sources */,
 				028EE73425B1D7200062C079 /* ErrorDelegate.swift in Sources */,
-				02F99E2F25D7965B00896719 /* UIView+AddBackGroundImage.swift in Sources */,
 				02A146AF259DA70700285DD8 /* UserListType.swift in Sources */,
 				0273286025DA948D0044B597 /* NavigationBarColor.swift in Sources */,
 				0244246825CF9159006EF1DD /* RightDetailTableViewCell.swift in Sources */,
