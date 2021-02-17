@@ -41,7 +41,8 @@ class TagListViewController: UIViewController {
         tagListCollectionView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         
-        calcItemsPerRows()
+        //set navigation bar color
+        navigationController!.setNavigationBarColor()
     }
        
     //apiを叩きデータを保存する
@@ -125,7 +126,7 @@ extension TagListViewController: UICollectionViewDelegate, UICollectionViewDataS
         }
     }
     
-    func calcItemsPerRows() -> Int{
+    func calcItemsPerRows() -> Int {
         let margin: CGFloat = 16.0
         let viewWidth = view.frame.width
         let cellWidth: CGFloat = 162
