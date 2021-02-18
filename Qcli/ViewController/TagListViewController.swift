@@ -40,6 +40,9 @@ class TagListViewController: UIViewController {
         //set refresh control
         tagListCollectionView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        
+        //set navigation bar color
+        navigationController!.setNavigationBarColor()
     }
        
     //apiを叩きデータを保存する
@@ -121,6 +124,33 @@ extension TagListViewController: UICollectionViewDelegate, UICollectionViewDataS
             tagListDataRequest.pageNumber = pageCount
             getTagListData(requestTagListData: tagListDataRequest)
         }
+    }
+    
+    func calcItemsPerRows() -> Int {
+        let margin: CGFloat = 16.0
+        let viewWidth = view.frame.width
+        let cellWidth: CGFloat = 162
+        let maxItemsPerRows = (viewWidth + margin) / (cellWidth + margin)
+        let minItemsPerRows = (viewWidth - cellWidth) / (cellWidth + margin)
+        let itemsPerRows = (Int(minItemsPerRows) + 1) == Int(maxItemsPerRows) ? Int(maxItemsPerRows) : Int(minItemsPerRows)
+        //理論上はInt(maxItemsPerRows)が返される
+        return itemsPerRows
+    }
+    
+    func calcLeftAndRightInsets(itemsPerRows: Int) -> CGFloat {
+        let margin: CGFloat = 16.0
+        let viewWidth = view.frame.width
+        let cellWidth: CGFloat = 162
+        let inset = 0.5 * (viewWidth + margin - CGFloat(itemsPerRows) * (cellWidth + margin))
+        return inset
+    }
+}
+
+extension TagListViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        let itemsPerRows = calcItemsPerRows()
+        let inset = calcLeftAndRightInsets(itemsPerRows: itemsPerRows)
+        return UIEdgeInsets(top: 16, left: inset, bottom: 16, right: inset)
     }
 }
 

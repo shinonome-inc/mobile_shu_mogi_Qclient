@@ -17,7 +17,7 @@ class TagListCollectionViewCell: UICollectionViewCell {
     func setModel(model: TagData) {
         layer.cornerRadius = 8
         layer.borderWidth = 1
-        layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        layer.borderColor = #colorLiteral(red: 0.8784313725, green: 0.8784313725, blue: 0.8784313725, alpha: 1)
         tagTitle.text = model.tagTitle
         tagCount.text = "記事件数：\(model.itemCount)件"
         followersCount.text = "フォロワー数：\(model.followersCount)人"
