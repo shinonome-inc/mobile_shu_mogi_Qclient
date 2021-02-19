@@ -41,6 +41,13 @@ class MyPageViewController: UIViewController {
     var keychain = KeyChain()
     //set refreshControl
     let refreshControl = UIRefreshControl()
+    //judge darkmode
+    var isDarkMode: Bool {
+        if #available(iOS 13, *), UITraitCollection.current.userInterfaceStyle == .dark {
+            return true
+        }
+        return false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -179,6 +186,24 @@ class MyPageViewController: UIViewController {
         articleTableView.reloadData()
         refreshControl.endRefreshing()
     }
+    
+    func hideUserItems() {
+        userNameLabel.isHidden = true
+        userIdLabel.isHidden = true
+        userImageView.isHidden = true
+        userDiscriptionLabel.isHidden = true
+        followButton.isHidden = true
+        follwerButton.isHidden = true
+    }
+    
+    func showUserItems() {
+        userNameLabel.isHidden = false
+        userIdLabel.isHidden = false
+        userImageView.isHidden = false
+        userDiscriptionLabel.isHidden = false
+        followButton.isHidden = false
+        follwerButton.isHidden = false
+    }
 }
 
 extension MyPageViewController: UITableViewDataSource, UITableViewDelegate {
@@ -216,22 +241,24 @@ extension MyPageViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    func hideUserItems() {
-        userNameLabel.isHidden = true
-        userIdLabel.isHidden = true
-        userImageView.isHidden = true
-        userDiscriptionLabel.isHidden = true
-        followButton.isHidden = true
-        follwerButton.isHidden = true
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
     
-    func showUserItems() {
-        userNameLabel.isHidden = false
-        userIdLabel.isHidden = false
-        userImageView.isHidden = false
-        userDiscriptionLabel.isHidden = false
-        followButton.isHidden = false
-        follwerButton.isHidden = false
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let myLabel = UILabel()
+        myLabel.frame = CGRect(x: 12, y: 0, width: 320, height: 28)
+        myLabel.font = UIFont.boldSystemFont(ofSize: 12)
+        
+        myLabel.textColor = #colorLiteral(red: 0.5097572207, green: 0.5098338723, blue: 0.5097404122, alpha: 1)
+        myLabel.text = "投稿記事"
+        
+        let headerView = UIView()
+        headerView.frame = CGRect(x: 0, y: 0, width: 320, height: 28)
+        headerView.backgroundColor = isDarkMode ? #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1) : #colorLiteral(red: 0.948936522, green: 0.9490728974, blue: 0.9489069581, alpha: 1)
+        headerView.addSubview(myLabel)
+        
+        return headerView
     }
 }
 
