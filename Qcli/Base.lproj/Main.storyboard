@@ -1112,11 +1112,11 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
             </objects>
             <point key="canvasLocation" x="-1007.2463768115942" y="1069.4196428571429"/>
         </scene>
-        <!--Tag-->
+        <!--タグ-->
         <scene sceneID="0ve-OF-gAh">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gDB-hM-kAi" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Tag" image="Tag" id="i6i-Ol-zlF"/>
+                    <tabBarItem key="tabBarItem" title="タグ" image="Tag" id="i6i-Ol-zlF"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="tGn-ir-VMM">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -1134,11 +1134,11 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
             </objects>
             <point key="canvasLocation" x="-30.434782608695656" y="1068.75"/>
         </scene>
-        <!--My Page-->
+        <!--マイページ-->
         <scene sceneID="xcd-JG-vmP">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="b9c-EF-aat" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My Page" image="person" catalog="system" id="Jse-ve-4VX"/>
+                    <tabBarItem key="tabBarItem" title="マイページ" image="User" id="Jse-ve-4VX"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hGG-AK-iyU">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -1490,9 +1490,9 @@ MAIL: Matarai@shinonome.io</string>
     <resources>
         <image name="List" width="24" height="24"/>
         <image name="Tag" width="24" height="24"/>
+        <image name="User" width="24" height="24"/>
         <image name="background" width="375" height="812"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
-        <image name="person" catalog="system" width="128" height="117"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
