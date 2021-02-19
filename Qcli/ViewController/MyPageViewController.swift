@@ -51,6 +51,7 @@ class MyPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController!.setNavigationBarColor()
         keychain.errorDelegate = self
         hideUserItems()
         setProfile()
