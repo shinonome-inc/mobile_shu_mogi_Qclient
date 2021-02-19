@@ -209,13 +209,13 @@ class MyPageViewController: UIViewController {
     func setButtonTitle(number: String, unit: String) -> NSMutableAttributedString {
         let stringAttributes1: [NSAttributedString.Key : Any] = [
             .foregroundColor : UIColor.label,
-            .font : UIFont.systemFont(ofSize: 12.0)
+            .font : UIFont.boldSystemFont(ofSize: 12.0)
         ]
         let string1 = NSAttributedString(string: number, attributes: stringAttributes1)
 
         let stringAttributes2: [NSAttributedString.Key : Any] = [
             .foregroundColor : #colorLiteral(red: 0.5097572207, green: 0.5098338723, blue: 0.5097404122, alpha: 1),
-            .font : UIFont.boldSystemFont(ofSize: 12.0)
+            .font : UIFont.systemFont(ofSize: 12.0)
         ]
         let string2 = NSAttributedString(string: unit, attributes: stringAttributes2)
 
