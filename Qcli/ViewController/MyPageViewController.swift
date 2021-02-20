@@ -46,7 +46,7 @@ class MyPageViewController: UIViewController {
         super.viewDidLoad()
         navigationController!.setNavigationBarColor()
         keychain.errorDelegate = self
-        hideUserItems()
+        toggleUserItems()
         setProfile()
         //set refresh control
         articleTableView.refreshControl = refreshControl
@@ -169,7 +169,7 @@ class MyPageViewController: UIViewController {
                 }
             })
         }
-        showUserItems()
+        toggleUserItems()
     }
     
     @objc func refresh() {
@@ -181,22 +181,13 @@ class MyPageViewController: UIViewController {
         refreshControl.endRefreshing()
     }
     
-    func hideUserItems() {
-        userNameLabel.isHidden = true
-        userIdLabel.isHidden = true
-        userImageView.isHidden = true
-        userDiscriptionLabel.isHidden = true
-        followButton.isHidden = true
-        follwerButton.isHidden = true
-    }
-    
-    func showUserItems() {
-        userNameLabel.isHidden = false
-        userIdLabel.isHidden = false
-        userImageView.isHidden = false
-        userDiscriptionLabel.isHidden = false
-        followButton.isHidden = false
-        follwerButton.isHidden = false
+    func toggleUserItems() {
+        userNameLabel.isHidden = !userNameLabel.isHidden
+        userIdLabel.isHidden = !userIdLabel.isHidden
+        userImageView.isHidden = !userImageView.isHidden
+        userDiscriptionLabel.isHidden = !userDiscriptionLabel.isHidden
+        followButton.isHidden = !followButton.isHidden
+        follwerButton.isHidden = !follwerButton.isHidden
     }
     
     func setButtonTitle(number: String, unit: String) -> NSMutableAttributedString {
