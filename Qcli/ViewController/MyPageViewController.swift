@@ -41,13 +41,6 @@ class MyPageViewController: UIViewController {
     var keychain = KeyChain()
     //set refreshControl
     let refreshControl = UIRefreshControl()
-    //judge darkmode
-    var isDarkMode: Bool {
-        if #available(iOS 13, *), UITraitCollection.current.userInterfaceStyle == .dark {
-            return true
-        }
-        return false
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -276,7 +269,7 @@ extension MyPageViewController: UITableViewDataSource, UITableViewDelegate {
         
         let headerView = UIView()
         headerView.frame = CGRect(x: 0, y: 0, width: 320, height: 28)
-        headerView.backgroundColor = isDarkMode ? #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1) : #colorLiteral(red: 0.948936522, green: 0.9490728974, blue: 0.9489069581, alpha: 1)
+        headerView.backgroundColor = Palette.tableViewSectionBackgroundColor
         headerView.addSubview(myLabel)
         
         return headerView
