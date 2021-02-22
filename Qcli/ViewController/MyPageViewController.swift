@@ -44,7 +44,6 @@ class MyPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController!.setNavigationBarColor()
         keychain.errorDelegate = self
         toggleUserItems()
         setProfile()
@@ -65,10 +64,11 @@ class MyPageViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == SegueId.fromMyPageToUserList.rawValue) {
-            let userListVC = segue.destination as! UserListViewController
             if let sendUserListType = sendUserListType,
                let userId = userId,
-               let userName = userName {
+               let userName = userName,
+               let navigationController = segue.destination as? MyNavigationController,
+               let userListVC = navigationController.topViewController as? UserListViewController {
                 userListVC.userListType = sendUserListType
                 userListVC.userId = userId
                 userListVC.userName = userName

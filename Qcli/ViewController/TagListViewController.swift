@@ -40,9 +40,6 @@ class TagListViewController: UIViewController {
         //set refresh control
         tagListCollectionView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        
-        //set navigation bar color
-        navigationController!.setNavigationBarColor()
     }
        
     //apiを叩きデータを保存する

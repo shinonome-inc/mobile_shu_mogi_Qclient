@@ -50,8 +50,9 @@ class UserListViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == SegueId.fromUserListToUserDetail.rawValue) {
-            let userDetailVC = segue.destination as! UserDetailViewController
-            if let sendData = sendData {
+            if let sendData = sendData,
+               let navigationController = segue.destination as? MyNavigationController,
+               let userDetailVC = navigationController.topViewController as? UserDetailViewController {
                 userDetailVC.receivedData = sendData
             }
         }
