@@ -10,15 +10,13 @@ import UIKit
 class MyPageTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var discriptionLabel: UILabel!
-    @IBOutlet weak var likeLabel: UILabel!
     
     func setModel(model: ArticleData) {
         titleLabel.text = model.titleText
         if let createdAt = model.createdAt.toJpDateString() {
-            discriptionLabel.text = createdAt + "に作成"
+            discriptionLabel.text = "投稿日：\(createdAt) LGTM：\(model.likeNumber)"
         } else {
             discriptionLabel.text = ""
         }
-        likeLabel.text = "\(model.likeNumber)like"
     }
 }
