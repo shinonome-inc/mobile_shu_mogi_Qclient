@@ -129,12 +129,12 @@ class UserDetailViewController: UIViewController {
         
         userDiscriptionLabel.text = model.discription
         
-        followButton.setTitle(" \(model.followCount) Follow ", for: .normal)
+        followButton.setMutableAttributedString(number: String(model.followCount), unit: "フォロー中")
         if model.followCount <= 0 {
             followButton.isEnabled = false
         }
         
-        follwerButton.setTitle(" \(model.followerCount) Follower ", for: .normal)
+        follwerButton.setMutableAttributedString(number: String(model.followerCount), unit: "フォロワー")
         if model.followerCount <= 0 {
             follwerButton.isEnabled = false
         }

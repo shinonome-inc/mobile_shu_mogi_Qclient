@@ -65,6 +65,7 @@
 		02E1368F256FDE7E0050E4E7 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E1368E256FDE7E0050E4E7 /* TestData.swift */; };
 		02E13693256FE7750050E4E7 /* ErrorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E13692256FE7750050E4E7 /* ErrorData.swift */; };
 		02F99E2925D78ABE00896719 /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02F99E2825D78ABE00896719 /* Pacifico-Regular.ttf */; };
+		02FC602425E3819E0059FE53 /* UIButton+MutableAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FC602325E3819E0059FE53 /* UIButton+MutableAttributedString.swift */; };
 		675A99C01E5B2032D3662E6E /* Pods_Qcli.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 105D3B6E37BA817A4F352A2E /* Pods_Qcli.framework */; };
 /* End PBXBuildFile section */
 
@@ -141,6 +142,7 @@
 		02E1368E256FDE7E0050E4E7 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		02E13692256FE7750050E4E7 /* ErrorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorData.swift; sourceTree = "<group>"; };
 		02F99E2825D78ABE00896719 /* Pacifico-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pacifico-Regular.ttf"; sourceTree = "<group>"; };
+		02FC602325E3819E0059FE53 /* UIButton+MutableAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+MutableAttributedString.swift"; sourceTree = "<group>"; };
 		105D3B6E37BA817A4F352A2E /* Pods_Qcli.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Qcli.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F6543D98951B36C857F91C4 /* Pods-Qcli.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qcli.release.xcconfig"; path = "Target Support Files/Pods-Qcli/Pods-Qcli.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -172,6 +174,7 @@
 				024CF42525D503D300216D5D /* URL+GetCode.swift */,
 				0273285F25DA948D0044B597 /* NavigationBarColor.swift */,
 				022F4C6C25E0E4EC0017D1D5 /* ColorPalette.swift */,
+				02FC602325E3819E0059FE53 /* UIButton+MutableAttributedString.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -522,6 +525,7 @@
 				02A146EF25A851B300285DD8 /* SegueId.swift in Sources */,
 				0270910E2584C735006691B4 /* QiitaRequest+Headers.swift in Sources */,
 				02C98809258AA89B00953B68 /* AuthDataNetworkService.swift in Sources */,
+				02FC602425E3819E0059FE53 /* UIButton+MutableAttributedString.swift in Sources */,
 				028EE73A25B2C2040062C079 /* ViewControllerIdentifier.swift in Sources */,
 				02A146B3259EF74600285DD8 /* UserListTableViewCell.swift in Sources */,
 				028EE73425B1D7200062C079 /* ErrorDelegate.swift in Sources */,
