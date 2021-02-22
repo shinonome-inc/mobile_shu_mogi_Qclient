@@ -1169,7 +1169,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
             <objects>
                 <viewController storyboardIdentifier="UserDetailViewController" id="hOO-eJ-Pkf" customClass="UserDetailViewController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4Sh-d7-Rgw">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pAQ-7Z-vc1">
@@ -1253,7 +1253,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SU6-Uf-erS">
-                                <rect key="frame" x="24" y="188" width="385" height="14.5"/>
+                                <rect key="frame" x="24" y="188" width="366" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.50980752709999999" green="0.50979751350000002" blue="0.50980430840000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -1297,7 +1297,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                             <constraint firstItem="SU6-Uf-erS" firstAttribute="top" secondItem="vKs-Fo-mz8" secondAttribute="bottom" constant="16" id="SLE-VB-cZn"/>
                             <constraint firstItem="Muo-nG-D5V" firstAttribute="bottom" secondItem="pAQ-7Z-vc1" secondAttribute="bottom" id="TU6-Ts-lrY"/>
                             <constraint firstItem="xCv-dX-8Un" firstAttribute="leading" secondItem="kYG-TI-RsD" secondAttribute="leading" id="XIX-nP-GcD"/>
-                            <constraint firstItem="Muo-nG-D5V" firstAttribute="trailing" secondItem="SU6-Uf-erS" secondAttribute="trailing" constant="5" id="YYj-lW-eTd"/>
+                            <constraint firstItem="Muo-nG-D5V" firstAttribute="trailing" secondItem="SU6-Uf-erS" secondAttribute="trailing" constant="24" id="YYj-lW-eTd"/>
                             <constraint firstItem="Muo-nG-D5V" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vKs-Fo-mz8" secondAttribute="trailing" symbolic="YES" id="Zmq-kk-lnB"/>
                             <constraint firstItem="vKs-Fo-mz8" firstAttribute="leading" secondItem="xCv-dX-8Un" secondAttribute="leading" id="bbB-DC-yu3"/>
                             <constraint firstItem="pAQ-7Z-vc1" firstAttribute="leading" secondItem="Muo-nG-D5V" secondAttribute="leading" id="dgg-cG-WMA"/>
