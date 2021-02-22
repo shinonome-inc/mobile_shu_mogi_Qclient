@@ -66,6 +66,7 @@
 		02E13693256FE7750050E4E7 /* ErrorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E13692256FE7750050E4E7 /* ErrorData.swift */; };
 		02F99E2925D78ABE00896719 /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02F99E2825D78ABE00896719 /* Pacifico-Regular.ttf */; };
 		02FC602425E3819E0059FE53 /* UIButton+MutableAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FC602325E3819E0059FE53 /* UIButton+MutableAttributedString.swift */; };
+		02FC603425E3957D0059FE53 /* PostedArticleSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FC603325E3957D0059FE53 /* PostedArticleSectionView.swift */; };
 		675A99C01E5B2032D3662E6E /* Pods_Qcli.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 105D3B6E37BA817A4F352A2E /* Pods_Qcli.framework */; };
 /* End PBXBuildFile section */
 
@@ -143,6 +144,7 @@
 		02E13692256FE7750050E4E7 /* ErrorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorData.swift; sourceTree = "<group>"; };
 		02F99E2825D78ABE00896719 /* Pacifico-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pacifico-Regular.ttf"; sourceTree = "<group>"; };
 		02FC602325E3819E0059FE53 /* UIButton+MutableAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+MutableAttributedString.swift"; sourceTree = "<group>"; };
+		02FC603325E3957D0059FE53 /* PostedArticleSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostedArticleSectionView.swift; sourceTree = "<group>"; };
 		105D3B6E37BA817A4F352A2E /* Pods_Qcli.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Qcli.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F6543D98951B36C857F91C4 /* Pods-Qcli.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qcli.release.xcconfig"; path = "Target Support Files/Pods-Qcli/Pods-Qcli.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -184,6 +186,7 @@
 			children = (
 				025353E425BBF555008F29F5 /* ErrorView.swift */,
 				025353EA25BEBE5A008F29F5 /* ErrorView.xib */,
+				02FC603325E3957D0059FE53 /* PostedArticleSectionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -510,6 +513,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02FC603425E3957D0059FE53 /* PostedArticleSectionView.swift in Sources */,
 				02525A26256E00ED00BF440C /* QueryOption＋SortOption.swift in Sources */,
 				0243674125D66AAF00745C73 /* UserModel.swift in Sources */,
 				028EE73E25B2F4830062C079 /* ReloadDelegate.swift in Sources */,
