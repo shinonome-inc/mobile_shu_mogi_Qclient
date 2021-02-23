@@ -11,8 +11,11 @@ class MyNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    func setConfig() {
         setNavigationBarColor()
-        setBackButton()
+        hideBackButtonTitle()
     }
     
     func setNavigationBarColor() {
@@ -20,11 +23,7 @@ class MyNavigationController: UINavigationController {
         navigationBar.tintColor = Palette.backButtonColor
     }
     
-    func setBackButton() {
-        if #available(iOS 14.0, *) {
-          navigationItem.backButtonDisplayMode = .minimal
-        } else {
-          navigationItem.backButtonTitle = " "
-        }
+    func hideBackButtonTitle() {
+        navigationBar.topItem?.backButtonTitle = " "
     }
 }

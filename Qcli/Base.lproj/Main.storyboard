@@ -788,7 +788,6 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                         <outlet property="userImageView" destination="zow-ri-qfO" id="eEJ-gt-X9r"/>
                         <outlet property="userNameLabel" destination="7Dd-AL-jxr" id="ZqM-gl-mFk"/>
                         <segue destination="6vj-nF-an0" kind="presentation" identifier="FromMyPageToArticlePage" id="AHv-An-Oo6"/>
-                        <segue destination="H9C-gM-HK3" kind="show" identifier="FromMyPageToUserList" id="FqX-aV-cGM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cTC-Y2-cA5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -800,11 +799,11 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
             <objects>
                 <viewController storyboardIdentifier="UserListViewController" id="kEE-um-ZMT" customClass="UserListViewController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wt4-UB-pK9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hiJ-iB-sXh">
-                                <rect key="frame" x="0.0" y="119" width="414" height="689"/>
+                                <rect key="frame" x="0.0" y="151" width="414" height="711"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="292" id="JuM-qS-HEg" customClass="UserListTableViewCell" customModule="Qcli" customModuleProvider="target">
@@ -905,7 +904,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                                 </connections>
                             </tableView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="OYa-ae-wO2">
-                                <rect key="frame" x="12" y="72" width="390" height="32"/>
+                                <rect key="frame" x="12" y="104" width="390" height="32"/>
                                 <segments>
                                     <segment title="First"/>
                                     <segment title="Second"/>
@@ -931,7 +930,6 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                     <connections>
                         <outlet property="userListTableView" destination="hiJ-iB-sXh" id="VE9-WH-jyg"/>
                         <outlet property="userTypeSegmentedControl" destination="OYa-ae-wO2" id="73W-tg-VeE"/>
-                        <segue destination="fpA-nN-7dC" kind="show" identifier="FromUserListToUserDetail" id="RUJ-YT-HVC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8SJ-IG-hp0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1124,7 +1122,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
         <!--タグ-->
         <scene sceneID="0ve-OF-gAh">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gDB-hM-kAi" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gDB-hM-kAi" customClass="MyNavigationController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="タグ" image="Tag" id="i6i-Ol-zlF"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="tGn-ir-VMM">
@@ -1318,7 +1316,6 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                         <outlet property="userIdLabel" destination="vKs-Fo-mz8" id="YdP-tT-h4f"/>
                         <outlet property="userImageView" destination="kYG-TI-RsD" id="vUG-Qe-BOF"/>
                         <outlet property="userNameLabel" destination="xCv-dX-8Un" id="hah-jK-FC8"/>
-                        <segue destination="H9C-gM-HK3" kind="show" identifier="FromUserDetailToUserList" id="sSv-pR-fSU"/>
                         <segue destination="6vj-nF-an0" kind="presentation" identifier="FromUserDetailToArticlePage" id="19S-FT-jNr"/>
                     </connections>
                 </viewController>
@@ -1501,9 +1498,11 @@ MAIL: Matarai@shinonome.io</string>
         <!--My Navigation Controller-->
         <scene sceneID="VYI-sX-Maz">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="H9C-gM-HK3" customClass="MyNavigationController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="UserList" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="H9C-gM-HK3" customClass="MyNavigationController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="Gx8-4O-TOj"/>
+                    <navigationItem key="navigationItem" id="Gx8-4O-TOj">
+                        <barButtonItem key="backBarButtonItem" title=" " id="0xB-xZ-H5V"/>
+                    </navigationItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nfw-M1-Am8">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1520,8 +1519,7 @@ MAIL: Matarai@shinonome.io</string>
         <!--My Navigation Controller-->
         <scene sceneID="dMw-Rb-A01">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="De0-bR-zMV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fpA-nN-7dC" customClass="MyNavigationController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="UserDetail" automaticallyAdjustsScrollViewInsets="NO" id="fpA-nN-7dC" customClass="MyNavigationController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="dWJ-b6-NFJ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wQO-OQ-k1m">
@@ -1533,13 +1531,13 @@ MAIL: Matarai@shinonome.io</string>
                         <segue destination="hOO-eJ-Pkf" kind="relationship" relationship="rootViewController" id="avN-jQ-VLS"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="De0-bR-zMV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2069.5652173913045" y="2499.7767857142858"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="sSv-pR-fSU"/>
-        <segue reference="19S-FT-jNr"/>
+        <segue reference="iDl-aI-MCm"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="List" width="24" height="24"/>

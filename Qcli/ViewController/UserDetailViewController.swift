@@ -44,6 +44,9 @@ class UserDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let navigationController = navigationController as? MyNavigationController {
+            navigationController.setConfig()
+        }
         guard let userDetailData = receivedData else { return }
         setProfile(model: userDetailData)
         //set refresh control
@@ -53,27 +56,15 @@ class UserDetailViewController: UIViewController {
     
     @IBAction func followButtonTapped(_ sender: Any) {
         sendUserListType = .follow
-        performSegue(withIdentifier: SegueId.fromUserDetailToUserList.rawValue, sender: nil)
+        pushUserListViewController()
     }
     
     @IBAction func FollowerButtonTapped(_ sender: Any) {
         sendUserListType = .follower
-        performSegue(withIdentifier: SegueId.fromUserDetailToUserList.rawValue, sender: nil)
+        pushUserListViewController()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == SegueId.fromUserDetailToUserList.rawValue) {
-            if let sendUserListType = sendUserListType,
-               let userId = userId,
-               let userName = userName,
-               let navigationController = segue.destination as? MyNavigationController,
-               let userListVC = navigationController.topViewController as? UserListViewController {
-                userListVC.userListType = sendUserListType
-                userListVC.userId = userId
-                userListVC.userName = userName
-            }
-        }
-        
         if (segue.identifier == SegueId.fromUserDetailToArticlePage.rawValue) {
             if let navigationController = segue.destination as? UINavigationController,
                let articlePageViewController = navigationController.topViewController as? ArticlePageViewController,
@@ -157,6 +148,21 @@ class UserDetailViewController: UIViewController {
         myItemDataRequest.pageNumber = pageCount
         getData(requestAirticleData: myItemDataRequest)
         refreshControl.endRefreshing()
+    }
+    
+    func pushUserListViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let myNavigationController = storyboard.instantiateViewController(withIdentifier: "UserList") as! MyNavigationController
+        let userListVC = myNavigationController.topViewController as! UserListViewController
+        if let sendUserListType = sendUserListType,
+           let userId = userId,
+           let userName = userName,
+           let navigationController = navigationController {
+            userListVC.userListType = sendUserListType
+            userListVC.userId = userId
+            userListVC.userName = userName
+            navigationController.pushViewController(userListVC, animated: true)
+        }
     }
 }
 

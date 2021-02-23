@@ -54,33 +54,36 @@ class MyPageViewController: UIViewController {
     
     @IBAction func followButtonTapped(_ sender: Any) {
         sendUserListType = .follow
-        performSegue(withIdentifier: SegueId.fromMyPageToUserList.rawValue, sender: nil)
+        pushUserListViewController()
     }
     
     @IBAction func follwerButtonTapped(_ sender: Any) {
         sendUserListType = .follower
-        performSegue(withIdentifier: SegueId.fromMyPageToUserList.rawValue, sender: nil)
+        pushUserListViewController()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == SegueId.fromMyPageToUserList.rawValue) {
-            if let sendUserListType = sendUserListType,
-               let userId = userId,
-               let userName = userName,
-               let navigationController = segue.destination as? MyNavigationController,
-               let userListVC = navigationController.topViewController as? UserListViewController {
-                userListVC.userListType = sendUserListType
-                userListVC.userId = userId
-                userListVC.userName = userName
-            }
-        }
-        
         if (segue.identifier == SegueId.fromMyPageToArticlePage.rawValue) {
             if let navigationController = segue.destination as? UINavigationController,
                let articlePageViewController = navigationController.topViewController as? ArticlePageViewController,
                let sendData = sendData {
                 articlePageViewController.articleData = sendData
             }
+        }
+    }
+    
+    func pushUserListViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let myNavigationController = storyboard.instantiateViewController(withIdentifier: "UserList") as! MyNavigationController
+        let userListVC = myNavigationController.topViewController as! UserListViewController
+        if let sendUserListType = sendUserListType,
+           let userId = userId,
+           let userName = userName,
+           let navigationController = navigationController {
+            userListVC.userListType = sendUserListType
+            userListVC.userId = userId
+            userListVC.userName = userName
+            navigationController.pushViewController(userListVC, animated: true)
         }
     }
     
