@@ -1193,7 +1193,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dHQ-22-ClF">
-                                                    <rect key="frame" x="16" y="28" width="382" height="24"/>
+                                                    <rect key="frame" x="16" y="28" width="382" height="14"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="24" id="hdm-A5-TR1"/>
                                                     </constraints>
@@ -1207,6 +1207,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                                                 <constraint firstItem="gBg-EF-LpB" firstAttribute="leading" secondItem="489-da-4i1" secondAttribute="leading" constant="16" id="FxU-GT-LjL"/>
                                                 <constraint firstItem="dHQ-22-ClF" firstAttribute="top" secondItem="gBg-EF-LpB" secondAttribute="bottom" id="GlR-TQ-ZtA"/>
                                                 <constraint firstAttribute="trailing" secondItem="dHQ-22-ClF" secondAttribute="trailing" constant="16" id="Mt4-Up-wNO"/>
+                                                <constraint firstAttribute="bottom" secondItem="dHQ-22-ClF" secondAttribute="bottom" constant="8" id="NjE-iZ-6q2"/>
                                                 <constraint firstItem="gBg-EF-LpB" firstAttribute="top" secondItem="489-da-4i1" secondAttribute="top" constant="8" id="kVK-Bv-h3d"/>
                                                 <constraint firstAttribute="trailing" secondItem="gBg-EF-LpB" secondAttribute="trailing" constant="16" id="y9B-5e-XMh"/>
                                             </constraints>
@@ -1537,7 +1538,7 @@ MAIL: Matarai@shinonome.io</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="iDl-aI-MCm"/>
+        <segue reference="19S-FT-jNr"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="List" width="24" height="24"/>
