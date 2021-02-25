@@ -109,7 +109,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         
         let headerView = UIView()
         headerView.frame = CGRect(x: 0, y: 0, width: 320, height: 60)
-        headerView.backgroundColor = view.backgroundColor
+        headerView.backgroundColor = Palette.settingBackgroundColor
         headerView.addSubview(myLabel)
         
         return headerView
