@@ -1321,11 +1321,11 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
             </objects>
             <point key="canvasLocation" x="2979.7101449275365" y="2499.7767857142858"/>
         </scene>
-        <!--Setting-->
+        <!--設定-->
         <scene sceneID="tdD-Ai-em8">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rYT-Of-HEb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Setting" image="gearshape" catalog="system" id="eeQ-zw-8i8"/>
+                    <tabBarItem key="tabBarItem" title="設定" image="Settings" id="eeQ-zw-8i8"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zHB-qS-vK7">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -1544,10 +1544,10 @@ MAIL: Matarai@shinonome.io</string>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="List" width="24" height="24"/>
+        <image name="Settings" width="24" height="24"/>
         <image name="Tag" width="24" height="24"/>
         <image name="User" width="24" height="24"/>
         <image name="background" width="375" height="812"/>
-        <image name="gearshape" catalog="system" width="128" height="121"/>
         <namedColor name="BackButtonColor">
             <color red="0.27450980392156865" green="0.51372549019607838" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
