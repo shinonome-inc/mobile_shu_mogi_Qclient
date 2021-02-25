@@ -976,6 +976,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" red="0.52434545759999995" green="0.75037294629999995" blue="0.31362012030000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="barTintColor" name="TabBarTintColor"/>
                         <color key="selectedImageTintColor" red="0.52434545759999995" green="0.75037294629999995" blue="0.31362012030000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBar>
                     <connections>
@@ -1551,6 +1552,9 @@ MAIL: Matarai@shinonome.io</string>
             <color red="0.27450980392156865" green="0.51372549019607838" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="BarTintColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TabBarTintColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
