@@ -334,7 +334,7 @@
             <objects>
                 <viewController storyboardIdentifier="ArticlePageViewController" id="5Wb-zf-nuJ" customClass="ArticlePageViewController" customModule="Qcli" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vi8-tX-uUC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4iS-Z1-fpH">
@@ -464,11 +464,11 @@
                                 <color key="backgroundColor" name="SettingBackgroundColor"/>
                                 <inset key="separatorInset" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SegueTableViewCell" id="QkI-HT-rxA" customClass="SegueTableViewCell" customModule="Qcli" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SegueTableViewCell" id="QkI-HT-rxA" customClass="SegueTableViewCell" customModule="Qcli" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QkI-HT-rxA" id="fyq-Ds-uyb">
-                                            <rect key="frame" x="0.0" y="0.0" width="383" height="40"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAf-DQ-cUf">
@@ -477,12 +477,21 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Arrow" translatesAutoresizingMaskIntoConstraints="NO" id="QlG-WX-keN">
+                                                    <rect key="frame" x="382" y="8" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="24" id="6w7-sY-2Rt"/>
+                                                        <constraint firstAttribute="width" constant="24" id="fE5-mW-tqE"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="NAf-DQ-cUf" secondAttribute="trailing" constant="20" symbolic="YES" id="Tav-PU-7MU"/>
+                                                <constraint firstItem="QlG-WX-keN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="NAf-DQ-cUf" secondAttribute="trailing" constant="8" symbolic="YES" id="Tav-PU-7MU"/>
                                                 <constraint firstItem="NAf-DQ-cUf" firstAttribute="leading" secondItem="fyq-Ds-uyb" secondAttribute="leading" constant="16" id="dtg-vz-W3h"/>
+                                                <constraint firstItem="QlG-WX-keN" firstAttribute="centerY" secondItem="fyq-Ds-uyb" secondAttribute="centerY" id="gIe-hs-GPk"/>
                                                 <constraint firstAttribute="bottom" secondItem="NAf-DQ-cUf" secondAttribute="bottom" constant="8" id="nGO-YV-3Vb"/>
                                                 <constraint firstItem="NAf-DQ-cUf" firstAttribute="top" secondItem="fyq-Ds-uyb" secondAttribute="top" constant="8" id="swj-7u-DCR"/>
+                                                <constraint firstAttribute="trailing" secondItem="QlG-WX-keN" secondAttribute="trailing" constant="8" id="v4o-Ze-ElU"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -581,7 +590,7 @@
             <objects>
                 <viewController id="ORn-OU-oeS" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="maT-vD-HHq">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="deP-ct-27O">
@@ -1349,7 +1358,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
             <objects>
                 <viewController id="oit-is-JyP" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="j2I-GF-etf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MTB-tB-lhh">
@@ -1543,6 +1552,7 @@ MAIL: Matarai@shinonome.io</string>
         <segue reference="pXV-9v-0ad"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="Arrow" width="24" height="24"/>
         <image name="List" width="24" height="24"/>
         <image name="Settings" width="24" height="24"/>
         <image name="Tag" width="24" height="24"/>
