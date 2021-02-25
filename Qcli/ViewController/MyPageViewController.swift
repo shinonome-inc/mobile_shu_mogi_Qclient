@@ -44,7 +44,6 @@ class MyPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController!.setNavigationBarColor()
         keychain.errorDelegate = self
         toggleUserItems()
         setProfile()
@@ -55,32 +54,36 @@ class MyPageViewController: UIViewController {
     
     @IBAction func followButtonTapped(_ sender: Any) {
         sendUserListType = .follow
-        performSegue(withIdentifier: SegueId.fromMyPageToUserList.rawValue, sender: nil)
+        pushUserListViewController()
     }
     
     @IBAction func follwerButtonTapped(_ sender: Any) {
         sendUserListType = .follower
-        performSegue(withIdentifier: SegueId.fromMyPageToUserList.rawValue, sender: nil)
+        pushUserListViewController()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == SegueId.fromMyPageToUserList.rawValue) {
-            let userListVC = segue.destination as! UserListViewController
-            if let sendUserListType = sendUserListType,
-               let userId = userId,
-               let userName = userName {
-                userListVC.userListType = sendUserListType
-                userListVC.userId = userId
-                userListVC.userName = userName
-            }
-        }
-        
         if (segue.identifier == SegueId.fromMyPageToArticlePage.rawValue) {
             if let navigationController = segue.destination as? UINavigationController,
                let articlePageViewController = navigationController.topViewController as? ArticlePageViewController,
                let sendData = sendData {
                 articlePageViewController.articleData = sendData
             }
+        }
+    }
+    
+    func pushUserListViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let myNavigationController = storyboard.instantiateViewController(withIdentifier: "UserList") as! MyNavigationController
+        let userListVC = myNavigationController.topViewController as! UserListViewController
+        if let sendUserListType = sendUserListType,
+           let userId = userId,
+           let userName = userName,
+           let navigationController = navigationController {
+            userListVC.userListType = sendUserListType
+            userListVC.userId = userId
+            userListVC.userName = userName
+            navigationController.pushViewController(userListVC, animated: true)
         }
     }
     
@@ -148,13 +151,13 @@ class MyPageViewController: UIViewController {
             userDiscriptionLabel.text = userDiscription
         }
         if let followNumber = userData.followeesCount {
-            followButton.setAttributedTitle(setButtonTitle(number: String(followNumber), unit: " フォロー中"), for: .normal)
+            followButton.setMutableAttributedString(number: String(followNumber), unit: " フォロー中")
             if followNumber <= 0 {
                 followButton.isEnabled = false
             }
         }
         if let followerNumber = userData.followersCount {
-            follwerButton.setAttributedTitle(setButtonTitle(number: String(followerNumber), unit: " フォロワー"), for: .normal)
+            follwerButton.setMutableAttributedString(number: String(followerNumber), unit: "フォロワー")
             if followerNumber <= 0 {
                 follwerButton.isEnabled = false
             }
@@ -188,26 +191,6 @@ class MyPageViewController: UIViewController {
         userDiscriptionLabel.isHidden = !userDiscriptionLabel.isHidden
         followButton.isHidden = !followButton.isHidden
         follwerButton.isHidden = !follwerButton.isHidden
-    }
-    
-    func setButtonTitle(number: String, unit: String) -> NSMutableAttributedString {
-        let stringAttributes1: [NSAttributedString.Key : Any] = [
-            .foregroundColor : UIColor.label,
-            .font : UIFont.boldSystemFont(ofSize: 12.0)
-        ]
-        let string1 = NSAttributedString(string: number, attributes: stringAttributes1)
-
-        let stringAttributes2: [NSAttributedString.Key : Any] = [
-            .foregroundColor : #colorLiteral(red: 0.5097572207, green: 0.5098338723, blue: 0.5097404122, alpha: 1),
-            .font : UIFont.systemFont(ofSize: 12.0)
-        ]
-        let string2 = NSAttributedString(string: unit, attributes: stringAttributes2)
-
-        let mutableAttributedString = NSMutableAttributedString()
-        mutableAttributedString.append(string1)
-        mutableAttributedString.append(string2)
-        
-        return mutableAttributedString
     }
 }
 
@@ -251,19 +234,7 @@ extension MyPageViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let myLabel = UILabel()
-        myLabel.frame = CGRect(x: 12, y: 0, width: 320, height: 28)
-        myLabel.font = UIFont.boldSystemFont(ofSize: 12)
-        
-        myLabel.textColor = #colorLiteral(red: 0.5097572207, green: 0.5098338723, blue: 0.5097404122, alpha: 1)
-        myLabel.text = "投稿記事"
-        
-        let headerView = UIView()
-        headerView.frame = CGRect(x: 0, y: 0, width: 320, height: 28)
-        headerView.backgroundColor = Palette.tableViewSectionBackgroundColor
-        headerView.addSubview(myLabel)
-        
-        return headerView
+        return PostedArticleSectionView.setConfig()
     }
 }
 

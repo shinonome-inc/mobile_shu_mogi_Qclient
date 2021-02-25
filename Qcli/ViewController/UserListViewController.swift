@@ -31,6 +31,9 @@ class UserListViewController: UIViewController {
     let segmentedTypeItems = UserListType.allCases
     
     override func viewDidLoad() {
+        if let navigationController = navigationController as? MyNavigationController {
+            navigationController.setConfig()
+        }
         super.viewDidLoad()
         if let userName = userName {
             title = userName
@@ -46,15 +49,6 @@ class UserListViewController: UIViewController {
         userListDataRequest = UserListNetworlService(userType: userListType, userId: userId)
         getData(requestUserListData: userListDataRequest)
         setSegmentedControl(userListType: userListType)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == SegueId.fromUserListToUserDetail.rawValue) {
-            let userDetailVC = segue.destination as! UserDetailViewController
-            if let sendData = sendData {
-                userDetailVC.receivedData = sendData
-            }
-        }
     }
     
     @IBAction func tapSegmentedControl(_ sender: UISegmentedControl) {
@@ -125,6 +119,16 @@ class UserListViewController: UIViewController {
             userTypeSegmentedControl.selectedSegmentIndex = nowSelectedIndex
         }
     }
+    
+    func pushUserDetailViewController(dataItem: UserDetailData) {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let myNavigationController = storyboard.instantiateViewController(withIdentifier: "UserDetail") as! MyNavigationController
+        let userDetailViewController = myNavigationController.topViewController as! UserDetailViewController
+        userDetailViewController.receivedData = dataItem
+        if let navigationController = navigationController {
+            navigationController.pushViewController(userDetailViewController, animated: true)
+        }
+    }
 }
 
 extension UserListViewController: UITableViewDataSource, UITableViewDelegate {
@@ -142,9 +146,8 @@ extension UserListViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        sendData = dataItems[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: SegueId.fromUserListToUserDetail.rawValue, sender: nil)
+        pushUserDetailViewController(dataItem: dataItems[indexPath.row])
     }
     
     //tableviewをスクロールしたら最下のcellにたどり着く前にデータ更新を行う

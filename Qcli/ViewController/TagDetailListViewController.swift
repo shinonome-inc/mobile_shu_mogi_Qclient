@@ -30,6 +30,9 @@ class TagDetailListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let navigationController = navigationController as? MyNavigationController {
+            navigationController.setConfig()
+        }
         articleTableView.dataSource = self
         articleTableView.delegate = self
         if let receiveData = receiveData {
@@ -150,5 +153,5 @@ extension TagDetailListViewController: ErrorDelegate {
     func reload() {
         getData(requestAirticleData: articleListDataRequest)
     }
-        
+    
 }

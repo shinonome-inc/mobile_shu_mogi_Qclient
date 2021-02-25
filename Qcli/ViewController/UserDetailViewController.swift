@@ -44,6 +44,9 @@ class UserDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let navigationController = navigationController as? MyNavigationController {
+            navigationController.setConfig()
+        }
         guard let userDetailData = receivedData else { return }
         setProfile(model: userDetailData)
         //set refresh control
@@ -53,26 +56,15 @@ class UserDetailViewController: UIViewController {
     
     @IBAction func followButtonTapped(_ sender: Any) {
         sendUserListType = .follow
-        performSegue(withIdentifier: SegueId.fromUserDetailToUserList.rawValue, sender: nil)
+        pushUserListViewController()
     }
     
     @IBAction func FollowerButtonTapped(_ sender: Any) {
         sendUserListType = .follower
-        performSegue(withIdentifier: SegueId.fromUserDetailToUserList.rawValue, sender: nil)
+        pushUserListViewController()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == SegueId.fromUserDetailToUserList.rawValue) {
-            let userListVC = segue.destination as! UserListViewController
-            if let sendUserListType = sendUserListType,
-               let userId = userId,
-               let userName = userName {
-                userListVC.userListType = sendUserListType
-                userListVC.userId = userId
-                userListVC.userName = userName
-            }
-        }
-        
         if (segue.identifier == SegueId.fromUserDetailToArticlePage.rawValue) {
             if let navigationController = segue.destination as? UINavigationController,
                let articlePageViewController = navigationController.topViewController as? ArticlePageViewController,
@@ -129,12 +121,12 @@ class UserDetailViewController: UIViewController {
         
         userDiscriptionLabel.text = model.discription
         
-        followButton.setTitle(" \(model.followCount) Follow ", for: .normal)
+        followButton.setMutableAttributedString(number: String(model.followCount), unit: "フォロー中")
         if model.followCount <= 0 {
             followButton.isEnabled = false
         }
         
-        follwerButton.setTitle(" \(model.followerCount) Follower ", for: .normal)
+        follwerButton.setMutableAttributedString(number: String(model.followerCount), unit: "フォロワー")
         if model.followerCount <= 0 {
             follwerButton.isEnabled = false
         }
@@ -156,6 +148,21 @@ class UserDetailViewController: UIViewController {
         myItemDataRequest.pageNumber = pageCount
         getData(requestAirticleData: myItemDataRequest)
         refreshControl.endRefreshing()
+    }
+    
+    func pushUserListViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let myNavigationController = storyboard.instantiateViewController(withIdentifier: "UserList") as! MyNavigationController
+        let userListVC = myNavigationController.topViewController as! UserListViewController
+        if let sendUserListType = sendUserListType,
+           let userId = userId,
+           let userName = userName,
+           let navigationController = navigationController {
+            userListVC.userListType = sendUserListType
+            userListVC.userId = userId
+            userListVC.userName = userName
+            navigationController.pushViewController(userListVC, animated: true)
+        }
     }
 }
 
@@ -191,5 +198,13 @@ extension UserDetailViewController: UITableViewDataSource, UITableViewDelegate {
             getData(requestAirticleData: myItemDataRequest)
             
         }
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return PostedArticleSectionView.setConfig()
     }
 }

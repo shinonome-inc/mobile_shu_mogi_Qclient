@@ -32,7 +32,6 @@ class TagListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
         tagListDataRequest = TagDataNetworkService(sortDict: [QueryOption.sort:SortOption.count])
         tagListDataRequest.errorDelegate = self
         getTagListData(requestTagListData: tagListDataRequest)
@@ -40,11 +39,8 @@ class TagListViewController: UIViewController {
         //set refresh control
         tagListCollectionView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        
-        //set navigation bar color
-        navigationController!.setNavigationBarColor()
     }
-       
+    
     //apiを叩きデータを保存する
     func getTagListData(requestTagListData: TagDataNetworkService) {
         requestTagListData.fetch(success: { (tagListData) in
@@ -72,7 +68,7 @@ class TagListViewController: UIViewController {
             //TODO: エラー画面を作成し、遷移させる
         })
     }
-        
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == SegueId.fromTagListToTagDetailList.rawValue) {
             let destinationVC = segue.destination as! TagDetailListViewController
@@ -117,7 +113,7 @@ extension TagListViewController: UICollectionViewDelegate, UICollectionViewDataS
         let height = scrollView.frame.size.height
         let contentYoffset = scrollView.contentOffset.y
         let distanceFromBottom = scrollView.contentSize.height - contentYoffset
-                
+        
         if distanceFromBottom < height && isNotLoading {
             isNotLoading = false
             pageCount += 1
@@ -186,5 +182,5 @@ extension TagListViewController: ErrorDelegate {
     func reload() {
         getTagListData(requestTagListData: tagListDataRequest)
     }
-        
+    
 }
