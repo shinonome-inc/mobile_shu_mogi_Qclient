@@ -83,7 +83,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
                 }
                 cell.titleLabel.text = appInfoCellType.titleMessage
                 let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-                cell.versionLabel.text = version
+                cell.versionLabel.text = "v\(version)"
                 return cell
             }
         } else if indexPath.section == 1 {
