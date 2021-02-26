@@ -83,7 +83,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
                 }
                 cell.titleLabel.text = appInfoCellType.titleMessage
                 let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-                cell.versionLabel.text = version
+                cell.versionLabel.text = "v\(version)"
                 return cell
             }
         } else if indexPath.section == 1 {
@@ -109,7 +109,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         
         let headerView = UIView()
         headerView.frame = CGRect(x: 0, y: 0, width: 320, height: 60)
-        headerView.backgroundColor = view.backgroundColor
+        headerView.backgroundColor = Palette.settingBackgroundColor
         headerView.addSubview(myLabel)
         
         return headerView

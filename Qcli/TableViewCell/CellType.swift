@@ -28,7 +28,7 @@ enum OtherCellType: Int, CaseIterable {
     var titleMessage: String {
         switch self {
         case .logout:
-            return "ログアウト"
+            return "ログアウトする"
         }
     }
 }
