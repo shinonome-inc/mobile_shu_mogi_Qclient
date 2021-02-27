@@ -820,6 +820,10 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="acl-b7-Aku">
                                                     <rect key="frame" x="16" y="8" width="382" height="276"/>
                                                     <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oD2-kk-mZv">
+                                                            <rect key="frame" x="0.0" y="0.0" width="382" height="276"/>
+                                                            <color key="backgroundColor" systemColor="placeholderTextColor"/>
+                                                        </view>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wz6-JR-hd2">
                                                             <rect key="frame" x="16" y="8" width="40" height="40"/>
                                                             <constraints>
@@ -869,8 +873,11 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                                                         <constraint firstItem="q8A-TH-X0j" firstAttribute="leading" secondItem="Wz6-JR-hd2" secondAttribute="trailing" constant="8" id="Bgg-zk-kZ5"/>
                                                         <constraint firstItem="Wz6-JR-hd2" firstAttribute="leading" secondItem="acl-b7-Aku" secondAttribute="leading" constant="16" id="Ms6-qL-66U"/>
                                                         <constraint firstItem="Wz6-JR-hd2" firstAttribute="top" secondItem="acl-b7-Aku" secondAttribute="top" constant="8" id="Nea-hk-Fmu"/>
+                                                        <constraint firstItem="oD2-kk-mZv" firstAttribute="leading" secondItem="acl-b7-Aku" secondAttribute="leading" id="QeT-Ny-ckf"/>
+                                                        <constraint firstAttribute="trailing" secondItem="oD2-kk-mZv" secondAttribute="trailing" id="TPw-Qv-27K"/>
                                                         <constraint firstAttribute="trailing" secondItem="q8A-TH-X0j" secondAttribute="trailing" constant="16" id="ZJe-KH-AZF"/>
                                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="43u-BT-gkB" secondAttribute="trailing" constant="16" id="Zof-Ya-R2C"/>
+                                                        <constraint firstItem="oD2-kk-mZv" firstAttribute="top" secondItem="acl-b7-Aku" secondAttribute="top" id="acP-vm-wos"/>
                                                         <constraint firstAttribute="trailing" secondItem="K0Q-Wz-o7P" secondAttribute="trailing" constant="16" id="c2M-ox-g6r"/>
                                                         <constraint firstItem="K0Q-Wz-o7P" firstAttribute="leading" secondItem="Wz6-JR-hd2" secondAttribute="trailing" constant="8" id="eZU-q8-4W6"/>
                                                         <constraint firstItem="K0Q-Wz-o7P" firstAttribute="top" secondItem="acl-b7-Aku" secondAttribute="top" constant="8" id="ebg-b7-56r"/>
@@ -880,6 +887,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                                                         <constraint firstItem="bBA-7L-gHw" firstAttribute="top" secondItem="YLg-zu-VG7" secondAttribute="bottom" constant="8" id="orm-uP-yHX"/>
                                                         <constraint firstItem="bBA-7L-gHw" firstAttribute="leading" secondItem="acl-b7-Aku" secondAttribute="leading" constant="16" id="rU1-AT-pyh"/>
                                                         <constraint firstItem="YLg-zu-VG7" firstAttribute="leading" secondItem="Wz6-JR-hd2" secondAttribute="leading" id="rUB-fn-Mmg"/>
+                                                        <constraint firstAttribute="bottom" secondItem="oD2-kk-mZv" secondAttribute="bottom" id="rzN-4u-87r"/>
                                                         <constraint firstItem="q8A-TH-X0j" firstAttribute="top" secondItem="K0Q-Wz-o7P" secondAttribute="bottom" id="uQ9-G9-Gx1"/>
                                                     </constraints>
                                                 </view>
@@ -895,6 +903,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                                             <outlet property="borderView" destination="acl-b7-Aku" id="bHd-wF-lFp"/>
                                             <outlet property="discriptionLabel" destination="bBA-7L-gHw" id="KUm-Fo-knG"/>
                                             <outlet property="followersCountLabel" destination="43u-BT-gkB" id="HkF-Ll-Ld9"/>
+                                            <outlet property="highlightView" destination="oD2-kk-mZv" id="tB3-cO-g1p"/>
                                             <outlet property="postCountLabel" destination="YLg-zu-VG7" id="7PS-l6-y4K"/>
                                             <outlet property="userIdLabel" destination="q8A-TH-X0j" id="kTP-vW-CZa"/>
                                             <outlet property="userImageView" destination="Wz6-JR-hd2" id="Xq5-t0-aOd"/>
@@ -938,7 +947,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8SJ-IG-hp0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2925" y="1805"/>
+            <point key="canvasLocation" x="2924.6376811594205" y="1804.6875"/>
         </scene>
         <!--Qiita Auth-->
         <scene sceneID="xfq-k0-GMI">
@@ -1572,6 +1581,9 @@ MAIL: Matarai@shinonome.io</string>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="placeholderTextColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
