@@ -168,18 +168,4 @@ extension UserListViewController: UITableViewDataSource, UITableViewDelegate {
             getData(requestUserListData: userListDataRequest)
         }
     }
-    
-    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? UserListTableViewCell else { return }
-        cell.highlightView.isHidden = false
-    }
-    
-    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? UserListTableViewCell else { return }
-        cell.highlightView.isHidden = true
-    }
-}
-
-extension UserListViewController: UISearchBarDelegate {
-    
 }
