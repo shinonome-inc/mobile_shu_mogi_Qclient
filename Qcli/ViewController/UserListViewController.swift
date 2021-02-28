@@ -109,6 +109,8 @@ class UserListViewController: UIViewController {
     }
     
     func setSegmentedControl(userListType: UserListType) {
+        let font = UIFont.systemFont(ofSize: 15)
+        userTypeSegmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
         userTypeSegmentedControl.removeAllSegments()
         let segmentedTitleItems = segmentedTypeItems.map { $0.title } //["フォロー中", "フォロワー"]
         for (index, title) in segmentedTitleItems.enumerated() {
@@ -166,8 +168,4 @@ extension UserListViewController: UITableViewDataSource, UITableViewDelegate {
             getData(requestUserListData: userListDataRequest)
         }
     }
-}
-
-extension UserListViewController: UISearchBarDelegate {
-    
 }

@@ -15,9 +15,13 @@ class UserListTableViewCell: UITableViewCell {
     @IBOutlet weak var followersCountLabel: UILabel!
     @IBOutlet weak var discriptionLabel: UILabel!
     @IBOutlet weak var borderView: UIView!
+    @IBOutlet weak var highlightView: UIView!
     
     func setModel(model: UserDetailData) {
+        selectionStyle = .none
+        
         setBorderView()
+        setHighlightView()
         //userNameがない場合の対処
         if model.userName == "" {
             userNameLabel.text = model.userId
@@ -42,6 +46,19 @@ class UserListTableViewCell: UITableViewCell {
     func setBorderView() {
         borderView.layer.cornerRadius = 8
         borderView.layer.borderWidth = 1
-        borderView.layer.borderColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        borderView.layer.borderColor = #colorLiteral(red: 0.8784313725, green: 0.8784313725, blue: 0.8784313725, alpha: 0.85)
+    }
+    
+    func setHighlightView() {
+        highlightView.layer.cornerRadius = 8
+        highlightView.isHidden = true
+    }
+    
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        if highlighted {
+            highlightView.isHidden = false
+        } else {
+            highlightView.isHidden = true
+        }
     }
 }
