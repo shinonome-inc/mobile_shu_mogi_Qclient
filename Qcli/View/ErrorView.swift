@@ -38,9 +38,9 @@ class ErrorView: UIView {
     }
     
     func checkSafeArea(viewController: UIViewController) {
-        guard let tabBarController = viewController.tabBarController else { return }
+        let tabBarController = viewController.tabBarController
         guard let navBarController = viewController.navigationController else { return }
-        let tabBarHeight = tabBarController.tabBar.frame.height
+        guard let tabBarHeight = tabBarController != nil ? tabBarController?.tabBar.frame.height : 0 else { return }
         let navBarHeight = navBarController.navigationBar.frame.height
         let height = viewController.view.frame.height - tabBarHeight - navBarHeight
         frame = CGRect(x: 0.0,
