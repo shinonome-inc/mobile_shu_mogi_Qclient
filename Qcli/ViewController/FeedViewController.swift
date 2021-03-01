@@ -33,7 +33,7 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
         //記事データ取得
         articleListDataRequest = AirticleDataNetworkService(searchDict: nil)
         articleListDataRequest.errorDelegate = self
-        getData(requestAirticleData: articleListDataRequest, reloadable: true)
+        getData(requestAirticleData: articleListDataRequest)
         //segmented control 設定
         setSegmentedControl()
         //set refresh control
@@ -50,7 +50,7 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
             
             articleListDataRequest = AirticleDataNetworkService(
                 searchDict: [segmentedItems[segmentedSelectedIndex]:searchText])
-            getData(requestAirticleData: articleListDataRequest, reloadable: true)
+            getData(requestAirticleData: articleListDataRequest)
         }
     }
     
@@ -71,14 +71,16 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
     }
         
     //apiを叩きデータを保存する
-    func getData(requestAirticleData: AirticleDataNetworkService, reloadable: Bool) {
+    func getData(requestAirticleData: AirticleDataNetworkService, isRefresh: Bool = false) {
+        let beforeFetchDataCount = dataItems.count
         requestAirticleData.fetch(success: { (dataArray) in
             guard let dataArray = dataArray else { return }
             self.storingData(dataArray: dataArray,
                              completion: {
-                                if reloadable {
-                                    self.articleTableView.reloadData()
+                                if isRefresh {
+                                    self.dataItems.removeSubrange(0...beforeFetchDataCount-1)
                                 }
+                                self.articleTableView.reloadData()
                                 print("👍 Reload the article data")
                                 self.isNotLoading = true
                              })
@@ -118,12 +120,9 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
     }
     
     @objc func refresh() {
-        let beforeFetchDataCount = dataItems.count
         pageCount = 1
         articleListDataRequest.pageNumber = pageCount
-        getData(requestAirticleData: articleListDataRequest, reloadable: false)
-        dataItems.removeSubrange(0...beforeFetchDataCount-1)
-        articleTableView.reloadData()
+        getData(requestAirticleData: articleListDataRequest, isRefresh: true)
         refreshControl.endRefreshing()
     }
 }
@@ -151,19 +150,19 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
         performSegue(withIdentifier: SegueId.fromFeedToArticle.rawValue, sender: nil)
     }
     //tableviewをスクロールしたら最下のcellにたどり着く前にデータ更新を行う
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let currentOffsetY = scrollView.contentOffset.y
-        let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
-        let distanceToBottom = maximumOffset - currentOffsetY
-        
-        if distanceToBottom < 150 && isNotLoading {
-            isNotLoading = false
-            pageCount += 1
-            articleListDataRequest.pageNumber = pageCount
-            getData(requestAirticleData: articleListDataRequest, reloadable: true)
-            
-        }
-    }
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let currentOffsetY = scrollView.contentOffset.y
+//        let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
+//        let distanceToBottom = maximumOffset - currentOffsetY
+//
+//        if distanceToBottom < 150 && isNotLoading {
+//            isNotLoading = false
+//            pageCount += 1
+//            articleListDataRequest.pageNumber = pageCount
+//            getData(requestAirticleData: articleListDataRequest)
+//
+//        }
+//    }
 }
 
 extension FeedViewController: ErrorDelegate {
@@ -198,7 +197,7 @@ extension FeedViewController: ErrorDelegate {
     }
     
     func reload() {
-        getData(requestAirticleData: articleListDataRequest, reloadable: true)
+        getData(requestAirticleData: articleListDataRequest)
     }
         
 }
