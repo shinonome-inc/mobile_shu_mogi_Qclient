@@ -12,11 +12,7 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var segmentedControll: UISegmentedControl!
     @IBOutlet weak var articleTableView: UITableView!
     //最初に取得する記事欄のデータ
-    var dataItems = [ArticleData]() {
-        didSet {
-            articleTableView.reloadData()
-        }
-    }
+    var dataItems = [ArticleData]()
     //画面遷移時のデータ受け渡し用
     var sendData: ArticleData?
     //segmented controllの選択肢
@@ -37,7 +33,7 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
         //記事データ取得
         articleListDataRequest = AirticleDataNetworkService(searchDict: nil)
         articleListDataRequest.errorDelegate = self
-        getData(requestAirticleData: articleListDataRequest)
+        getData(requestAirticleData: articleListDataRequest, reloadable: true)
         //segmented control 設定
         setSegmentedControl()
         //set refresh control
@@ -54,7 +50,7 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
             
             articleListDataRequest = AirticleDataNetworkService(
                 searchDict: [segmentedItems[segmentedSelectedIndex]:searchText])
-            getData(requestAirticleData: articleListDataRequest)
+            getData(requestAirticleData: articleListDataRequest, reloadable: true)
         }
     }
     
@@ -75,25 +71,17 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
     }
         
     //apiを叩きデータを保存する
-    func getData(requestAirticleData: AirticleDataNetworkService) {
+    func getData(requestAirticleData: AirticleDataNetworkService, reloadable: Bool) {
         requestAirticleData.fetch(success: { (dataArray) in
-            dataArray?.forEach { (oneAirticleData) in
-                if let title = oneAirticleData.title,
-                   let createdAt = oneAirticleData.createdAt,
-                   let like = oneAirticleData.likesCount,
-                   let imageURL = oneAirticleData.user.profileImageUrl,
-                   let articleURL = oneAirticleData.url,
-                   let id = oneAirticleData.user.id {
-                    let oneData = ArticleData(id: id, imgURL: imageURL, titleText: title, createdAt: createdAt, likeNumber: like, articleURL: articleURL)
-                    self.dataItems.append(oneData)
-                } else {
-                    print("ERROR: This data ↓ allocation failed.")
-                    print(oneAirticleData)
-                }
-            }
-            print("👍 Reload the article data")
-            self.isNotLoading = true
-            
+            guard let dataArray = dataArray else { return }
+            self.storingData(dataArray: dataArray,
+                             completion: {
+                                if reloadable {
+                                    self.articleTableView.reloadData()
+                                }
+                                print("👍 Reload the article data")
+                                self.isNotLoading = true
+                             })
         }, failure: { error in
             print("Failed to get the article list data.")
             if let error = error {
@@ -104,6 +92,24 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
         })
     }
     
+    func storingData(dataArray: [AirticleModel], completion: () -> Void) {
+        dataArray.forEach { (oneAirticleData) in
+            if let title = oneAirticleData.title,
+               let createdAt = oneAirticleData.createdAt,
+               let like = oneAirticleData.likesCount,
+               let imageURL = oneAirticleData.user.profileImageUrl,
+               let articleURL = oneAirticleData.url,
+               let id = oneAirticleData.user.id {
+                let oneData = ArticleData(id: id, imgURL: imageURL, titleText: title, createdAt: createdAt, likeNumber: like, articleURL: articleURL)
+                self.dataItems.append(oneData)
+            } else {
+                print("ERROR: This data ↓ allocation failed.")
+                print(oneAirticleData)
+            }
+        }
+        completion()
+    }
+    
     func setSegmentedControl() {
         segmentedControll.removeAllSegments()
         for (i,x) in segmentedItems.enumerated() {
@@ -112,10 +118,12 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
     }
     
     @objc func refresh() {
-        dataItems.removeAll()
+        let beforeFetchDataCount = dataItems.count
         pageCount = 1
         articleListDataRequest.pageNumber = pageCount
-        getData(requestAirticleData: articleListDataRequest)
+        getData(requestAirticleData: articleListDataRequest, reloadable: false)
+        dataItems.removeSubrange(0...beforeFetchDataCount-1)
+        articleTableView.reloadData()
         refreshControl.endRefreshing()
     }
 }
@@ -129,6 +137,7 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
         guard let cell = articleTableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as? ArticleTableViewCell else {
             abort()
         }
+        print("test: \(indexPath.row)/\(dataItems.count)")
         let model = dataItems[indexPath.row]
         cell.setModel(model: model)
         return cell
@@ -151,7 +160,7 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
             isNotLoading = false
             pageCount += 1
             articleListDataRequest.pageNumber = pageCount
-            getData(requestAirticleData: articleListDataRequest)
+            getData(requestAirticleData: articleListDataRequest, reloadable: true)
             
         }
     }
@@ -189,7 +198,7 @@ extension FeedViewController: ErrorDelegate {
     }
     
     func reload() {
-        getData(requestAirticleData: articleListDataRequest)
+        getData(requestAirticleData: articleListDataRequest, reloadable: true)
     }
         
 }
