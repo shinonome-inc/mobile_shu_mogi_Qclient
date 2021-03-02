@@ -72,19 +72,20 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
         
     //apiを叩きデータを保存する
     func getData(requestAirticleData: AirticleDataNetworkService, isRefresh: Bool = false) {
-        let beforeFetchDataCount = dataItems.count
         requestAirticleData.fetch(success: { (dataArray) in
+            self.refreshControl.endRefreshing()
             guard let dataArray = dataArray else { return }
-            self.storingData(dataArray: dataArray,
-                             completion: {
-                                if isRefresh {
-                                    self.dataItems.removeSubrange(0...beforeFetchDataCount-1)
-                                }
-                                self.articleTableView.reloadData()
-                                print("👍 Reload the article data")
-                                self.isNotLoading = true
-                             })
+            let convertedModels = self.storingData(dataArray: dataArray)
+            if isRefresh {
+                self.dataItems = convertedModels
+            } else {
+                self.dataItems += convertedModels
+            }
+            self.articleTableView.reloadData()
+            print("👍 Reload the article data")
+            self.isNotLoading = true
         }, failure: { error in
+            self.refreshControl.endRefreshing()
             print("Failed to get the article list data.")
             if let error = error {
                 print(error)
@@ -94,7 +95,8 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
         })
     }
     
-    func storingData(dataArray: [AirticleModel], completion: () -> Void) {
+    func storingData(dataArray: [AirticleModel]) -> [ArticleData] {
+        var models: [ArticleData] = []
         dataArray.forEach { (oneAirticleData) in
             if let title = oneAirticleData.title,
                let createdAt = oneAirticleData.createdAt,
@@ -103,13 +105,13 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
                let articleURL = oneAirticleData.url,
                let id = oneAirticleData.user.id {
                 let oneData = ArticleData(id: id, imgURL: imageURL, titleText: title, createdAt: createdAt, likeNumber: like, articleURL: articleURL)
-                self.dataItems.append(oneData)
+                models.append(oneData)
             } else {
                 print("ERROR: This data ↓ allocation failed.")
                 print(oneAirticleData)
             }
         }
-        completion()
+        return models
     }
     
     func setSegmentedControl() {
@@ -123,7 +125,6 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
         pageCount = 1
         articleListDataRequest.pageNumber = pageCount
         getData(requestAirticleData: articleListDataRequest, isRefresh: true)
-        refreshControl.endRefreshing()
     }
 }
 
