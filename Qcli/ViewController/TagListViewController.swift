@@ -13,11 +13,7 @@ class TagListViewController: UIViewController {
     
     @IBOutlet weak var tagListCollectionView: UICollectionView!
     //最初に取得する記事欄のデータ
-    var dataItems = [TagData]() {
-        didSet {
-            tagListCollectionView.reloadData()
-        }
-    }
+    var dataItems = [TagData]()
     //画面遷移時のデータ受け渡し用
     var sendData: TagData?
     //スクロールデータ更新用のページカウント
@@ -41,32 +37,44 @@ class TagListViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
-    //apiを叩きデータを保存する
-    func getTagListData(requestTagListData: TagDataNetworkService) {
-        requestTagListData.fetch(success: { (tagListData) in
-            tagListData?.forEach{ (oneTagData) in
-                if let title = oneTagData.id,
-                   let imageUrl = oneTagData.iconUrl,
-                   let itemCount = oneTagData.itemsCount,
-                   let followersCount = oneTagData.followersCount {
-                    let oneData = TagData(tagTitle: title, imageURL: imageUrl, itemCount: itemCount, followersCount: followersCount)
-                    self.dataItems.append(oneData)
-                } else {
-                    print("ERROR: This data ↓ allocation failed.")
-                    print(oneTagData)
-                }
+    func getTagListData(requestTagListData: TagDataNetworkService, isRefresh: Bool = false) {
+        requestTagListData.fetch(success: { (dataArray) in
+            self.refreshControl.endRefreshing()
+            guard let dataArray = dataArray else { return }
+            let convertedModels = self.storingData(dataArray: dataArray)
+            if isRefresh {
+                self.dataItems = convertedModels
+            } else {
+                self.dataItems += convertedModels
             }
             self.tagListCollectionView.reloadData()
-            print("👍 Reload the tag data")
+            print("👍 Reload the article data")
             self.isNotLoading = true
         }, failure: { error in
+            self.refreshControl.endRefreshing()
             print("Failed to get the article list data.")
             if let error = error {
                 print(error)
             }
             self.isNotLoading = true
-            //TODO: エラー画面を作成し、遷移させる
         })
+    }
+    
+    func storingData(dataArray: [TagModel]) -> [TagData] {
+        var models: [TagData] = []
+        dataArray.forEach { (oneTagData) in
+            if let title = oneTagData.id,
+               let imageUrl = oneTagData.iconUrl,
+               let itemCount = oneTagData.itemsCount,
+               let followersCount = oneTagData.followersCount {
+                let oneData = TagData(tagTitle: title, imageURL: imageUrl, itemCount: itemCount, followersCount: followersCount)
+                models.append(oneData)
+            } else {
+                print("ERROR: This data ↓ allocation failed.")
+                print(oneTagData)
+            }
+        }
+        return models
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -79,11 +87,9 @@ class TagListViewController: UIViewController {
     }
     
     @objc func refresh() {
-        dataItems.removeAll()
         pageCount = 1
         tagListDataRequest.pageNumber = pageCount
-        getTagListData(requestTagListData: tagListDataRequest)
-        refreshControl.endRefreshing()
+        getTagListData(requestTagListData: tagListDataRequest, isRefresh: true)
     }
 }
 extension TagListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -168,15 +174,6 @@ extension TagListViewController: ErrorDelegate {
         errorView.qiitaError = qiitaError
         errorView.setConfig()
         view.addSubview(errorView)
-        //↓Error VCを使う
-        //guard let storyboard = self.storyboard else { abort() }
-        //let identifier = ViewControllerIdentifier.error.rawValue
-        //let errorViewController = storyboard.instantiateViewController(identifier: identifier) as! ErrorViewController
-        //errorViewController.errorDelegate = self
-        //errorViewController.qiitaError = qiitaError
-        //errorViewController.checkSafeArea(viewController: self)
-        //addChild(errorViewController)
-        //view.addSubview(errorViewController.view)
     }
     
     func reload() {

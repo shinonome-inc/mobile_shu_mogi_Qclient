@@ -137,7 +137,6 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
         guard let cell = articleTableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as? ArticleTableViewCell else {
             abort()
         }
-        print("test: \(indexPath.row)/\(dataItems.count)")
         let model = dataItems[indexPath.row]
         cell.setModel(model: model)
         return cell
@@ -150,20 +149,21 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: SegueId.fromFeedToArticle.rawValue, sender: nil)
     }
+    
     //tableviewをスクロールしたら最下のcellにたどり着く前にデータ更新を行う
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let currentOffsetY = scrollView.contentOffset.y
-//        let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
-//        let distanceToBottom = maximumOffset - currentOffsetY
-//
-//        if distanceToBottom < 150 && isNotLoading {
-//            isNotLoading = false
-//            pageCount += 1
-//            articleListDataRequest.pageNumber = pageCount
-//            getData(requestAirticleData: articleListDataRequest)
-//
-//        }
-//    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let currentOffsetY = scrollView.contentOffset.y
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
+        let distanceToBottom = maximumOffset - currentOffsetY
+
+        if distanceToBottom < 150 && isNotLoading {
+            isNotLoading = false
+            pageCount += 1
+            articleListDataRequest.pageNumber = pageCount
+            getData(requestAirticleData: articleListDataRequest)
+
+        }
+    }
 }
 
 extension FeedViewController: ErrorDelegate {
@@ -178,23 +178,12 @@ extension FeedViewController: ErrorDelegate {
     
     func segueErrorViewController(qiitaError: QiitaError) {
         //↓ErrorViewを使う
-        //guard let nib = Bundle.main.loadNibNamed("ErrorView", owner: self, options: nil) else { return }
-        //let errorView = nib.first as! ErrorView
         let errorView = ErrorView.make()
         errorView.checkSafeArea(viewController: self)
         errorView.errorDelegate = self
         errorView.qiitaError = qiitaError
         errorView.setConfig()
         view.addSubview(errorView)
-        //↓Error VCを使う
-        //guard let storyboard = self.storyboard else { abort() }
-        //let identifier = ViewControllerIdentifier.error.rawValue
-        //let errorViewController = storyboard.instantiateViewController(identifier: identifier) as! ErrorViewController
-        //errorViewController.errorDelegate = self
-        //errorViewController.qiitaError = qiitaError
-        //errorViewController.checkSafeArea(viewController: self)
-        //addChild(errorViewController)
-        //view.addSubview(errorViewController.view)
     }
     
     func reload() {
