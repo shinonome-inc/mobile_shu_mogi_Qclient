@@ -430,6 +430,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="FYr-6k-k6w" id="bVp-Dx-kTQ"/>
+                                    <outlet property="delegate" destination="FYr-6k-k6w" id="0FX-9Y-2t1"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vH6-Pw-AOt"/>
@@ -596,7 +600,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="deP-ct-27O">
                                 <rect key="frame" x="16" y="74" width="382" height="768"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <mutableString key="text">プライバシーポリシー
+                                <string key="text">プライバシーポリシー
 
 情報の収集と使用
 
@@ -622,7 +626,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
 
 お問い合わせ
 
-プライバシーポリシーについてご質問やご提案がありましたら、〇〇までお気軽にお問い合わせください。</mutableString>
+プライバシーポリシーについてご質問やご提案がありましたら、〇〇までお気軽にお問い合わせください。</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1379,7 +1383,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MTB-tB-lhh">
                                 <rect key="frame" x="16" y="74" width="382" height="768"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <mutableString key="text">Qiita Feed App プライバシーポリシー
+                                <string key="text">Qiita Feed App プライバシーポリシー
 Shinonome, inc.（以下「当社」といいます。）は、当社が運営するサービス（以下「本サービス」といいます。）を提供するにあたり、個人情報保護に関する法規範を遵守し、以下のプライバシーポリシー（以下「本ポリシー」といいます。）に従って個人情報の適切な取得、利用、提供等を行います。
 
 1. 個人情報について
@@ -1419,7 +1423,7 @@ Shinonome, inc.（以下「当社」といいます。）は、当社が運営�
 7. 個人情報に関するお問い合わせ等について
 このプライバシーポリシーに関するお問い合わせは、下記までお願いいたします。
 Shinonome, inc. アプリ開発チーム
-MAIL: </mutableString>
+MAIL: </string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1564,7 +1568,7 @@ MAIL: </mutableString>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="pXV-9v-0ad"/>
+        <segue reference="iDl-aI-MCm"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Arrow" width="24" height="24"/>

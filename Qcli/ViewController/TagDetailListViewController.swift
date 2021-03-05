@@ -14,11 +14,7 @@ class TagDetailListViewController: UIViewController {
     //データリクエストの宣言
     var articleListDataRequest: AirticleDataNetworkService!
     //最初に取得する記事欄のデータ
-    var dataItems = [ArticleData]() {
-        didSet {
-            articleTableView.reloadData()
-        }
-    }
+    var dataItems = [ArticleData]()
     //画面遷移時のデータ受け渡し用
     var sendData: ArticleData?
     //スクロールデータ更新用のページカウント
@@ -33,8 +29,6 @@ class TagDetailListViewController: UIViewController {
         if let navigationController = navigationController as? MyNavigationController {
             navigationController.setConfig()
         }
-        articleTableView.dataSource = self
-        articleTableView.delegate = self
         if let receiveData = receiveData {
             articleListDataRequest = AirticleDataNetworkService(searchDict: [SearchOption.tag:receiveData.tagTitle])
             articleListDataRequest.errorDelegate = self
@@ -46,26 +40,21 @@ class TagDetailListViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     //apiを叩きデータを保存する
-    func getData(requestAirticleData: AirticleDataNetworkService) {
+    func getData(requestAirticleData: AirticleDataNetworkService, isRefresh: Bool = false) {
         requestAirticleData.fetch(success: { (dataArray) in
-            dataArray?.forEach { (oneAirticleData) in
-                if let title = oneAirticleData.title,
-                   let createdAt = oneAirticleData.createdAt,
-                   let like = oneAirticleData.likesCount,
-                   let imageURL = oneAirticleData.user.profileImageUrl,
-                   let articleURL = oneAirticleData.url,
-                   let id = oneAirticleData.user.id {
-                    let oneData = ArticleData(id: id, imgURL: imageURL, titleText: title, createdAt: createdAt, likeNumber: like, articleURL: articleURL)
-                    self.dataItems.append(oneData)
-                } else {
-                    print("ERROR: This data ↓ allocation failed.")
-                    print(oneAirticleData)
-                }
+            self.refreshControl.endRefreshing()
+            guard let dataArray = dataArray else { return }
+            let convertedModels = self.storingData(dataArray: dataArray)
+            if isRefresh {
+                self.dataItems = convertedModels
+            } else {
+                self.dataItems += convertedModels
             }
+            self.articleTableView.reloadData()
             print("👍 Reload the article data")
             self.isNotLoading = true
-            
         }, failure: { error in
+            self.refreshControl.endRefreshing()
             print("Failed to get the article list data.")
             if let error = error {
                 print(error)
@@ -73,6 +62,25 @@ class TagDetailListViewController: UIViewController {
             self.isNotLoading = true
             //TODO: エラー画面を作成し、遷移させる
         })
+    }
+    
+    func storingData(dataArray: [AirticleModel]) -> [ArticleData] {
+        var models: [ArticleData] = []
+        dataArray.forEach { (oneAirticleData) in
+            if let title = oneAirticleData.title,
+               let createdAt = oneAirticleData.createdAt,
+               let like = oneAirticleData.likesCount,
+               let imageURL = oneAirticleData.user.profileImageUrl,
+               let articleURL = oneAirticleData.url,
+               let id = oneAirticleData.user.id {
+                let oneData = ArticleData(id: id, imgURL: imageURL, titleText: title, createdAt: createdAt, likeNumber: like, articleURL: articleURL)
+                models.append(oneData)
+            } else {
+                print("ERROR: This data ↓ allocation failed.")
+                print(oneAirticleData)
+            }
+        }
+        return models
     }
     
     //tableviewをスクロールしたら最下のcellにたどり着く前にデータ更新を行う
@@ -101,11 +109,9 @@ class TagDetailListViewController: UIViewController {
     }
     
     @objc func refresh() {
-        dataItems.removeAll()
         pageCount = 1
         articleListDataRequest.pageNumber = pageCount
-        getData(requestAirticleData: articleListDataRequest)
-        refreshControl.endRefreshing()
+        getData(requestAirticleData: articleListDataRequest, isRefresh: true)
     }
 }
 
