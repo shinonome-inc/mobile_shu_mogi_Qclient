@@ -12,11 +12,7 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var segmentedControll: UISegmentedControl!
     @IBOutlet weak var articleTableView: UITableView!
     //最初に取得する記事欄のデータ
-    var dataItems = [ArticleData]() {
-        didSet {
-            articleTableView.reloadData()
-        }
-    }
+    var dataItems = [ArticleData]()
     //画面遷移時のデータ受け渡し用
     var sendData: ArticleData?
     //segmented controllの選択肢
@@ -75,26 +71,21 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
     }
         
     //apiを叩きデータを保存する
-    func getData(requestAirticleData: AirticleDataNetworkService) {
+    func getData(requestAirticleData: AirticleDataNetworkService, isRefresh: Bool = false) {
         requestAirticleData.fetch(success: { (dataArray) in
-            dataArray?.forEach { (oneAirticleData) in
-                if let title = oneAirticleData.title,
-                   let createdAt = oneAirticleData.createdAt,
-                   let like = oneAirticleData.likesCount,
-                   let imageURL = oneAirticleData.user.profileImageUrl,
-                   let articleURL = oneAirticleData.url,
-                   let id = oneAirticleData.user.id {
-                    let oneData = ArticleData(id: id, imgURL: imageURL, titleText: title, createdAt: createdAt, likeNumber: like, articleURL: articleURL)
-                    self.dataItems.append(oneData)
-                } else {
-                    print("ERROR: This data ↓ allocation failed.")
-                    print(oneAirticleData)
-                }
+            self.refreshControl.endRefreshing()
+            guard let dataArray = dataArray else { return }
+            let convertedModels = self.storingData(dataArray: dataArray)
+            if isRefresh {
+                self.dataItems = convertedModels
+            } else {
+                self.dataItems += convertedModels
             }
+            self.articleTableView.reloadData()
             print("👍 Reload the article data")
             self.isNotLoading = true
-            
         }, failure: { error in
+            self.refreshControl.endRefreshing()
             print("Failed to get the article list data.")
             if let error = error {
                 print(error)
@@ -102,6 +93,25 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
             self.isNotLoading = true
             //TODO: エラー画面を作成し、遷移させる
         })
+    }
+    
+    func storingData(dataArray: [AirticleModel]) -> [ArticleData] {
+        var models: [ArticleData] = []
+        dataArray.forEach { (oneAirticleData) in
+            if let title = oneAirticleData.title,
+               let createdAt = oneAirticleData.createdAt,
+               let like = oneAirticleData.likesCount,
+               let imageURL = oneAirticleData.user.profileImageUrl,
+               let articleURL = oneAirticleData.url,
+               let id = oneAirticleData.user.id {
+                let oneData = ArticleData(id: id, imgURL: imageURL, titleText: title, createdAt: createdAt, likeNumber: like, articleURL: articleURL)
+                models.append(oneData)
+            } else {
+                print("ERROR: This data ↓ allocation failed.")
+                print(oneAirticleData)
+            }
+        }
+        return models
     }
     
     func setSegmentedControl() {
@@ -112,11 +122,9 @@ class FeedViewController: UIViewController, UISearchBarDelegate {
     }
     
     @objc func refresh() {
-        dataItems.removeAll()
         pageCount = 1
         articleListDataRequest.pageNumber = pageCount
-        getData(requestAirticleData: articleListDataRequest)
-        refreshControl.endRefreshing()
+        getData(requestAirticleData: articleListDataRequest, isRefresh: true)
     }
 }
 
@@ -141,18 +149,19 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: SegueId.fromFeedToArticle.rawValue, sender: nil)
     }
+    
     //tableviewをスクロールしたら最下のcellにたどり着く前にデータ更新を行う
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let currentOffsetY = scrollView.contentOffset.y
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.height
         let distanceToBottom = maximumOffset - currentOffsetY
-        
+
         if distanceToBottom < 150 && isNotLoading {
             isNotLoading = false
             pageCount += 1
             articleListDataRequest.pageNumber = pageCount
             getData(requestAirticleData: articleListDataRequest)
-            
+
         }
     }
 }
@@ -169,23 +178,12 @@ extension FeedViewController: ErrorDelegate {
     
     func segueErrorViewController(qiitaError: QiitaError) {
         //↓ErrorViewを使う
-        //guard let nib = Bundle.main.loadNibNamed("ErrorView", owner: self, options: nil) else { return }
-        //let errorView = nib.first as! ErrorView
         let errorView = ErrorView.make()
         errorView.checkSafeArea(viewController: self)
         errorView.errorDelegate = self
         errorView.qiitaError = qiitaError
         errorView.setConfig()
         view.addSubview(errorView)
-        //↓Error VCを使う
-        //guard let storyboard = self.storyboard else { abort() }
-        //let identifier = ViewControllerIdentifier.error.rawValue
-        //let errorViewController = storyboard.instantiateViewController(identifier: identifier) as! ErrorViewController
-        //errorViewController.errorDelegate = self
-        //errorViewController.qiitaError = qiitaError
-        //errorViewController.checkSafeArea(viewController: self)
-        //addChild(errorViewController)
-        //view.addSubview(errorViewController.view)
     }
     
     func reload() {
