@@ -23,10 +23,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 let window = UIWindow(windowScene: scene)
                 self.window = window
                 window.makeKeyAndVisible()
-                let vc = UIStoryboard(name: "Main", bundle: nil)
-                    .instantiateViewController(identifier: ViewControllerIdentifier.feed.rawValue) as! FeedViewController
-                let navigationController = UINavigationController(rootViewController: vc)
-                window.rootViewController = navigationController
+                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabView")
+                window.rootViewController = vc
             }
         }
     }
